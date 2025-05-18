@@ -1,0 +1,203 @@
+@import "tailwindcss";
+@import '@fontsource/anton';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/alex-brush';
+
+:root {
+  /* Main colors */
+  --background-black: #151515;
+  --background-lighter: #1C1C1C;
+  --white-color: #F1F1F1;
+  
+  /* Border colors */
+  --border-dark: #5C5C5C;
+  --border-light: #A3A3A3;
+  --border-medium: #464646;
+  --border-darker: #2C2C2C;
+  
+  /* Accent colors */
+  --accent-green: #6ADC01;
+  --accent-blue: #0156A4;
+  --accent-linkedin: #0156A4;
+  --accent-email: #DA483A;
+  --accent-whatsapp: #23D366;
+  
+  /* System colors for compatibility */
+  --background: var(--background-black);
+  --foreground: var(--white-color);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: var(--background-black);
+    --foreground: var(--white-color);
+  }
+}
+
+body {
+  background: var(--background-black);
+  color: var(--white-color);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Typography */
+.heading-big {
+  font-family: 'Anton', sans-serif;
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+.heading-standard {
+  font-family: 'Anton', sans-serif;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+/* Typography */
+.font-anton {
+  font-family: 'Anton', sans-serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-brush {
+  font-family: 'Alex Brush', cursive;
+}
+
+/* Text sizes - Responsive */
+.text14px-desktop {
+  font-size: 0.875vw;
+}
+
+.text15px-desktop {
+  font-size: 0.9375vw;
+}
+
+.text16px-desktop {
+  font-size: 0.975vw;
+}
+
+.text18px-desktop {
+  font-size: 1.1vw;
+}
+
+.text24px-desktop {
+  font-size: 1.2vw;
+}
+
+.text56px-desktop {
+  font-size: 2.8vw;
+}
+
+.text105px-desktop {
+  font-size: 5.2vw;
+}
+
+.text10px-mobile {
+  font-size: 2.6vw;
+}
+
+.text12px-mobile {
+  font-size: 3.2vw;
+}
+
+.text14px-mobile {
+  font-size: 3.7vw;
+}
+
+.text56px-mobile {
+  font-size: 14.9vw;
+}
+
+@media (max-width: 768px) {
+  .text14px-desktop, .text15px-desktop, .text16px-desktop,
+  .text18px-desktop, .text24px-desktop {
+    font-size: unset;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s cubic-bezier(0.8, 0, 0.2, 1) forwards;
+}
+
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+
+/* Initial invisible state for GSAP animations */
+[data-from-invisible=true] {
+  opacity: 0;
+}
+
+/* Hover effects */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  height: 1em;
+}
+
+.nav-link-text {
+  display: inline-block;
+  transition: transform 0.5s;
+}
+
+.nav-link-hover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  font-weight: bold;
+  white-space: nowrap;
+  transition: transform 0.5s;
+}
+
+.nav-link:hover .nav-link-text,
+.nav-link:hover .nav-link-hover {
+  transform: translateY(-100%);
+}
+
+/* Button effects */
+.button-circle {
+  transform: scale(0.3);
+  transition: transform 0.5s;
+  will-change: transform;
+}
+
+.button-icon {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.button-wrapper:hover .button-circle {
+  transform: scale(1);
+}
+
+.button-wrapper:hover .button-icon {
+  opacity: 1;
+}
+
+.hover-link:hover .hover-text {
+  transform: translateY(-100%);
+}
