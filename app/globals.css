@@ -7,27 +7,62 @@
 @import '@fontsource/alex-brush';
 
 :root {
-  /* Main colors */
+  /* Base Accent Colors - can be overridden by themes if needed */
+  --accent-green-base: #6ADC01;
+  --accent-blue-base: #0156A4;
+  --accent-linkedin-base: #0156A4;
+  --accent-email-base: #DA483A;
+  --accent-whatsapp-base: #23D366;
+
+  /* Default values for --background and --foreground, will be themed by html.dark/light */
+  /* These are referenced by @theme inline */
+  --background-black: #151515; /* Default to dark theme's main background */
+  --white-color: #F1F1F1;    /* Default to dark theme's main text color */
+  --background: var(--background-black);
+  --foreground: var(--white-color);
+}
+
+/* Dark Theme Settings (applied by html.dark class or if html.light is not present) */
+html.dark, html:not(.light) {
   --background-black: #151515;
   --background-lighter: #1C1C1C;
-  --white-color: #F1F1F1;
+  --white-color: #F1F1F1; /* Text color for dark theme */
   
-  /* Border colors */
   --border-dark: #5C5C5C;
   --border-light: #A3A3A3;
   --border-medium: #464646;
   --border-darker: #2C2C2C;
   
-  /* Accent colors */
-  --accent-green: #6ADC01;
-  --accent-blue: #0156A4;
-  --accent-linkedin: #0156A4;
-  --accent-email: #DA483A;
-  --accent-whatsapp: #23D366;
-  
-  /* System colors for compatibility */
+  --accent-green: var(--accent-green-base);
+  --accent-blue: var(--accent-blue-base);
+  --accent-linkedin: var(--accent-linkedin-base);
+  --accent-email: var(--accent-email-base);
+  --accent-whatsapp: var(--accent-whatsapp-base);
+
   --background: var(--background-black);
   --foreground: var(--white-color);
+}
+
+/* Light Theme Settings (applied by html.light class) */
+html.light {
+  --background-black: #F0F0F0;   /* Main page background for light theme (off-white) */
+  --background-lighter: #FFFFFF; /* Lighter elements background for light theme (white) */
+  --white-color: #151515;         /* Main text color for light theme (dark gray/black) */
+  
+  --border-dark: #D1D1D1;         /* Main border color for light theme */
+  --border-light: #E0E0E0;        /* Lighter border for light theme */
+  --border-medium: #C0C0C0;       /* Medium border for light theme */
+  --border-darker: #B0B0B0;       /* Darker border for light theme */
+  
+  /* Adjusted accent colors for better contrast on light backgrounds */
+  --accent-green: #52a501;
+  --accent-blue: #014586;
+  --accent-linkedin: #014586;
+  --accent-email: #C83A2B;
+  --accent-whatsapp: #1FAF54;
+
+  --background: var(--background-black); /* Uses light theme's --background-black */
+  --foreground: var(--white-color);   /* Uses light theme's --white-color */
 }
 
 @theme inline {
@@ -45,10 +80,11 @@
 }
 
 body {
-  background: var(--background-black);
-  color: var(--white-color);
+  background: var(--background); /* Use theme-dependent background */
+  color: var(--foreground);   /* Use theme-dependent text color */
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for theme change */
 }
 
 /* Typography */
