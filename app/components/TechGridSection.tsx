@@ -17,9 +17,9 @@ const technologiesData = [
   // Row 2 (Desktop)
   { name: "Adobe Premiere Pro", imgSrc: "/images/brands/Adobe_Premiere_Pro_CC_icon.svg", alt: "Adobe Premiere Pro Logo", widthClass: "w-[38%]", gridClasses: "md:row-start-2 md:col-start-1", borderClasses: "border-l-0 md:border-l", corners: ['tl', 'tr'] },
   { name: "Adobe XD", imgSrc: "/images/brands/Adobe_XD_CC_icon.svg", alt: "Adobe XD Logo", widthClass: "w-[28%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t md:border-l-0", corners: ['tr', 'tl-mobile'] },
-  { name: "Amazon Web Services", imgSrc: "/images/brands/Amazon_Web_Services_Logo.svg", alt: "Amazon Web Services Logo", widthClass: "w-[28%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr'] },
+  { name: "Amazon Web Services", imgSrc: "/images/brands/Amazon_Web_Services_Logo.svg", alt: "Amazon Web Services Logo", widthClass: "w-[28%] icon-white-in-dark", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr'] },
   { name: "Logomark", imgSrc: "/images/brands/Logomark_Full Color.svg", alt: "Logomark Logo", widthClass: "w-[38%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr', 'tl-mobile'] },
-  { name: "Cloudflare", imgSrc: "/images/brands/NET_BIG.svg", alt: "Cloudflare Logo", widthClass: "w-[38%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t md:border-l-0", corners: ['tr', 'br'] },
+  { name: "Cloudflare", imgSrc: "/images/brands/NET_BIG.svg", alt: "Cloudflare Logo", widthClass: "w-[38%] icon-white-in-dark", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t md:border-l-0", corners: ['tr', 'br'] },
   { name: "Tailwind CSS", imgSrc: "/images/brands/Tailwind_CSS_Logo.svg", alt: "Tailwind CSS Logo", widthClass: "w-[32%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr'] },
 
   // Row 3 (Desktop)
@@ -75,6 +75,35 @@ export default function TechGridSection() {
           },
         }
       );
+
+      // Add hover animations for tech logos
+      items.forEach((item) => {
+        const logo = item.querySelector("img");
+        if (logo) {
+          // Initial state (no transform)
+          gsap.set(logo, { scale: 1, rotate: 0 });
+          
+          // Hover in animation
+          item.addEventListener("mouseenter", () => {
+            gsap.to(logo, {
+              scale: 1.1,
+              rotate: 2,
+              duration: 0.4,
+              ease: "power2.out",
+            });
+          });
+          
+          // Hover out animation
+          item.addEventListener("mouseleave", () => {
+            gsap.to(logo, {
+              scale: 1,
+              rotate: 0,
+              duration: 0.3,
+              ease: "power2.inOut",
+            });
+          });
+        }
+      });
     }
   }, []);
 
@@ -129,11 +158,6 @@ export default function TechGridSection() {
             </div>
           </div>
           <div className="pl-[4.75vw] pt-[2vw] relative w-max">
-            <Image
-              width={218} height={200} alt="Pencil Image"
-              src="/images/home/pencil.webp" // Ensure this image is in public/images/home/
-              className="heading-img absolute w-[6vw] bottom-0 translate-y-[20%] right-[8.5%] -translate-x-full z-[1]"
-            />
             <h2 className="font-anton text-[105px] -tracking-[.01em] leading-[1.12] flex gap-[3.5vw] relative z-0 overflow-hidden">
               <AnimatedText text="TOOLS OF OUR" />
               <AnimatedText text="TRADE" />
@@ -167,7 +191,7 @@ export default function TechGridSection() {
           {technologiesData.map((tech, index) => (
             <div
               key={tech.name + index}
-              className={`tech-grid-item aspect-square border border-[#5C5C5C] flex items-center justify-center relative ${tech.gridClasses || ''} ${tech.borderClasses || ''}`}
+              className={`tech-grid-item aspect-square border border-[#5C5C5C] flex items-center justify-center relative ${tech.gridClasses || ''} ${tech.borderClasses || ''} transition-all duration-300`}
             >
               <div className="absolute inset-0 z-0"></div>
               {tech.corners?.map(cornerPos => {
@@ -179,9 +203,9 @@ export default function TechGridSection() {
               <Image
                 src={tech.imgSrc}
                 alt={tech.alt}
-                width={index === 14 ? 134 : (index === 15 ? 134 : 200)} // Ploi and AE have different intrinsic widths in ref, approximate
+                width={index === 14 ? 134 : (index === 15 ? 134 : 200)}
                 height={index === 14 ? 136 : (index === 15 ? 136 : 100)}
-                className={`${tech.widthClass} relative z-[2] h-auto`}
+                className={`${tech.widthClass} relative z-[2] h-auto transition-transform will-change-transform`}
               />
             </div>
           ))}

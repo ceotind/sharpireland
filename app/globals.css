@@ -229,9 +229,33 @@ body {
 .icon-black-white {
   filter: brightness(0) !important;
 }
+
 html.dark .icon-black-white,
 html:not(.light)[data-theme="dark"] .icon-black-white {
-  filter: invert(1) brightness(2) !important;
+  filter: brightness(0) invert(1) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) .icon-black-white {
+    filter: brightness(0) invert(1) !important;
+  }
+}
+
+/* Special class for logos that should be original in light mode and white in dark mode */
+.icon-white-in-dark {
+  /* No filter in light mode */
+  filter: none !important;
+}
+
+html.dark .icon-white-in-dark,
+html:not(.light)[data-theme="dark"] .icon-white-in-dark {
+  filter: brightness(0) invert(1) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) .icon-white-in-dark {
+    filter: brightness(0) invert(1) !important;
+  }
 }
 
 /* Animations */
