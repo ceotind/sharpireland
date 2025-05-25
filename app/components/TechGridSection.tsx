@@ -191,7 +191,7 @@ export default function TechGridSection() {
           {technologiesData.map((tech, index) => (
             <div
               key={tech.name + index}
-              className={`tech-grid-item aspect-square border border-[#5C5C5C] flex items-center justify-center relative ${tech.gridClasses || ''} ${tech.borderClasses || ''} transition-all duration-300`}
+              className={`tech-grid-item aspect-square border border-[#5C5C5C] flex items-center justify-center relative cursor-default ${tech.gridClasses || ''} ${tech.borderClasses || ''} transition-all duration-300`}
             >
               <div className="absolute inset-0 z-0"></div>
               {tech.corners?.map(cornerPos => {
