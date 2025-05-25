@@ -11,28 +11,30 @@ if (typeof window !== "undefined") {
 
 const technologiesData = [
   // Row 1 (Desktop)
-  { name: "Figma", imgSrc: "/images/home/figma.webp", alt: "Figma Logo", widthClass: "w-[60%]", gridClasses: "md:col-start-5", borderClasses: "md:border-b-0", corners: ['tl', 'tr'] },
-  { name: "Adobe XD", imgSrc: "/images/home/xd.webp", alt: "Adobe XD Logo", widthClass: "w-[35%]", gridClasses: "md:col-start-6", borderClasses: "border-l-0 md:border-b-0", corners: ['tr'] },
-  
+  { name: "Adobe Illustrator", imgSrc: "/images/brands/Adobe_Illustrator_CC_icon.svg", alt: "Adobe Illustrator Logo", widthClass: "w-[38%]", gridClasses: "md:col-start-5", borderClasses: "md:border-b-0", corners: ['tl', 'tr'] },
+  { name: "Adobe Photoshop", imgSrc: "/images/brands/Adobe_Photoshop_CC_icon.svg", alt: "Adobe Photoshop Logo", widthClass: "w-[28%]", gridClasses: "md:col-start-6", borderClasses: "border-l-0 md:border-b-0", corners: ['tr'] },
+
   // Row 2 (Desktop)
-  { name: "Procreate", imgSrc: "/images/home/apsara.webp", alt: "Procreate Logo", widthClass: "w-[60%]", gridClasses: "md:row-start-2 md:col-start-1", borderClasses: "border-l-0 md:border-l", corners: ['tl', 'tr'] },
-  { name: "Photoshop", imgSrc: "/images/home/ps.webp", alt: "Photoshop Logo", widthClass: "w-[35%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t md:border-l-0", corners: ['tr', 'tl-mobile'] },
-  { name: "Illustrator", imgSrc: "/images/home/ai.webp", alt: "Illustrator Logo", widthClass: "w-[35%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr'] },
-  { name: "Tailwind CSS", imgSrc: "/images/home/tailwind.webp", alt: "Tailwind CSS Logo", widthClass: "w-[65%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr', 'tl-mobile'] },
-  { name: "Next.js", imgSrc: "/images/home/nuxt.webp", alt: "Next.js Logo", widthClass: "w-[60%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t md:border-l-0", corners: ['tr', 'br'] },
-  { name: "GSAP", imgSrc: "/images/home/gsap.webp", alt: "GSAP Logo", widthClass: "w-[50%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr'] },
+  { name: "Adobe Premiere Pro", imgSrc: "/images/brands/Adobe_Premiere_Pro_CC_icon.svg", alt: "Adobe Premiere Pro Logo", widthClass: "w-[38%]", gridClasses: "md:row-start-2 md:col-start-1", borderClasses: "border-l-0 md:border-l", corners: ['tl', 'tr'] },
+  { name: "Adobe XD", imgSrc: "/images/brands/Adobe_XD_CC_icon.svg", alt: "Adobe XD Logo", widthClass: "w-[28%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t md:border-l-0", corners: ['tr', 'tl-mobile'] },
+  { name: "Amazon Web Services", imgSrc: "/images/brands/Amazon_Web_Services_Logo.svg", alt: "Amazon Web Services Logo", widthClass: "w-[28%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr'] },
+  { name: "Logomark", imgSrc: "/images/brands/Logomark_Full Color.svg", alt: "Logomark Logo", widthClass: "w-[38%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr', 'tl-mobile'] },
+  { name: "Cloudflare", imgSrc: "/images/brands/NET_BIG.svg", alt: "Cloudflare Logo", widthClass: "w-[38%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t md:border-l-0", corners: ['tr', 'br'] },
+  { name: "Tailwind CSS", imgSrc: "/images/brands/Tailwind_CSS_Logo.svg", alt: "Tailwind CSS Logo", widthClass: "w-[32%]", gridClasses: "md:row-start-2", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr'] },
 
   // Row 3 (Desktop)
-  { name: "Alpine.js", imgSrc: "/images/home/alpinejs.webp", alt: "Alpine.js Logo", widthClass: "w-[60%]", gridClasses: "md:row-start-3 md:col-start-1", borderClasses: "border-t-0 border-l-0 md:border-l", corners: ['tl', 'tr', 'bl', 'br'] },
-  { name: "Laravel", imgSrc: "/images/home/laravel.webp", alt: "Laravel Logo", widthClass: "w-[65%]", gridClasses: "md:row-start-3", borderClasses: "border-t-0 md:border-l-0", corners: ['tr', 'br', 'tl-mobile'] },
-  { name: "Filament", imgSrc: "/images/home/filament.webp", alt: "Filament Logo", widthClass: "w-[60%]", gridClasses: "md:row-start-3", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr'] },
-  { name: "MySQL", imgSrc: "/images/home/mysql.webp", alt: "MySQL Logo", widthClass: "w-[50%]", gridClasses: "md:row-start-3", borderClasses: "border-t-0 border-l-0", corners: ['tr', 'br', 'tl-mobile'] },
-  { name: "PostgreSQL", imgSrc: "/images/home/postgres.webp", alt: "PostgreSQL Logo", widthClass: "w-[35%]", gridClasses: "md:row-start-3", borderClasses: "border-t-0 md:border-l-0", corners: ['tr', 'br'] },
-  { name: "Cloudflare", imgSrc: "/images/home/cloudflare.webp", alt: "Cloudflare Logo", widthClass: "w-[60%]", gridClasses: "md:row-start-3", borderClasses: "border-t-0 border-l-0", corners: ['tr', 'br'] },
-  
+  { name: "Figma", imgSrc: "/images/brands/figma-1-logo-svgrepo-com.svg", alt: "Figma Logo", widthClass: "w-[38%]", gridClasses: "md:row-start-3 md:col-start-1", borderClasses: "border-t-0 border-l-0 md:border-l", corners: ['tl', 'tr', 'bl', 'br'] },
+  { name: "Google Cloud", imgSrc: "/images/brands/google-cloud.svg", alt: "Google Cloud Logo", widthClass: "w-[38%]", gridClasses: "md:row-start-3", borderClasses: "border-t-0 md:border-l-0", corners: ['tr', 'br', 'tl-mobile'] },
+  { name: "Cursor AI", imgSrc: "/images/brands/icons8-cursor-ai.svg", alt: "Cursor AI Logo", widthClass: "w-[38%]", gridClasses: "md:row-start-3", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr'] },
+  { name: "Express.js", imgSrc: "/images/brands/icons8-express-js.svg", alt: "Express.js Logo", widthClass: "w-[32%] icon-black-white", gridClasses: "md:row-start-3", borderClasses: "border-t-0 border-l-0", corners: ['tr', 'br', 'tl-mobile'] },
+  { name: "Next.js", imgSrc: "/images/brands/nextjs-icon-svgrepo-com.svg", alt: "Next.js Logo", widthClass: "w-[28%] icon-black-white", gridClasses: "md:row-start-3", borderClasses: "border-t-0 md:border-l-0", corners: ['tr', 'br'] },
+  { name: "Node.js", imgSrc: "/images/brands/nodejs-icon.svg", alt: "Node.js Logo", widthClass: "w-[38%]", gridClasses: "md:row-start-3", borderClasses: "border-t-0 border-l-0", corners: ['tr', 'br'] },
+
   // Row 4 (Desktop)
-  { name: "Ploi", imgSrc: "/images/home/ploi.png", alt: "Ploi Logo", widthClass: "w-[90%]", gridClasses: "md:row-start-4 md:col-start-1", borderClasses: "border-t-0 border-l-0 md:border-l", corners: ['tr', 'br'] }, // Note: .png
-  { name: "After Effects", imgSrc: "/images/home/ae.webp", alt: "After Effects Logo", widthClass: "w-[35%]", gridClasses: "md:row-start-4", borderClasses: "border-t-0 md:border-l-0", corners: ['tr', 'br', 'tl-mobile'] },
+  { name: "OpenAI", imgSrc: "/images/brands/openai-svgrepo-com.svg", alt: "OpenAI Logo", widthClass: "w-[32%] icon-black-white", gridClasses: "md:row-start-4 md:col-start-1", borderClasses: "border-t-0 border-l-0 md:border-l", corners: ['tr', 'br'] },
+  { name: "PostgreSQL", imgSrc: "/images/brands/postgresql-logo-svgrepo-com.svg", alt: "PostgreSQL Logo", widthClass: "w-[28%]", gridClasses: "md:row-start-4", borderClasses: "border-t-0 md:border-l-0", corners: ['tr', 'br', 'tl-mobile'] },
+  { name: "Python", imgSrc: "/images/brands/python-svgrepo-com.svg", alt: "Python Logo", widthClass: "w-[38%]", gridClasses: "md:row-start-4", borderClasses: "border-t-0 md:border-t border-l-0", corners: ['tr'] },
+  { name: "WordPress", imgSrc: "/images/brands/wordpress-color-svgrepo-com.svg", alt: "WordPress Logo", widthClass: "w-[32%]", gridClasses: "md:row-start-4", borderClasses: "border-t-0 border-l-0", corners: ['tr', 'br', 'tl-mobile'] },
 ];
 
 const CornerDot = ({ position }: { position: string }) => {
@@ -47,7 +49,7 @@ const CornerDot = ({ position }: { position: string }) => {
   if (position === 'bl') posClasses += " -translate-x-1/2 translate-y-1/2";
   if (position === 'br') posClasses += " translate-x-1/2 translate-y-1/2";
   
-  return <div className={`aspect-square border border-[#5C5C5C] absolute w-[2vw] md:w-[.45vw] bg-[var(--background)] z-[2] ${posClasses}`}></div>;
+  return <div className={`aspect-square border border-[#5C5C5C] absolute w-[2vw] md:w-[.45vw] bg-white dark:bg-[#151515] z-[2] ${posClasses}`}></div>;
 };
 
 
@@ -167,7 +169,7 @@ export default function TechGridSection() {
               key={tech.name + index}
               className={`tech-grid-item aspect-square border border-[#5C5C5C] flex items-center justify-center relative ${tech.gridClasses || ''} ${tech.borderClasses || ''}`}
             >
-              <div className="absolute inset-0 z-0 bg-[#151515]"></div>
+              <div className="absolute inset-0 z-0"></div>
               {tech.corners?.map(cornerPos => {
                 if (cornerPos === 'tl-mobile' && index % 3 !== 0) return null; // only for first item in mobile row
                 const isMobileOnlyDot = cornerPos.endsWith('-mobile');

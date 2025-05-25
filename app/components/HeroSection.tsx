@@ -236,7 +236,7 @@ export default function HeroSection() {
       {/* Comet Canvas */}
       <canvas
         ref={cometRef}
-        className="pointer-events-none fixed top-0 left-0 w-screen h-screen z-0"
+        className="pointer-events-none absolute inset-0 w-full h-full z-0"
         aria-hidden="true"
       />
       <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-4 h-full">
