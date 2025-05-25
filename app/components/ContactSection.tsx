@@ -28,9 +28,9 @@ export default function ContactSection() {
   }, []);
 
   return (
-    <section id="contact" ref={contactRef} className="bg-[--background] py-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+    <section id="contact" ref={contactRef} className="bg-[--background] py-16 md:py-24 px-4">
+      <div className="w-full max-w-screen-xl mx-auto flex flex-col gap-12">
+        <div className="text-center">
           <span className="text-sm uppercase text-[--accent-green] tracking-wide">Get in Touch</span>
           <h2 className="mt-2 text-4xl md:text-5xl font-bold text-[--foreground]">Let's Collaborate</h2>
         </div>
@@ -86,5 +86,5 @@ export default function ContactSection() {
         </div>
       </div>
     </section>
-);
+  );
 }

@@ -2,9 +2,9 @@ import React from 'react';
 
 const SaaSComparisonSection = () => {
   return (
-    <div className="flex justify-center items-center w-full bg-[var(--background)] pt-12 pb-24">
-      <div className="max-w-[1440px] w-full px-4 sm:px-12">
-        <div className="max-w-[440px] mx-auto mb-12">
+    <section id="saas-comparison" className="w-full bg-[var(--background)] py-16 md:py-24 px-4 flex justify-center items-center">
+      <div className="w-full max-w-screen-xl mx-auto flex flex-col gap-12">
+        <div className="max-w-[440px] mx-auto">
           <div className="w-full flex flex-col items-center">
             <h2 className="text-[42px] leading-[50px] font-bold text-center mb-4 text-[var(--foreground)]">
               Ship SaaS Fast
@@ -179,7 +179,7 @@ const SaaSComparisonSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -111,11 +111,12 @@ export default function TechGridSection() {
 
 
   return (
-    <section 
-      id="technologies" 
-      ref={sectionRef} 
-      className="bg-[var(--background)] text-[var(--foreground)] px-[5vw] md:px-[4vw] pt-[25vw] md:pt-[8vw] pb-[5vw]"
+    <section
+      id="technologies"
+      ref={sectionRef}
+      className="bg-[var(--background)] text-[var(--foreground)] py-16 md:py-24 px-4"
     >
+      <div className="w-full max-w-screen-xl mx-auto flex flex-col gap-12">
       {/* Heading Section */}
       <div>
         {/* Desktop Heading */}
@@ -159,8 +160,8 @@ export default function TechGridSection() {
       </div>
 
       {/* Grid Section */}
-      <div ref={gridRef} className="md:pl-[15vw] mt-[13vw] md:-mt-[7vw]">
-        <div className="grid grid-cols-3 md:grid-cols-6">
+      <div ref={gridRef} className="mt-12 md:mt-16">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6">
           {technologiesData.map((tech, index) => (
             <div
               key={tech.name + index}
@@ -183,6 +184,7 @@ export default function TechGridSection() {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </section>
   );
