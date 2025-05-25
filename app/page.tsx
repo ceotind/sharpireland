@@ -10,6 +10,8 @@ import HeroSection from './components/HeroSection';
 import TechGridSection from './components/TechGridSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
+import SaaSComparisonSection from './components/SaaSComparisonSection';
+import SharpImageSection from './components/SharpImageSection';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -30,8 +32,10 @@ export default function Home() {
       <HeroSection />
       <TechGridSection />
       <ProjectsSection />
+      <SaaSComparisonSection />
       <ContactSection />
       <Footer />
+      <SharpImageSection />
     </div>
   );
 }
