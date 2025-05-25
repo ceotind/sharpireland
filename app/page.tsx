@@ -9,7 +9,7 @@ import TechGridSection from './components/TechGridSection';
 import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import SaaSComparisonSection from './components/SaaSComparisonSection';
-import SharpImageSection from './components/SharpImageSection';
+// import SharpImageSection from './components/SharpImageSection'; // Commented out as it's not used
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -31,7 +31,6 @@ export default function Home() {
       <ProjectsSection />
       <SaaSComparisonSection />
       <ContactSection />
-      <Footer />
     </div>
   );
 }
