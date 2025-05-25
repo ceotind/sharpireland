@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import gsap from "gsap";
 
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
 import TechGridSection from './components/TechGridSection';
 import ProjectsSection from './components/ProjectsSection';
@@ -28,14 +26,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <NavBar />
       <HeroSection />
       <TechGridSection />
       <ProjectsSection />
       <SaaSComparisonSection />
       <ContactSection />
       <Footer />
-      <SharpImageSection />
     </div>
   );
 }

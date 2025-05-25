@@ -1,7 +1,13 @@
-"use client";
-
 import "./globals.css";
-import { ThemeProvider } from './context/ThemeContext';
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import type { Metadata } from 'next';
+import ClientProviders from "./components/ClientProviders"; // Import the new ClientProviders
+
+export const metadata: Metadata = {
+  title: 'My Next.js Site',
+  description: 'A beautiful Next.js site',
+}
 
 export default function RootLayout({
   children,
@@ -10,13 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/* You can add more head elements here, like meta tags, title, etc. */}
-      </head>
       <body>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <ClientProviders> {/* Use ClientProviders to wrap theme and main content */}
+          <NavBar />
+          <main>{children}</main>
+          <Footer />
+        </ClientProviders>
       </body>
     </html>
   );
