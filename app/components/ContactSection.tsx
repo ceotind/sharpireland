@@ -1,89 +1,75 @@
+
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-
-// Contact items
-const contacts = [
-  { name: "Email", icon: "✉️", link: "mailto:hello@sharpireland.com" },
-  { name: "LinkedIn", icon: "🔗", link: "#" },
-  { name: "Instagram", icon: "📷", link: "#" },
-  { name: "WhatsApp", icon: "📱", link: "#" },
-];
-
 export default function ContactSection() {
-  const contactRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const el = contactRef.current;
-    if (el) {
-      gsap.from(el.querySelectorAll("label, input, textarea, button, .contact-item"), {
-        opacity: 0,
-        y: 20,
-        stagger: 0.1,
-        duration: 0.6,
-        ease: "power3.out"
-      });
-    }
-  }, []);
-
   return (
-    <section id="contact" ref={contactRef} className="bg-[--background] py-16 md:py-24 px-4">
-      <div className="w-full max-w-screen-xl mx-auto flex flex-col gap-12">
+    <section id="contact" className="bg-[var(--background)] py-16 md:py-24 px-4">
+      <div className="w-full max-w-screen-md mx-auto flex flex-col gap-10">
         <div className="text-center">
-          <span className="text-sm uppercase text-[--accent-green] tracking-wide">Get in Touch</span>
-          <h2 className="mt-2 text-4xl md:text-5xl font-bold text-[--foreground]">Let's Collaborate</h2>
+          <span className="text-sm uppercase tracking-wide text-[var(--accent-green)]">Contact</span>
+          <h2 className="mt-2 text-4xl md:text-5xl font-bold text-[var(--foreground)]">Let's Connect</h2>
+          <p className="mt-4 max-w-2xl mx-auto text-[var(--foreground)] text-base md:text-lg opacity-80">
+            Have a project in mind or just want to say hello? Fill out the form below and we’ll get back to you as soon as possible.
+          </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Form */}
-          <form className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-[--foreground]">Your Name</label>
-              <input
-                type="text"
-                placeholder="John Doe"
-                className="mt-1 w-full border-b border-[--border-medium] bg-transparent py-2 text-[--foreground] focus:border-[--accent-green] focus:outline-none transition-colors"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-[--foreground]">Email Address</label>
-              <input
-                type="email"
-                placeholder="john@example.com"
-                className="mt-1 w-full border-b border-[--border-medium] bg-transparent py-2 text-[--foreground] focus:border-[--accent-green] focus:outline-none transition-colors"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-[--foreground]">Your Message</label>
-              <textarea
-                rows={4}
-                placeholder="Tell us about your project..."
-                className="mt-1 w-full border border-[--border-medium] bg-transparent p-3 text-[--foreground] focus:border-[--accent-green] focus:outline-none transition-colors rounded-md"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="mt-4 bg-[--accent-green] text-[--white-color] px-6 py-3 rounded-md font-medium hover:bg-[--accent-green-base] transition-colors"
-            >
-              Send Message
-            </button>
-          </form>
-          {/* Contact links */}
-          <div className="grid grid-cols-2 gap-6">
-            {contacts.map((c) => (
-              <a
-                key={c.name}
-                href={c.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="contact-item flex items-center space-x-4 p-4 bg-[--background-lighter] rounded-md text-[--foreground] hover:bg-[--background] transition-colors"
-              >
-                <span className="text-2xl">{c.icon}</span>
-                <span className="font-medium">{c.name}</span>
-              </a>
-            ))}
+        <form className="space-y-6 bg-[var(--background-lighter)] p-8 rounded-xl shadow-md" autoComplete="off" onSubmit={e => { e.preventDefault(); }}>
+          <div>
+            <label htmlFor="contact-name" className="block text-sm font-medium text-[var(--foreground)]">Name</label>
+            <input
+              id="contact-name"
+              name="name"
+              type="text"
+              placeholder="Jane Doe"
+              required
+              className="mt-1 w-full border-b border-[var(--border-medium)] bg-transparent py-2 text-[var(--foreground)] focus:border-[var(--accent-green)] focus:outline-none transition-colors"
+              aria-required="true"
+              autoComplete="name"
+            />
           </div>
-        </div>
+          <div>
+            <label htmlFor="contact-email" className="block text-sm font-medium text-[var(--foreground)]">Email</label>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              placeholder="jane@example.com"
+              required
+              className="mt-1 w-full border-b border-[var(--border-medium)] bg-transparent py-2 text-[var(--foreground)] focus:border-[var(--accent-green)] focus:outline-none transition-colors"
+              aria-required="true"
+              autoComplete="email"
+            />
+          </div>
+          <div>
+            <label htmlFor="contact-phone" className="block text-sm font-medium text-[var(--foreground)]">Phone</label>
+            <input
+              id="contact-phone"
+              name="phone"
+              type="tel"
+              placeholder="e.g. +353 87 123 4567"
+              className="mt-1 w-full border-b border-[var(--border-medium)] bg-transparent py-2 text-[var(--foreground)] focus:border-[var(--accent-green)] focus:outline-none transition-colors"
+              aria-required="false"
+              autoComplete="tel"
+            />
+          </div>
+          <div>
+            <label htmlFor="contact-description" className="block text-sm font-medium text-[var(--foreground)]">Description</label>
+            <textarea
+              id="contact-description"
+              name="description"
+              rows={4}
+              placeholder="Tell us about your project or idea..."
+              required
+              className="mt-1 w-full border border-[var(--border-medium)] bg-transparent p-3 text-[var(--foreground)] focus:border-[var(--accent-green)] focus:outline-none transition-colors rounded-md"
+              aria-required="true"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="mt-4 bg-[var(--accent-green)] text-[var(--white-color)] px-6 py-3 rounded-md font-medium hover:bg-[var(--accent-green-base)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2"
+          >
+            Send Message
+          </button>
+        </form>
       </div>
     </section>
   );
