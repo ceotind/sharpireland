@@ -7,8 +7,10 @@ import gsap from "gsap";
 import HeroSection from './components/HeroSection';
 import TechGridSection from './components/TechGridSection';
 import ProjectsSection from './components/ProjectsSection';
+import ProcessSection from './components/ProcessSection';
 import ContactSection from './components/ContactSection';
 import SaaSComparisonSection from './components/SaaSComparisonSection';
+import TestimonialsSection from './components/TestimonialsSection';
 // import SharpImageSection from './components/SharpImageSection'; // Commented out as it's not used
 
 // Register GSAP plugins
@@ -25,12 +27,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen bg-[var(--background)]">
       <HeroSection />
       <TechGridSection />
       <ProjectsSection />
+      <ProcessSection />
       <SaaSComparisonSection />
+      <TestimonialsSection />
       <ContactSection />
-    </div>
+    </main>
   );
 }

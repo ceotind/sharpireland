@@ -6,10 +6,10 @@ export default function Footer() {
   const links = ['Work', 'About', 'Services', 'Contact'];
 
   return (
-    <footer className="bg-[--background] border-t border-[--border-medium] py-8">
+    <footer className="bg-[var(--bg-100)] border-t border-[var(--bg-300)] py-8">
       <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-        <div className="text-xl font-bold text-[--foreground]">SHARP</div>
-        <div className="text-sm text-[--foreground] opacity-70">
+        <div className="text-xl font-bold text-[var(--text-100)]">SHARP</div>
+        <div className="text-sm text-[var(--text-200)]">
           © {new Date().getFullYear()} Sharp Ireland. All rights reserved.
         </div>
         <nav>
@@ -18,7 +18,7 @@ export default function Footer() {
               <li key={item}>
                 <Link
                   href={`#${item.toLowerCase()}`}
-                  className="text-sm text-[--foreground] opacity-70 hover:text-[--accent-green] hover:opacity-100 transition-colors"
+                  className="text-sm text-[var(--text-200)] hover:text-[var(--primary-100)] transition-colors"
                 >
                   {item}
                 </Link>

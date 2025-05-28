@@ -2,21 +2,20 @@ import React from 'react';
 
 const SaaSComparisonSection = () => {
   return (
-    <section id="saas-comparison" className="w-full bg-[var(--background)] py-16 md:py-24 px-4 flex justify-center items-center">
-      <div className="w-full max-w-screen-xl mx-auto flex flex-col gap-12">
-        <div className="max-w-[440px] mx-auto">
-          <div className="w-full flex flex-col items-center">
-            <h2 className="text-[42px] leading-[50px] font-bold text-center mb-4 text-[var(--foreground)]">
-              Ship SaaS Fast
-            </h2>
-            <p className="text-[var(--foreground)] font-inter font-medium text-base text-center">
-              No need to write the SaaS wrapper code anymore, just add your idea, script, no-code tool inside and go live now
-            </p>
-          </div>
+    <section id="saas-comparison" className="bg-[var(--background)] py-20 md:py-32">
+      <div className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col gap-12">
+        <div className="max-w-2xl mx-auto text-center">
+          <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Efficiency</span>
+          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-center text-[var(--foreground)]">
+            Ship SaaS Fast
+          </h2>
+          <p className="mt-4 text-[var(--foreground)] font-inter font-medium text-base md:text-lg opacity-80">
+            No need to write the SaaS wrapper code anymore, just add your idea, script, no-code tool inside and go live now
+          </p>
         </div>
         <div className="flex gap-8 items-center justify-center flex-col lg:flex-row">
           {/* Left Card */}
-          <div className="relative max-w-[350px] w-full min-h-[385px] pb-8 pt-6 px-4 border rounded-[16px] bg-[var(--background-lighter)] scale-1.0 hover:scale-[1.1] transition-all duration-300 border-[#EA2222]">
+          <div className="relative max-w-[380px] w-full min-h-[400px] pb-8 pt-6 px-6 border rounded-2xl bg-[var(--background-lighter)] scale-1.0 hover:scale-[1.02] transition-all duration-300 border-[#EA2222]">
             <div>
               <div className="text-[var(--foreground)] text-xl font-semibold mb-4">
                 Software development
@@ -88,7 +87,7 @@ const SaaSComparisonSection = () => {
             <img alt="vs" loading="lazy" width="134" height="350" className="h-[170px] block lg:hidden mt-4" style={{color:'transparent'}} src="/vs.svg" />
           
           {/* Right Card */}
-          <div className="relative max-w-[350px] w-full min-h-[385px] pb-8 pt-6 px-4 border rounded-[16px] bg-[var(--background-lighter)] scale-1.0 hover:scale-[1.1] transition-all duration-300 border-[#1AAB12]">
+          <div className="relative max-w-[380px] w-full min-h-[400px] pb-8 pt-6 px-6 border rounded-2xl bg-[var(--background-lighter)] scale-1.0 hover:scale-[1.02] transition-all duration-300 border-[#1AAB12]">
             <div>
               <div className="text-[var(--foreground)] text-xl font-semibold mb-4">
                 <div className="flex items-center gap-1">

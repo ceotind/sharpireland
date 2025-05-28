@@ -2,11 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { useTheme } from "../context/ThemeContext";
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement | null>(null);
   const cometRef = useRef<HTMLCanvasElement | null>(null);
-  const [isDark, setIsDark] = useState(false);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+  const [glowOpacity, setGlowOpacity] = useState(0);
 
   // Animate text on mount
   useEffect(() => {
@@ -22,13 +25,41 @@ export default function HeroSection() {
     }
   }, []);
 
-  // Detect dark mode
+  // Infinite glow animation effect
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    setIsDark(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsDark(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+    const glowAnimation = () => {
+      // Extremely smooth fade in (3 seconds)
+      gsap.to({ opacity: 0 }, {
+        opacity: 1,
+        duration: 3,
+        ease: "power2.inOut",
+        onUpdate: function() {
+          setGlowOpacity(this.targets()[0].opacity);
+        },
+        onComplete: () => {
+          // Stay at full glow for 8 seconds
+          setTimeout(() => {
+            // Extremely smooth fade out (3 seconds)
+            gsap.to({ opacity: 1 }, {
+              opacity: 0,
+              duration: 3,
+              ease: "power2.inOut",
+              onUpdate: function() {
+                setGlowOpacity(this.targets()[0].opacity);
+              },
+              onComplete: () => {
+                // Wait 2 seconds then restart the cycle
+                setTimeout(glowAnimation, 2000);
+              }
+            });
+          }, 8000);
+        }
+      });
+    };
+
+    // Start the first cycle after 1.5 seconds
+    const timer = setTimeout(glowAnimation, 1500);
+    return () => clearTimeout(timer);
   }, []);
 
   // Comet animation logic
@@ -177,7 +208,7 @@ export default function HeroSection() {
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrame);
     };
-  }, [isDark]);
+  }, [theme]);
 
   // --- Responsive hero text logic ---
   const firstLineRef = useRef<HTMLSpanElement | null>(null);
@@ -230,7 +261,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen h-screen flex items-center justify-center bg-[--background] overflow-hidden"
+      className="relative min-h-screen h-screen flex items-center justify-center bg-[var(--background)] overflow-hidden pt-16"
       style={{ width: "100vw", height: "100vh" }}
     >
       {/* Comet Canvas */}
@@ -282,6 +313,9 @@ export default function HeroSection() {
                 width: firstLineWidth ? `${firstLineWidth}px` : "auto",
                 minWidth: 0,
                 maxWidth: "100vw",
+                textShadow: glowOpacity > 0 ? (isDark 
+                  ? `0 0 12px rgba(255, 255, 255, ${0.4 * glowOpacity}), 0 0 24px rgba(255, 255, 255, ${0.2 * glowOpacity}), 0 0 36px rgba(255, 255, 255, ${0.1 * glowOpacity})` 
+                  : `0 0 12px rgba(0, 0, 0, ${0.3 * glowOpacity}), 0 0 24px rgba(0, 0, 0, ${0.15 * glowOpacity}), 0 0 36px rgba(0, 0, 0, ${0.08 * glowOpacity})`) : "none",
               }}
             >
               EXPERIENCES

@@ -49,7 +49,11 @@ const CornerDot = ({ position }: { position: string }) => {
   if (position === 'bl') posClasses += " -translate-x-1/2 translate-y-1/2";
   if (position === 'br') posClasses += " translate-x-1/2 translate-y-1/2";
   
-  return <div className={`aspect-square border border-[#5C5C5C] absolute w-[2vw] md:w-[.45vw] bg-white dark:bg-[#151515] z-[2] ${posClasses}`}></div>;
+  return (
+    <div 
+      className={`corner-dot aspect-square border border-[#5C5C5C] absolute w-[2vw] md:w-[.45vw] bg-white dark:bg-[#151515] z-[2] ${posClasses}`}
+    ></div>
+  );
 };
 
 
@@ -59,130 +63,117 @@ export default function TechGridSection() {
 
   useEffect(() => {
     const items = gridRef.current?.querySelectorAll(".tech-grid-item");
-    if (items && sectionRef.current) {
-      gsap.fromTo(
-        items,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: "top 85%",
-          },
-        }
-      );
+    if (!items || !sectionRef.current) return;
 
-      // Add hover animations for tech logos
-      items.forEach((item) => {
-        const logo = item.querySelector("img");
-        if (logo) {
-          // Initial state (no transform)
-          gsap.set(logo, { scale: 1, rotate: 0 });
-          
-          // Hover in animation
-          item.addEventListener("mouseenter", () => {
-            gsap.to(logo, {
-              scale: 1.1,
-              rotate: 2,
-              duration: 0.4,
-              ease: "power2.out",
-            });
-          });
-          
-          // Hover out animation
-          item.addEventListener("mouseleave", () => {
-            gsap.to(logo, {
-              scale: 1,
-              rotate: 0,
-              duration: 0.3,
-              ease: "power2.inOut",
-            });
-          });
+    // Smoother scroll animation with improved easing
+    const scrollAnimation = gsap.fromTo(
+      items,
+      { 
+        opacity: 0, 
+        y: 30, // Reduced from 50 for smoother effect
+        scale: 0.95 // Added subtle scale for more polished feel
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2, // Slightly longer for smoother motion
+        stagger: {
+          amount: 0.6, // Total stagger duration
+          from: "start",
+          ease: "power2.out"
+        },
+        ease: "power2.out", // Smoother, more standard easing
+        scrollTrigger: {
+          trigger: gridRef.current,
+          start: "top 80%", // Slightly earlier trigger
+          once: true, // Animation plays only once
+        },
+      }
+    );
+
+    // Store hover animations for cleanup
+    const hoverAnimations: (() => void)[] = [];
+
+    // Add smoother hover animations for tech logos
+    items.forEach((item) => {
+      const logo = item.querySelector("img");
+      if (!logo) return;
+
+      // Set initial state with better performance
+      gsap.set(logo, { 
+        scale: 1, 
+        rotation: 0,
+        transformOrigin: "center center"
+      });
+      
+      // Create reusable animations
+      let hoverTween: gsap.core.Tween | null = null;
+      
+      // Hover in animation with extremely smooth easing
+      const handleMouseEnter = () => {
+        if (hoverTween) hoverTween.kill();
+
+        // Logo animation only
+        hoverTween = gsap.to(logo, {
+          scale: 1.08,
+          rotation: 1,
+          duration: 0.8,
+          ease: "power1.out",
+        });
+      };
+      
+      // Hover out animation with extremely smooth spring-like effect
+      const handleMouseLeave = () => {
+        if (hoverTween) hoverTween.kill();
+
+        // Logo animation only
+        hoverTween = gsap.to(logo, {
+          scale: 1,
+          rotation: 0,
+          duration: 0.6,
+          ease: "power1.inOut",
+        });
+      };
+
+      item.addEventListener("mouseenter", handleMouseEnter);
+      item.addEventListener("mouseleave", handleMouseLeave);
+      
+      // Store cleanup function
+      hoverAnimations.push(() => {
+        item.removeEventListener("mouseenter", handleMouseEnter);
+        item.removeEventListener("mouseleave", handleMouseLeave);
+        if (hoverTween) hoverTween.kill();
+      });
+    });
+
+    // Cleanup function
+    return () => {
+      scrollAnimation.kill();
+      hoverAnimations.forEach(cleanup => cleanup());
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === gridRef.current) {
+          trigger.kill();
         }
       });
-    }
-  }, []);
-
-  // Helper to render char/word spans for text animation (structure only for now)
-  const AnimatedText = ({ text, isMobile }: { text: string, isMobile?: boolean }) => {
-    const words = text.split(" ");
-    return (
-      <>
-        {words.map((word, i) => (
-          <span key={i} className={`word-container ${isMobile && i > 1 ? 'block' : 'inline-block'}`}>
-            <span className="word inline-block">
-              {word.split("").map((char, j) => (
-                <span key={j} className="char inline-block">{char}</span>
-              ))}
-            </span>
-            {i < words.length - 1 && ' '}
-          </span>
-        ))}
-      </>
-    );
-  };
-  
-  const AnimatedTextMobile = ({ line1, line2 }: { line1: string, line2: string }) => {
-    return (
-      <>
-        <span className="overflow-hidden inline-block relative">
-           <AnimatedText text={line1} isMobile />
-        </span>
-        <span className="overflow-hidden inline-block relative">
-           <AnimatedText text={line2} isMobile />
-           <span className="w-[7vw] inline-block md:hidden"></span> {/* Spacer from ref */}
-        </span>
-      </>
-    )
-  }
-
+    };  }, []);
 
   return (
     <section
       id="technologies"
       ref={sectionRef}
-      className="bg-[var(--background)] text-[var(--foreground)] py-16 md:py-24 px-4"
+      className="bg-[var(--background)] text-[var(--foreground)] py-20 md:py-32"
     >
-      <div className="w-full max-w-screen-xl mx-auto flex flex-col gap-12">
+      <div className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col gap-12">
       {/* Heading Section */}
-      <div>
-        {/* Desktop Heading */}
-        <div className="hidden md:block">
-          <div className="overflow-hidden">
-            <div className="breadcrumbs flex gap-[.5vw] text-[17px] uppercase">
-              <span>01</span><span>/</span><span>TECHNOLOGIES</span>
-            </div>
-          </div>
-          <div className="pl-[4.75vw] pt-[2vw] relative w-max">
-            <h2 className="font-anton text-[105px] -tracking-[.01em] leading-[1.12] flex gap-[3.5vw] relative z-0 overflow-hidden">
-              <AnimatedText text="TOOLS OF OUR" />
-              <AnimatedText text="TRADE" />
-            </h2>
-          </div>
-        </div>
-
-        {/* Mobile Heading */}
-        <div className="md:hidden">
-          <div className="overflow-hidden pl-[22vw]">
-            <div className="breadcrumbs flex gap-[.5vw] text-[14px] uppercase">
-              <span>01</span><span>/</span><span>TECHNOLOGIES</span>
-            </div>
-          </div>
-          <div className="pl-[4.75vw] pt-[4vw] relative w-max">
-            <Image
-              width={218} height={200} alt="Pencil Image"
-              src="/images/home/pencil.webp" // Ensure this image is in public/images/home/
-              className="heading-img-mobile absolute w-[16vw] bottom-0 translate-y-[20%] right-[15%] -translate-x-full z-[1]"
-            />
-            <h2 className="font-anton text-[56px] -tracking-[.01em] leading-[1.12] flex flex-col gap-[0vw] relative z-0 overflow-hidden">
-              <AnimatedTextMobile line1="TOOLS OF" line2="OUR TRADE" />
-            </h2>
-          </div>
-        </div>
+      <div className="text-center">
+        <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Our Technology</span>
+        <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--foreground)]">
+          Tools of Our Trade
+        </h2>
+        <p className="mt-4 max-w-2xl mx-auto text-[var(--foreground)] text-base md:text-lg opacity-80">
+          We leverage cutting-edge technologies and industry-leading tools to deliver exceptional digital solutions.
+        </p>
       </div>
 
       {/* Grid Section */}
@@ -191,7 +182,7 @@ export default function TechGridSection() {
           {technologiesData.map((tech, index) => (
             <div
               key={tech.name + index}
-              className={`tech-grid-item aspect-square border border-[#5C5C5C] flex items-center justify-center relative cursor-default ${tech.gridClasses || ''} ${tech.borderClasses || ''} transition-all duration-300`}
+              className={`tech-grid-item aspect-square border border-[#5C5C5C] flex items-center justify-center relative group ${tech.gridClasses || ''} ${tech.borderClasses || ''}`}
             >
               <div className="absolute inset-0 z-0"></div>
               {tech.corners?.map(cornerPos => {
@@ -205,7 +196,7 @@ export default function TechGridSection() {
                 alt={tech.alt}
                 width={index === 14 ? 134 : (index === 15 ? 134 : 200)}
                 height={index === 14 ? 136 : (index === 15 ? 136 : 100)}
-                className={`${tech.widthClass} relative z-[2] h-auto transition-transform will-change-transform`}
+                className={`${tech.widthClass} relative z-[2] h-auto will-change-transform`}
               />
             </div>
           ))}
