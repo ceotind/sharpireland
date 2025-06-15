@@ -11,17 +11,21 @@ export default function HeroSection() {
   const isDark = theme === 'dark';
   const [glowOpacity, setGlowOpacity] = useState(0);
 
-  // Animate text on mount
+  // Animate text on mount with standardized timing
   useEffect(() => {
     const el = heroRef.current;
     if (el) {
-      gsap.from(el.querySelectorAll("h1, p, a"), {
+      const animation = gsap.from(el.querySelectorAll("h1, p, a"), {
         opacity: 0,
-        y: 30,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: "power3.out",
+        y: 20,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: "power2.out",
       });
+      
+      return () => {
+        animation.kill();
+      };
     }
   }, []);
 

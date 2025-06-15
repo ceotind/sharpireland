@@ -65,29 +65,25 @@ export default function TechGridSection() {
     const items = gridRef.current?.querySelectorAll(".tech-grid-item");
     if (!items || !sectionRef.current) return;
 
-    // Smoother scroll animation with improved easing
+    // Standardized scroll animation
     const scrollAnimation = gsap.fromTo(
       items,
-      { 
-        opacity: 0, 
-        y: 30, // Reduced from 50 for smoother effect
-        scale: 0.95 // Added subtle scale for more polished feel
+      {
+        opacity: 0,
+        y: 20,
+        scale: 0.98
       },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 1.2, // Slightly longer for smoother motion
-        stagger: {
-          amount: 0.6, // Total stagger duration
-          from: "start",
-          ease: "power2.out"
-        },
-        ease: "power2.out", // Smoother, more standard easing
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: gridRef.current,
-          start: "top 80%", // Slightly earlier trigger
-          once: true, // Animation plays only once
+          start: "top 80%",
+          once: true,
         },
       }
     );
@@ -110,29 +106,26 @@ export default function TechGridSection() {
       // Create reusable animations
       let hoverTween: gsap.core.Tween | null = null;
       
-      // Hover in animation with extremely smooth easing
+      // Standardized hover animations
       const handleMouseEnter = () => {
         if (hoverTween) hoverTween.kill();
 
-        // Logo animation only
         hoverTween = gsap.to(logo, {
-          scale: 1.08,
-          rotation: 1,
-          duration: 0.8,
-          ease: "power1.out",
+          scale: 1.05,
+          rotation: 0.5,
+          duration: 0.4,
+          ease: "power2.out",
         });
       };
       
-      // Hover out animation with extremely smooth spring-like effect
       const handleMouseLeave = () => {
         if (hoverTween) hoverTween.kill();
 
-        // Logo animation only
         hoverTween = gsap.to(logo, {
           scale: 1,
           rotation: 0,
-          duration: 0.6,
-          ease: "power1.inOut",
+          duration: 0.4,
+          ease: "power2.out",
         });
       };
 
@@ -163,26 +156,29 @@ export default function TechGridSection() {
       id="technologies"
       ref={sectionRef}
       className="bg-[var(--background)] text-[var(--foreground)] py-20 md:py-32"
+      aria-labelledby="technologies-heading"
     >
       <div className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col gap-12">
       {/* Heading Section */}
-      <div className="text-center">
-        <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Our Technology</span>
-        <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--foreground)]">
-          Tools of Our Trade
+      <header className="text-center">
+        <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Our Technology Stack</span>
+        <h2 id="technologies-heading" className="mt-4 text-4xl md:text-5xl font-bold text-[var(--foreground)]">
+          Expert Web Development Technologies Ireland
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-[var(--foreground)] text-base md:text-lg opacity-80">
-          We leverage cutting-edge technologies and industry-leading tools to deliver exceptional digital solutions.
+          Sharp Digital Ireland leverages cutting-edge technologies including React, Next.js, Node.js, and modern design tools to deliver exceptional web development solutions for Irish businesses.
         </p>
-      </div>
+      </header>
 
-      {/* Grid Section */}
-      <div ref={gridRef} className="mt-12 md:mt-16">
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6">
+      {/* Technology Grid */}
+      <div ref={gridRef} className="mt-12 md:mt-16" role="region" aria-label="Technology stack showcase">
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6" role="list">
           {technologiesData.map((tech, index) => (
-            <div
+            <article
               key={tech.name + index}
               className={`tech-grid-item aspect-square border border-[#5C5C5C] flex items-center justify-center relative group ${tech.gridClasses || ''} ${tech.borderClasses || ''}`}
+              role="listitem"
+              aria-label={`${tech.name} - Web development technology used by Sharp Digital Ireland`}
             >
               <div className="absolute inset-0 z-0"></div>
               {tech.corners?.map(cornerPos => {
@@ -193,12 +189,14 @@ export default function TechGridSection() {
               })}
               <Image
                 src={tech.imgSrc}
-                alt={tech.alt}
+                alt={`${tech.name} logo - Professional ${tech.name} development services by Sharp Digital Ireland`}
                 width={index === 14 ? 134 : (index === 15 ? 134 : 200)}
                 height={index === 14 ? 136 : (index === 15 ? 136 : 100)}
                 className={`${tech.widthClass} relative z-[2] h-auto will-change-transform`}
+                loading="lazy"
+                title={`${tech.name} - Expert development services in Ireland`}
               />
-            </div>
+            </article>
           ))}
         </div>
       </div>

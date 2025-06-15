@@ -13,8 +13,10 @@
     "@fontsource/anton": "^5.2.5",
     "@fontsource/inter": "^5.2.5",
     "@types/gsap": "^1.20.2",
+    "@types/nodemailer": "^6.4.17",
     "gsap": "^3.13.0",
     "next": "15.3.2",
+    "nodemailer": "^7.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "split-type": "^0.3.4"

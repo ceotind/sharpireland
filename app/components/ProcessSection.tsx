@@ -20,12 +20,12 @@ const processSteps: ProcessStep[] = [
   {
     id: 1,
     title: "Discovery",
-    description: "We start by analyzing your Ireland-based business's needs and project planning. For that, we define the problem and scope of your result, as well as chart out essential functionality and milestones."
+    description: "We start by analyzing your business needs and project planning. We define the problem and scope of your result, as well as chart out essential functionality and milestones."
   },
   {
     id: 2,
     title: "Design and Development",
-    description: "At this stage, we define the project details, including the necessary network requirements, databases, and others. Then, our Web development team build the product according to the predefined design requirements. The ability to follow the initial concept with fewer efforts and budget makes us an excellent Web development agency Ireland."
+    description: "At this stage, we define the project details, including the necessary network requirements, databases, and architecture. Then, our web development team builds the product according to the predefined design requirements. Our ability to follow the initial concept efficiently makes us an excellent web development agency."
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const processSteps: ProcessStep[] = [
   {
     id: 4,
     title: "Implementation",
-    description: "Our programmers then deploy a solution into the target environment. After that, the solution is ready for the Irish market and is accessible for end-users."
+    description: "Our programmers then deploy the solution into the target environment. After that, the solution is ready for production and is accessible for end-users worldwide."
   },
   {
     id: 5,
@@ -61,72 +61,70 @@ export default function ProcessSection() {
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
-  // GSAP animations
+  // Standardized GSAP animations
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate section on scroll
+      // Animate header
       gsap.fromTo(
         ".process-header",
         {
           opacity: 0,
-          y: 30,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      // Animate cards
-      gsap.fromTo(
-        ".process-card",
-        {
-          opacity: 0,
-          y: 50,
+          y: 20,
         },
         {
           opacity: 1,
           y: 0,
           duration: 0.6,
-          ease: "power3.out",
-          stagger: 0.2,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: ".process-content",
+            trigger: sectionRef.current,
             start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
+            once: true,
           },
         }
       );
 
-      // Animate 3D boxes
+      // Animate content
+      gsap.fromTo(
+        ".process-content",
+        {
+          opacity: 0,
+          y: 20,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          delay: 0.1,
+          scrollTrigger: {
+            trigger: ".process-content",
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
+
+      // Animate 3D boxes with standardized timing
       gsap.fromTo(
         ".process-box",
         {
           opacity: 0,
-          rotateX: -15,
-          y: 30,
+          rotateX: -10,
+          y: 20,
         },
         {
           opacity: 1,
           rotateX: 0,
           y: 0,
-          duration: 0.8,
-          ease: "power3.out",
+          duration: 0.6,
+          ease: "power2.out",
           stagger: 0.1,
+          delay: 0.2,
           scrollTrigger: {
             trigger: ".process-visualization",
             start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
+            once: true,
           },
         }
       );
@@ -166,25 +164,9 @@ export default function ProcessSection() {
           <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium mb-4 block">
             Our Process
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--text-100)] mb-6 heading-standard">
+          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--foreground)]">
             Our Professional Web Development Process
           </h2>
-          <div className="flex justify-center">
-            <a 
-              href="#contact" 
-              className="bg-[var(--primary-100)] text-[var(--bg-100)] px-8 py-4 rounded-lg font-semibold hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--primary-100)] focus:ring-offset-2 transition-all duration-200 inline-flex items-center gap-2 group"
-            >
-              <span>Book a Consultation</span>
-              <svg 
-                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
         </div>
 
         {/* Process Content */}

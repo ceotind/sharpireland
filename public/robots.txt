@@ -1,0 +1,91 @@
+# Sharp Digital Ireland - Web Development Agency
+# https://sharpdigital.in
+
+# Global rules for all crawlers
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /.well-known/
+
+# Sitemap locations
+Sitemap: https://sharpdigital.in/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Google Search Console
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing Webmaster Tools
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yahoo Search
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# Facebook
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn
+User-agent: LinkedInBot
+Allow: /
+
+# WhatsApp
+User-agent: WhatsApp
+Allow: /
+
+# Block AI training crawlers (optional - can be removed if you want AI training)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+# Block aggressive crawlers
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Host directive (helps with canonicalization)
+Host: https://sharpdigital.in

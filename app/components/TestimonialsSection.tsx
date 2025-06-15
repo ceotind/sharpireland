@@ -64,23 +64,29 @@ const TestimonialsSection = () => {
     const section = sectionRef.current;
     if (!section) return;
 
-    // Animation for section entrance
-    gsap.fromTo(section, 
-      { opacity: 0, y: 50 },
+    // Standardized animation for section entrance
+    const animation = gsap.fromTo(section,
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
         y: 0,
-        duration: 1,
+        duration: 0.6,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: section,
           start: "top 80%",
-          once: true, // Animation plays only once
+          once: true,
         }
       }
     );
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      animation.kill();
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === section) {
+          trigger.kill();
+        }
+      });
     };
   }, []);
 

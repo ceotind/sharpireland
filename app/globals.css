@@ -18,6 +18,10 @@
   --bg-100: #FFFFFF;
   --bg-200: #f5f5f5;
   --bg-300: #cccccc;
+  /* Accent Green Variables for Hero Section */
+  --accent-green: #00BFFF;
+  --accent-green-base: #0077C2;
+  --white-color: #FFFFFF;
 }
 
 /* Dark Mode Settings */
@@ -33,6 +37,11 @@
     --bg-100: #1E1E1E;
     --bg-200: #2d2d2d;
     --bg-300: #454545;
+    
+    /* Accent Green Variables for Hero Section - Dark Mode */
+    --accent-green: #006fff;
+    --accent-green-base: #0085ff;
+    --white-color: #FFFFFF;
   }
 }
 
@@ -47,6 +56,11 @@ html.dark {
   --bg-100: #1E1E1E;
   --bg-200: #2d2d2d;
   --bg-300: #454545;
+  
+  /* Accent Green Variables for Hero Section - Dark Mode */
+  --accent-green: #006fff;
+  --accent-green-base: #0085ff;
+  --white-color: #FFFFFF;
 }
 
 /* Light Mode Explicit Override */
@@ -62,6 +76,11 @@ html.dark {
     --bg-100: #FFFFFF;
     --bg-200: #f5f5f5;
     --bg-300: #cccccc;
+    
+    /* Accent Green Variables for Hero Section - Light Mode */
+    --accent-green: #00BFFF;
+    --accent-green-base: #0077C2;
+    --white-color: #FFFFFF;
   }
 }
 
@@ -76,6 +95,11 @@ html.light {
   --bg-100: #FFFFFF;
   --bg-200: #f5f5f5;
   --bg-300: #cccccc;
+  
+  /* Accent Green Variables for Hero Section - Light Mode */
+  --accent-green: #00BFFF;
+  --accent-green-base: #0077C2;
+  --white-color: #FFFFFF;
 }
 
 /* Custom Tailwind Utilities for Sharp Ireland Color System */
