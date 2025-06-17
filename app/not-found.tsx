@@ -1,15 +1,6 @@
+"use client";
+
 import Link from 'next/link';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: '404 - Page Not Found | Sharp Digital Ireland',
-  description: 'The page you are looking for could not be found. Return to Sharp Digital Ireland homepage.',
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
-
 export default function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[var(--background)] px-4">

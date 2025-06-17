@@ -9,8 +9,16 @@ import { metadata } from './metadata';
 export { metadata };
 
 // Define type for structured data
+type JSONValue =
+  | string
+  | number
+  | boolean
+  | null
+  | JSONValue[]
+  | { [key: string]: JSONValue };
+
 interface StructuredData {
-  [key: string]: any;
+  [key: string]: JSONValue;
 }
 
 export default function RootLayout({
