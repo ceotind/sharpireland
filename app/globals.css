@@ -21,6 +21,9 @@
   /* Accent Green Variables for Hero Section */
   --accent-green: #00BFFF;
   --accent-green-base: #0077C2;
+  --accent-green-light: #e6f7ff;
+  --accent-red: #e53e3e;
+  --accent-red-light: #fff5f5;
   --white-color: #FFFFFF;
 }
 
@@ -41,6 +44,9 @@
     /* Accent Green Variables for Hero Section - Dark Mode */
     --accent-green: #006fff;
     --accent-green-base: #0085ff;
+    --accent-green-light: #1a2e1a;
+    --accent-red: #f56565;
+    --accent-red-light: #2d0000;
     --white-color: #FFFFFF;
   }
 }
@@ -60,6 +66,9 @@ html.dark {
   /* Accent Green Variables for Hero Section - Dark Mode */
   --accent-green: #006fff;
   --accent-green-base: #0085ff;
+  --accent-green-light: #1a2e1a;
+  --accent-red: #f56565;
+  --accent-red-light: #2d0000;
   --white-color: #FFFFFF;
 }
 
@@ -80,6 +89,9 @@ html.dark {
     /* Accent Green Variables for Hero Section - Light Mode */
     --accent-green: #00BFFF;
     --accent-green-base: #0077C2;
+    --accent-green-light: #e6f7ff;
+    --accent-red: #e53e3e;
+    --accent-red-light: #fff5f5;
     --white-color: #FFFFFF;
   }
 }
@@ -99,6 +111,9 @@ html.light {
   /* Accent Green Variables for Hero Section - Light Mode */
   --accent-green: #00BFFF;
   --accent-green-base: #0077C2;
+  --accent-green-light: #e6f7ff;
+  --accent-red: #e53e3e;
+  --accent-red-light: #fff5f5;
   --white-color: #FFFFFF;
 }
 
