@@ -174,7 +174,44 @@ All components follow established patterns:
 
 ## 🌐 Deployment
 
-### Vercel (Recommended)
+### VPS Deployment (Ubuntu/Debian)
+For automated VPS setup with Node.js 18+ and production build:
+
+1. **Clone repository**
+   ```bash
+   git clone https://github.com/sharpdigital/sharp-ireland.git
+   cd sharp-ireland
+   ```
+
+2. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your actual values
+   ```
+
+3. **Run deployment script**
+   ```bash
+   ./deploy.sh
+   ```
+
+The deployment script will:
+- Install Node.js 18+ and essential packages
+- Install project dependencies
+- Run pre-deployment validation
+- Build the project for production
+- Set up PM2 process manager
+- Start the application in cluster mode
+- Perform health checks
+
+**Post-deployment commands:**
+```bash
+pm2 status              # Check application status
+pm2 logs sharp-ireland  # View application logs
+pm2 restart sharp-ireland # Restart application
+pm2 stop sharp-ireland  # Stop application
+```
+
+### Vercel (Recommended for Static Hosting)
 1. Connect your GitHub repository to Vercel
 2. Set environment variables in Vercel dashboard
 3. Deploy automatically on push to main branch
