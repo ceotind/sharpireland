@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useTheme } from "../context/ThemeContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -133,12 +133,12 @@ export default function ProcessSection() {
     return () => ctx.revert();
   }, []);
 
-  const handleStepChange = (index: number) => {
+  const handleStepChange = useCallback((index: number) => {
     setActiveStep(index);
     setIsAutoPlaying(false);
     // Resume auto-play after 10 seconds
     setTimeout(() => setIsAutoPlaying(true), 10000);
-  };
+  }, []);
 
   // const nextStep = () => {
   //   setActiveStep((prev) => (prev + 1) % processSteps.length);

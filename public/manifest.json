@@ -17,36 +17,6 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "/icon-48.png",
-      "sizes": "48x48",
-      "type": "image/png",
-      "purpose": "any"
     }
   ],
   "screenshots": [
@@ -70,37 +40,19 @@
       "name": "Contact Us",
       "short_name": "Contact",
       "description": "Get in touch with Sharp Digital Ireland",
-      "url": "/#contact",
-      "icons": [
-        {
-          "src": "/icons/email.svg",
-          "sizes": "96x96"
-        }
-      ]
+      "url": "/#contact"
     },
     {
       "name": "Our Work",
       "short_name": "Portfolio",
       "description": "View our web development projects",
-      "url": "/#projects",
-      "icons": [
-        {
-          "src": "/icons/portfolio.svg",
-          "sizes": "96x96"
-        }
-      ]
+      "url": "/#projects"
     },
     {
       "name": "Technologies",
       "short_name": "Tech Stack",
       "description": "Our web development technologies",
-      "url": "/#technologies",
-      "icons": [
-        {
-          "src": "/icons/tech.svg",
-          "sizes": "96x96"
-        }
-      ]
+      "url": "/#technologies"
     }
   ],
   "related_applications": [],
