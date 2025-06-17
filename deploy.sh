@@ -101,18 +101,14 @@ for file in "${required_files[@]}"; do
 done
 print_success "Project structure validated"
 
-# Install project dependencies
-print_status "Installing project dependencies..."
+# Install ALL dependencies including dev dependencies for build
+print_status "Installing project dependencies (including dev dependencies for build)..."
 if [[ -f "package-lock.json" ]]; then
-    npm ci --only=production
+    npm ci
 else
-    npm install --only=production
+    npm install
 fi
-print_success "Dependencies installed successfully"
-
-# Install development dependencies for build process
-print_status "Installing development dependencies for build..."
-npm install
+print_success "All dependencies installed successfully"
 
 # Validate environment variables
 print_status "Validating environment variables..."
@@ -142,7 +138,7 @@ else
     exit 1
 fi
 
-# Clean up development dependencies to reduce disk usage
+# Clean up development dependencies to reduce disk usage AFTER build
 print_status "Cleaning up development dependencies..."
 npm prune --production
 
