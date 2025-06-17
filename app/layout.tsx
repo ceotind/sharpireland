@@ -1,30 +1,23 @@
-"use client";
-
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Analytics from "./components/Analytics";
 import ClientProviders from "./components/ClientProviders";
+import { metadata } from './metadata';
+
+export { metadata };
 
 // Define type for structured data
 interface StructuredData {
   [key: string]: any;
 }
 
-// Metadata must be moved to a separate file for client components
-export const metadata = {
-  title: 'Sharp Digital Ireland - Premier Web Development Agency Dublin | React & Next.js Experts',
-  description: 'Leading web development agency in Ireland specializing in React, Next.js, and custom digital solutions. Transform your business with expert web development services in Dublin and across Ireland.',
-  // ... (rest of metadata remains the same)
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Structured data moved inside useEffect to prevent server-side execution
   const structuredData: StructuredData[] = [
     // ... (structured data remains the same)
   ];
