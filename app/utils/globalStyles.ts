@@ -138,9 +138,11 @@ export const inlineStyles = {
   },
 } as const;
 
-export default {
+const globalStyles = {
   colorClasses,
   combineColorClasses,
   componentStyles,
   inlineStyles,
 };
+
+export default globalStyles;

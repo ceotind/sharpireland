@@ -1,7 +1,9 @@
 // Helper function for splitting text into spans for animations
 // Similar to what ArtWorksIT uses for their text animations
 
-export function splitText(text: string): JSX.Element {
+import React from 'react';
+
+export function splitText(text: string): React.JSX.Element {
   const words = text.split(' ');
   
   return (

@@ -1,8 +1,13 @@
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import ErrorBoundary from "./components/ErrorBoundary";
+import Analytics from "./components/Analytics";
 import type { Metadata } from 'next';
 import ClientProviders from "./components/ClientProviders"; // Import the new ClientProviders
+
+// Force dynamic rendering for all pages
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Sharp Digital Ireland - Premier Web Development Agency Dublin | React & Next.js Experts',
@@ -379,10 +384,16 @@ export default function RootLayout({
         ))}
       </head>
       <body>
+        <Analytics
+          gaId={process.env.NEXT_PUBLIC_GA_ID || undefined}
+          gtmId={process.env.NEXT_PUBLIC_GTM_ID || undefined}
+        />
         <ClientProviders> {/* Use ClientProviders to wrap theme and main content */}
-          <NavBar />
-          <main>{children}</main>
-          <Footer />
+          <ErrorBoundary>
+            <NavBar />
+            <main>{children}</main>
+            <Footer />
+          </ErrorBoundary>
         </ClientProviders>
       </body>
     </html>

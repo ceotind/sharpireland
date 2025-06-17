@@ -53,14 +53,19 @@ export default function ProjectsSection() {
       );
       
       return () => {
+        const currentSection = sectionRef.current;
         animation.kill();
         ScrollTrigger.getAll().forEach(trigger => {
-          if (trigger.trigger === sectionRef.current) {
+          if (trigger.trigger === currentSection) {
             trigger.kill();
           }
         });
       };
     }
+    
+    return () => {
+      // Cleanup function for when elements are not found
+    };
   }, []);
 
   return (
@@ -72,7 +77,7 @@ export default function ProjectsSection() {
             Featured Web Development Projects Ireland
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-[var(--foreground)] text-base md:text-lg opacity-80">
-            Explore Sharp Digital Ireland's portfolio of successful web development projects. From React applications to Next.js platforms, see how we deliver exceptional digital solutions for Irish businesses.
+            Explore Sharp Digital Ireland&apos;s portfolio of successful web development projects. From React applications to Next.js platforms, see how we deliver exceptional digital solutions for Irish businesses.
           </p>
         </header>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">

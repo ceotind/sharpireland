@@ -1,46 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import rateLimiter from '../../utils/rate-limit';
+import csrfProtection from '../../utils/csrf';
+import inputValidator, { ContactFormData } from '../../utils/validation';
 
-// Interface for form data
-interface ContactFormData {
-  name: string;
-  email: string;
-  phone?: string;
-  description: string;
+// Logging utility
+function logError(message: string, error?: unknown, request?: NextRequest) {
+  const timestamp = new Date().toISOString();
+  const ip = request?.headers.get('x-forwarded-for') || request?.headers.get('x-real-ip') || 'unknown';
+  const userAgent = request?.headers.get('user-agent') || 'unknown';
+  
+  console.error(`[${timestamp}] ${message}`, {
+    ip,
+    userAgent,
+    error: error instanceof Error ? error.message : error,
+    stack: error instanceof Error ? error.stack : undefined
+  });
 }
 
-// Validation function
-function validateFormData(data: any): { isValid: boolean; errors: string[] } {
-  const errors: string[] = [];
-
-  if (!data.name || typeof data.name !== 'string' || data.name.trim().length < 2) {
-    errors.push('Name is required and must be at least 2 characters long');
-  }
-
-  if (!data.email || typeof data.email !== 'string') {
-    errors.push('Email is required');
-  } else {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-      errors.push('Please provide a valid email address');
-    }
-  }
-
-  if (!data.description || typeof data.description !== 'string' || data.description.trim().length < 10) {
-    errors.push('Project description is required and must be at least 10 characters long');
-  }
-
-  if (data.phone && typeof data.phone === 'string' && data.phone.trim().length > 0) {
-    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-    if (!phoneRegex.test(data.phone.replace(/[\s\-\(\)]/g, ''))) {
-      errors.push('Please provide a valid phone number');
-    }
-  }
-
-  return {
-    isValid: errors.length === 0,
-    errors
-  };
+function logInfo(message: string, data?: Record<string, unknown>) {
+  const timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] ${message}`, data);
 }
 
 // Create transporter
@@ -173,29 +153,98 @@ function generateConfirmationEmail(data: ContactFormData): string {
 }
 
 export async function POST(request: NextRequest) {
+  const startTime = Date.now();
+  
   try {
-    // Parse request body
-    const body = await request.json();
-    
-    // Validate form data
-    const validation = validateFormData(body);
-    if (!validation.isValid) {
+    // Rate limiting check
+    const rateLimitResult = rateLimiter.isRateLimited(request);
+    if (rateLimitResult.isLimited) {
+      logInfo('Rate limit exceeded', {
+        ip: request.headers.get('x-forwarded-for') || 'unknown',
+        retryAfter: rateLimitResult.retryAfter
+      });
+      
       return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Validation failed', 
-          errors: validation.errors 
+        {
+          success: false,
+          message: 'Too many requests. Please try again later.',
+          retryAfter: rateLimitResult.retryAfter
+        },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': rateLimitResult.retryAfter?.toString() || '900',
+            'X-RateLimit-Limit': process.env.RATE_LIMIT_MAX || '5',
+            'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+            'X-RateLimit-Reset': new Date(rateLimitResult.resetTime).toISOString()
+          }
+        }
+      );
+    }
+
+    // Parse request body with size limit
+    let body;
+    try {
+      const text = await request.text();
+      if (text.length > 10000) { // 10KB limit
+        throw new Error('Request body too large');
+      }
+      body = JSON.parse(text);
+    } catch (error) {
+      logError('Invalid request body', error, request);
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Invalid request format'
         },
         { status: 400 }
       );
     }
 
-    const formData: ContactFormData = {
-      name: body.name.trim(),
-      email: body.email.trim().toLowerCase(),
-      phone: body.phone?.trim() || undefined,
-      description: body.description.trim()
-    };
+    // CSRF protection (skip in development)
+    if (process.env.NODE_ENV === 'production') {
+      const isValidCSRF = await csrfProtection.validateRequest(request, body);
+      if (!isValidCSRF) {
+        logError('CSRF validation failed', null, request);
+        return NextResponse.json(
+          {
+            success: false,
+            message: 'Security validation failed'
+          },
+          { status: 403 }
+        );
+      }
+    }
+
+    // Input validation and sanitization
+    const validation = inputValidator.validateContactForm(body);
+    if (!validation.isValid) {
+      logInfo('Validation failed', { errors: validation.errors });
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Validation failed',
+          errors: validation.errors
+        },
+        { status: 400 }
+      );
+    }
+
+    // Security checks
+    const userAgent = request.headers.get('user-agent');
+    const securityErrors = inputValidator.performSecurityChecks(body, userAgent || undefined);
+    if (securityErrors.length > 0) {
+      logError('Security check failed', { errors: securityErrors }, request);
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Security validation failed'
+        },
+        { status: 400 }
+      );
+    }
+
+    const formData = validation.sanitizedData!;
 
     // Create transporter
     const transporter = createTransporter();
@@ -204,11 +253,11 @@ export async function POST(request: NextRequest) {
     try {
       await transporter.verify();
     } catch (error) {
-      console.error('SMTP connection failed:', error);
+      logError('SMTP connection failed', error, request);
       return NextResponse.json(
-        { 
-          success: false, 
-          message: 'Email service temporarily unavailable. Please try again later.' 
+        {
+          success: false,
+          message: 'Email service temporarily unavailable. Please try again later.'
         },
         { status: 500 }
       );
@@ -266,17 +315,69 @@ Sharp Digital Ireland - Crafting Digital Experiences
       transporter.sendMail(confirmationEmailOptions)
     ]);
 
+    const processingTime = Date.now() - startTime;
+    logInfo('Contact form submitted successfully', {
+      email: formData.email,
+      processingTime: `${processingTime}ms`
+    });
+
     return NextResponse.json({
       success: true,
       message: 'Thank you for your message! We\'ll get back to you within 24 hours.'
     });
 
   } catch (error) {
-    console.error('Contact form error:', error);
+    logError('Contact form error', error, request);
+    
     return NextResponse.json(
-      { 
-        success: false, 
-        message: 'An error occurred while sending your message. Please try again later.' 
+      {
+        success: false,
+        message: 'An error occurred while sending your message. Please try again later.'
+      },
+      { status: 500 }
+    );
+  }
+}
+
+// Handle GET requests - return CSRF token for form
+export async function GET(request: NextRequest) {
+  try {
+    // Rate limiting for GET requests too
+    const rateLimitResult = rateLimiter.isRateLimited(request);
+    if (rateLimitResult.isLimited) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Too many requests. Please try again later.'
+        },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': rateLimitResult.retryAfter?.toString() || '900'
+          }
+        }
+      );
+    }
+
+    const csrfToken = csrfProtection.generateToken();
+    
+    return NextResponse.json({
+      success: true,
+      csrfToken,
+      message: 'CSRF token generated'
+    }, {
+      headers: {
+        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      }
+    });
+  } catch (error) {
+    logError('CSRF token generation failed', error, request);
+    return NextResponse.json(
+      {
+        success: false,
+        message: 'Unable to generate security token'
       },
       { status: 500 }
     );
@@ -284,9 +385,23 @@ Sharp Digital Ireland - Crafting Digital Experiences
 }
 
 // Handle other HTTP methods
-export async function GET() {
+export async function PUT() {
   return NextResponse.json(
     { message: 'Method not allowed' },
-    { status: 405 }
+    { status: 405, headers: { 'Allow': 'GET, POST' } }
+  );
+}
+
+export async function DELETE() {
+  return NextResponse.json(
+    { message: 'Method not allowed' },
+    { status: 405, headers: { 'Allow': 'GET, POST' } }
+  );
+}
+
+export async function PATCH() {
+  return NextResponse.json(
+    { message: 'Method not allowed' },
+    { status: 405, headers: { 'Allow': 'GET, POST' } }
   );
 }

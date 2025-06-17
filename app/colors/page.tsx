@@ -4,6 +4,9 @@ import ColorShowcase from '../components/ColorShowcase';
 import GlobalColorExample from '../components/GlobalColorExample';
 import { useTheme } from '../context/ThemeContext';
 
+// Force dynamic rendering for this page since it has interactive elements
+// export const dynamic = 'force-dynamic';
+
 export default function ColorsPage() {
   const { theme, toggleTheme } = useTheme();
 

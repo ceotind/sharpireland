@@ -144,8 +144,9 @@ export default function TechGridSection() {
     return () => {
       scrollAnimation.kill();
       hoverAnimations.forEach(cleanup => cleanup());
+      const currentGrid = gridRef.current;
       ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.trigger === gridRef.current) {
+        if (trigger.trigger === currentGrid) {
           trigger.kill();
         }
       });

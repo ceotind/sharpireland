@@ -27,6 +27,10 @@ export default function HeroSection() {
         animation.kill();
       };
     }
+    
+    return () => {
+      // Cleanup function for when element is not found
+    };
   }, []);
 
   // Infinite glow animation effect
@@ -114,6 +118,9 @@ export default function HeroSection() {
             const p0 = tailHistory[i];
             const p1 = tailHistory[i - 1];
             const p2 = tailHistory[i - 2];
+            
+            if (!p0 || !p1 || !p2) continue;
+            
             const t = i / tailHistory.length;
             // Fade tail out after tip
             const tailAlpha = 0.18 * t * fadeOut * Math.max(0, (tailHistory.length - i) / tailHistory.length + fadeOut);

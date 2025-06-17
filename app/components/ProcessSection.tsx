@@ -45,7 +45,7 @@ const processSteps: ProcessStep[] = [
 ];
 
 export default function ProcessSection() {
-  const { theme } = useTheme();
+  const {} = useTheme();
   const sectionRef = useRef<HTMLElement>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -140,17 +140,17 @@ export default function ProcessSection() {
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
-  const nextStep = () => {
-    setActiveStep((prev) => (prev + 1) % processSteps.length);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
-  };
+  // const nextStep = () => {
+  //   setActiveStep((prev) => (prev + 1) % processSteps.length);
+  //   setIsAutoPlaying(false);
+  //   setTimeout(() => setIsAutoPlaying(true), 10000);
+  // };
 
-  const prevStep = () => {
-    setActiveStep((prev) => (prev - 1 + processSteps.length) % processSteps.length);
-    setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
-  };
+  // const prevStep = () => {
+  //   setActiveStep((prev) => (prev - 1 + processSteps.length) % processSteps.length);
+  //   setIsAutoPlaying(false);
+  //   setTimeout(() => setIsAutoPlaying(true), 10000);
+  // };
 
   return (
     <section 
@@ -176,10 +176,10 @@ export default function ProcessSection() {
             <div className="text-left flex flex-col w-full h-full">
               <div className="flex-grow">
                 <h3 className="text-2xl md:text-3xl font-bold text-[var(--text-100)] mb-4">
-                  {processSteps[activeStep].title}
+                  {processSteps[activeStep]?.title}
                 </h3>
                 <p className="text-[var(--text-200)] text-lg leading-relaxed">
-                  {processSteps[activeStep].description}
+                  {processSteps[activeStep]?.description}
                 </p>
               </div>
               

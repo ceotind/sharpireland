@@ -52,14 +52,19 @@ export default function ContactSection() {
       );
       
       return () => {
+        const currentSection = sectionRef.current;
         animation.kill();
         ScrollTrigger.getAll().forEach(trigger => {
-          if (trigger.trigger === sectionRef.current) {
+          if (trigger.trigger === currentSection) {
             trigger.kill();
           }
         });
       };
     }
+    
+    return () => {
+      // Cleanup function for when elements are not found
+    };
   }, []);
 
   // Handle input changes
@@ -151,7 +156,7 @@ export default function ContactSection() {
           setErrors(errorObj);
         }
       }
-    } catch (error) {
+    } catch {
       setFormState('error');
       setMessage('Network error. Please check your connection and try again.');
     }
@@ -168,6 +173,10 @@ export default function ContactSection() {
       }, 5000);
       return () => clearTimeout(timer);
     }
+    
+    return () => {
+      // Cleanup function for when condition is not met
+    };
   }, [formState]);
   return (
     <section id="contact" ref={sectionRef} className="bg-[var(--background)] py-20 md:py-32" aria-labelledby="contact-heading">
@@ -268,7 +277,7 @@ export default function ContactSection() {
             {errors.email && (
               <p className="mt-1 text-sm text-red-600" role="alert">{errors.email}</p>
             )}
-            <div id="email-help" className="sr-only">We'll use this email to send you our web development proposal</div>
+            <div id="email-help" className="sr-only">We&apos;ll use this email to send you our web development proposal</div>
           </div>
           
           <div>

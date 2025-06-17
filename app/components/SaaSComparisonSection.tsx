@@ -32,14 +32,19 @@ const SaaSComparisonSection = () => {
       );
       
       return () => {
+        const currentSection = sectionRef.current;
         animation.kill();
         ScrollTrigger.getAll().forEach(trigger => {
-          if (trigger.trigger === sectionRef.current) {
+          if (trigger.trigger === currentSection) {
             trigger.kill();
           }
         });
       };
     }
+    
+    return () => {
+      // Cleanup function for when elements are not found
+    };
   }, []);
   return (
     <section id="saas-comparison" ref={sectionRef} className="bg-[var(--background)] py-20 md:py-32">

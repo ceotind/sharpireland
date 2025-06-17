@@ -2,18 +2,16 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   /* config options here */
-  experimental: {
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
       },
     },
   },
   
-  // Security headers for SEO and security
+  // Enhanced security headers
   async headers() {
     return [
       {
@@ -41,11 +39,69 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin'
+            value: 'strict-origin-when-cross-origin'
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()'
+            value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), magnetometer=(), gyroscope=(), accelerometer=()'
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://cdnjs.cloudflare.com",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com data:",
+              "img-src 'self' data: blob: https: http:",
+              "media-src 'self' data: blob:",
+              "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com",
+              "frame-src 'none'",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "frame-ancestors 'none'",
+              "upgrade-insecure-requests"
+            ].join('; ')
+          },
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'credentialless'
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin'
+          },
+          {
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'cross-origin'
+          }
+        ]
+      },
+      // Cache static assets
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
+      },
+      {
+        source: '/icons/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
+          }
+        ]
+      },
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable'
           }
         ]
       }
@@ -57,16 +113,37 @@ const nextConfig: NextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000, // 1 year
+    dangerouslyAllowSVG: false,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 
-  // Compression
+  // Compression and optimization
   compress: true,
-
-  // Performance optimizations
-  swcMinify: true,
-  
-  // PWA and performance
   poweredByHeader: false,
+  
+  // Bundle analyzer (only in development)
+  ...(process.env.ANALYZE === 'true' && {
+    webpack: (config: any) => {
+      if (process.env.NODE_ENV === 'development') {
+        const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+        config.plugins.push(
+          new BundleAnalyzerPlugin({
+            analyzerMode: 'server',
+            openAnalyzer: true,
+          })
+        )
+      }
+      return config
+    },
+  }),
+
+  // Production optimizations
+  ...(process.env.NODE_ENV === 'production' && {
+    output: 'standalone',
+    generateEtags: true,
+    trailingSlash: false,
+  }),
   
   // Redirects for SEO
   async redirects() {
@@ -80,6 +157,16 @@ const nextConfig: NextConfig = {
         source: '/index',
         destination: '/',
         permanent: true,
+      },
+    ]
+  },
+
+  // Rewrites for API routes (if needed)
+  async rewrites() {
+    return [
+      {
+        source: '/api/health',
+        destination: '/api/health',
       },
     ]
   },

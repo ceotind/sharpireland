@@ -56,7 +56,7 @@ const TestimonialsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const testimonialRef = useRef<HTMLDivElement>(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  // const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -91,51 +91,49 @@ const TestimonialsSection = () => {
   }, []);
 
   const nextTestimonial = () => {
-    if (isAnimating) return;
-    
     // Directly update to next testimonial without any animation
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
   };
 
   const goToTestimonial = (index: number) => {
-    if (isAnimating || index === currentTestimonial) return;
+    if (index === currentTestimonial) return;
     
     // Directly update to selected testimonial without any animation
     setCurrentTestimonial(index);
   };
 
   // Helper to render char/word spans for text animation (structure only for now)
-  const AnimatedText = ({ text, isMobile }: { text: string, isMobile?: boolean }) => {
-    const words = text.split(" ");
-    return (
-      <>
-        {words.map((word, i) => (
-          <span key={i} className={`word-container ${isMobile && i > 1 ? 'block' : 'inline-block'}`}>
-            <span className="word inline-block">
-              {word.split("").map((char, j) => (
-                <span key={j} className="char inline-block">{char}</span>
-              ))}
-            </span>
-            {i < words.length - 1 && ' '}
-          </span>
-        ))}
-      </>
-    );
-  };
+  // const AnimatedText = ({ text, isMobile }: { text: string, isMobile?: boolean }) => {
+  //   const words = text.split(" ");
+  //   return (
+  //     <>
+  //       {words.map((word, i) => (
+  //         <span key={i} className={`word-container ${isMobile && i > 1 ? 'block' : 'inline-block'}`}>
+  //           <span className="word inline-block">
+  //             {word.split("").map((char, j) => (
+  //               <span key={j} className="char inline-block">{char}</span>
+  //             ))}
+  //           </span>
+  //           {i < words.length - 1 && ' '}
+  //         </span>
+  //       ))}
+  //     </>
+  //   );
+  // };
   
-  const AnimatedTextMobile = ({ line1, line2 }: { line1: string, line2: string }) => {
-    return (
-      <>
-        <span className="overflow-hidden inline-block relative">
-           <AnimatedText text={line1} isMobile />
-        </span>
-        <span className="overflow-hidden inline-block relative">
-           <AnimatedText text={line2} isMobile />
-           <span className="w-[7vw] inline-block md:hidden"></span>
-        </span>
-      </>
-    )
-  }
+  // const AnimatedTextMobile = ({ line1, line2 }: { line1: string, line2: string }) => {
+  //   return (
+  //     <>
+  //       <span className="overflow-hidden inline-block relative">
+  //          <AnimatedText text={line1} isMobile />
+  //       </span>
+  //       <span className="overflow-hidden inline-block relative">
+  //          <AnimatedText text={line2} isMobile />
+  //          <span className="w-[7vw] inline-block md:hidden"></span>
+  //       </span>
+  //     </>
+  //   )
+  // }
 
   return (
     <section 
@@ -151,7 +149,7 @@ const TestimonialsSection = () => {
             What Our Clients Say
           </h2>
           <p className="mt-4 max-w-2xl mx-auto text-[var(--foreground)] text-base md:text-lg opacity-80">
-            Don't just take our word for it - hear from our satisfied clients about their experience working with us.
+            Don&apos;t just take our word for it - hear from our satisfied clients about their experience working with us.
           </p>
         </div>
 
@@ -165,19 +163,19 @@ const TestimonialsSection = () => {
                 className="flex-1 pr-8 overflow-hidden"
               >
                 <blockquote className="text-xl md:text-2xl font-light text-[var(--foreground)] leading-relaxed mb-8">
-                  "{testimonials[currentTestimonial].content}"
+                  &ldquo;{testimonials[currentTestimonial]?.content}&rdquo;
                 </blockquote>
                 
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-blue)] rounded-full flex items-center justify-center text-white font-semibold text-sm">
-                    {testimonials[currentTestimonial].avatar}
+                    {testimonials[currentTestimonial]?.avatar}
                   </div>
                   <div>
                     <h3 className="font-semibold text-[var(--foreground)] text-lg">
-                      {testimonials[currentTestimonial].name}
+                      {testimonials[currentTestimonial]?.name}
                     </h3>
                     <p className="text-[var(--foreground)] opacity-75 text-sm">
-                      {testimonials[currentTestimonial].role}, {testimonials[currentTestimonial].company}
+                      {testimonials[currentTestimonial]?.role}, {testimonials[currentTestimonial]?.company}
                     </p>
                   </div>
                 </div>

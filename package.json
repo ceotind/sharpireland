@@ -5,8 +5,18 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:analyze": "ANALYZE=true next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "test:build": "npm run type-check && npm run lint && npm run build",
+    "audit:security": "npm audit --audit-level moderate",
+    "audit:fix": "npm audit fix",
+    "clean": "rm -rf .next out dist",
+    "health-check": "curl -f http://localhost:3000/api/health || exit 1",
+    "validate-env": "node scripts/validate-env.js",
+    "pre-deploy": "npm run validate-env && npm run test:build"
   },
   "dependencies": {
     "@fontsource/alex-brush": "^5.2.5",
@@ -14,22 +24,31 @@
     "@fontsource/inter": "^5.2.5",
     "@types/gsap": "^1.20.2",
     "@types/nodemailer": "^6.4.17",
+    "cors": "^2.8.5",
+    "express-rate-limit": "^7.5.0",
     "gsap": "^3.13.0",
+    "helmet": "^8.1.0",
     "next": "15.3.2",
     "nodemailer": "^7.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "split-type": "^0.3.4"
+    "sanitize-html": "^2.17.0",
+    "split-type": "^0.3.4",
+    "validator": "^13.15.15"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.3.3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/sanitize-html": "^2.16.0",
+    "@types/validator": "^13.15.2",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }

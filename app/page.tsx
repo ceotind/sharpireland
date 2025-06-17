@@ -13,6 +13,9 @@ import SaaSComparisonSection from './components/SaaSComparisonSection';
 import TestimonialsSection from './components/TestimonialsSection';
 // import SharpImageSection from './components/SharpImageSection'; // Commented out as it's not used
 
+// Force dynamic rendering for this page since it has interactive elements
+// export const dynamic = 'force-dynamic';
+
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
