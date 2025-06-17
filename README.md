@@ -174,8 +174,79 @@ All components follow established patterns:
 
 ## 🌐 Deployment
 
+### Docker Hub Deployment (Recommended)
+
+1. **Quick deployment from Docker Hub**
+   ```bash
+   docker pull ceotind/sharpireland:latest
+   docker run -d -p 3000:3000 --name sharp-ireland ceotind/sharpireland:latest
+   ```
+
+2. **With environment variables**
+   ```bash
+   # Create .env.local with your configuration
+   docker run -d -p 3000:3000 --env-file .env.local --name sharp-ireland ceotind/sharpireland:latest
+   ```
+
+3. **Check deployment**
+   ```bash
+   curl http://localhost:3000/api/health  # Health check
+   docker logs sharp-ireland -f          # View logs
+   ```
+
+**Docker management commands:**
+```bash
+docker ps                   # Check container status
+docker logs sharp-ireland -f # View application logs
+docker restart sharp-ireland # Restart application
+docker stop sharp-ireland   # Stop application
+```
+
+### Docker Build & Push (Development)
+
+For building and pushing custom images with modern Docker Buildx:
+
+1. **Build Docker image** (automatically uses Buildx when available)
+   ```bash
+   ./docker-build.sh
+   ```
+   
+   Features:
+   - Modern Docker Buildx support with BuildKit
+   - Automatic fallback to legacy builder if needed
+   - Comprehensive validation and health checks
+   - Progress output and detailed logging
+
+2. **Push to Docker Hub** (with multi-platform support)
+   ```bash
+   ./docker-push.sh
+   ```
+   
+   Features:
+   - Enhanced authentication with access token support
+   - Optional multi-platform builds (linux/amd64, linux/arm64)
+   - Timestamp tagging for version control
+   - Automatic registry verification
+
+3. **Build and run with Docker Compose**
+   ```bash
+   # Production deployment (full security headers)
+   docker-compose up -d --build
+   
+   # Development deployment (disabled COOP headers for CORS compatibility)
+   NODE_ENV=development docker-compose up -d --build
+   ```
+
+**Docker Compose management:**
+```bash
+docker-compose ps           # Check container status
+docker-compose logs -f      # View application logs
+docker-compose restart      # Restart application
+docker-compose down         # Stop application
+```
+
 ### VPS Deployment (Ubuntu/Debian)
-For automated VPS setup with Node.js 18+ and production build:
+For direct VPS setup with Node.js 18+ and PM2:
 
 1. **Clone repository**
    ```bash
@@ -194,22 +265,26 @@ For automated VPS setup with Node.js 18+ and production build:
    ./deploy.sh
    ```
 
-The deployment script will:
-- Install Node.js 18+ and essential packages
-- Install project dependencies
-- Run pre-deployment validation
-- Build the project for production
-- Set up PM2 process manager
-- Start the application in cluster mode
-- Perform health checks
-
-**Post-deployment commands:**
+**PM2 management commands:**
 ```bash
 pm2 status              # Check application status
 pm2 logs sharp-ireland  # View application logs
 pm2 restart sharp-ireland # Restart application
 pm2 stop sharp-ireland  # Stop application
 ```
+
+### CORS/COOP Header Issues
+If you encounter Cross-Origin-Opener-Policy errors, deploy in development mode:
+
+```bash
+# Docker deployment without COOP headers
+NODE_ENV=development docker-compose up -d --build
+
+# Check that COOP headers are disabled
+curl -I http://localhost:3000
+```
+
+This disables problematic security headers while maintaining basic security protections.
 
 ### Vercel (Recommended for Static Hosting)
 1. Connect your GitHub repository to Vercel
