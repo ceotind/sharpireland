@@ -83,6 +83,13 @@ if [[ ! -f "package.json" ]]; then
     exit 1
 fi
 
+# Check if this is the Sharp Ireland project
+if ! grep -q '"name": "sharpireland"' package.json; then
+    print_error "This doesn't appear to be the Sharp Ireland project."
+    print_error "Expected package name 'sharpireland' in package.json"
+    exit 1
+fi
+
 # Validate project structure
 print_status "Validating project structure..."
 required_files=("package.json" "next.config.ts" "app/layout.tsx" "app/page.tsx")
