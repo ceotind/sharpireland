@@ -30,6 +30,7 @@ export default function ContactSection() {
   const [formState, setFormState] = useState<FormState>('idle');
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [csrfToken, setCsrfToken] = useState<string>('');
 
   useEffect(() => {
     const elements = sectionRef.current?.querySelectorAll(".animate-element");
@@ -65,6 +66,28 @@ export default function ContactSection() {
     return () => {
       // Cleanup function for when elements are not found
     };
+  }, []);
+
+  // Fetch CSRF token on mount
+  useEffect(() => {
+    const fetchCsrfToken = async () => {
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await response.json();
+        if (data.success && data.csrfToken) {
+          setCsrfToken(data.csrfToken);
+        }
+      } catch (error) {
+        console.error('Failed to fetch CSRF token:', error);
+      }
+    };
+
+    fetchCsrfToken();
   }, []);
 
   // Handle input changes
@@ -126,8 +149,12 @@ export default function ContactSection() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-csrf-token': csrfToken,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          csrfToken
+        }),
       });
 
       const result = await response.json();
