@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useSearchParams } from "next/navigation";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -20,12 +21,13 @@ interface FormData {
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function ContactSection() {
+  const searchParams = useSearchParams();
   const sectionRef = useRef<HTMLElement | null>(null);
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
-    description: ''
+    description: searchParams.get('message') || ''
   });
   const [formState, setFormState] = useState<FormState>('idle');
   const [message, setMessage] = useState('');
@@ -68,7 +70,7 @@ export default function ContactSection() {
     };
   }, []);
 
-  // Fetch CSRF token on mount
+  // Fetch CSRF token on mount and scroll to contact section if message parameter exists
   useEffect(() => {
     const fetchCsrfToken = async () => {
       try {
@@ -88,7 +90,14 @@ export default function ContactSection() {
     };
 
     fetchCsrfToken();
-  }, []);
+    
+    // Scroll to contact section if message parameter exists
+    if (searchParams.get('message')) {
+      setTimeout(() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+    }
+  }, [searchParams]);
 
   // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

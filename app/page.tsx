@@ -12,6 +12,7 @@ import ContactSection from './components/ContactSection';
 import SaaSComparisonSection from './components/SaaSComparisonSection';
 import TestimonialsSection from './components/TestimonialsSection';
 // import SharpImageSection from './components/SharpImageSection'; // Commented out as it's not used
+import TripleSwitchSection from './components/TripleSwitchSection';
 
 // Force dynamic rendering for this page since it has interactive elements
 // export const dynamic = 'force-dynamic';
@@ -194,6 +195,11 @@ export default function Home() {
         {/* Technologies Section - Our expertise */}
         <section aria-labelledby="technologies-heading">
           <TechGridSection />
+        </section>
+        
+        {/* Triple Switch Section - Project constraints */}
+        <section aria-labelledby="triple-switch-heading">
+          <TripleSwitchSection />
         </section>
         
         {/* Portfolio Section - Our work */}
