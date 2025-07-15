@@ -16,7 +16,10 @@
     "clean": "rm -rf .next out dist",
     "health-check": "curl -f http://localhost:3000/api/health || exit 1",
     "validate-env": "node scripts/validate-env.js",
-    "pre-deploy": "npm run validate-env && npm run test:build"
+    "validate-sitemap": "node scripts/validate-sitemap.js",
+    "validate-sitemap:full": "node scripts/validate-sitemap.js --test-urls",
+    "seo-check": "npm run validate-sitemap",
+    "pre-deploy": "npm run validate-env && npm run test:build && npm run validate-sitemap"
   },
   "dependencies": {
     "@fontsource/alex-brush": "^5.2.5",

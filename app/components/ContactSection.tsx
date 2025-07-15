@@ -27,7 +27,7 @@ export default function ContactSection() {
     name: '',
     email: '',
     phone: '',
-    description: searchParams.get('message') || ''
+    description: ''
   });
   const [formState, setFormState] = useState<FormState>('idle');
   const [message, setMessage] = useState('');
@@ -70,7 +70,7 @@ export default function ContactSection() {
     };
   }, []);
 
-  // Fetch CSRF token on mount and scroll to contact section if message parameter exists
+  // Fetch CSRF token on mount and handle search params
   useEffect(() => {
     const fetchCsrfToken = async () => {
       try {
@@ -91,8 +91,10 @@ export default function ContactSection() {
 
     fetchCsrfToken();
     
-    // Scroll to contact section if message parameter exists
-    if (searchParams.get('message')) {
+    // Handle search params after component mount
+    const messageParam = searchParams.get('message');
+    if (messageParam) {
+      setFormData(prev => ({ ...prev, description: messageParam }));
       setTimeout(() => {
         document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
       }, 500);

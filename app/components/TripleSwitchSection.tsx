@@ -75,7 +75,8 @@ const TripleSwitchSection = () => {
 
   // Play toggle sound using Web Audio API
   const playToggleSound = () => {
-    const context = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const AudioContextClass = window.AudioContext || (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const context = new AudioContextClass();
     const oscillator = context.createOscillator();
     const gainNode = context.createGain();
     

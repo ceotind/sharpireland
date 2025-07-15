@@ -8,7 +8,7 @@ import HeroSection from './components/HeroSection';
 import TechGridSection from './components/TechGridSection';
 import ProjectsSection from './components/ProjectsSection';
 import ProcessSection from './components/ProcessSection';
-import ContactSection from './components/ContactSection';
+import ContactSectionWrapper from './components/ContactSectionWrapper';
 import SaaSComparisonSection from './components/SaaSComparisonSection';
 import TestimonialsSection from './components/TestimonialsSection';
 // import SharpImageSection from './components/SharpImageSection'; // Commented out as it's not used
@@ -224,7 +224,7 @@ export default function Home() {
         
         {/* Contact Section - Get in touch */}
         <section aria-labelledby="contact-heading">
-          <ContactSection />
+          <ContactSectionWrapper />
         </section>
       </main>
     </>
