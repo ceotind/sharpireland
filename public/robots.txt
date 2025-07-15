@@ -1,5 +1,5 @@
 # Sharp Digital Ireland - Web Development Agency
-# https://sharpdigital.in
+# https://sharpdigital.ie
 
 # Global rules for all crawlers
 User-agent: *
@@ -10,7 +10,7 @@ Disallow: /admin/
 Disallow: /.well-known/
 
 # Sitemap locations
-Sitemap: https://sharpdigital.in/sitemap.xml
+Sitemap: https://sharpdigital.ie/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
@@ -88,4 +88,4 @@ User-agent: MJ12bot
 Disallow: /
 
 # Host directive (helps with canonicalization)
-Host: https://sharpdigital.in
+Host: https://sharpdigital.ie

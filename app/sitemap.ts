@@ -13,7 +13,7 @@ import { MetadataRoute } from 'next'
  * - Includes only indexable content
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://sharpdigital.in'
+  const baseUrl = 'https://sharpdigital.ie'
   const currentDate = new Date()
   
   // Use build time for static content that doesn't change frequently

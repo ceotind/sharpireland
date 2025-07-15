@@ -332,7 +332,7 @@ This project is proprietary software owned by Sharp Digital Ireland. All rights 
 ## 📞 Contact
 
 **Sharp Digital Ireland**
-- Website: [https://sharpdigital.in](https://sharpdigital.in)
+- Website: [https://sharpdigital.ie](https://sharpdigital.ie)
 - Email: hello@sharpdigital.in
 - Location: Dublin, Ireland
 

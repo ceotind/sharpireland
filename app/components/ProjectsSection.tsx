@@ -19,13 +19,13 @@ const projects = [
     id: "02",
     title: "Content Writer Agent",
     description: "Tool to assist with content generation and editing for businesses reducing the expense of hiring professional writers.",
-    link: "https://sharpdigital.in"
+    link: "https://sharpdigital.ie"
   },
   {
     id: "03",
     title: "AI",
     description: "There are several AI projects that we are currently working with in different domains. We have 2 years of deep research in deep usage of AI.",
-    link: "https://sharpdigital.in"
+    link: "https://sharpdigital.ie"
   },
 ];
 

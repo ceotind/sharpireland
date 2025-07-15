@@ -8,8 +8,8 @@
 const https = require('https');
 const http = require('http');
 
-const SITEMAP_URL = 'https://sharpdigital.in/sitemap.xml';
-const ROBOTS_URL = 'https://sharpdigital.in/robots.txt';
+const SITEMAP_URL = 'https://sharpdigital.ie/sitemap.xml';
+const ROBOTS_URL = 'https://sharpdigital.ie/robots.txt';
 
 /**
  * Fetches content from a URL

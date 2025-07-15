@@ -39,19 +39,19 @@ export default function Home() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "@id": "https://sharpdigital.in/#webpage",
+            "@id": "https://sharpdigital.ie/#webpage",
             "name": "Sharp Digital Ireland - Premier Web Development Agency Dublin",
             "description": "Leading web development agency in Ireland specializing in React, Next.js, and custom digital solutions. Expert developers serving Dublin and all of Ireland.",
-            "url": "https://sharpdigital.in",
+            "url": "https://sharpdigital.ie",
             "inLanguage": "en-IE",
             "isPartOf": {
-              "@id": "https://sharpdigital.in/#website"
+              "@id": "https://sharpdigital.ie/#website"
             },
             "about": {
-              "@id": "https://sharpdigital.in/#organization"
+              "@id": "https://sharpdigital.ie/#organization"
             },
             "mainEntity": {
-              "@id": "https://sharpdigital.in/#organization"
+              "@id": "https://sharpdigital.ie/#organization"
             },
             "breadcrumb": {
               "@type": "BreadcrumbList",
@@ -60,7 +60,7 @@ export default function Home() {
                   "@type": "ListItem",
                   "position": 1,
                   "name": "Home",
-                  "item": "https://sharpdigital.in"
+                  "item": "https://sharpdigital.ie"
                 }
               ]
             },
@@ -133,7 +133,7 @@ export default function Home() {
                 "name": "React Development Ireland",
                 "description": "Expert React.js development for modern, interactive web applications",
                 "provider": {
-                  "@id": "https://sharpdigital.in/#organization"
+                  "@id": "https://sharpdigital.ie/#organization"
                 },
                 "areaServed": "Ireland",
                 "serviceType": "Web Development"
@@ -144,7 +144,7 @@ export default function Home() {
                 "name": "Next.js Development Dublin",
                 "description": "High-performance Next.js applications with server-side rendering and static generation",
                 "provider": {
-                  "@id": "https://sharpdigital.in/#organization"
+                  "@id": "https://sharpdigital.ie/#organization"
                 },
                 "areaServed": "Ireland",
                 "serviceType": "Web Development"
@@ -155,7 +155,7 @@ export default function Home() {
                 "name": "Full-Stack Development Ireland",
                 "description": "Complete web application development from frontend to backend",
                 "provider": {
-                  "@id": "https://sharpdigital.in/#organization"
+                  "@id": "https://sharpdigital.ie/#organization"
                 },
                 "areaServed": "Ireland",
                 "serviceType": "Web Development"
@@ -166,7 +166,7 @@ export default function Home() {
                 "name": "Custom Software Development",
                 "description": "Bespoke software solutions tailored to business needs",
                 "provider": {
-                  "@id": "https://sharpdigital.in/#organization"
+                  "@id": "https://sharpdigital.ie/#organization"
                 },
                 "areaServed": "Ireland",
                 "serviceType": "Software Development"

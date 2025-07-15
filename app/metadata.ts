@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Sharp Digital Ireland - Premier Web Development Agency Dublin | React & Next.js Experts',
   description: 'Leading web development agency in Ireland specializing in React, Next.js, and custom digital solutions. Transform your business with expert web development services in Dublin and across Ireland.',
   keywords: 'web development Ireland, React development Dublin, Next.js developers Ireland, custom software development, digital agency Ireland, web design Dublin, full-stack development Ireland, JavaScript development, TypeScript development, UI/UX design Ireland, e-commerce development, mobile app development Ireland, digital transformation services, professional website design Dublin, responsive web design, SEO optimization Ireland, web application development, startup web development Ireland, enterprise web solutions',
-  authors: [{ name: 'Sharp Digital Ireland', url: 'https://sharpdigital.in' }],
+  authors: [{ name: 'Sharp Digital Ireland', url: 'https://sharpdigital.ie' }],
   creator: 'Sharp Digital Ireland',
   publisher: 'Sharp Digital Ireland',
   category: 'Technology',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://sharpdigital.in'),
+  metadataBase: new URL('https://sharpdigital.ie'),
   alternates: {
     canonical: '/',
     languages: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Sharp Digital Ireland - Premier Web Development Agency Dublin',
     description: 'Leading web development agency in Ireland specializing in React, Next.js, and custom digital solutions. Expert developers serving Dublin and all of Ireland.',
-    url: 'https://sharpdigital.in',
+    url: 'https://sharpdigital.ie',
     siteName: 'Sharp Digital Ireland',
     images: [
       {
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     'DC.date': new Date().toISOString(),
     'DC.type': 'Service',
     'DC.format': 'text/html',
-    'DC.identifier': 'https://sharpdigital.in',
+    'DC.identifier': 'https://sharpdigital.ie',
     'DC.language': 'en-IE',
     'DC.coverage': 'Ireland',
     'DC.rights': 'Copyright Sharp Digital Ireland',
