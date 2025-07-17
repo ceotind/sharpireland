@@ -49,7 +49,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer style={{ backgroundColor: '#171717', color: '#ffffff' }} className="relative">
+    <footer className="relative bg-[var(--bg-400)] text-[var(--text-100)]">
       {/* Main Footer Content */}
       <div className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
@@ -57,8 +57,8 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {/* Company Info */}
             <div className="lg:col-span-2">
-              <h3 style={{ color: '#ffffff' }} className="text-2xl font-bold mb-4">Sharp Digital</h3>
-              <p style={{ color: '#d1d5db' }} className="mb-6 max-w-md">
+              <h3 className="text-2xl font-bold mb-4 text-[var(--text-100)]">Sharp Digital</h3>
+              <p className="mb-6 max-w-md text-[var(--text-200)]">
                 Premier web development agency delivering effective digital solutions.
                 We craft custom web applications with cutting-edge technologies.
               </p>
@@ -67,8 +67,7 @@ export default function Footer() {
                   <a
                     key={social.name}
                     href={social.href}
-                    style={{ backgroundColor: '#6b7280' }}
-                    className="w-12 h-12 rounded-full flex items-center justify-center hover:opacity-80 transition-opacity duration-300"
+                    className="w-12 h-12 rounded-full flex items-center justify-center bg-[var(--bg-300)] hover:opacity-80 transition-opacity duration-300"
                     aria-label={social.name}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -81,14 +80,13 @@ export default function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h4 style={{ color: '#ffffff' }} className="text-lg font-semibold mb-4">Quick Links</h4>
+              <h4 className="text-lg font-semibold mb-4 text-[var(--text-100)]">Quick Links</h4>
               <ul className="space-y-2">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      style={{ color: '#d1d5db' }}
-                      className="hover:opacity-80 transition-opacity duration-300"
+                      className="hover:opacity-80 transition-opacity duration-300 text-[var(--text-200)]"
                     >
                       {link.name}
                     </Link>
@@ -99,10 +97,10 @@ export default function Footer() {
 
             {/* Services */}
             <div>
-              <h4 style={{ color: '#ffffff' }} className="text-lg font-semibold mb-4">Services</h4>
+              <h4 className="text-lg font-semibold mb-4 text-[var(--text-100)]">Services</h4>
               <ul className="space-y-2">
                 {services.map((service) => (
-                  <li key={service} style={{ color: '#d1d5db' }} className="text-sm">
+                  <li key={service} className="text-sm text-[var(--text-200)]">
                     {service}
                   </li>
                 ))}
@@ -111,28 +109,27 @@ export default function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div style={{ borderTopColor: '#6b7280' }} className="border-t pt-8 mb-8">
+          <div className="border-t border-[var(--bg-300)] pt-8 mb-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h5 style={{ color: '#ffffff' }} className="font-semibold mb-2">Email</h5>
+                <h5 className="font-semibold mb-2 text-[var(--text-100)]">Email</h5>
                 <a
                   href="mailto:dilshad@sharpdigital.in"
-                  style={{ color: '#d1d5db' }}
-                  className="hover:opacity-80 transition-opacity"
+                  className="hover:opacity-80 transition-opacity text-[var(--text-200)]"
                 >
                   dilshad@sharpdigital.in
                 </a>
               </div>
               <div>
-                <h5 style={{ color: '#ffffff' }} className="font-semibold mb-2">Locations</h5>
-                <p style={{ color: '#d1d5db' }}>Ireland & India</p>
+                <h5 className="font-semibold mb-2 text-[var(--text-100)]">Locations</h5>
+                <p className="text-[var(--text-200)]">Ireland & India</p>
               </div>
             </div>
           </div>
 
           {/* Copyright */}
-          <div style={{ borderTopColor: '#6b7280' }} className="border-t pt-6 text-center">
-            <p style={{ color: '#9ca3af' }} className="text-sm">
+          <div className="border-t border-[var(--bg-300)] pt-6 text-center">
+            <p className="text-sm text-[var(--text-300)]">
               © {new Date().getFullYear()} Sharp Digital. All rights reserved. |
               <span className="ml-1">Crafting digital experiences with precision.</span>
             </p>

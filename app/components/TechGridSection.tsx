@@ -50,8 +50,8 @@ const CornerDot = ({ position }: { position: string }) => {
   if (position === 'br') posClasses += " translate-x-1/2 translate-y-1/2";
   
   return (
-    <div 
-      className={`corner-dot aspect-square border border-[#5C5C5C] absolute w-[2vw] md:w-[.45vw] bg-white dark:bg-[#151515] z-[2] ${posClasses}`}
+    <div
+      className={`corner-dot aspect-square border border-[var(--bg-300)] absolute w-[2vw] md:w-[.45vw] bg-[var(--bg-100)] z-[2] ${posClasses}`}
     ></div>
   );
 };
@@ -156,17 +156,17 @@ export default function TechGridSection() {
     <section
       id="technologies"
       ref={sectionRef}
-      className="bg-[var(--background)] text-[var(--foreground)] py-20 md:py-32"
+      className="bg-[var(--bg-100)] text-[var(--text-100)] py-20 md:py-32"
       aria-labelledby="technologies-heading"
     >
       <div className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col gap-12">
       {/* Heading Section */}
       <header className="text-center">
         <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Our Technology Stack</span>
-        <h2 id="technologies-heading" className="mt-4 text-4xl md:text-5xl font-bold text-[var(--foreground)]">
+        <h2 id="technologies-heading" className="mt-4 text-4xl md:text-5xl font-bold text-[var(--text-100)]">
           Expert Web Development Technologies Ireland
         </h2>
-        <p className="mt-4 max-w-2xl mx-auto text-[var(--foreground)] text-base md:text-lg opacity-80">
+        <p className="mt-4 max-w-2xl mx-auto text-[var(--text-100)] text-base md:text-lg opacity-80">
           Sharp Digital Ireland leverages cutting-edge technologies including React, Next.js, Node.js, and modern design tools to deliver exceptional web development solutions for Irish businesses.
         </p>
       </header>
@@ -177,7 +177,7 @@ export default function TechGridSection() {
           {technologiesData.map((tech, index) => (
             <article
               key={tech.name + index}
-              className={`tech-grid-item aspect-square border border-[#5C5C5C] flex items-center justify-center relative group ${tech.gridClasses || ''} ${tech.borderClasses || ''}`}
+              className={`tech-grid-item aspect-square border border-[var(--bg-300)] flex items-center justify-center relative group ${tech.gridClasses || ''} ${tech.borderClasses || ''}`}
               role="listitem"
               aria-label={`${tech.name} - Web development technology used by Sharp Digital Ireland`}
             >

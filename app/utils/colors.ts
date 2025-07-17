@@ -7,13 +7,13 @@ export const colors = {
   // Light mode colors
   light: {
     primary: {
-      100: '#0077C2',
-      200: '#59a5f5',
-      300: '#c8ffff',
+      100: '#0f51dd',
+      200: '#4a7aff',
+      300: '#c8d9ff',
     },
     accent: {
-      100: '#00BFFF',
-      200: '#00619a',
+      100: '#0f51dd',
+      200: '#0a3bb8',
     },
     text: {
       100: '#333333',

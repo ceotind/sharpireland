@@ -272,7 +272,7 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen h-screen flex items-center justify-center bg-[var(--background)] overflow-hidden pt-16"
+      className="hero-section relative min-h-screen h-screen flex items-center justify-center bg-[var(--bg-100)] overflow-hidden pt-16"
       style={{ width: "100vw", height: "100vh" }}
     >
       {/* Comet Canvas */}
@@ -284,7 +284,7 @@ export default function HeroSection() {
       <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-4 h-full">
         <div className="flex flex-col items-center justify-center w-full">
           <div
-            className="font-bold text-[--foreground] leading-tight tracking-tight w-full"
+            className="font-bold text-[var(--text-100)] leading-tight tracking-tight w-full"
             style={{
               display: "flex",
               flexDirection: "column",
@@ -335,13 +335,13 @@ export default function HeroSection() {
           <div className="flex flex-row gap-6 mt-10">
             <a
               href="#projects"
-              className="inline-block bg-[--accent-green] text-[--white-color] py-3 px-8 rounded-lg font-semibold shadow-md hover:bg-[--accent-green-base] transition-colors"
+              className="inline-block bg-[var(--accent-green)] py-3 px-8 rounded-lg font-semibold shadow-md hover:bg-[var(--accent-green-base)] transition-colors duration-300"
             >
               Our Work
             </a>
             <a
               href="#contact"
-              className="inline-block bg-transparent border-2 border-[--accent-green] text-[--accent-green] py-3 px-8 rounded-lg font-semibold hover:bg-[--accent-green] hover:text-[--white-color] transition-colors"
+              className="inline-block bg-transparent border-2 border-[var(--accent-green)] py-3 px-8 rounded-lg font-semibold hover:bg-[var(--accent-green)] hover:text-[var(--white-color)] transition-colors duration-300"
             >
               Contact Us
             </a>

@@ -138,43 +138,43 @@ const TestimonialsSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="bg-[var(--background)] text-[var(--foreground)] py-20 md:py-32"
+      className="bg-[var(--bg-100)] text-[var(--text-100)] py-20 md:py-32"
       id="testimonials"
     >
       <div className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col gap-12">
         {/* Heading Section */}
         <div className="text-center">
           <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Testimonials</span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--foreground)]">
+          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--text-100)]">
             What Our Clients Say
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-[var(--foreground)] text-base md:text-lg opacity-80">
+          <p className="mt-4 max-w-2xl mx-auto text-[var(--text-100)] text-base md:text-lg opacity-80">
             Don&apos;t just take our word for it - hear from our satisfied clients about their experience working with us.
           </p>
         </div>
 
         {/* Testimonial Section */}
         <div className="mt-8 md:mt-12 max-w-4xl mx-auto">
-          <div className="bg-[var(--background-lighter)] p-8 md:p-12 rounded-2xl border border-[var(--border-light)]">
+          <div className="bg-[var(--bg-200)] p-8 md:p-12 rounded-2xl border border-[var(--bg-300)]">
             <div className="flex items-center justify-between">
               {/* Single Testimonial Display */}
               <div 
                 ref={testimonialRef}
                 className="flex-1 pr-8 overflow-hidden"
               >
-                <blockquote className="text-xl md:text-2xl font-light text-[var(--foreground)] leading-relaxed mb-8">
+                <blockquote className="text-xl md:text-2xl font-light text-[var(--text-100)] leading-relaxed mb-8">
                   &ldquo;{testimonials[currentTestimonial]?.content}&rdquo;
                 </blockquote>
                 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-blue)] rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                  <div className="w-12 h-12 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-blue)] rounded-full flex items-center justify-center text-[var(--white-color)] font-semibold text-sm">
                     {testimonials[currentTestimonial]?.avatar}
                   </div>
                   <div>
-                    <h3 className="font-semibold text-[var(--foreground)] text-lg">
+                    <h3 className="font-semibold text-[var(--text-100)] text-lg">
                       {testimonials[currentTestimonial]?.name}
                     </h3>
-                    <p className="text-[var(--foreground)] opacity-75 text-sm">
+                    <p className="text-[var(--text-100)] opacity-75 text-sm">
                       {testimonials[currentTestimonial]?.role}, {testimonials[currentTestimonial]?.company}
                     </p>
                   </div>
@@ -184,7 +184,7 @@ const TestimonialsSection = () => {
               {/* Next Button */}
               <button
                 onClick={nextTestimonial}
-                className="flex-shrink-0 w-16 h-16 border border-[var(--border-medium)] rounded-lg flex items-center justify-center hover:bg-[var(--accent-green)] hover:text-white hover:border-[var(--accent-green)] transition-all duration-300 group"
+                className="flex-shrink-0 w-16 h-16 border border-[var(--bg-300)] rounded-lg flex items-center justify-center hover:bg-[var(--accent-green)] hover:text-[var(--white-color)] hover:border-[var(--accent-green)] transition-all duration-300 group"
                 aria-label="Next testimonial"
               >
                 <svg 
@@ -207,7 +207,7 @@ const TestimonialsSection = () => {
                   className={`w-3 h-3 rounded-full transition-colors duration-300 ${
                     index === currentTestimonial 
                       ? 'bg-[var(--accent-green)]' 
-                      : 'bg-[var(--border-medium)] hover:bg-[var(--accent-green)] hover:opacity-60'
+                      : 'bg-[var(--bg-300)] hover:bg-[var(--accent-green)] hover:opacity-60'
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />

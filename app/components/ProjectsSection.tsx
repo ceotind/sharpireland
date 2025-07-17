@@ -69,14 +69,14 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section id="projects" ref={sectionRef} className="bg-[var(--background)] py-20 md:py-32" aria-labelledby="projects-heading">
+    <section id="projects" ref={sectionRef} className="bg-[var(--bg-100)] py-20 md:py-32" aria-labelledby="projects-heading">
       <div className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col gap-12">
         <header className="text-center">
           <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Web Development Portfolio Ireland</span>
-          <h2 id="projects-heading" className="mt-4 text-4xl md:text-5xl font-bold text-[var(--foreground)]">
+          <h2 id="projects-heading" className="mt-4 text-4xl md:text-5xl font-bold text-[var(--text-100)]">
             Featured Web Development Projects Ireland
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-[var(--foreground)] text-base md:text-lg opacity-80">
+          <p className="mt-4 max-w-2xl mx-auto text-[var(--text-100)] text-base md:text-lg opacity-80">
             Explore Sharp Digital Ireland&apos;s portfolio of successful web development projects. From React applications to Next.js platforms, see how we deliver exceptional digital solutions for Irish businesses.
           </p>
         </header>
@@ -84,7 +84,7 @@ export default function ProjectsSection() {
           {projects.map((project) => (
             <article
               key={project.id}
-              className="project-card bg-[var(--background-lighter)] p-6 rounded-lg border border-[var(--border-light)] hover:border-[var(--accent-green)] transition-all duration-300 hover:shadow-lg flex flex-col h-full"
+              className="project-card bg-[var(--bg-200)] p-6 rounded-lg border border-[var(--bg-300)] hover:border-[var(--accent-green)] transition-all duration-300 hover:shadow-lg flex flex-col h-full"
               role="listitem"
               itemScope
               itemType="https://schema.org/CreativeWork"
@@ -92,17 +92,17 @@ export default function ProjectsSection() {
               <div className="text-sm font-semibold text-[var(--accent-green)]" aria-label={`Project ${project.id}`}>
                 {project.id}
               </div>
-              <h3 className="mt-2 text-xl font-semibold text-[var(--foreground)]" itemProp="name">
+              <h3 className="mt-2 text-xl font-semibold text-[var(--text-100)]" itemProp="name">
                 {project.title}
               </h3>
-              <p className="mt-2 text-[var(--foreground)] opacity-75 flex-grow" itemProp="description">
+              <p className="mt-2 text-[var(--text-100)] opacity-75 flex-grow" itemProp="description">
                 {project.description}
               </p>
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-4 pt-4 text-[var(--accent-green)] font-medium hover:text-[var(--accent-green-base)] transition-colors"
+                className="inline-block mt-4 pt-4 text-[var(--accent-green)] font-medium hover:text-[var(--accent-green-base)] transition-colors duration-300"
                 aria-label={`View ${project.title} project - Opens in new tab`}
                 itemProp="url"
               >

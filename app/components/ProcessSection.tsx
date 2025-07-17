@@ -164,7 +164,7 @@ export default function ProcessSection() {
           <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium mb-4 block">
             Our Process
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--foreground)]">
+          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--text-100)]">
             Our Professional Web Development Process
           </h2>
         </div>
@@ -259,8 +259,8 @@ export default function ProcessSection() {
                       {/* Icon Container */}
                       <div className={`w-24 h-24 mx-auto rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-2xl ${
                         isActive
-                          ? 'bg-[var(--primary-100)] text-[var(--bg-100)] shadow-2xl transform scale-110'
-                          : 'bg-[var(--bg-200)] text-[var(--text-200)] border border-[var(--bg-300)] group-hover:border-[var(--primary-200)] group-hover:bg-[var(--bg-300)]'
+                          ? 'bg-[var(--primary-100)] text-[var(--white-color)] shadow-2xl transform scale-110'
+                          : 'bg-[var(--bg-200)] text-[var(--text-200)] border border-[var(--bg-300)] group-hover:border-[var(--primary-100)] group-hover:bg-[var(--bg-300)]'
                       }`}>
                         {getStepIcon(step.id)}
                       </div>
@@ -336,8 +336,8 @@ export default function ProcessSection() {
                       {/* Icon Container */}
                       <div className={`w-24 h-24 mx-auto rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-2xl ${
                         isActive
-                          ? 'bg-[var(--primary-100)] text-[var(--bg-100)] shadow-2xl transform scale-110'
-                          : 'bg-[var(--bg-200)] text-[var(--text-200)] border border-[var(--bg-300)] group-hover:border-[var(--primary-200)] group-hover:bg-[var(--bg-300)]'
+                          ? 'bg-[var(--primary-100)] text-[var(--white-color)] shadow-2xl transform scale-110'
+                          : 'bg-[var(--bg-200)] text-[var(--text-200)] border border-[var(--bg-300)] group-hover:border-[var(--primary-100)] group-hover:bg-[var(--bg-300)]'
                       }`}>
                         {getStepIcon(step.id)}
                       </div>

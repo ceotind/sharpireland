@@ -8,23 +8,34 @@
 
 :root {
   /* Sharp Ireland Color Scheme - Light Mode (Default) */
-  --primary-100: #0077C2;
-  --primary-200: #59a5f5;
-  --primary-300: #c8ffff;
-  --accent-100: #00BFFF;
-  --accent-200: #00619a;
+  --primary-100: #0f51dd;
+  --primary-200: #4a7aff;
+  --primary-300: #c8d9ff;
+  --accent-100: #0f51dd;
+  --accent-200: #0a3bb8;
   --text-100: #333333;
   --text-200: #5c5c5c;
   --bg-100: #FFFFFF;
   --bg-200: #f5f5f5;
   --bg-300: #cccccc;
   /* Accent Green Variables for Hero Section */
-  --accent-green: #00BFFF;
-  --accent-green-base: #0077C2;
-  --accent-green-light: #e6f7ff;
+  --accent-green: #0f51dd;
+  --accent-green-base: #0f51dd;
+  --accent-green-light: #e6f0ff;
   --accent-red: #e53e3e;
   --accent-red-light: #fff5f5;
   --white-color: #FFFFFF;
+  
+  /* Legacy Variables for Backward Compatibility */
+  --background: var(--bg-100);
+  --foreground: var(--text-100);
+  --background-black: #1E1E1E;
+  --background-lighter: var(--bg-200);
+  --border-light: var(--bg-300);
+  --border-medium: var(--bg-300);
+  --border-dark: var(--text-200);
+  --border-darker: var(--text-100);
+  --accent-blue: var(--accent-100);
 }
 
 /* Dark Mode Settings */
@@ -48,6 +59,17 @@
     --accent-red: #f56565;
     --accent-red-light: #2d0000;
     --white-color: #FFFFFF;
+    
+    /* Legacy Variables for Backward Compatibility - Dark Mode */
+    --background: var(--bg-100);
+    --foreground: var(--text-100);
+    --background-black: #000000;
+    --background-lighter: var(--bg-200);
+    --border-light: var(--bg-300);
+    --border-medium: var(--bg-300);
+    --border-dark: var(--text-200);
+    --border-darker: var(--text-100);
+    --accent-blue: var(--accent-100);
   }
 }
 
@@ -67,19 +89,36 @@ html.dark {
   --accent-green: #006fff;
   --accent-green-base: #0085ff;
   --accent-green-light: #1a2e1a;
+  --accent-blue: #3b82f6;
+  --accent-blue-base: #2563eb;
+  --accent-purple: #8b5cf6;
+  --accent-purple-base: #7c3aed;
   --accent-red: #f56565;
+  --accent-orange: #fb923c;
+  --accent-yellow: #fbbf24;
   --accent-red-light: #2d0000;
   --white-color: #FFFFFF;
+  
+  /* Legacy Variables for Backward Compatibility - Dark Mode */
+  --background: var(--bg-100);
+  --foreground: var(--text-100);
+  --background-black: #000000;
+  --background-lighter: var(--bg-200);
+  --border-light: var(--bg-300);
+  --border-medium: var(--bg-300);
+  --border-dark: var(--text-200);
+  --border-darker: var(--text-100);
+  --accent-blue: var(--accent-100);
 }
 
 /* Light Mode Explicit Override */
 @media (prefers-color-scheme: light) {
   html:not(.dark) {
-    --primary-100: #0077C2;
-    --primary-200: #59a5f5;
-    --primary-300: #c8ffff;
-    --accent-100: #00BFFF;
-    --accent-200: #00619a;
+    --primary-100: #0f51dd;
+    --primary-200: #4a7aff;
+    --primary-300: #c8d9ff;
+    --accent-100: #0f51dd;
+    --accent-200: #0a3bb8;
     --text-100: #333333;
     --text-200: #5c5c5c;
     --bg-100: #FFFFFF;
@@ -87,21 +126,32 @@ html.dark {
     --bg-300: #cccccc;
     
     /* Accent Green Variables for Hero Section - Light Mode */
-    --accent-green: #00BFFF;
-    --accent-green-base: #0077C2;
-    --accent-green-light: #e6f7ff;
+    --accent-green: #0f51dd;
+    --accent-green-base: #0f51dd;
+    --accent-green-light: #e6f0ff;
     --accent-red: #e53e3e;
     --accent-red-light: #fff5f5;
     --white-color: #FFFFFF;
+    
+    /* Legacy Variables for Backward Compatibility - Light Mode */
+    --background: var(--bg-100);
+    --foreground: var(--text-100);
+    --background-black: #1E1E1E;
+    --background-lighter: var(--bg-200);
+    --border-light: var(--bg-300);
+    --border-medium: var(--bg-300);
+    --border-dark: var(--text-200);
+    --border-darker: var(--text-100);
+    --accent-blue: var(--accent-100);
   }
 }
 
 html.light {
-  --primary-100: #0077C2;
-  --primary-200: #59a5f5;
-  --primary-300: #c8ffff;
-  --accent-100: #00BFFF;
-  --accent-200: #00619a;
+  --primary-100: #0f51dd;
+  --primary-200: #4a7aff;
+  --primary-300: #c8d9ff;
+  --accent-100: #0f51dd;
+  --accent-200: #0a3bb8;
   --text-100: #333333;
   --text-200: #5c5c5c;
   --bg-100: #FFFFFF;
@@ -109,12 +159,29 @@ html.light {
   --bg-300: #cccccc;
   
   /* Accent Green Variables for Hero Section - Light Mode */
-  --accent-green: #00BFFF;
-  --accent-green-base: #0077C2;
-  --accent-green-light: #e6f7ff;
+  --accent-green: #0f51dd;
+  --accent-green-base: #0f51dd;
+  --accent-green-light: #e6f0ff;
+  --accent-blue: #3b82f6;
+  --accent-blue-base: #2563eb;
+  --accent-purple: #8b5cf6;
+  --accent-purple-base: #7c3aed;
   --accent-red: #e53e3e;
+  --accent-orange: #f97316;
+  --accent-yellow: #eab308;
   --accent-red-light: #fff5f5;
   --white-color: #FFFFFF;
+  
+  /* Legacy Variables for Backward Compatibility - Light Mode */
+  --background: var(--bg-100);
+  --foreground: var(--text-100);
+  --background-black: #1E1E1E;
+  --background-lighter: var(--bg-200);
+  --border-light: var(--bg-300);
+  --border-medium: var(--bg-300);
+  --border-dark: var(--text-200);
+  --border-darker: var(--text-100);
+  --accent-blue: var(--accent-100);
 }
 
 /* Custom Tailwind Utilities for Sharp Ireland Color System */
@@ -168,7 +235,7 @@ html.light {
 /* Global Component Base Classes */
 .btn-primary {
   background-color: var(--primary-100);
-  color: var(--bg-100);
+  color: var(--white-color);
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
   font-weight: 500;
@@ -198,7 +265,7 @@ html.light {
 
 .btn-accent {
   background-color: var(--accent-100);
-  color: var(--bg-100);
+  color: var(--white-color);
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
   font-weight: 500;
@@ -283,6 +350,49 @@ a:hover {
   color: var(--primary-200);
 }
 
+/* Hero Section Button Overrides - Light mode specific colors */
+.hero-section a[href="#projects"] {
+  color: var(--white-color) !important;
+}
+
+.hero-section a[href="#contact"] {
+  color: var(--accent-green) !important;
+}
+
+/* Dark mode overrides */
+html.dark .hero-section a[href="#projects"],
+html.dark .hero-section a[href="#contact"] {
+  color: var(--text-100) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) .hero-section a[href="#projects"],
+  html:not(.light) .hero-section a[href="#contact"] {
+    color: var(--text-100) !important;
+  }
+}
+
+/* On hover, Contact Us button gets white text when background becomes colored */
+.hero-section a[href="#contact"]:hover {
+  color: var(--white-color) !important;
+}
+
+/* Our Work button keeps white text even on hover in light mode */
+.hero-section a[href="#projects"]:hover {
+  color: var(--white-color) !important;
+}
+
+/* Dark mode hover overrides */
+html.dark .hero-section a[href="#projects"]:hover {
+  color: var(--text-100) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light) .hero-section a[href="#projects"]:hover {
+    color: var(--text-100) !important;
+  }
+}
+
 /* Global Form Elements */
 input, textarea, select {
   background-color: var(--bg-200);
@@ -293,13 +403,13 @@ input, textarea, select {
 input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--primary-100);
-  box-shadow: 0 0 0 2px rgba(0, 119, 194, 0.1);
+  box-shadow: 0 0 0 2px rgba(15, 81, 221, 0.1);
 }
 
 /* Global Button Base Styles */
 button {
   background-color: var(--primary-100);
-  color: var(--bg-100);
+  color: var(--white-color);
   border: none;
   font-family: inherit;
 }

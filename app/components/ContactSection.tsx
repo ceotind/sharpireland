@@ -217,12 +217,12 @@ export default function ContactSection() {
     };
   }, [formState]);
   return (
-    <section id="contact" ref={sectionRef} className="bg-[var(--background)] py-20 md:py-32" aria-labelledby="contact-heading">
+    <section id="contact" ref={sectionRef} className="bg-[var(--bg-100)] py-20 md:py-32" aria-labelledby="contact-heading">
       <div className="w-full max-w-screen-md mx-auto px-4 lg:px-8 flex flex-col gap-10">
         <header className="text-center animate-element">
           <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Contact Sharp Digital Ireland</span>
-          <h2 id="contact-heading" className="mt-4 text-4xl md:text-5xl font-bold text-[var(--foreground)]">Get Your Web Development Quote</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-[var(--foreground)] text-base md:text-lg opacity-80">
+          <h2 id="contact-heading" className="mt-4 text-4xl md:text-5xl font-bold text-[var(--text-100)]">Get Your Web Development Quote</h2>
+          <p className="mt-4 max-w-2xl mx-auto text-[var(--text-100)] text-base md:text-lg opacity-80">
             Ready to transform your business with expert web development? Contact Sharp Digital Ireland today for a free consultation. We serve Dublin and all of Ireland with professional React, Next.js, and custom web solutions.
           </p>
         </header>
@@ -234,7 +234,7 @@ export default function ContactSection() {
               <svg className="w-5 h-5 text-[var(--accent-green)] mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <p className="text-[var(--foreground)] font-medium">{message}</p>
+              <p className="text-[var(--text-100)] font-medium">{message}</p>
             </div>
           </div>
         )}
@@ -246,13 +246,13 @@ export default function ContactSection() {
               <svg className="w-5 h-5 text-[var(--accent-red)] mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
               </svg>
-              <p className="text-[var(--foreground)] font-medium">{message}</p>
+              <p className="text-[var(--text-100)] font-medium">{message}</p>
             </div>
           </div>
         )}
 
         <form
-          className="animate-element space-y-6 bg-[var(--background-lighter)] p-8 md:p-10 rounded-xl border border-[var(--border-light)] shadow-lg"
+          className="animate-element space-y-6 bg-[var(--bg-200)] p-8 md:p-10 rounded-xl border border-[var(--bg-300)] shadow-lg"
           autoComplete="on"
           onSubmit={handleSubmit}
           role="form"
@@ -261,7 +261,7 @@ export default function ContactSection() {
           itemType="https://schema.org/ContactForm"
         >
           <div>
-            <label htmlFor="contact-name" className="block text-sm font-medium text-[var(--foreground)] mb-2">
+            <label htmlFor="contact-name" className="block text-sm font-medium text-[var(--text-100)] mb-2">
               Full Name <span className="text-red-500" aria-label="required">*</span>
             </label>
             <input
@@ -273,10 +273,10 @@ export default function ContactSection() {
               placeholder="Your full name"
               required
               disabled={formState === 'submitting'}
-              className={`w-full border-b-2 bg-transparent py-3 px-2 text-[var(--foreground)] focus:outline-none transition-colors ${
+              className={`w-full border-b-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-colors ${
                 errors.name
                   ? 'border-red-500 focus:border-red-500'
-                  : 'border-[var(--border-medium)] focus:border-[var(--accent-green)]'
+                  : 'border-[var(--bg-300)] focus:border-[var(--accent-green)]'
               } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
               aria-required="true"
               aria-describedby="name-help"
@@ -290,7 +290,7 @@ export default function ContactSection() {
           </div>
           
           <div>
-            <label htmlFor="contact-email" className="block text-sm font-medium text-[var(--foreground)] mb-2">
+            <label htmlFor="contact-email" className="block text-sm font-medium text-[var(--text-100)] mb-2">
               Email Address <span className="text-red-500" aria-label="required">*</span>
             </label>
             <input
@@ -302,10 +302,10 @@ export default function ContactSection() {
               placeholder="your.email@example.com"
               required
               disabled={formState === 'submitting'}
-              className={`w-full border-b-2 bg-transparent py-3 px-2 text-[var(--foreground)] focus:outline-none transition-colors ${
+              className={`w-full border-b-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-colors ${
                 errors.email
                   ? 'border-red-500 focus:border-red-500'
-                  : 'border-[var(--border-medium)] focus:border-[var(--accent-green)]'
+                  : 'border-[var(--bg-300)] focus:border-[var(--accent-green)]'
               } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
               aria-required="true"
               aria-describedby="email-help"
@@ -319,7 +319,7 @@ export default function ContactSection() {
           </div>
           
           <div>
-            <label htmlFor="contact-phone" className="block text-sm font-medium text-[var(--foreground)] mb-2">
+            <label htmlFor="contact-phone" className="block text-sm font-medium text-[var(--text-100)] mb-2">
               Phone Number <span className="text-gray-500">(Optional)</span>
             </label>
             <input
@@ -330,10 +330,10 @@ export default function ContactSection() {
               onChange={handleInputChange}
               placeholder="+353 87 123 4567"
               disabled={formState === 'submitting'}
-              className={`w-full border-b-2 bg-transparent py-3 px-2 text-[var(--foreground)] focus:outline-none transition-colors ${
+              className={`w-full border-b-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-colors ${
                 errors.phone
                   ? 'border-red-500 focus:border-red-500'
-                  : 'border-[var(--border-medium)] focus:border-[var(--accent-green)]'
+                  : 'border-[var(--bg-300)] focus:border-[var(--accent-green)]'
               } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
               aria-describedby="phone-help"
               autoComplete="tel"
@@ -346,7 +346,7 @@ export default function ContactSection() {
           </div>
           
           <div>
-            <label htmlFor="contact-description" className="block text-sm font-medium text-[var(--foreground)] mb-2">
+            <label htmlFor="contact-description" className="block text-sm font-medium text-[var(--text-100)] mb-2">
               Project Description <span className="text-red-500" aria-label="required">*</span>
             </label>
             <textarea
@@ -358,10 +358,10 @@ export default function ContactSection() {
               placeholder="Describe your web development project, goals, timeline, and any specific requirements..."
               required
               disabled={formState === 'submitting'}
-              className={`w-full border-2 bg-transparent p-4 text-[var(--foreground)] focus:outline-none transition-colors rounded-lg resize-none ${
+              className={`w-full border-2 bg-transparent p-4 text-[var(--text-100)] focus:outline-none transition-colors rounded-lg resize-none ${
                 errors.description
                   ? 'border-red-500 focus:border-red-500'
-                  : 'border-[var(--border-medium)] focus:border-[var(--accent-green)]'
+                  : 'border-[var(--bg-300)] focus:border-[var(--accent-green)]'
               } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
               aria-required="true"
               aria-describedby="description-help"
@@ -376,7 +376,7 @@ export default function ContactSection() {
           <button
             type="submit"
             disabled={formState === 'submitting' || formState === 'success'}
-            className={`w-full px-6 py-4 rounded-lg font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--background)] ${
+            className={`w-full px-6 py-4 rounded-lg font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] ${
               formState === 'submitting' || formState === 'success'
                 ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
                 : 'bg-[var(--accent-green)] text-[var(--white-color)] hover:bg-[var(--accent-green-base)]'

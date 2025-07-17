@@ -82,10 +82,10 @@ const GlobalColorExample: React.FC = () => {
             This approach uses Tailwind classes with CSS variable values.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-[var(--primary-100)] text-[var(--bg-100)] p-4 rounded text-center">
+            <div className="bg-[var(--primary-100)] text-[var(--white-color)] p-4 rounded text-center">
               Primary Color
             </div>
-            <div className="bg-[var(--accent-100)] text-[var(--bg-100)] p-4 rounded text-center">
+            <div className="bg-[var(--accent-100)] text-[var(--white-color)] p-4 rounded text-center">
               Accent Color
             </div>
             <div className="bg-[var(--bg-300)] text-[var(--text-100)] p-4 rounded text-center">
