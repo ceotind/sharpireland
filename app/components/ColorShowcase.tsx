@@ -1,43 +1,29 @@
 "use client";
 
 import React from 'react';
-import { useTheme } from '../context/ThemeContext';
-
 /**
  * Example component demonstrating the new color system
- * This shows how to use both CSS variables and utility classes
+ * (Now fixed to dark mode only)
  */
 const ColorShowcase: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
-
   return (
-    <div 
+    <div
       className="p-8 space-y-6 transition-colors duration-300"
-      style={{ 
+      style={{
         backgroundColor: 'var(--bg-100)',
         color: 'var(--text-100)'
       }}
     >
       <div className="text-center space-y-4">
-        <h2 
+        <h2
           className="text-3xl font-bold"
           style={{ color: 'var(--primary-100)' }}
         >
-          Sharp Ireland Color Scheme
+          Sharp Ireland Color Scheme (Dark Mode Only)
         </h2>
         <p style={{ color: 'var(--text-200)' }}>
-          Current theme: <strong>{theme}</strong>
+          This component now demonstrates the color system in dark mode only.
         </p>
-        <button
-          onClick={toggleTheme}
-          className="px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:opacity-80"
-          style={{
-            backgroundColor: 'var(--primary-100)',
-            color: 'var(--bg-100)',
-          }}
-        >
-          Toggle Theme
-        </button>
       </div>
 
       {/* Primary Colors */}

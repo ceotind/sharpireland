@@ -61,129 +61,133 @@ export default function TechGridSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const gridRef = useRef<HTMLDivElement | null>(null);
 
+  const ctxRef = useRef<gsap.Context | null>(null); // Declared at top level
+
   useEffect(() => {
-    const items = gridRef.current?.querySelectorAll(".tech-grid-item");
-    if (!items || !sectionRef.current) return;
+    ctxRef.current = gsap.context(() => {
+      const items = gridRef.current?.querySelectorAll(".tech-grid-item");
+      if (!items || !sectionRef.current) return;
 
-    // Standardized scroll animation
-    const scrollAnimation = gsap.fromTo(
-      items,
-      {
-        opacity: 0,
-        y: 20,
-        scale: 0.98
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: gridRef.current,
-          start: "top 80%",
-          once: true,
-        },
+      console.time("TechGridSection Animation");
+      const batchSize = 8; // Animate 8 items at a time
+      let completedBatches = 0;
+      const totalBatches = Math.ceil(items.length / batchSize);
+
+      for (let i = 0; i < items.length; i += batchSize) {
+        const batch = Array.from(items).slice(i, i + batchSize);
+        gsap.fromTo(
+          batch,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.05,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: "top 85%",
+              once: true,
+              toggleActions: "play none none none",
+            },
+            onComplete: () => {
+              completedBatches++;
+              if (completedBatches === totalBatches) {
+                console.timeEnd("TechGridSection Animation");
+              }
+            }
+          }
+        );
       }
-    );
 
-    // Store hover animations for cleanup
-    const hoverAnimations: (() => void)[] = [];
+      // Add smoother hover animations for tech logos
+      items.forEach((item) => {
+        const logo = item.querySelector("img");
+        // const techName = item.getAttribute("aria-label")?.split(" - ")[0] || "Unknown Tech"; // Extract name from aria-label
+        if (!logo) return;
 
-    // Add smoother hover animations for tech logos
-    items.forEach((item) => {
-      const logo = item.querySelector("img");
-      if (!logo) return;
-
-      // Set initial state with better performance
-      gsap.set(logo, { 
-        scale: 1, 
-        rotation: 0,
-        transformOrigin: "center center"
-      });
-      
-      // Create reusable animations
-      let hoverTween: gsap.core.Tween | null = null;
-      
-      // Standardized hover animations
-      const handleMouseEnter = () => {
-        if (hoverTween) hoverTween.kill();
-
-        hoverTween = gsap.to(logo, {
-          scale: 1.05,
-          rotation: 0.5,
-          duration: 0.4,
-          ease: "power2.out",
-        });
-      };
-      
-      const handleMouseLeave = () => {
-        if (hoverTween) hoverTween.kill();
-
-        hoverTween = gsap.to(logo, {
+        // Set initial state with better performance
+        gsap.set(logo, {
           scale: 1,
           rotation: 0,
-          duration: 0.4,
-          ease: "power2.out",
+          transformOrigin: "center center"
         });
-      };
+        
+        // Standardized hover animations
+        const handleMouseEnter = () => {
+          gsap.to(logo, {
+            scale: 1.05,
+            rotation: 0.5,
+            duration: 0.4,
+            ease: "power2.out",
+            overwrite: true,
+          });
+        };
+        
+        const handleMouseLeave = () => {
+          gsap.to(logo, {
+            scale: 1,
+            rotation: 0,
+            duration: 0.4,
+            ease: "power2.out",
+            overwrite: true,
+          });
+        };
 
-      item.addEventListener("mouseenter", handleMouseEnter);
-      item.addEventListener("mouseleave", handleMouseLeave);
-      
-      // Store cleanup function
-      hoverAnimations.push(() => {
-        item.removeEventListener("mouseenter", handleMouseEnter);
-        item.removeEventListener("mouseleave", handleMouseLeave);
-        if (hoverTween) hoverTween.kill();
+        item.addEventListener("mouseenter", handleMouseEnter);
+        item.addEventListener("mouseleave", handleMouseLeave);
+        
+        // Store cleanup function for event listeners
+        ctxRef.current?.add(() => {
+          item.removeEventListener("mouseenter", handleMouseEnter);
+          item.removeEventListener("mouseleave", handleMouseLeave);
+        });
       });
-    });
+    }, sectionRef); // Scope to sectionRef
 
-    // Cleanup function
-    return () => {
-      scrollAnimation.kill();
-      hoverAnimations.forEach(cleanup => cleanup());
-      const currentGrid = gridRef.current;
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.trigger === currentGrid) {
-          trigger.kill();
-        }
-      });
-    };  }, []);
+    // Return cleanup function
+    return () => ctxRef.current?.revert(); // This automatically cleans up all GSAP animations
+  }, []);
 
   return (
     <section
       id="technologies"
       ref={sectionRef}
-      className="bg-[var(--bg-100)] text-[var(--text-100)] py-20 md:py-32"
+      className="bg-[var(--bg-100)] text-[var(--text-100)] py-12 md:py-32 px-2 sm:px-4"
       aria-labelledby="technologies-heading"
     >
-      <div className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col gap-12">
+      <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-8 flex flex-col gap-8 md:gap-12">
       {/* Heading Section */}
       <header className="text-center">
-        <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Our Technology Stack</span>
-        <h2 id="technologies-heading" className="mt-4 text-4xl md:text-5xl font-bold text-[var(--text-100)]">
+        <span className="text-xs sm:text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Our Technology Stack</span>
+        <h2 id="technologies-heading" className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-5xl font-bold text-[var(--text-100)]">
           Expert Web Development Technologies Ireland
         </h2>
-        <p className="mt-4 max-w-2xl mx-auto text-[var(--text-100)] text-base md:text-lg opacity-80">
+        <p className="mt-3 sm:mt-4 max-w-2xl mx-auto text-[var(--text-100)] text-sm sm:text-base md:text-lg opacity-80">
           Sharp Digital Ireland leverages cutting-edge technologies including React, Next.js, Node.js, and modern design tools to deliver exceptional web development solutions for Irish businesses.
         </p>
       </header>
 
       {/* Technology Grid */}
-      <div ref={gridRef} className="mt-12 md:mt-16" role="region" aria-label="Technology stack showcase">
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6" role="list">
+      <div ref={gridRef} className="mt-8 sm:mt-12 md:mt-16" role="region" aria-label="Technology stack showcase">
+        {/* Mobile: horizontal scroll, sm+: grid */}
+        <div
+          className="flex gap-3 overflow-x-auto pb-2 -mx-2 px-2 sm:hidden"
+          role="list"
+        >
           {technologiesData.map((tech, index) => (
             <article
               key={tech.name + index}
-              className={`tech-grid-item aspect-square border border-[var(--bg-300)] flex items-center justify-center relative group ${tech.gridClasses || ''} ${tech.borderClasses || ''}`}
+              className={
+                `tech-grid-item min-w-[140px] max-w-[160px] aspect-square border border-[var(--bg-300)] flex items-center justify-center relative group p-2 flex-shrink-0` +
+                (tech.borderClasses ? ` ${tech.borderClasses}` : '')
+              }
               role="listitem"
               aria-label={`${tech.name} - Web development technology used by Sharp Digital Ireland`}
             >
               <div className="absolute inset-0 z-0"></div>
               {tech.corners?.map(cornerPos => {
-                if (cornerPos === 'tl-mobile' && index % 3 !== 0) return null; // only for first item in mobile row
+                if (cornerPos === 'tl-mobile' && index % 2 !== 0) return null;
                 const isMobileOnlyDot = cornerPos.endsWith('-mobile');
                 const basePos = isMobileOnlyDot ? cornerPos.replace('-mobile', '') : cornerPos;
                 return <CornerDot key={cornerPos} position={`${basePos} ${isMobileOnlyDot ? 'md:hidden' : ''}`} />;
@@ -191,10 +195,40 @@ export default function TechGridSection() {
               <Image
                 src={tech.imgSrc}
                 alt={`${tech.name} logo - Professional ${tech.name} development services by Sharp Digital Ireland`}
-                width={index === 14 ? 134 : (index === 15 ? 134 : 200)}
-                height={index === 14 ? 136 : (index === 15 ? 136 : 100)}
-                className={`${tech.widthClass} relative z-[2] h-auto will-change-transform`}
-                loading="lazy"
+                width={80}
+                height={80}
+                className={`relative z-[2] h-auto max-w-[60px]`}
+                loading={index < 6 ? "eager" : "lazy"}
+                priority={index < 6}
+                title={`${tech.name} - Expert development services in Ireland`}
+              />
+            </article>
+          ))}
+        </div>
+        {/* Tablet/Desktop: grid */}
+        <div className="hidden sm:grid grid-cols-3 md:grid-cols-6 gap-4 md:gap-6" role="list">
+          {technologiesData.map((tech, index) => (
+            <article
+              key={tech.name + index}
+              className={`tech-grid-item aspect-square border border-[var(--bg-300)] flex items-center justify-center relative group ${tech.gridClasses || ''} ${tech.borderClasses || ''} p-3 md:p-0`}
+              role="listitem"
+              aria-label={`${tech.name} - Web development technology used by Sharp Digital Ireland`}
+            >
+              <div className="absolute inset-0 z-0"></div>
+              {tech.corners?.map(cornerPos => {
+                if (cornerPos === 'tl-mobile' && index % 3 !== 0) return null;
+                const isMobileOnlyDot = cornerPos.endsWith('-mobile');
+                const basePos = isMobileOnlyDot ? cornerPos.replace('-mobile', '') : cornerPos;
+                return <CornerDot key={cornerPos} position={`${basePos} ${isMobileOnlyDot ? 'md:hidden' : ''}`} />;
+              })}
+              <Image
+                src={tech.imgSrc}
+                alt={`${tech.name} logo - Professional ${tech.name} development services by Sharp Digital Ireland`}
+                width={index === 14 ? 100 : (index === 15 ? 100 : 120)}
+                height={index === 14 ? 100 : (index === 15 ? 100 : 80)}
+                className={`${tech.widthClass} relative z-[2] h-auto max-w-[90px] md:max-w-none`}
+                loading={index < 6 ? "eager" : "lazy"}
+                priority={index < 6}
                 title={`${tech.name} - Expert development services in Ireland`}
               />
             </article>

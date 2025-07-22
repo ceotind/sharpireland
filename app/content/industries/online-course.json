@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Online Course Platforms: Boost Enrollments & Impact",
+    "description": "Elevate your online course business with custom e-learning platforms. Increase enrollments, enhance student engagement, and maximize your educational impact.",
+    "keywords": "online course website design, e-learning platform development, course creator website, online education SEO services, GDPR compliant course platforms",
+    "openGraph": {
+      "title": "Premium Online Course Website Design & Development | Education Technology Experts",
+      "description": "Transform your course business with our specialized e-learning platform development. Increase enrollments, improve student engagement, and grow your educational impact.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Online Course",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build an online course website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes LMS integration, content migration, design, and student experience optimization."
+      },
+      {
+        "name": "Do you work with course creators outside Europe?",
+        "answer": "We specialize exclusively in European course creators to ensure deep understanding of GDPR, VAT regulations, and regional educational standards."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 200-400% increase in course enrollments within 90 days. Our average client increases revenue by 150% within 6 months through improved conversion and retention."
+      },
+      {
+        "name": "Can you integrate with my existing course content?",
+        "answer": "Yes, we migrate and optimize content from all major platforms including Teachable, Thinkific, Kajabi, and custom solutions."
+      },
+      {
+        "name": "Do you offer student engagement features?",
+        "description": "Yes, we build community forums, progress tracking, and gamification elements to boost completion rates."
+      },
+      {
+        "name": "What happens after the website launches?",
+        "answer": "We provide instructor training, ongoing platform optimization, and continuous A/B testing to improve student outcomes."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Educate & Engage: Online Course Platform Solutions",
+    "subheading": "Boost enrollments and maximize your educational impact with a custom e-learning platform designed for seamless student engagement and enhanced learning outcomes.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Students & Engagement",
+    "heading": "Common Problems Course Creators Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Low Course Completion Rates",
+        "description": "Students starting but not finishing your content."
+      },
+      {
+        "title": "Difficulty Standing Out",
+        "description": "Competition from countless other online courses."
+      },
+      {
+        "title": "Poor Student Engagement",
+        "description": "Limited interaction leading to reduced learning outcomes."
+      },
+      {
+        "title": "Technical Platform Limitations",
+        "description": "Outdated LMS restricting your teaching methods."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Enhances Learning Outcomes",
+    "subheading": "Transform your course business with a platform that attracts students, boosts engagement, and improves completion rates.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "More Engaged Students",
+          "description": "Higher enrollment and completion rates through better experiences."
+        },
+        {
+          "icon": "🎓",
+          "title": "Enhanced Teaching Tools",
+          "description": "Modern LMS features to support diverse learning styles."
+        },
+        {
+          "icon": "🤝",
+          "title": "Community Building",
+          "description": "Features to foster peer learning and networking."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Pedagogy & Content Review",
+          "description": "We understand your teaching approach and course material."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your custom learning platform with engagement features."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization based on student feedback and data."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your educational goals. All packages are custom-quoted.",
+    "items": [
+      {
+        "name": "Starter Course",
+        "badge": "Best for New Creators",
+        "description": "Professional platform for launching your first course.",
+        "features": [
+          "Custom course website",
+          "Core LMS features",
+          "Content migration",
+          "Basic community features",
+          "Mobile-optimized",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Learning Experience Pro",
+        "badge": "Most Popular",
+        "description": "Comprehensive platform for growing course businesses.",
+        "features": [
+          "Everything in Starter Course",
+          "Advanced engagement tools",
+          "Gamification features",
+          "Progress tracking",
+          "Certification system",
+          "Monthly content updates",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Academy Suite",
+        "badge": "For Educational Institutions",
+        "description": "Enterprise solution for multiple courses and instructors.",
+        "features": [
+          "Everything in Learning Experience Pro",
+          "Multi-instructor support",
+          "Custom learning paths",
+          "Advanced analytics",
+          "SCORM compliance",
+          "Dedicated success manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Online Education",
+    "subheading": "Specialized expertise in learning technology means we build platforms that educate and engage.",
+    "reasons": [
+      {
+        "title": "EdTech Specialization",
+        "description": "12+ years focused exclusively on online education. Deep understanding of pedagogy, engagement strategies, and learning outcomes.",
+        "stat": "12+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "1,500+ course creators served across Europe, helping educate 500,000+ students through our platforms.",
+        "stat": "1,500+ Creators",
+        "icon": "Star"
+      },
+      {
+        "title": "Pedagogy First",
+        "description": "Learning science principles built into every feature.",
+        "stat": "Education Focused",
+        "icon": "AcademicCap"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Platforms designed for seamless learning experiences.",
+        "stat": "Smooth Learning",
+        "icon": "Lightning"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach to transforming your educational offerings.",
+    "steps": [
+      {
+        "title": "Learning Design Session",
+        "description": "Understand your pedagogy and student journey.",
+        "icon": "BookOpen"
+      },
+      {
+        "title": "Platform Design",
+        "description": "Create an engaging learning environment.",
+        "icon": "Pencil"
+      },
+      {
+        "title": "Development & Integration",
+        "description": "Build your custom LMS with engagement features.",
+        "icon": "Code"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous improvement of learning outcomes.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from course creators across Europe",
+    "items": [
+      {
+        "name": "Emma Johnson",
+        "practice": "Digital Photography Mastery, London",
+        "text": "Completion rates jumped from 35% to 72% after launching our new platform. The community features keep students engaged long-term."
+      },
+      {
+        "name": "Thomas Dubois",
+        "practice": "French Language Academy, Paris",
+        "text": "Our new platform has doubled enrollment while reducing churn. The mobile experience is exceptional for busy learners."
+      },
+      {
+        "name": "Sophia Müller",
+        "practice": "Data Science Bootcamp, Berlin",
+        "text": "The learning path customization has transformed how we deliver content. Students progress 30% faster through our curriculum."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your course business.",
+    "items": [
+      {
+        "question": "Can you migrate my existing course content?",
+        "answer": "Yes, we migrate and optimize content from all major platforms while maintaining your branding and structure."
+      },
+      {
+        "question": "Do you offer gamification features?",
+        "answer": "Yes, we implement badges, points, leaderboards, and other engagement mechanics proven to boost completion rates."
+      },
+      {
+        "question": "Can you create interactive learning activities?",
+        "answer": "Absolutely, we specialize in building quizzes, simulations, and interactive exercises tailored to your subject matter."
+      },
+      {
+        "question": "How do you handle student data privacy?",
+        "answer": "We implement GDPR-compliant systems with strict access controls and data protection measures."
+      },
+      {
+        "question": "Can you integrate with video hosting platforms?",
+        "answer": "Yes, we integrate with Vimeo, Wistia, YouTube, and other video services for optimal streaming."
+      },
+      {
+        "question": "Do you offer certification features?",
+        "answer": "Yes, we build custom certificate generation with verification systems for course completion."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your online course business?",
+    "subheading": "Book a free strategy call to see how we can help you educate more students.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Learning Features",
+        "action": "features"
+      }
+    },
+    "footer": {
+      "text": "90-day engagement guarantee • Pedagogy-focused approach"
+    }
+  }
+}

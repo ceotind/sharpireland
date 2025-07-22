@@ -7,73 +7,6 @@
 @import '@fontsource/alex-brush';
 
 :root {
-  /* Sharp Ireland Color Scheme - Light Mode (Default) */
-  --primary-100: #0f51dd;
-  --primary-200: #4a7aff;
-  --primary-300: #c8d9ff;
-  --accent-100: #0f51dd;
-  --accent-200: #0a3bb8;
-  --text-100: #333333;
-  --text-200: #5c5c5c;
-  --bg-100: #FFFFFF;
-  --bg-200: #f5f5f5;
-  --bg-300: #cccccc;
-  /* Accent Green Variables for Hero Section */
-  --accent-green: #0f51dd;
-  --accent-green-base: #0f51dd;
-  --accent-green-light: #e6f0ff;
-  --accent-red: #e53e3e;
-  --accent-red-light: #fff5f5;
-  --white-color: #FFFFFF;
-  
-  /* Legacy Variables for Backward Compatibility */
-  --background: var(--bg-100);
-  --foreground: var(--text-100);
-  --background-black: #1E1E1E;
-  --background-lighter: var(--bg-200);
-  --border-light: var(--bg-300);
-  --border-medium: var(--bg-300);
-  --border-dark: var(--text-200);
-  --border-darker: var(--text-100);
-  --accent-blue: var(--accent-100);
-}
-
-/* Dark Mode Settings */
-@media (prefers-color-scheme: dark) {
-  html:not(.light) {
-    --primary-100: #0085ff;
-    --primary-200: #69b4ff;
-    --primary-300: #e0ffff;
-    --accent-100: #006fff;
-    --accent-200: #e1ffff;
-    --text-100: #FFFFFF;
-    --text-200: #9e9e9e;
-    --bg-100: #1E1E1E;
-    --bg-200: #2d2d2d;
-    --bg-300: #454545;
-    
-    /* Accent Green Variables for Hero Section - Dark Mode */
-    --accent-green: #006fff;
-    --accent-green-base: #0085ff;
-    --accent-green-light: #1a2e1a;
-    --accent-red: #f56565;
-    --accent-red-light: #2d0000;
-    --white-color: #FFFFFF;
-    
-    /* Legacy Variables for Backward Compatibility - Dark Mode */
-    --background: var(--bg-100);
-    --foreground: var(--text-100);
-    --background-black: #000000;
-    --background-lighter: var(--bg-200);
-    --border-light: var(--bg-300);
-    --border-medium: var(--bg-300);
-    --border-dark: var(--text-200);
-    --border-darker: var(--text-100);
-    --accent-blue: var(--accent-100);
-  }
-}
-
-html.dark {
   --primary-100: #0085ff;
   --primary-200: #69b4ff;
   --primary-300: #e0ffff;
@@ -84,22 +17,12 @@ html.dark {
   --bg-100: #1E1E1E;
   --bg-200: #2d2d2d;
   --bg-300: #454545;
-  
-  /* Accent Green Variables for Hero Section - Dark Mode */
   --accent-green: #006fff;
   --accent-green-base: #0085ff;
   --accent-green-light: #1a2e1a;
-  --accent-blue: #3b82f6;
-  --accent-blue-base: #2563eb;
-  --accent-purple: #8b5cf6;
-  --accent-purple-base: #7c3aed;
   --accent-red: #f56565;
-  --accent-orange: #fb923c;
-  --accent-yellow: #fbbf24;
   --accent-red-light: #2d0000;
   --white-color: #FFFFFF;
-  
-  /* Legacy Variables for Backward Compatibility - Dark Mode */
   --background: var(--bg-100);
   --foreground: var(--text-100);
   --background-black: #000000;
@@ -111,77 +34,15 @@ html.dark {
   --accent-blue: var(--accent-100);
 }
 
-/* Light Mode Explicit Override */
-@media (prefers-color-scheme: light) {
-  html:not(.dark) {
-    --primary-100: #0f51dd;
-    --primary-200: #4a7aff;
-    --primary-300: #c8d9ff;
-    --accent-100: #0f51dd;
-    --accent-200: #0a3bb8;
-    --text-100: #333333;
-    --text-200: #5c5c5c;
-    --bg-100: #FFFFFF;
-    --bg-200: #f5f5f5;
-    --bg-300: #cccccc;
-    
-    /* Accent Green Variables for Hero Section - Light Mode */
-    --accent-green: #0f51dd;
-    --accent-green-base: #0f51dd;
-    --accent-green-light: #e6f0ff;
-    --accent-red: #e53e3e;
-    --accent-red-light: #fff5f5;
-    --white-color: #FFFFFF;
-    
-    /* Legacy Variables for Backward Compatibility - Light Mode */
-    --background: var(--bg-100);
-    --foreground: var(--text-100);
-    --background-black: #1E1E1E;
-    --background-lighter: var(--bg-200);
-    --border-light: var(--bg-300);
-    --border-medium: var(--bg-300);
-    --border-dark: var(--text-200);
-    --border-darker: var(--text-100);
-    --accent-blue: var(--accent-100);
-  }
-}
-
-html.light {
-  --primary-100: #0f51dd;
-  --primary-200: #4a7aff;
-  --primary-300: #c8d9ff;
-  --accent-100: #0f51dd;
-  --accent-200: #0a3bb8;
-  --text-100: #333333;
-  --text-200: #5c5c5c;
-  --bg-100: #FFFFFF;
-  --bg-200: #f5f5f5;
-  --bg-300: #cccccc;
-  
-  /* Accent Green Variables for Hero Section - Light Mode */
-  --accent-green: #0f51dd;
-  --accent-green-base: #0f51dd;
-  --accent-green-light: #e6f0ff;
-  --accent-blue: #3b82f6;
-  --accent-blue-base: #2563eb;
-  --accent-purple: #8b5cf6;
-  --accent-purple-base: #7c3aed;
-  --accent-red: #e53e3e;
-  --accent-orange: #f97316;
-  --accent-yellow: #eab308;
-  --accent-red-light: #fff5f5;
-  --white-color: #FFFFFF;
-  
-  /* Legacy Variables for Backward Compatibility - Light Mode */
-  --background: var(--bg-100);
-  --foreground: var(--text-100);
-  --background-black: #1E1E1E;
-  --background-lighter: var(--bg-200);
-  --border-light: var(--bg-300);
-  --border-medium: var(--bg-300);
-  --border-dark: var(--text-200);
-  --border-darker: var(--text-100);
-  --accent-blue: var(--accent-100);
+/* New gradient background variable */
+:root {
+  --gradient-background: radial-gradient(
+    circle at 15% 50%,
+    rgba(0, 111, 255, 0.08) 0%,
+    rgba(30, 30, 30, 1) 35%,
+    rgba(30, 30, 30, 0.97) 60%,
+    rgba(0, 133, 255, 0.05) 100%
+  ), var(--bg-100);
 }
 
 /* Custom Tailwind Utilities for Sharp Ireland Color System */
@@ -350,48 +211,6 @@ a:hover {
   color: var(--primary-200);
 }
 
-/* Hero Section Button Overrides - Light mode specific colors */
-.hero-section a[href="#projects"] {
-  color: var(--white-color) !important;
-}
-
-.hero-section a[href="#contact"] {
-  color: var(--accent-green) !important;
-}
-
-/* Dark mode overrides */
-html.dark .hero-section a[href="#projects"],
-html.dark .hero-section a[href="#contact"] {
-  color: var(--text-100) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not(.light) .hero-section a[href="#projects"],
-  html:not(.light) .hero-section a[href="#contact"] {
-    color: var(--text-100) !important;
-  }
-}
-
-/* On hover, Contact Us button gets white text when background becomes colored */
-.hero-section a[href="#contact"]:hover {
-  color: var(--white-color) !important;
-}
-
-/* Our Work button keeps white text even on hover in light mode */
-.hero-section a[href="#projects"]:hover {
-  color: var(--white-color) !important;
-}
-
-/* Dark mode hover overrides */
-html.dark .hero-section a[href="#projects"]:hover {
-  color: var(--text-100) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not(.light) .hero-section a[href="#projects"]:hover {
-    color: var(--text-100) !important;
-  }
-}
 
 /* Global Form Elements */
 input, textarea, select {
@@ -521,36 +340,6 @@ button:disabled {
   }
 }
 
-/* SVG Icon Theme Filters */
-.icon-black-white {
-  filter: brightness(0) !important;
-}
-
-html.dark .icon-black-white,
-html:not(.light)[data-theme="dark"] .icon-black-white {
-  filter: brightness(0) invert(1) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not(.light) .icon-black-white {
-    filter: brightness(0) invert(1) !important;
-  }
-}
-
-.icon-white-in-dark {
-  filter: none !important;
-}
-
-html.dark .icon-white-in-dark,
-html:not(.light)[data-theme="dark"] .icon-white-in-dark {
-  filter: brightness(0) invert(1) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not(.light) .icon-white-in-dark {
-    filter: brightness(0) invert(1) !important;
-  }
-}
 
 /* Animations */
 @keyframes fadeIn {
@@ -657,4 +446,9 @@ html:not(.light)[data-theme="dark"] .icon-white-in-dark {
   50% {
     opacity: 1;
   }
+}
+
+/* Custom class for contact button text color */
+.contact-button-text-white {
+  color: #FFFFFF !important;
 }

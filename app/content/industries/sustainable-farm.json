@@ -1,0 +1,300 @@
+{
+  "metadata": {
+    "title": "Sustainable Farm Websites: Grow Your Organic Business",
+    "description": "Elevate your sustainable farm with custom websites. Attract conscious consumers, streamline CSA management, and grow your farm business with organic focus.",
+    "keywords": "sustainable farm website, organic farm web design, CSA program development, farm-to-table website, agricultural marketing, farm e-commerce",
+    "openGraph": {
+      "title": "Premium Sustainable Farm Website Design & Development | Farm Fresh Collective",
+      "description": "Transform your sustainable farm with our specialized web development services. Attract conscious consumers, streamline CSA management, and grow your farm business.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Sustainable Farm",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How can a website help my sustainable farm?",
+        "answer": "A professional website attracts CSA members, facilitates online orders, showcases your farming practices, and builds trust with conscious consumers."
+      },
+      {
+        "name": "Do you understand seasonal farming challenges?",
+        "answer": "Yes, we design websites that adapt to seasonal changes with rotating produce showcases, harvest calendars, and automated inventory updates."
+      },
+      {
+        "name": "Can you integrate with my CSA management system?",
+        "answer": "We integrate with popular CSA platforms like Harvie, Farmigo, and Local Food Marketplace for seamless member management."
+      },
+      {
+        "name": "How do you highlight our sustainable practices?",
+        "answer": "Through certification badges, farm story sections, photo galleries of practices, and educational content about sustainable agriculture."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Harvest Success: Websites for Sustainable Farms",
+    "subheading": "Connect with conscious consumers and streamline CSA management with a beautiful, functional website that showcases your farm's story and organic practices.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Common Challenges for Sustainable Farms",
+    "heading": "Problems Modern Farms Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Limited Market Reach",
+        "description": "Struggling to connect with urban consumers beyond local farmers markets."
+      },
+      {
+        "title": "CSA Management Complexity",
+        "description": "Manual processes for signups, payments, and distribution create administrative burdens."
+      },
+      {
+        "title": "Seasonal Income Fluctuations",
+        "description": "Difficulty maintaining consistent revenue year-round."
+      },
+      {
+        "title": "Communicating Farm Values",
+        "description": "Challenges conveying sustainable practices to build consumer trust."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Digital Solution Rooted in Sustainability",
+    "subheading": "Transform your farm with a website that connects you directly with consumers, simplifies operations, and tells your sustainability story.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "🌱",
+          "title": "Expanded Customer Base",
+          "description": "Reach urban consumers seeking fresh, local produce year-round."
+        },
+        {
+          "icon": "📦",
+          "title": "Streamlined CSA Management",
+          "description": "Automate signups, payments, and distribution scheduling."
+        },
+        {
+          "icon": "📊",
+          "title": "Stable Revenue Streams",
+          "description": "Pre-orders and subscription models for predictable income."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Farm Discovery Session",
+          "description": "Understand your unique farming practices and business goals."
+        },
+        {
+          "title": "Seasonal Design & Development",
+          "description": "Create a website that showcases your farm through the seasons."
+        },
+        {
+          "title": "Harvest & Grow",
+          "description": "Launch and optimize with ongoing support as your farm expands."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Farm Growth Packages",
+    "subheading": "Choose the package that matches your farm's growth stage. All packages are customized to your specific needs.",
+    "items": [
+      {
+        "name": "Seedling",
+        "badge": "New Farms",
+        "description": "Essential online presence to establish your farm brand and attract first customers.",
+        "features": [
+          "Seasonal website design",
+          "Basic CSA integration",
+          "Farm story & values showcase",
+          "Local SEO setup",
+          "Farmers market schedule",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Harvest",
+        "badge": "Growing Farms",
+        "description": "Expand your reach with advanced features for established farms.",
+        "features": [
+          "Everything in Seedling",
+          "Full CSA management system",
+          "Online farm stand e-commerce",
+          "Seasonal recipe blog",
+          "Email marketing integration",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Orchard",
+        "badge": "Established Farms",
+        "description": "Comprehensive solution for farms with multiple revenue streams.",
+        "features": [
+          "Everything in Harvest",
+          "Wholesale portal for restaurants",
+          "Farm event ticketing",
+          "Educational content hub",
+          "Advanced analytics dashboard",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Sustainable Agriculture",
+    "subheading": "We specialize exclusively in sustainable farms, creating websites that reflect your values and business needs.",
+    "reasons": [
+      {
+        "title": "Agriculture-Focused Expertise",
+        "description": "10+ years working exclusively with sustainable farms and food producers.",
+        "stat": "10+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Farm Results",
+        "description": "200+ farm websites launched with average 40% increase in CSA signups.",
+        "stat": "200+ Farms",
+        "icon": "Star"
+      },
+      {
+        "title": "Seasonal Technology",
+        "description": "Websites designed to showcase seasonal changes and harvest cycles.",
+        "stat": "Seasonal Focus",
+        "icon": "Leaf"
+      },
+      {
+        "title": "Sustainable Tech Practices",
+        "description": "Eco-friendly hosting and optimized performance for rural internet connections.",
+        "stat": "Green Hosting",
+        "icon": "Globe"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Farming-Focused Process",
+    "subheading": "A tailored approach that respects your seasonal rhythms and business needs.",
+    "steps": [
+      {
+        "title": "Farm Visit & Discovery",
+        "description": "Walk your fields to understand your operation and seasonal challenges.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Seasonal Strategy",
+        "description": "Develop a digital plan aligned with your planting and harvest cycles.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Growth-Focused Development",
+        "description": "Build your website with CSA management and e-commerce integration.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Nurture",
+        "description": "Go live with continuous optimization through the seasons.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What Farmers Say",
+    "subheading": "Real results from sustainable farms across Europe",
+    "items": [
+      {
+        "name": "Emma Greenfield",
+        "practice": "Willow Creek Organic Farm, Cornwall",
+        "text": "Our CSA membership grew 65% in the first season after launching our new website. The online signup system saved us countless administrative hours."
+      },
+      {
+        "name": "Thomas Müller",
+        "practice": "Biolandhof Müller, Bavaria",
+        "text": "The seasonal recipe blog featuring our produce has become our most popular content, driving 40% of our online sales."
+      },
+      {
+        "name": "Sophie Dubois",
+        "practice": "Ferme du Soleil, Provence",
+        "text": "Our farm tour bookings tripled after adding online reservations. The website pays for itself many times over."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Farm Website Questions",
+    "subheading": "Everything you need to know about establishing your farm's digital presence.",
+    "items": [
+      {
+        "question": "Can you design for slow rural internet connections?",
+        "answer": "Yes, we optimize all our farm websites for fast loading even on slower rural connections."
+      },
+      {
+        "question": "Do you offer mobile solutions for field use?",
+        "answer": "We develop mobile-friendly admin interfaces that work in the field on tablets and smartphones."
+      },
+      {
+        "question": "How do you handle seasonal content changes?",
+        "answer": "We build content management systems that make it easy to update availability as harvests change."
+      },
+      {
+        "question": "Can you integrate with our existing farm software?",
+        "answer": "We integrate with popular farm management systems like FarmOS and AgriWebb."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your sustainable farm?",
+    "subheading": "Book a free consultation to see how we can help you connect with more customers.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Farm Examples",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "Seasonal performance guarantee • Farm-focused support"
+    }
+  }
+}

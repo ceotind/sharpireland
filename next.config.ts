@@ -100,19 +100,13 @@ const nextConfig: NextConfig = {
       ].join('; ')
     }
 
-    return [
-      {
-        source: '/(.*)',
-        headers: isDevelopment
-          ? [...baseHeaders, developmentCSP]
-          : [...baseHeaders, ...productionHeaders]
-      },
-      // Cache static assets
+    // Production-only static asset caching
+    const staticAssetHeaders = isDevelopment ? [] : [
       {
         source: '/images/:path*',
         headers: [
           {
-            key: 'Cache-Control',
+            key: 'Cache-control',
             value: 'public, max-age=31536000, immutable'
           }
         ]
@@ -121,7 +115,7 @@ const nextConfig: NextConfig = {
         source: '/icons/:path*',
         headers: [
           {
-            key: 'Cache-Control',
+            key: 'Cache-control',
             value: 'public, max-age=31536000, immutable'
           }
         ]
@@ -130,11 +124,21 @@ const nextConfig: NextConfig = {
         source: '/_next/static/:path*',
         headers: [
           {
-            key: 'Cache-Control',
+            key: 'Cache-control',
             value: 'public, max-age=31536000, immutable'
           }
         ]
       }
+    ];
+
+    return [
+      {
+        source: '/(.*)',
+        headers: isDevelopment
+          ? [...baseHeaders, developmentCSP]
+          : [...baseHeaders, ...productionHeaders]
+      },
+      ...staticAssetHeaders
     ]
   },
 

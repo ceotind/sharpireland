@@ -1,6 +1,6 @@
 import "./globals.css";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import ServerFooter from "./components/ServerFooter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Analytics from "./components/Analytics";
 import ClientProviders from "./components/ClientProviders";
@@ -53,7 +53,7 @@ export default function RootLayout({
           <ErrorBoundary>
             <NavBar />
             <main>{children}</main>
-            <Footer />
+            <ServerFooter />
           </ErrorBoundary>
         </ClientProviders>
       </body>

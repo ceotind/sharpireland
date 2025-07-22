@@ -1,0 +1,300 @@
+{
+  "metadata": {
+    "title": "Artisanal Food Websites: Grow Your Gourmet Business",
+    "description": "Boost your artisanal food brand online. We design stunning websites that showcase your craft, streamline sales, and attract food lovers.",
+    "keywords": "artisanal food website, handmade food e-commerce, specialty food web design, food producer marketing, gourmet website development, food subscription service",
+    "openGraph": {
+      "title": "Artisanal Food Producer Website Design & Development | Crafted Delights",
+      "description": "Elevate your artisanal food brand with our specialized web development services. Showcase your craftsmanship, streamline orders, and connect with food enthusiasts.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Artisanal Food",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How can a website help my artisanal food business?",
+        "answer": "A professional website builds brand credibility, facilitates direct sales, tells your craftsmanship story, and connects you with retailers and consumers."
+      },
+      {
+        "name": "Do you understand small-batch production challenges?",
+        "answer": "Yes, we design websites that showcase limited availability products while managing customer expectations about production cycles."
+      },
+      {
+        "name": "Can you create a product locator for retailers?",
+        "answer": "We build interactive maps showing where customers can find your products at local shops, markets, and restaurants."
+      },
+      {
+        "name": "How do you highlight our artisanal processes?",
+        "answer": "Through maker profiles, process videos, ingredient sourcing stories, and certification displays that showcase your craftsmanship."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Savor Success: Digital Growth for Artisanal Food Brands",
+    "subheading": "Elevate your gourmet creations with a stunning website that tells your unique story, attracts food enthusiasts, and streamlines online sales.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Common Challenges for Artisanal Producers",
+    "heading": "Problems Food Crafters Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Limited Brand Recognition",
+        "description": "Difficulty standing out in crowded specialty food markets."
+      },
+      {
+        "title": "Inefficient Order Management",
+        "description": "Manual processes for wholesale and direct orders create bottlenecks."
+      },
+      {
+        "title": "Scaling Production Challenges",
+        "description": "Balancing growing demand with small-batch quality standards."
+      },
+      {
+        "title": "Communicating Craftsmanship",
+        "description": "Effectively conveying the skill and care behind each product."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Digital Showcase for Your Craft",
+    "subheading": "Transform your food business with a website that celebrates your artistry while streamlining operations.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "🍴",
+          "title": "Enhanced Brand Presence",
+          "description": "Beautiful product showcases that highlight your craftsmanship."
+        },
+        {
+          "icon": "📦",
+          "title": "Streamlined Order Processing",
+          "description": "Unified system for wholesale and direct-to-consumer sales."
+        },
+        {
+          "icon": "📈",
+          "title": "Predictable Revenue Streams",
+          "description": "Subscription boxes and pre-orders for steady income."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Maker Discovery Session",
+          "description": "Understand your craft, ingredients, and business vision."
+        },
+        {
+          "title": "Craft-Focused Design & Development",
+          "description": "Create a website that showcases your products and story."
+        },
+        {
+          "title": "Launch & Cultivate",
+          "description": "Go live with ongoing support as your business grows."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Artisan Growth Packages",
+    "subheading": "Choose the package that matches your production scale. All packages are customized to your specific needs.",
+    "items": [
+      {
+        "name": "Starter Kit",
+        "badge": "New Producers",
+        "description": "Essential online presence to establish your brand and attract first customers.",
+        "features": [
+          "Product showcase website",
+          "Basic e-commerce functionality",
+          "Maker story & process showcase",
+          "Local retailer directory",
+          "Food festival schedule",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Master Craft",
+        "badge": "Growing Producers",
+        "description": "Expand your reach with advanced features for established food makers.",
+        "features": [
+          "Everything in Starter Kit",
+          "Full wholesale portal",
+          "Subscription box program",
+          "Recipe content library",
+          "Email marketing integration",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Signature Collection",
+        "badge": "Established Brands",
+        "description": "Comprehensive solution for producers with national distribution.",
+        "features": [
+          "Everything in Master Craft",
+          "Multi-location retailer locator",
+          "Tasting event management",
+          "B2B portal for restaurants",
+          "Advanced inventory management",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Food Craftsmanship",
+    "subheading": "We specialize in artisanal food producers, creating websites that reflect your dedication to quality.",
+    "reasons": [
+      {
+        "title": "Food Industry Expertise",
+        "description": "8+ years working exclusively with specialty food producers.",
+        "stat": "8+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Producer Results",
+        "description": "150+ food brand websites launched with average 50% increase in direct sales.",
+        "stat": "150+ Brands",
+        "icon": "Star"
+      },
+      {
+        "title": "Ingredient-Focused Design",
+        "description": "Websites that highlight premium ingredients and traditional techniques.",
+        "stat": "Ingredient Spotlight",
+        "icon": "Apple"
+      },
+      {
+        "title": "Regulatory Compliance",
+        "description": "Knowledge of food labeling laws and certification requirements.",
+        "stat": "Regulatory Ready",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Maker-Focused Process",
+    "subheading": "A tailored approach that respects your production rhythms and creative process.",
+    "steps": [
+      {
+        "title": "Studio Visit & Tasting",
+        "description": "Experience your products and process firsthand.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Craft Strategy",
+        "description": "Develop a digital plan aligned with your production capabilities.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Artisan-Focused Development",
+        "description": "Build your website with e-commerce and wholesale integration.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Refine",
+        "description": "Go live with continuous optimization and support.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What Artisans Say",
+    "subheading": "Real results from food producers across Europe",
+    "items": [
+      {
+        "name": "Marco Bianchi",
+        "practice": "Bianchi Olive Oils, Tuscany",
+        "text": "Our online sales increased 120% in the first year. The product storytelling features helped customers appreciate our centuries-old pressing techniques."
+      },
+      {
+        "name": "Claire Dubois",
+        "practice": "Fromagerie Dubois, Normandy",
+        "text": "The cheese subscription program we launched with our new website now accounts for 40% of our revenue with minimal marketing effort."
+      },
+      {
+        "name": "Elena Rodriguez",
+        "practice": "Dulces Rodriguez, Andalusia",
+        "text": "Our wholesale portal simplified ordering for restaurants and specialty shops, reducing order processing time by 70%."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Artisan Food Questions",
+    "subheading": "Everything you need to know about establishing your food brand online.",
+    "items": [
+      {
+        "question": "Can you handle perishable product shipping?",
+        "answer": "We integrate with temperature-controlled logistics providers for perishable goods."
+      },
+      {
+        "question": "Do you create product photography?",
+        "answer": "We offer food photography services or can guide you on capturing your products effectively."
+      },
+      {
+        "question": "How do you showcase our certifications?",
+        "answer": "Through prominent display of organic, PDO, or other certification badges with explanations."
+      },
+      {
+        "question": "Can you integrate with our production software?",
+        "answer": "We connect with inventory management systems to sync online and production data."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to showcase your artisanal creations?",
+    "subheading": "Book a free consultation to see how we can help you connect with more customers.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Producer Examples",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "Craft-focused guarantee • Artisan-friendly support"
+    }
+  }
+}

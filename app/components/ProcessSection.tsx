@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useTheme } from "../context/ThemeContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -45,7 +44,6 @@ const processSteps: ProcessStep[] = [
 ];
 
 export default function ProcessSection() {
-  const {} = useTheme();
   const sectionRef = useRef<HTMLElement>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -156,35 +154,35 @@ export default function ProcessSection() {
     <section 
       ref={sectionRef}
       id="our-process" 
-      className="bg-[var(--bg-100)] py-20 md:py-32"
+      className="bg-[var(--bg-100)] py-12 md:py-32 px-2 sm:px-4"
     >
-      <div className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col gap-12">
+      <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-8 flex flex-col gap-8 md:gap-12">
         {/* Section Header */}
         <div className="text-center process-header">
-          <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium mb-4 block">
+          <span className="text-xs sm:text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium mb-2 sm:mb-4 block">
             Our Process
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--text-100)]">
+          <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-5xl font-bold text-[var(--text-100)]">
             Our Professional Web Development Process
           </h2>
         </div>
 
         {/* Process Content */}
-        <div className="process-content grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-stretch">
+        <div className="process-content grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-stretch">
           {/* Process Content */}
           <div className="order-2 lg:order-1 flex">
-            <div className="text-left flex flex-col w-full h-full">
+            <div className="text-left flex flex-col w-full h-full min-h-[120px]">
               <div className="flex-grow">
-                <h3 className="text-2xl md:text-3xl font-bold text-[var(--text-100)] mb-4">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--text-100)] mb-3 sm:mb-4">
                   {processSteps[activeStep]?.title}
                 </h3>
-                <p className="text-[var(--text-200)] text-lg leading-relaxed">
+                <p className="text-[var(--text-200)] text-base sm:text-lg leading-relaxed">
                   {processSteps[activeStep]?.description}
                 </p>
               </div>
               
               {/* Progress Bar - Fixed at bottom */}
-              <div className="max-w-md mt-8">
+              <div className="max-w-full sm:max-w-md mt-6 sm:mt-8">
                 <div className="w-full bg-[var(--bg-300)] rounded-full h-2">
                   <div 
                     className="bg-[var(--primary-100)] h-2 rounded-full transition-all duration-500"
@@ -203,9 +201,9 @@ export default function ProcessSection() {
 
           {/* Process Icons */}
           <div className="order-1 lg:order-2 process-visualization">
-            <div className="max-w-md mx-auto">
+            <div className="max-w-full sm:max-w-md mx-auto min-h-[180px]">
               {/* Top Row - 3 containers */}
-              <div className="grid grid-cols-3 gap-8 mb-12">
+              <div className="grid grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12">
                 {processSteps.slice(0, 3).map((step, index) => {
                   const isActive = index === activeStep;
                   

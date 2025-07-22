@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Artisan E-commerce Solutions: Craft Your Online Success",
+    "description": "Elevate your handmade business with custom e-commerce websites. Showcase unique crafts, attract buyers, and boost sales with SEO-optimized design.",
+    "keywords": "artisan website design, handmade seller platform, craft business web development, artisan marketplace SEO, GDPR compliant e-commerce",
+    "openGraph": {
+      "title": "Premium Artisan Seller Website Design & Development | Craft Marketplace Experts",
+      "description": "Transform your artisan business with our specialized e-commerce development. Showcase craftsmanship, connect with discerning buyers, and grow your creative enterprise.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Artisan Seller",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build an artisan e-commerce website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes photography, storytelling content, design, and craftsmanship showcase features."
+      },
+      {
+        "name": "Do you work with artisans outside Europe?",
+        "answer": "We specialize exclusively in European artisans to ensure deep understanding of GDPR, VAT regulations, and regional craftsmanship traditions."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 150-300% increase in sales within 90 days. Our average artisan doubles their revenue within 6 months through better presentation and discovery."
+      },
+      {
+        "name": "Can you showcase my creative process?",
+        "answer": "Yes, we specialize in storytelling features that highlight your craftsmanship journey and unique techniques."
+      },
+      {
+        "name": "Do you integrate with craft marketplaces?",
+        "answer": "We integrate with Etsy, Not on the High Street, and other platforms while maintaining your brand identity."
+      },
+      {
+        "name": "What happens after the website launches?",
+        "answer": "We provide artisan training, ongoing SEO optimization, and continuous improvement of your online showcase."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Craft Your Digital Masterpiece: E-commerce for Artisans",
+    "subheading": "Showcase your unique handmade creations with a stunning, SEO-optimized online store. Attract discerning buyers and tell the authentic story behind your craft.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Being Undervalued & Overlooked",
+    "heading": "Common Problems Artisans Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Difficulty Communicating Value",
+        "description": "Buyers don't appreciate the craftsmanship behind your pricing."
+      },
+      {
+        "title": "Limited Market Reach",
+        "description": "Struggling to find buyers who value handmade quality."
+      },
+      {
+        "title": "Poor Product Photography",
+        "description": "Inability to showcase details that make your pieces special."
+      },
+      {
+        "title": "Platform Fees Eating Profits",
+        "description": "High marketplace commissions reducing your margins."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Honors Your Craft",
+    "subheading": "Transform your artisan business with a website that tells your story, showcases your process, and connects you with appreciative buyers.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "🎨",
+          "title": "Authentic Storytelling",
+          "description": "Showcase your craft journey and unique techniques."
+        },
+        {
+          "icon": "💰",
+          "title": "Better Profit Margins",
+          "description": "Reduce reliance on third-party marketplaces and commissions."
+        },
+        {
+          "icon": "👥",
+          "title": "Direct Customer Relationships",
+          "description": "Build loyalty with buyers who appreciate handmade quality."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Artisan Story & Craft Discovery",
+          "description": "We understand your creative process and unique value."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your beautiful online showcase with e-commerce."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing marketing and storytelling to grow your audience."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your creative business goals. All packages are custom-quoted.",
+    "items": [
+      {
+        "name": "Craft Starter",
+        "badge": "Best for Emerging Makers",
+        "description": "Beautiful showcase for launching your artisan brand.",
+        "features": [
+          "Authentic website design",
+          "Core e-commerce features",
+          "Product storytelling",
+          "Basic photography guidance",
+          "Mobile-optimized showcase",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Artisan Collective",
+        "badge": "Most Popular",
+        "description": "Comprehensive platform for established craftspeople.",
+        "features": [
+          "Everything in Craft Starter",
+          "Advanced craftsmanship storytelling",
+          "Workshop/process videos",
+          "Made-to-order system",
+          "Wholesale portal",
+          "Monthly content updates",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Heritage Craft Suite",
+        "badge": "For Master Artisans",
+        "description": "Premium solution for luxury craftsmanship brands.",
+        "features": [
+          "Everything in Artisan Collective",
+          "Luxury brand positioning",
+          "Commission management",
+          "Client archive feature",
+          "Materials provenance tracking",
+          "Dedicated brand manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Artisan Craft",
+    "subheading": "Specialized expertise in handmade goods means we build showcases that honor craftsmanship and connect with discerning buyers.",
+    "reasons": [
+      {
+        "title": "Craft Sector Specialization",
+        "description": "8+ years focused exclusively on artisan businesses. Deep appreciation for traditional techniques and contemporary makers.",
+        "stat": "8+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "700+ artisans served across Europe, helping preserve traditional crafts while building sustainable businesses.",
+        "stat": "700+ Artisans",
+        "icon": "Star"
+      },
+      {
+        "title": "Storytelling Expertise",
+        "description": "Skilled at conveying the passion and skill behind handmade products.",
+        "stat": "Authentic Narratives",
+        "icon": "BookOpen"
+      },
+      {
+        "title": "Visual Showcase",
+        "description": "Exceptional product photography and presentation tailored to handmade goods.",
+        "stat": "Craftsmanship Highlighted",
+        "icon": "Camera"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach to transforming how the world sees your craft.",
+    "steps": [
+      {
+        "title": "Craft Discovery Session",
+        "description": "Understand your techniques, materials, and creative journey.",
+        "icon": "DocumentSearch"
+      },
+      {
+        "title": "Visual Storytelling",
+        "description": "Capture your process and products in their best light.",
+        "icon": "Camera"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create an authentic online showcase for your work.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Community Building",
+        "description": "Go live with strategies to grow your collector base.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from artisans across Europe",
+    "items": [
+      {
+        "name": "Giovanni Bianchi",
+        "practice": "Ceramic Artist, Tuscany",
+        "text": "Our new website tripled direct sales while reducing marketplace fees. The process videos help customers appreciate our techniques."
+      },
+      {
+        "name": "Elise Dubois",
+        "practice": "Textile Designer, Lyon",
+        "text": "The storytelling features have connected us with interior designers who value our sustainable practices. Our wholesale business has flourished."
+      },
+      {
+        "name": "Thomas Jensen",
+        "practice": "Woodworker, Copenhagen",
+        "text": "Finally a web team that understands craftsmanship. The materials provenance section validates our sustainable sourcing for eco-conscious buyers."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your artisan business.",
+    "items": [
+      {
+        "question": "Can you help with product photography?",
+        "answer": "Yes, we offer professional product photography services tailored to handmade goods, highlighting texture, detail, and craftsmanship."
+      },
+      {
+        "question": "Do you create videos about my making process?",
+        "answer": "Absolutely, we produce short documentary-style videos that showcase your studio, techniques, and creative journey."
+      },
+      {
+        "question": "Can you help me tell my artisan story?",
+        "answer": "Yes, we specialize in crafting authentic narratives that convey the passion and skill behind your work."
+      },
+      {
+        "question": "How do you handle materials sourcing information?",
+        "answer": "We create dedicated sections highlighting your sustainable materials and ethical sourcing practices."
+      },
+      {
+        "question": "Can you integrate with my existing inventory system?",
+        "answer": "We integrate with most artisan inventory management solutions for real-time stock updates."
+      },
+      {
+        "question": "Do you offer made-to-order features?",
+        "answer": "Yes, we build custom commissioning systems that streamline custom order requests and production tracking."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your artisan business?",
+    "subheading": "Book a free strategy call to see how we can help you connect with appreciative buyers.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Craft Showcase",
+        "action": "showcase"
+      }
+    },
+    "footer": {
+      "text": "90-day sales guarantee • Craftsmanship-focused approach"
+    }
+  }
+}

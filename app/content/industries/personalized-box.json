@@ -1,0 +1,300 @@
+{
+  "metadata": {
+    "title": "Personalized Box Websites: Delight Your Subscribers",
+    "description": "Launch your personalized subscription box with custom websites. Create unforgettable unboxing experiences and build a loyal subscriber base.",
+    "keywords": "subscription box website, personalized box service, curated gift boxes, monthly box e-commerce, subscription business, box customization, unboxing experience",
+    "openGraph": {
+      "title": "Personalized Box Subscription Website Design & Development | Curated Delights",
+      "description": "Launch your subscription box service with our specialized web development. Create unforgettable unboxing experiences, personalize selections, and build a loyal subscriber base.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Personalized Box",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How can a website help my subscription box business?",
+        "answer": "A professional website simplifies signups, personalizes selections, showcases past boxes, and manages recurring billing for predictable revenue."
+      },
+      {
+        "name": "Do you understand curation challenges?",
+        "answer": "Yes, we design websites with preference quizzes, customization tools, and personalization algorithms to match subscribers with perfect products."
+      },
+      {
+        "name": "Can you create a virtual unboxing experience?",
+        "answer": "We build interactive box previews and past box galleries that showcase your curation skills and drive signups."
+      },
+      {
+        "name": "How do you highlight our personalization options?",
+        "answer": "Through preference selectors, customization sliders, and tailored product recommendations based on subscriber profiles."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Curate & Convert: Websites for Personalized Boxes",
+    "subheading": "Create unforgettable unboxing experiences and build a loyal subscriber base with a custom website designed for personalized subscription services.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Common Challenges for Box Services",
+    "heading": "Problems Subscription Boxes Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "High Churn Rates",
+        "description": "Difficulty retaining subscribers beyond initial boxes."
+      },
+      {
+        "title": "Personalization Limitations",
+        "description": "Challenges tailoring boxes to individual preferences at scale."
+      },
+      {
+        "title": "Packaging & Shipping Costs",
+        "description": "Balancing premium presentation with profitable shipping."
+      },
+      {
+        "title": "Creating Anticipation",
+        "description": "Building excitement that sustains subscriber engagement."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Curated Experience for Every Subscriber",
+    "subheading": "Transform your box service with a website that personalizes selections and enhances the unboxing journey.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "🎁",
+          "title": "Enhanced Personalization",
+          "description": "Preference quizzes and customization tools that delight subscribers."
+        },
+        {
+          "icon": "📦",
+          "title": "Reduced Churn",
+          "description": "Engagement features like box previews and skip options to retain subscribers."
+        },
+        {
+          "icon": "📊",
+          "title": "Predictable Revenue",
+          "description": "Recurring billing with retention-focused features for stable income."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Box Concept Discovery",
+          "description": "Understand your curation style, themes, and target audience."
+        },
+        {
+          "title": "Personalization-Focused Design & Development",
+          "description": "Create a website with subscription management and customization features."
+        },
+        {
+          "title": "Launch & Delight",
+          "description": "Go live with ongoing support as you introduce new box themes."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Box Growth Packages",
+    "subheading": "Choose the package that matches your service's stage. All packages are customized to your specific needs.",
+    "items": [
+      {
+        "name": "Starter Box",
+        "badge": "New Services",
+        "description": "Essential subscription platform to launch your box concept and attract first subscribers.",
+        "features": [
+          "Curated box website",
+          "Basic subscription management",
+          "Preference quiz setup",
+          "Past box showcase",
+          "Theme storytelling",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Premium Box",
+        "badge": "Growing Services",
+        "description": "Expand your offerings with advanced features for established subscription services.",
+        "features": [
+          "Everything in Starter Box",
+          "Advanced personalization engine",
+          "Box customization portal",
+          "Gift subscription options",
+          "Referral program",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Deluxe Box",
+        "badge": "Established Services",
+        "description": "Comprehensive solution for multi-box subscription services.",
+        "features": [
+          "Everything in Premium Box",
+          "Multi-tier subscription options",
+          "Virtual box previews",
+          "Member community features",
+          "Advanced retention analytics",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Subscription Boxes",
+    "subheading": "We specialize in personalized box services, creating websites that turn subscribers into loyal fans.",
+    "reasons": [
+      {
+        "title": "Box Service Expertise",
+        "description": "6+ years working exclusively with subscription box businesses.",
+        "stat": "6+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Box Results",
+        "description": "120+ subscription box websites launched with average 45% increase in retention rates.",
+        "stat": "120+ Services",
+        "icon": "Star"
+      },
+      {
+        "title": "Personalization Technology",
+        "description": "Algorithms that match subscribers with perfect products based on preferences.",
+        "stat": "Smart Curation",
+        "icon": "Algorithm"
+      },
+      {
+        "title": "Unboxing Experience Focus",
+        "description": "Websites designed to build anticipation and enhance the reveal moment.",
+        "stat": "Experience Design",
+        "icon": "Gift"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Curation-Focused Process",
+    "subheading": "A tailored approach that aligns with your box themes and shipping cycles.",
+    "steps": [
+      {
+        "title": "Concept Exploration",
+        "description": "Immerse in your curation philosophy and unboxing experience.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Theme Strategy",
+        "description": "Develop a digital plan aligned with your box calendar and marketing goals.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Personalization Development",
+        "description": "Build your website with subscription and customization features.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Surprise",
+        "description": "Go live with continuous optimization for each new box theme.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What Curators Say",
+    "subheading": "Real results from box services across Europe",
+    "items": [
+      {
+        "name": "Emma Johnson",
+        "practice": "Bookworm Box Club, UK",
+        "text": "Our subscriber retention increased 60% after implementing the personalized book recommendation algorithm and skip feature."
+      },
+      {
+        "name": "Thomas Wagner",
+        "practice": "Gourmet Tasting Box, Germany",
+        "text": "The customization portal allowing subscribers to choose flavor preferences reduced opt-outs by 35% and increased satisfaction scores."
+      },
+      {
+        "name": "Sophie Martin",
+        "practice": "Eco Wellness Box, France",
+        "text": "Virtual box previews built anticipation and reduced cancellation requests before shipment by 50%."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Personalized Box Questions",
+    "subheading": "Everything you need to know about launching your subscription service online.",
+    "items": [
+      {
+        "question": "Can you implement gift subscription features?",
+        "answer": "Yes, we create gift purchase flows, digital gift cards, and recipient preference collection tools."
+      },
+      {
+        "question": "Do you offer box photography?",
+        "answer": "We provide unboxing photography services or can guide you on creating compelling box imagery."
+      },
+      {
+        "question": "How do you handle shipping frequency options?",
+        "answer": "Through flexible billing cycles, skip/pause features, and delivery schedule customization."
+      },
+      {
+        "question": "Can you integrate with our fulfillment systems?",
+        "answer": "We connect with subscription fulfillment platforms to sync subscriber data and shipping details."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to launch your personalized box service?",
+    "subheading": "Book a free consultation to see how we can help you delight more subscribers.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Box Examples",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "Curated guarantee • Surprise-focused support"
+    }
+  }
+}

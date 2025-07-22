@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Senior Home Care Websites: Compassionate Digital Solutions",
+    "description": "Elevate your senior home care business with custom websites. Attract more clients, streamline care coordination, and build trust in your community.",
+    "keywords": "senior home care website design, elder care web development, home care marketing agency, bespoke care provider websites, senior care web design, home health SEO services, HIPAA compliant care websites, senior care digital marketing",
+    "openGraph": {
+      "title": "Premium Senior Home Care Website Design & Development | Compassionate Care",
+      "description": "Transform your senior home care business with our specialized web development services. Attract more clients, streamline care coordination, and establish trust in your local community.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Senior Home Care",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a senior home care website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, content creation, and testing. Complex integrations with care management systems may extend this timeline."
+      },
+      {
+        "name": "Do you work with senior care providers outside Europe?",
+        "answer": "We specialize exclusively in European senior care providers to ensure deep understanding of GDPR, healthcare regulations, and other regional compliance requirements."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 150-250% increase in qualified care inquiries within 90 days. Our average client recovers their investment within 3-6 months through increased client acquisition and improved care coordination."
+      },
+      {
+        "name": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to healthcare regulation changes."
+      },
+      {
+        "name": "Can you integrate with my existing care management system?",
+        "answer": "We integrate with most major care management systems including ClearCare, AlayaCare, and others. Custom integrations are available for specialized systems."
+      },
+      {
+        "name": "What happens after the website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Compassionate Care, Digital Reach: Senior Home Care Websites",
+    "subheading": "Attract more clients and streamline care coordination with a secure, compassionate website designed for senior home care providers.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Clients & Revenue",
+    "heading": "Common Problems Modern Senior Care Providers Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Attracting Low-Quality Leads",
+        "description": "Inquiries that don't match your care capabilities or service area."
+      },
+      {
+        "title": "Poor Local Visibility",
+        "description": "Competitors outrank you for key senior care searches."
+      },
+      {
+        "title": "Manual, Time-Consuming Tasks",
+        "description": "Staff overwhelmed by repetitive intake and scheduling work."
+      },
+      {
+        "title": "Care Coordination Challenges",
+        "description": "Communication gaps hurt your care quality and client satisfaction."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Grows With You",
+    "subheading": "Transform your senior home care business with a website that attracts, automates, and supports your care services at every stage.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "More Quality Care Clients",
+          "description": "Attract the families you want to serve with a website built for trust."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Less Admin, More Caring",
+          "description": "Automate inquiries and follow-ups so your team can focus on providing care."
+        },
+        {
+          "icon": "🔒",
+          "title": "Peace of Mind",
+          "description": "HIPAA-compliant, secure, and accessible—no more tech headaches."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Discovery & Strategy",
+          "description": "We learn your care philosophy and design a plan for your business."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your new site and integrate care management systems."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and support as your care services expand."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your business goals. All packages are custom-quoted to fit your care services and ambitions.",
+    "items": [
+      {
+        "name": "Foundation",
+        "badge": "Best for New Providers",
+        "description": "Professional digital presence that builds immediate trust and credibility with families.",
+        "features": [
+          "Senior-friendly, accessible design",
+          "Core SEO & local search setup",
+          "Compassionate content writing",
+          "HIPAA & GDPR compliance audit",
+          "Lightning-fast hosting",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Growth Engine",
+        "badge": "Most Popular",
+        "description": "Accelerate client acquisition and dominate your local care market.",
+        "features": [
+          "Everything in Foundation",
+          "Advanced local SEO dominance",
+          "24/7 online care assessment system",
+          "Automated testimonial generation",
+          "Dedicated service pages",
+          "Monthly SEO optimization",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Enterprise Suite",
+        "badge": "For Multi-Location Providers",
+        "description": "Sophisticated integration for care networks and regional providers.",
+        "features": [
+          "Everything in Growth Engine",
+          "Multi-location architecture",
+          "Care management system integration",
+          "Advanced conversion optimization",
+          "ROI dashboard & analytics",
+          "Dedicated account manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Senior Care",
+    "subheading": "Deep specialization means we build websites that don't just look good—they deliver measurable results for care providers.",
+    "reasons": [
+      {
+        "title": "Senior Care Specialization",
+        "description": "15+ years focused exclusively on senior care providers. We understand the difference between home care, home health, and other care models, plus family decision psychology and regulatory complexities.",
+        "stat": "15+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "1,800+ senior care businesses served, thousands of families connected to quality care, and hundreds of Page 1 Google rankings across Europe.",
+        "stat": "1,800+ Providers",
+        "icon": "Star"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Lightning-fast, accessible websites with senior-friendly design, built for performance and search engine visibility.",
+        "stat": "< 2s Load Times",
+        "icon": "Lightning"
+      },
+      {
+        "title": "Healthcare Compliance",
+        "description": "HIPAA and GDPR-first approach with deep expertise in healthcare regulations and other European business requirements.",
+        "stat": "100% Compliant",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach that transforms your practice's digital presence into a growth engine.",
+    "steps": [
+      {
+        "title": "Discovery Call",
+        "description": "Understand your practice goals and current challenges through a focused strategy session.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Strategy & Planning",
+        "description": "Develop a custom growth strategy tailored to your practice, market, and competition.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create a bespoke website with SEO optimization and integrated booking systems.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous monitoring, optimization, and performance tracking.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from senior care providers across Europe",
+    "items": [
+      {
+        "name": "Sarah Johnson",
+        "practice": "Comfort Care Seniors, London",
+        "text": "Our new website increased qualified care inquiries by 250% within 90 days. The online assessment system alone saves our care coordinators 20 hours per week."
+      },
+      {
+        "name": "Thomas Weber",
+        "practice": "Golden Years Home Care, Berlin",
+        "text": "Finally, a web team that understands senior care. Our client base has grown 40%, and we're now #1 for \"senior home care Berlin\"."
+      },
+      {
+        "name": "Maria Gonzalez",
+        "practice": "Serene Senior Services, Madrid",
+        "text": "The ROI has been incredible. Our website went from barely functioning to our primary source of new clients. Families constantly mention how easy it was to learn about our services."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your senior home care company's digital presence.",
+    "items": [
+      {
+        "question": "How long does it take to build a senior home care website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, content creation, and testing. Complex integrations with care management systems may extend this timeline."
+      },
+      {
+        "question": "Do you work with senior care providers outside Europe?",
+        "answer": "We specialize exclusively in European senior care providers to ensure deep understanding of GDPR, healthcare regulations, and other regional compliance requirements."
+      },
+      {
+        "question": "What ROI can I expect?",
+        "answer": "Most clients see 150-250% increase in qualified care inquiries within 90 days. Our average client recovers their investment within 3-6 months through increased client acquisition and improved care coordination."
+      },
+      {
+        "question": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to healthcare regulation changes."
+      },
+      {
+        "question": "Can you integrate with my existing care management system?",
+        "answer": "We integrate with most major care management systems including ClearCare, AlayaCare, and others. Custom integrations are available for specialized systems."
+      },
+      {
+        "question": "What happens after the website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your senior care business?",
+    "subheading": "Book a free strategy call to see how we can help you attract more quality clients and improve care coordination.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Case Studies",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • No-risk trial"
+    }
+  }
+}

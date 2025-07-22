@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Sustainable Brand Websites: Amplify Your Eco-Impact",
+    "description": "Elevate your sustainable brand with custom websites. Attract eco-conscious customers, showcase green initiatives, and amplify your environmental impact.",
+    "keywords": "sustainable brand website design, eco-friendly web development, green business marketing, sustainable ecommerce websites, carbon-neutral web design, ethical brand websites, GDPR compliant sustainable websites",
+    "openGraph": {
+      "title": "Premium Sustainable Brand Website Design & Development | Eco-Conscious Businesses",
+      "description": "Transform your sustainable brand with our specialized web development services. Attract eco-conscious customers, showcase your green initiatives, and amplify your environmental impact.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Sustainable Brand",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a sustainable brand website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes sustainable design, development, eco-conscious content creation, and testing. Complex integrations with sustainability certifications or carbon footprint calculators may extend this timeline."
+      },
+      {
+        "name": "Do you work with sustainable brands outside Europe?",
+        "answer": "We specialize exclusively in European sustainable brands to ensure deep understanding of GDPR, EU sustainability regulations, and other regional eco-certification requirements."
+      },
+      {
+        "name": "What ROI can I expect from a sustainability-focused website?",
+        "answer": "Most clients see 150-250% increase in eco-conscious customer engagement within 90 days. Our average client recovers their investment within 4-8 months through increased brand loyalty and customer acquisition from environmentally-aware demographics."
+      },
+      {
+        "name": "Do you offer ongoing support for sustainable brands?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to effectively communicate your sustainability initiatives and adapt to evolving green market trends."
+      },
+      {
+        "name": "Can you integrate with my existing sustainability tracking systems?",
+        "answer": "We integrate with most major sustainability tracking and reporting systems including GreenStep, Carbon Analytics, and others. Custom integrations are available for specialized environmental impact measurement tools."
+      },
+      {
+        "name": "What happens after the sustainable brand website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization of your sustainability messaging. You'll have a dedicated account manager to support your evolving green initiatives."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Amplify Your Impact: Websites for Sustainable Brands",
+    "subheading": "Attract eco-conscious customers and showcase your green initiatives with a high-converting website designed to amplify your environmental impact and build authentic trust.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Eco-Conscious Customers & Revenue",
+    "heading": "Common Problems Modern Sustainable Brands Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Greenwashing Perception",
+        "description": "Customers questioning your authentic commitment to sustainability."
+      },
+      {
+        "title": "Poor Visibility in Green Markets",
+        "description": "Eco-focused competitors outrank you for sustainability searches."
+      },
+      {
+        "title": "Ineffective Impact Communication",
+        "description": "Failing to clearly showcase your environmental initiatives."
+      },
+      {
+        "title": "Sustainability Certification Confusion",
+        "description": "Difficulty displaying and explaining your green credentials."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Grows With Your Impact",
+    "subheading": "Transform your sustainable brand with a website that authentically communicates, automates, and supports your eco-conscious business at every stage.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "More Eco-Conscious Customers",
+          "description": "Attract the environmentally-aware audience you want with authentic messaging."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Less Admin, More Impact",
+          "description": "Automate sustainability reporting and updates so your team can focus on your mission."
+        },
+        {
+          "icon": "🔒",
+          "title": "Peace of Mind",
+          "description": "Modern, secure, and compliant—with low-carbon hosting options."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Discovery & Strategy",
+          "description": "We learn your sustainability goals and design a plan for your brand."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your new site and integrate sustainability tracking systems."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and support as your green initiatives expand."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your sustainability goals. All packages are custom-quoted to fit your needs and environmental ambitions.",
+    "items": [
+      {
+        "name": "Foundation",
+        "badge": "Best for New Eco-Brands",
+        "description": "Professional digital presence that builds immediate trust in your sustainability commitment.",
+        "features": [
+          "Eco-conscious design principles",
+          "Core SEO for sustainability terms",
+          "Authentic green messaging",
+          "GDPR & sustainability compliance",
+          "Low-carbon hosting options",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Growth Engine",
+        "badge": "Most Popular",
+        "description": "Accelerate eco-conscious customer acquisition and establish your green market presence.",
+        "features": [
+          "Everything in Foundation",
+          "Advanced sustainability SEO",
+          "Carbon footprint calculator",
+          "Automated impact reporting",
+          "Dedicated sustainability pages",
+          "Monthly green content updates",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Enterprise Suite",
+        "badge": "For Established Green Brands",
+        "description": "Sophisticated integration for sustainable industry leaders and multi-product eco-businesses.",
+        "features": [
+          "Everything in Growth Engine",
+          "Multi-certification architecture",
+          "ESG reporting integration",
+          "Advanced impact visualization",
+          "Sustainability ROI dashboard",
+          "Dedicated green strategy manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Sustainability",
+    "subheading": "Deep specialization means we build websites that don't just look good—they authentically communicate your environmental impact.",
+    "reasons": [
+      {
+        "title": "Sustainability-First Specialization",
+        "description": "15+ years focused exclusively on eco-conscious brands. We understand the nuances between B Corp, carbon-neutral, and circular economy businesses, consumer psychology, and regulatory frameworks.",
+        "stat": "15+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Green Track Record",
+        "description": "1,800+ sustainable businesses served, €2B+ in eco-product revenue generated, thousands of Page 1 Google rankings for sustainability terms across Europe.",
+        "stat": "1,800+ Brands",
+        "icon": "Star"
+      },
+      {
+        "title": "Technical & Ecological Excellence",
+        "description": "Energy-efficient websites with Core Web Vitals optimization, built for performance and minimal environmental impact.",
+        "stat": "< 1.5s Load Times",
+        "icon": "Lightning"
+      },
+      {
+        "title": "European Green Compliance",
+        "description": "GDPR-first approach with deep expertise in EU sustainability regulations, eco-certifications, and other European green business requirements.",
+        "stat": "100% Compliant",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach that transforms your practice's digital presence into a growth engine.",
+    "steps": [
+      {
+        "title": "Discovery Call",
+        "description": "Understand your practice goals and current challenges through a focused strategy session.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Strategy & Planning",
+        "description": "Develop a custom growth strategy tailored to your practice, market, and competition.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create a bespoke website with SEO optimization and integrated booking systems.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous monitoring, optimization, and performance tracking.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from sustainable brands across Europe",
+    "items": [
+      {
+        "name": "Emma Greenfield",
+        "practice": "EcoLiving Essentials, Amsterdam",
+        "text": "Our new website increased eco-conscious customer engagement by 250% within 90 days. The sustainability impact calculator alone has converted countless visitors into loyal customers."
+      },
+      {
+        "name": "Thomas Bergmann",
+        "practice": "GreenCircle Apparel, Berlin",
+        "text": "Finally, a web team that understands authentic sustainability messaging. Our organic cotton clothing line sales doubled, and we're now #1 for \"ethical fashion Berlin\"."
+      },
+      {
+        "name": "Sofia Martini",
+        "practice": "Terra Sustainable Home, Milan",
+        "text": "The ROI has been remarkable. Our website transformed from a basic catalog to a powerful platform that clearly communicates our circular economy approach to home goods."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your sustainable brand's digital presence.",
+    "items": [
+      {
+        "question": "How long does it take to build a sustainable brand website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes sustainable design, development, eco-conscious content creation, and testing. Complex integrations with sustainability certifications or carbon footprint calculators may extend this timeline."
+      },
+      {
+        "question": "Do you work with sustainable brands outside Europe?",
+        "answer": "We specialize exclusively in European sustainable brands to ensure deep understanding of GDPR, EU sustainability regulations, and other regional eco-certification requirements."
+      },
+      {
+        "question": "What ROI can I expect from a sustainability-focused website?",
+        "answer": "Most clients see 150-250% increase in eco-conscious customer engagement within 90 days. Our average client recovers their investment within 4-8 months through increased brand loyalty and customer acquisition from environmentally-aware demographics."
+      },
+      {
+        "question": "Do you offer ongoing support for sustainable brands?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to effectively communicate your sustainability initiatives and adapt to evolving green market trends."
+      },
+      {
+        "question": "Can you integrate with my existing sustainability tracking systems?",
+        "answer": "We integrate with most major sustainability tracking and reporting systems including GreenStep, Carbon Analytics, and others. Custom integrations are available for specialized environmental impact measurement tools."
+      },
+      {
+        "question": "What happens after the sustainable brand website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization of your sustainability messaging. You'll have a dedicated account manager to support your evolving green initiatives."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your sustainable brand?",
+    "subheading": "Book a free strategy call to see how we can help you attract more eco-conscious customers and amplify your environmental impact.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Case Studies",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • No-risk trial"
+    }
+  }
+}

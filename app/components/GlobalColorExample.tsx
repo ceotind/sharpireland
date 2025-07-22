@@ -1,28 +1,23 @@
 "use client";
 
 import React from 'react';
-import { useTheme } from '../context/ThemeContext';
 import { colorClasses, componentStyles, inlineStyles } from '../utils/globalStyles';
 
 /**
  * Example component showing different ways to use the global color system
+ * (Now fixed to dark mode only)
  */
 const GlobalColorExample: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
-
   return (
     <div className="min-h-screen p-6 space-y-8">
       {/* Header */}
       <header className="text-center space-y-4">
         <h1 className={`text-4xl font-bold ${colorClasses.textPrimary}`}>
-          Global Color System Examples
+          Global Color System Examples (Dark Mode Only)
         </h1>
         <p className={colorClasses.textSecondary}>
-          Current theme: <strong>{theme}</strong> | Click the button to toggle themes
+          This component now demonstrates the color system in dark mode only.
         </p>
-        <button onClick={toggleTheme} className={componentStyles.buttonPrimary}>
-          Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
-        </button>
       </header>
 
       {/* Method 1: Using CSS Classes */}
@@ -39,9 +34,9 @@ const GlobalColorExample: React.FC = () => {
             <button className={componentStyles.buttonSecondary}>Secondary Button</button>
             <button className={componentStyles.buttonOutline}>Outline Button</button>
           </div>
-          <input 
-            type="text" 
-            placeholder="Styled input field" 
+          <input
+            type="text"
+            placeholder="Styled input field"
             className={componentStyles.inputDefault}
           />
         </div>
@@ -60,7 +55,7 @@ const GlobalColorExample: React.FC = () => {
             <button style={inlineStyles.buttonPrimary}>
               Inline Styled Button
             </button>
-            <button 
+            <button
               style={{
                 ...inlineStyles.buttonPrimary,
                 backgroundColor: 'var(--accent-100)',
@@ -108,14 +103,14 @@ const GlobalColorExample: React.FC = () => {
           {/* Form Example */}
           <div className="space-y-3">
             <label className={colorClasses.textPrimary}>Name:</label>
-            <input 
-              type="text" 
+            <input
+              type="text"
               className={componentStyles.inputDefault}
               placeholder="Enter your name"
             />
             
             <label className={colorClasses.textPrimary}>Message:</label>
-            <textarea 
+            <textarea
               rows={3}
               className={componentStyles.inputDefault}
               placeholder="Enter your message"
@@ -126,7 +121,7 @@ const GlobalColorExample: React.FC = () => {
               <button className={componentStyles.buttonPrimary}>
                 Submit
               </button>
-              <button 
+              <button
                 style={{
                   ...inlineStyles.buttonPrimary,
                   backgroundColor: 'transparent',

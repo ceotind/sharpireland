@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Hobby Subscription Websites: Boost Subscriber Growth",
+    "description": "Elevate your hobby subscription box with custom websites. Attract loyal subscribers, streamline operations, and dominate your niche with SEO-optimized design.",
+    "keywords": "hobby subscription website design Europe, web developer for subscription boxes, hobby box marketing agency UK, bespoke subscription websites, hobby subscription web design Germany, subscription SEO services, GDPR compliant subscription websites",
+    "openGraph": {
+      "title": "Premium Hobby Subscription Website Design & Development | European Subscription Experts",
+      "description": "Transform your hobby subscription business with our specialized web development services. Attract loyal subscribers, streamline operations, and dominate your niche market.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Hobby Subscription",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a hobby subscription website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, content creation, and testing. Complex subscription management integrations may extend this timeline."
+      },
+      {
+        "name": "Do you work with hobby subscription companies outside Europe?",
+        "answer": "We specialize exclusively in European hobby subscription companies to ensure deep understanding of GDPR, subscription regulations, and other regional compliance requirements."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 180-300% increase in subscription sign-ups within 90 days. Our average client recovers their investment within 3-6 months through increased subscriber acquisition and retention."
+      },
+      {
+        "name": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to seasonal hobby trends."
+      },
+      {
+        "name": "Can you integrate with my existing subscription management system?",
+        "answer": "We integrate with most major subscription management systems including Cratejoy, Subbly, Chargebee, and others. Custom integrations are available for specialized systems."
+      },
+      {
+        "name": "What happens after the website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Unbox Growth: Websites for Hobby Subscription Boxes",
+    "subheading": "Attract and retain loyal subscribers with a high-converting website designed to streamline operations and maximize recurring revenue for your hobby box business.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Subscribers & Revenue",
+    "heading": "Common Problems Modern Hobby Subscription Companies Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "High Subscriber Churn",
+        "description": "Losing customers after just a few months instead of building long-term loyalty."
+      },
+      {
+        "title": "Poor Online Visibility",
+        "description": "Competitors outrank you for key hobby and subscription searches."
+      },
+      {
+        "title": "Manual Subscription Management",
+        "description": "Staff overwhelmed by repetitive billing and fulfillment tasks."
+      },
+      {
+        "title": "Customer Experience Issues",
+        "description": "Communication gaps hurt your retention and referral rates."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Grows With You",
+    "subheading": "Transform your hobby subscription business with a website that attracts, automates, and supports your recurring revenue model at every stage.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "More Loyal Subscribers",
+          "description": "Attract and retain the right customers with a website built for subscription growth."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Less Admin, More Creating",
+          "description": "Automate subscriptions and follow-ups so your team can focus on curating amazing boxes."
+        },
+        {
+          "icon": "🔒",
+          "title": "Peace of Mind",
+          "description": "Modern, secure, and compliant—no more tech headaches."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Discovery & Strategy",
+          "description": "We learn your goals and design a plan for your company."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your new site and integrate smart systems."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and support as your business grows."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your business goals. All packages are custom-quoted to fit your needs and ambitions.",
+    "items": [
+      {
+        "name": "Foundation",
+        "badge": "Best for New Companies",
+        "description": "Professional digital presence that builds immediate trust and credibility.",
+        "features": [
+          "Bespoke mobile-first design",
+          "Core SEO & niche hobby search setup",
+          "Expertly written subscription descriptions",
+          "GDPR compliance audit",
+          "Lightning-fast hosting",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Growth Engine",
+        "badge": "Most Popular",
+        "description": "Accelerate subscriber acquisition and dominate your hobby niche.",
+        "features": [
+          "Everything in Foundation",
+          "Advanced niche SEO dominance",
+          "24/7 online subscription management",
+          "Automated review generation",
+          "Dedicated subscription plan pages",
+          "Monthly SEO optimization",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Enterprise Suite",
+        "badge": "For Large Subscription Brands",
+        "description": "Sophisticated integration for multi-niche subscription companies and market leaders.",
+        "features": [
+          "Everything in Growth Engine",
+          "Multi-niche architecture",
+          "Custom subscription management integration",
+          "Advanced conversion & retention optimization",
+          "ROI dashboard & subscriber analytics",
+          "Dedicated account manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Subscriptions",
+    "subheading": "Deep specialization means we build websites that don't just look good—they deliver measurable results.",
+    "reasons": [
+      {
+        "title": "Subscription-Only Specialization",
+        "description": "20+ years focused exclusively on subscription businesses. We understand the difference between one-time purchases and recurring revenue, subscriber psychology, and retention complexities.",
+        "stat": "20+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "2,500+ subscription businesses served, €3B+ in recurring revenue secured, thousands of Page 1 Google rankings across Europe.",
+        "stat": "2,500+ Companies",
+        "icon": "Star"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Lightning-fast websites with Core Web Vitals optimization, built for performance and search engine visibility.",
+        "stat": "< 2s Load Times",
+        "icon": "Lightning"
+      },
+      {
+        "title": "European Compliance",
+        "description": "GDPR-first approach with deep expertise in subscription billing regulations and other European business requirements.",
+        "stat": "100% Compliant",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach that transforms your practice's digital presence into a growth engine.",
+    "steps": [
+      {
+        "title": "Discovery Call",
+        "description": "Understand your practice goals and current challenges through a focused strategy session.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Strategy & Planning",
+        "description": "Develop a custom growth strategy tailored to your practice, market, and competition.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create a bespoke website with SEO optimization and integrated booking systems.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous monitoring, optimization, and performance tracking.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from hobby subscription companies across Europe",
+    "items": [
+      {
+        "name": "Emma Lindberg",
+        "practice": "CraftBox Monthly, Stockholm",
+        "text": "Our new website increased subscription sign-ups by 280% within 90 days. The automated management system alone saves us 25 hours per week in manual processing."
+      },
+      {
+        "name": "Pierre Dubois",
+        "practice": "Gourmet Explorer Box, Paris",
+        "text": "Finally, a web team that understands subscription businesses. Our subscriber retention improved by 45%, and we're now #1 for \"premium food subscription Europe\"."
+      },
+      {
+        "name": "Isabella Romano",
+        "practice": "GardenGrow Box, Milan",
+        "text": "The ROI has been incredible. Our website went from a cost center to our most profitable acquisition channel, with conversion rates up 210% and churn down 35%."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your hobby subscription company's digital presence.",
+    "items": [
+      {
+        "question": "How long does it take to build a hobby subscription website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, content creation, and testing. Complex subscription management integrations may extend this timeline."
+      },
+      {
+        "question": "Do you work with hobby subscription companies outside Europe?",
+        "answer": "We specialize exclusively in European hobby subscription companies to ensure deep understanding of GDPR, subscription regulations, and other regional compliance requirements."
+      },
+      {
+        "question": "What ROI can I expect?",
+        "answer": "Most clients see 180-300% increase in subscription sign-ups within 90 days. Our average client recovers their investment within 3-6 months through increased subscriber acquisition and retention."
+      },
+      {
+        "question": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to seasonal hobby trends."
+      },
+      {
+        "question": "Can you integrate with my existing subscription management system?",
+        "answer": "We integrate with most major subscription management systems including Cratejoy, Subbly, Chargebee, and others. Custom integrations are available for specialized systems."
+      },
+      {
+        "question": "What happens after the website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your hobby subscription business?",
+    "subheading": "Book a free strategy call to see how we can help you attract more loyal subscribers.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Case Studies",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • No-risk trial"
+    }
+  }
+}

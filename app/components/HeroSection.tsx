@@ -2,14 +2,21 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { useTheme } from "../context/ThemeContext";
-
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement | null>(null);
   const cometRef = useRef<HTMLCanvasElement | null>(null);
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
   const [glowOpacity, setGlowOpacity] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile view
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 768);
+    }
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Animate text on mount with standardized timing
   useEffect(() => {
@@ -219,7 +226,7 @@ export default function HeroSection() {
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrame);
     };
-  }, [theme]);
+  }, []);
 
   // --- Responsive hero text logic ---
   const firstLineRef = useRef<HTMLSpanElement | null>(null);
@@ -324,9 +331,11 @@ export default function HeroSection() {
                 width: firstLineWidth ? `${firstLineWidth}px` : "auto",
                 minWidth: 0,
                 maxWidth: "100vw",
-                textShadow: glowOpacity > 0 ? (isDark 
-                  ? `0 0 12px rgba(255, 255, 255, ${0.4 * glowOpacity}), 0 0 24px rgba(255, 255, 255, ${0.2 * glowOpacity}), 0 0 36px rgba(255, 255, 255, ${0.1 * glowOpacity})` 
-                  : `0 0 12px rgba(0, 0, 0, ${0.3 * glowOpacity}), 0 0 24px rgba(0, 0, 0, ${0.15 * glowOpacity}), 0 0 36px rgba(0, 0, 0, ${0.08 * glowOpacity})`) : "none",
+                textShadow: glowOpacity > 0 ? (
+                  isMobile
+                    ? `0 0 6px rgba(255, 255, 255, ${0.4 * glowOpacity}), 0 0 12px rgba(255, 255, 255, ${0.2 * glowOpacity}), 0 0 18px rgba(255, 255, 255, ${0.1 * glowOpacity})`
+                    : `0 0 12px rgba(255, 255, 255, ${0.4 * glowOpacity}), 0 0 24px rgba(255, 255, 255, ${0.2 * glowOpacity}), 0 0 36px rgba(255, 255, 255, ${0.1 * glowOpacity})`
+                ) : "none",
               }}
             >
               EXPERIENCES
@@ -335,13 +344,13 @@ export default function HeroSection() {
           <div className="flex flex-row gap-6 mt-10">
             <a
               href="#projects"
-              className="inline-block bg-[var(--accent-green)] py-3 px-8 rounded-lg font-semibold shadow-md hover:bg-[var(--accent-green-base)] transition-colors duration-300"
+              className="inline-block bg-[var(--accent-green)] py-3 px-8 rounded-lg font-semibold shadow-md contact-button-text-white hover:bg-[var(--accent-green-base)] transition-colors duration-300"
             >
               Our Work
             </a>
             <a
               href="#contact"
-              className="inline-block bg-transparent border-2 border-[var(--accent-green)] py-3 px-8 rounded-lg font-semibold hover:bg-[var(--accent-green)] hover:text-[var(--white-color)] transition-colors duration-300"
+              className="inline-block py-3 px-8 rounded-lg font-semibold border-2 border-[var(--accent-green)] bg-transparent contact-button-text-white hover:bg-[var(--accent-green)] hover:text-[var(--white-color)] transition-colors duration-300"
             >
               Contact Us
             </a>

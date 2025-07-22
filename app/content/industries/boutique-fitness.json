@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Boutique Fitness Websites: Attract & Retain Members",
+    "description": "Elevate your fitness studio with custom websites. Attract new members, streamline bookings, and boost retention with SEO-optimized design.",
+    "keywords": "boutique fitness website design, web developer for yoga studios, pilates marketing agency, CrossFit website development, boutique gym web design, fitness studio SEO services, GDPR compliant fitness websites, boutique fitness digital marketing",
+    "openGraph": {
+      "title": "Premium Boutique Fitness Website Design & Development | Elevate Your Studio",
+      "description": "Transform your boutique fitness studio with our specialized web development services. Attract dedicated members, streamline class bookings, and stand out in your local market.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Boutique Fitness",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a boutique fitness website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, content creation, and testing. Complex integrations with booking systems may extend this timeline."
+      },
+      {
+        "name": "Do you work with fitness studios outside Europe?",
+        "answer": "We specialize exclusively in European boutique fitness studios to ensure deep understanding of GDPR, fitness industry regulations, and other regional compliance requirements."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 150-250% increase in class bookings and membership inquiries within 90 days. Our average client recovers their investment within 3-6 months through increased membership acquisition and retention."
+      },
+      {
+        "name": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to market changes and seasonal fitness trends."
+      },
+      {
+        "name": "Can you integrate with my existing booking system?",
+        "answer": "We integrate with most major fitness booking and membership systems including MindBody, Glofox, TeamUp, and others. Custom integrations are available for specialized systems."
+      },
+      {
+        "name": "What happens after the website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Transform Your Boutique Fitness Studio: Attract & Retain Members",
+    "subheading": "Elevate your fitness brand with a high-converting website designed to attract dedicated members, streamline bookings, and build a thriving community.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Members & Revenue",
+    "heading": "Common Problems Modern Fitness Studios Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Attracting One-Time Visitors",
+        "description": "Drop-ins instead of committed, long-term members."
+      },
+      {
+        "title": "Poor Local Visibility",
+        "description": "Competitors outrank you for key fitness searches."
+      },
+      {
+        "title": "Manual Booking Headaches",
+        "description": "Staff overwhelmed by scheduling and payment processing."
+      },
+      {
+        "title": "Member Retention Issues",
+        "description": "High churn rates hurting your growth and revenue."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Grows With You",
+    "subheading": "Transform your fitness studio with a website that attracts, automates, and supports your business at every stage.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "More Committed Members",
+          "description": "Attract the ideal clients with a website built for conversion."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Less Admin, More Coaching",
+          "description": "Automate bookings and payments so your team can focus on members."
+        },
+        {
+          "icon": "🔒",
+          "title": "Peace of Mind",
+          "description": "Modern, secure, and compliant—no more tech headaches."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Discovery & Strategy",
+          "description": "We learn your goals and design a plan for your studio."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your new site and integrate smart systems."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and support as your business grows."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your business goals. All packages are custom-quoted to fit your needs and ambitions.",
+    "items": [
+      {
+        "name": "Foundation",
+        "badge": "Best for New Studios",
+        "description": "Professional digital presence that builds immediate trust and credibility.",
+        "features": [
+          "Bespoke mobile-first design",
+          "Core SEO & local search setup",
+          "Expertly written fitness content",
+          "GDPR compliance audit",
+          "Lightning-fast hosting",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Growth Engine",
+        "badge": "Most Popular",
+        "description": "Accelerate membership acquisition and dominate your local market.",
+        "features": [
+          "Everything in Foundation",
+          "Advanced local SEO dominance",
+          "24/7 online class booking system",
+          "Automated review generation",
+          "Dedicated class & trainer pages",
+          "Monthly SEO optimization",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Enterprise Suite",
+        "badge": "For Multi-Location Studios",
+        "description": "Sophisticated integration for fitness chains and market leaders.",
+        "features": [
+          "Everything in Growth Engine",
+          "Multi-location architecture",
+          "Custom membership/CRM integration",
+          "Advanced conversion optimization",
+          "ROI dashboard & analytics",
+          "Dedicated account manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Fitness",
+    "subheading": "Deep specialization means we build websites that don't just look good—they deliver measurable results.",
+    "reasons": [
+      {
+        "title": "Fitness-Only Specialization",
+        "description": "15+ years focused exclusively on boutique fitness businesses. We understand the difference between yoga, pilates, CrossFit, and other modalities, member psychology, and industry regulations.",
+        "stat": "15+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "1,800+ fitness studios served, 500K+ new members acquired, thousands of Page 1 Google rankings across Europe.",
+        "stat": "1,800+ Studios",
+        "icon": "Star"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Lightning-fast websites with Core Web Vitals optimization, built for performance and search engine visibility.",
+        "stat": "< 2s Load Times",
+        "icon": "Lightning"
+      },
+      {
+        "title": "European Compliance",
+        "description": "GDPR-first approach with deep expertise in fitness industry regulations and other European business requirements.",
+        "stat": "100% Compliant",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach that transforms your practice's digital presence into a growth engine.",
+    "steps": [
+      {
+        "title": "Discovery Call",
+        "description": "Understand your practice goals and current challenges through a focused strategy session.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Strategy & Planning",
+        "description": "Develop a custom growth strategy tailored to your practice, market, and competition.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create a bespoke website with SEO optimization and integrated booking systems.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous monitoring, optimization, and performance tracking.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from boutique fitness studios across Europe",
+    "items": [
+      {
+        "name": "Sarah Mitchell",
+        "practice": "Elevate Yoga Studio, London",
+        "text": "Our new website increased membership inquiries by 250% within 90 days. The class booking system alone saves us 20 hours per week in admin time."
+      },
+      {
+        "name": "Thomas Weber",
+        "practice": "CrossFit Elevation, Berlin",
+        "text": "Finally, a web team that understands fitness. Our membership base doubled, and we're now #1 for \"CrossFit gym Berlin\"."
+      },
+      {
+        "name": "Isabella Moretti",
+        "practice": "Pure Pilates, Milan",
+        "text": "The ROI has been incredible. Our website went from a cost center to our most profitable marketing channel, bringing in 15-20 new members every month."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your fitness studio's digital presence.",
+    "items": [
+      {
+        "question": "How long does it take to build a boutique fitness website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, content creation, and testing. Complex integrations with booking systems may extend this timeline."
+      },
+      {
+        "question": "Do you work with fitness studios outside Europe?",
+        "answer": "We specialize exclusively in European boutique fitness studios to ensure deep understanding of GDPR, fitness industry regulations, and other regional compliance requirements."
+      },
+      {
+        "question": "What ROI can I expect?",
+        "answer": "Most clients see 150-250% increase in class bookings and membership inquiries within 90 days. Our average client recovers their investment within 3-6 months through increased membership acquisition and retention."
+      },
+      {
+        "question": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to market changes and seasonal fitness trends."
+      },
+      {
+        "question": "Can you integrate with my existing booking system?",
+        "answer": "We integrate with most major fitness booking and membership systems including MindBody, Glofox, TeamUp, and others. Custom integrations are available for specialized systems."
+      },
+      {
+        "question": "What happens after the website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your fitness studio?",
+    "subheading": "Book a free strategy call to see how we can help you attract more dedicated members.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Case Studies",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • No-risk trial"
+    }
+  }
+}

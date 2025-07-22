@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Dental Practice Websites: Attract More Patients",
+    "description": "Elevate your dental clinic with custom websites. Attract high-value patients, streamline bookings, and boost your online presence with SEO-optimized design.",
+    "keywords": "dental website design Europe, web developer for dentists, dental marketing agency UK, bespoke dental websites, dental web design Germany, dental SEO services, GDPR compliant dental websites",
+    "openGraph": {
+      "title": "Elite Dental Website Design & Development | European Dental Practices",
+      "description": "Transform your dental practice with our specialized web development services. Attract high-value patients, streamline operations, and dominate your local market.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Dental",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a dental website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, content creation, and testing. Complex integrations may extend this timeline."
+      },
+      {
+        "name": "Do you work with practices outside Europe?",
+        "answer": "We specialize exclusively in European dental practices to ensure deep understanding of GDPR, GDC, and other regional compliance requirements."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 180-300% increase in online bookings within 90 days. Our average client recovers their investment within 3-6 months through increased high-value patient acquisition."
+      },
+      {
+        "name": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to market changes."
+      },
+      {
+        "name": "Can you integrate with my existing PMS?",
+        "answer": "We integrate with most major dental practice management systems including Dentally, Software of Excellence, and others. Custom integrations are available for specialized systems."
+      },
+      {
+        "name": "What happens after the website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Transform Your Dental Practice: Attract & Retain Patients",
+    "subheading": "Elevate your clinic's online presence with a high-converting website designed to attract new patients, streamline bookings, and build lasting trust.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Patients & Revenue",
+    "heading": "Common Problems Modern Dental Clinics Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Attracting the Wrong Patients",
+        "description": "Low-value inquiries instead of high-revenue cases."
+      },
+      {
+        "title": "Poor Local Visibility",
+        "description": "Competitors outrank you for key searches."
+      },
+      {
+        "title": "Manual, Time-Consuming Tasks",
+        "description": "Staff overwhelmed by repetitive admin work."
+      },
+      {
+        "title": "No-Show Appointments",
+        "description": "Missed bookings hurt your revenue and schedule."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Grows With You",
+    "subheading": "Transform your dental clinic with a website that attracts, automates, and supports your business at every stage.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "More High-Value Patients",
+          "description": "Attract the cases you want with a website built for growth."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Less Admin, More Care",
+          "description": "Automate bookings and reminders so your team can focus on patients."
+        },
+        {
+          "icon": "🔒",
+          "title": "Peace of Mind",
+          "description": "Modern, secure, and compliant—no more tech headaches."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Discovery & Strategy",
+          "description": "We learn your goals and design a plan for your clinic."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your new site and integrate smart systems."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and support as your practice grows."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your practice goals. All packages are custom-quoted to fit your needs and ambitions.",
+    "items": [
+      {
+        "name": "Foundation",
+        "badge": "Best for New Practices",
+        "description": "Professional digital presence that builds immediate trust and credibility.",
+        "features": [
+          "Bespoke mobile-first design",
+          "Core SEO & local search setup",
+          "Expertly written content",
+          "GDPR/GDC compliance audit",
+          "Lightning-fast hosting",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Growth Engine",
+        "badge": "Most Popular",
+        "description": "Accelerate patient acquisition and dominate your local market.",
+        "features": [
+          "Everything in Foundation",
+          "Advanced local SEO dominance",
+          "24/7 online booking system",
+          "Automated review generation",
+          "Dedicated service pages",
+          "Monthly SEO optimization",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Enterprise Suite",
+        "badge": "For Groups & Leaders",
+        "description": "Sophisticated integration for dental groups and market leaders.",
+        "features": [
+          "Everything in Growth Engine",
+          "Multi-location architecture",
+          "Custom PMS/CRM integration",
+          "Advanced conversion optimization",
+          "ROI dashboard & analytics",
+          "Dedicated account manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Dentistry",
+    "subheading": "Deep specialization means we build websites that don't just look good—they deliver measurable results.",
+    "reasons": [
+      {
+        "title": "Dental-Only Specialization",
+        "description": "20+ years focused exclusively on dental practices. We understand the difference between a crown and a veneer, patient psychology, and regulatory complexities.",
+        "stat": "20+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "2,500+ practices served, 3M+ patients attracted, thousands of Page 1 Google rankings across Europe.",
+        "stat": "2,500+ Practices",
+        "icon": "Star"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Lightning-fast websites with Core Web Vitals optimization, built for performance and search engine visibility.",
+        "stat": "< 2s Load Times",
+        "icon": "Lightning"
+      },
+      {
+        "title": "European Compliance",
+        "description": "GDPR-first approach with deep expertise in GDC, ICO, and other European healthcare regulations.",
+        "stat": "100% Compliant",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach that transforms your practice's digital presence into a growth engine.",
+    "steps": [
+      {
+        "title": "Discovery Call",
+        "description": "Understand your practice goals and current challenges through a focused strategy session.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Strategy & Planning",
+        "description": "Develop a custom growth strategy tailored to your practice, market, and competition.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create a bespoke website with SEO optimization and integrated booking systems.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous monitoring, optimization, and performance tracking.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from dental practices across Europe",
+    "items": [
+      {
+        "name": "Dr. Sarah Mitchell",
+        "practice": "Bright Smile Dental, London",
+        "text": "Our new website increased high-value patient inquiries by 300% within 90 days. The booking system alone saves us 15 hours per week."
+      },
+      {
+        "name": "Dr. Michael Chen",
+        "practice": "Premier Dental Care, Berlin",
+        "text": "Finally, a web team that understands dentistry. Our implant cases doubled, and we're now #1 for \"dental implants Berlin\"."
+      },
+      {
+        "name": "Dr. Emma Rodriguez",
+        "practice": "Smile Studio, Madrid",
+        "text": "The ROI has been incredible. Our website went from a cost center to our most profitable marketing channel."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your practice's digital presence.",
+    "items": [
+      {
+        "question": "How long does it take to build a dental website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, content creation, and testing. Complex integrations may extend this timeline."
+      },
+      {
+        "question": "Do you work with practices outside Europe?",
+        "answer": "We specialize exclusively in European dental practices to ensure deep understanding of GDPR, GDC, and other regional compliance requirements."
+      },
+      {
+        "question": "What ROI can I expect?",
+        "answer": "Most clients see 180-300% increase in online bookings within 90 days. Our average client recovers their investment within 3-6 months through increased high-value patient acquisition."
+      },
+      {
+        "question": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to market changes."
+      },
+      {
+        "question": "Can you integrate with my existing PMS?",
+        "answer": "We integrate with most major dental practice management systems including Dentally, Software of Excellence, and others. Custom integrations are available for specialized systems."
+      },
+      {
+        "question": "What happens after the website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your practice?",
+    "subheading": "Book a free strategy call to see how we can help you attract more patients.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Case Studies",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • No-risk trial"
+    }
+  }
+}

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useSearchParams } from "next/navigation";
+import { User, EnvelopeSimple, Phone, NotePencil } from "phosphor-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -217,19 +218,18 @@ export default function ContactSection() {
     };
   }, [formState]);
   return (
-    <section id="contact" ref={sectionRef} className="bg-[var(--bg-100)] py-20 md:py-32" aria-labelledby="contact-heading">
-      <div className="w-full max-w-screen-md mx-auto px-4 lg:px-8 flex flex-col gap-10">
+    <section id="contact" ref={sectionRef} className="relative bg-[var(--bg-100)] py-20 md:py-32 overflow-hidden" aria-labelledby="contact-heading">
+      <div className="relative w-full max-w-screen-md mx-auto px-4 lg:px-8 flex flex-col gap-10 z-10">
         <header className="text-center animate-element">
-          <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Contact Sharp Digital Ireland</span>
-          <h2 id="contact-heading" className="mt-4 text-4xl md:text-5xl font-bold text-[var(--text-100)]">Get Your Web Development Quote</h2>
+          <span className="inline-block px-4 py-1 rounded-full bg-[var(--accent-green-light)] text-[var(--accent-green)] text-xs uppercase tracking-wider font-semibold shadow-sm mb-2">Contact Sharp Digital Ireland</span>
+          <h2 id="contact-heading" className="mt-4 text-4xl md:text-5xl font-extrabold text-[var(--text-100)] drop-shadow-lg">Get Your Web Development Quote</h2>
           <p className="mt-4 max-w-2xl mx-auto text-[var(--text-100)] text-base md:text-lg opacity-80">
             Ready to transform your business with expert web development? Contact Sharp Digital Ireland today for a free consultation. We serve Dublin and all of Ireland with professional React, Next.js, and custom web solutions.
           </p>
         </header>
-        
         {/* Success Message */}
         {formState === 'success' && (
-          <div className="animate-element mb-6 p-4 bg-[var(--accent-green-light)] border border-[var(--accent-green)] rounded-lg">
+          <div className="animate-element mb-6 p-4 bg-[var(--accent-green-light)] border border-[var(--accent-green)] rounded-lg shadow-md transition-all duration-500 ease-in-out animate-fade-in">
             <div className="flex items-center">
               <svg className="w-5 h-5 text-[var(--accent-green)] mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -238,10 +238,9 @@ export default function ContactSection() {
             </div>
           </div>
         )}
-
         {/* Error Message */}
         {formState === 'error' && message && (
-          <div className="animate-element mb-6 p-4 bg-[var(--accent-red-light)] border border-[var(--accent-red)] rounded-lg">
+          <div className="animate-element mb-6 p-4 bg-[var(--accent-red-light)] border border-[var(--accent-red)] rounded-lg shadow-md transition-all duration-500 ease-in-out animate-fade-in">
             <div className="flex items-center">
               <svg className="w-5 h-5 text-[var(--accent-red)] mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
@@ -250,9 +249,8 @@ export default function ContactSection() {
             </div>
           </div>
         )}
-
         <form
-          className="animate-element space-y-6 bg-[var(--bg-200)] p-8 md:p-10 rounded-xl border border-[var(--bg-300)] shadow-lg"
+          className="animate-element space-y-8 bg-[var(--bg-200)]/90 px-4 pt-6 pb-6 sm:px-6 sm:pt-8 sm:pb-8 md:px-10 md:pt-10 md:pb-10 rounded-2xl border border-[var(--bg-300)] shadow-2xl backdrop-blur-md"
           autoComplete="on"
           onSubmit={handleSubmit}
           role="form"
@@ -260,126 +258,142 @@ export default function ContactSection() {
           itemScope
           itemType="https://schema.org/ContactForm"
         >
-          <div>
-            <label htmlFor="contact-name" className="block text-sm font-medium text-[var(--text-100)] mb-2">
-              Full Name <span className="text-red-500" aria-label="required">*</span>
+          <div className="relative">
+            <label htmlFor="contact-name" className="block text-sm font-semibold text-[var(--text-100)] mb-2">
+              Full Name
             </label>
-            <input
-              id="contact-name"
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder="Your full name"
-              required
-              disabled={formState === 'submitting'}
-              className={`w-full border-b-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-colors ${
-                errors.name
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-[var(--bg-300)] focus:border-[var(--accent-green)]'
-              } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
-              aria-required="true"
-              aria-describedby="name-help"
-              autoComplete="name"
-              itemProp="name"
-            />
+            <div className="relative flex items-center">
+              <span className="absolute left-3 text-[var(--accent-green)] opacity-80 flex items-center h-full pointer-events-none">
+                <User size={20} weight="duotone" />
+              </span>
+              <input
+                id="contact-name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="Your full name"
+                required
+                disabled={formState === 'submitting'}
+                className={`w-full pl-10 border-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-all duration-200 rounded-lg shadow-sm focus:shadow-lg focus:border-[var(--accent-green)] placeholder-[var(--text-200)] ${
+                  errors.name
+                    ? 'border-red-500 focus:border-red-500'
+                    : 'border-[var(--bg-300)]'
+                } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                aria-required="true"
+                aria-describedby="name-help"
+                autoComplete="name"
+                itemProp="name"
+              />
+            </div>
             {errors.name && (
-              <p className="mt-1 text-sm text-red-600" role="alert">{errors.name}</p>
+              <p className="mt-1 text-sm text-red-600 animate-fade-in" role="alert">{errors.name}</p>
             )}
             <div id="name-help" className="sr-only">Enter your full name for our web development consultation</div>
           </div>
-          
-          <div>
-            <label htmlFor="contact-email" className="block text-sm font-medium text-[var(--text-100)] mb-2">
-              Email Address <span className="text-red-500" aria-label="required">*</span>
+          <div className="relative">
+            <label htmlFor="contact-email" className="block text-sm font-semibold text-[var(--text-100)] mb-2">
+              Email Address
             </label>
-            <input
-              id="contact-email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder="your.email@example.com"
-              required
-              disabled={formState === 'submitting'}
-              className={`w-full border-b-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-colors ${
-                errors.email
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-[var(--bg-300)] focus:border-[var(--accent-green)]'
-              } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
-              aria-required="true"
-              aria-describedby="email-help"
-              autoComplete="email"
-              itemProp="email"
-            />
+            <div className="relative flex items-center">
+              <span className="absolute left-3 text-[var(--accent-green)] opacity-80 flex items-center h-full pointer-events-none">
+                <EnvelopeSimple size={20} weight="duotone" />
+              </span>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="your.email@example.com"
+                required
+                disabled={formState === 'submitting'}
+                className={`w-full pl-10 border-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-all duration-200 rounded-lg shadow-sm focus:shadow-lg focus:border-[var(--accent-green)] placeholder-[var(--text-200)] ${
+                  errors.email
+                    ? 'border-red-500 focus:border-red-500'
+                    : 'border-[var(--bg-300)]'
+                } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                aria-required="true"
+                aria-describedby="email-help"
+                autoComplete="email"
+                itemProp="email"
+              />
+            </div>
             {errors.email && (
-              <p className="mt-1 text-sm text-red-600" role="alert">{errors.email}</p>
+              <p className="mt-1 text-sm text-red-600 animate-fade-in" role="alert">{errors.email}</p>
             )}
             <div id="email-help" className="sr-only">We&apos;ll use this email to send you our web development proposal</div>
           </div>
-          
-          <div>
-            <label htmlFor="contact-phone" className="block text-sm font-medium text-[var(--text-100)] mb-2">
-              Phone Number <span className="text-gray-500">(Optional)</span>
+          <div className="relative">
+            <label htmlFor="contact-phone" className="block text-sm font-semibold text-[var(--text-100)] mb-2">
+              Phone Number
             </label>
-            <input
-              id="contact-phone"
-              name="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={handleInputChange}
-              placeholder="+353 87 123 4567"
-              disabled={formState === 'submitting'}
-              className={`w-full border-b-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-colors ${
-                errors.phone
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-[var(--bg-300)] focus:border-[var(--accent-green)]'
-              } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
-              aria-describedby="phone-help"
-              autoComplete="tel"
-              itemProp="telephone"
-            />
+            <div className="relative flex items-center">
+              <span className="absolute left-3 text-[var(--accent-green)] opacity-80 flex items-center h-full pointer-events-none">
+                <Phone size={20} weight="duotone" />
+              </span>
+              <input
+                id="contact-phone"
+                name="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleInputChange}
+                placeholder="+353 87 123 4567"
+                disabled={formState === 'submitting'}
+                className={`w-full pl-10 border-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-all duration-200 rounded-lg shadow-sm focus:shadow-lg focus:border-[var(--accent-green)] placeholder-[var(--text-200)] ${
+                  errors.phone
+                    ? 'border-red-500 focus:border-red-500'
+                    : 'border-[var(--bg-300)]'
+                } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                aria-describedby="phone-help"
+                autoComplete="tel"
+                itemProp="telephone"
+              />
+            </div>
             {errors.phone && (
-              <p className="mt-1 text-sm text-red-600" role="alert">{errors.phone}</p>
+              <p className="mt-1 text-sm text-red-600 animate-fade-in" role="alert">{errors.phone}</p>
             )}
             <div id="phone-help" className="sr-only">Optional phone number for faster communication about your project</div>
           </div>
-          
-          <div>
-            <label htmlFor="contact-description" className="block text-sm font-medium text-[var(--text-100)] mb-2">
-              Project Description <span className="text-red-500" aria-label="required">*</span>
+          <div className="relative">
+            <label htmlFor="contact-description" className="block text-sm font-semibold text-[var(--text-100)] mb-2">
+              Project Description
             </label>
-            <textarea
-              id="contact-description"
-              name="description"
-              rows={4}
-              value={formData.description}
-              onChange={handleInputChange}
-              placeholder="Describe your web development project, goals, timeline, and any specific requirements..."
-              required
-              disabled={formState === 'submitting'}
-              className={`w-full border-2 bg-transparent p-4 text-[var(--text-100)] focus:outline-none transition-colors rounded-lg resize-none ${
-                errors.description
-                  ? 'border-red-500 focus:border-red-500'
-                  : 'border-[var(--bg-300)] focus:border-[var(--accent-green)]'
-              } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
-              aria-required="true"
-              aria-describedby="description-help"
-              itemProp="description"
-            />
+            <div className="relative">
+              <span className="absolute left-3 top-[18px] text-[var(--accent-green)] opacity-80 pointer-events-none">
+                <NotePencil size={20} weight="duotone" />
+              </span>
+              <textarea
+                id="contact-description"
+                name="description"
+                rows={4}
+                value={formData.description}
+                onChange={handleInputChange}
+                placeholder="Describe your web development project, goals, timeline, and any specific requirements..."
+                required
+                disabled={formState === 'submitting'}
+                className={`w-full pl-10 border-2 bg-transparent p-4 text-[var(--text-100)] focus:outline-none transition-all duration-200 rounded-lg shadow-sm focus:shadow-lg focus:border-[var(--accent-green)] resize-none placeholder-[var(--text-200)] ${
+                  errors.description
+                    ? 'border-red-500 focus:border-red-500'
+                    : 'border-[var(--bg-300)]'
+                } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                aria-required="true"
+                aria-describedby="description-help"
+                itemProp="description"
+              />
+            </div>
             {errors.description && (
-              <p className="mt-1 text-sm text-red-600" role="alert">{errors.description}</p>
+              <p className="mt-1 text-sm text-red-600 animate-fade-in" role="alert">{errors.description}</p>
             )}
             <div id="description-help" className="sr-only">Tell us about your web development needs, budget, and timeline</div>
           </div>
-          
           <button
             type="submit"
             disabled={formState === 'submitting' || formState === 'success'}
-            className={`w-full px-6 py-4 rounded-lg font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] ${
+            className={`w-full px-6 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-green-base)] hover:scale-105 hover:shadow-2xl active:scale-100 active:shadow-lg mb-0 ${
               formState === 'submitting' || formState === 'success'
-                ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
-                : 'bg-[var(--accent-green)] text-[var(--white-color)] hover:bg-[var(--accent-green-base)]'
+                ? 'bg-gray-400 text-gray-600 cursor-not-allowed opacity-70'
+                : 'text-[var(--white-color)]'
             }`}
             aria-describedby="submit-help"
           >
@@ -394,12 +408,22 @@ export default function ContactSection() {
             ) : formState === 'success' ? (
               'Message Sent Successfully!'
             ) : (
-              'Get Free Web Development Quote'
+              'Get My Free Quote'
             )}
           </button>
           <div id="submit-help" className="sr-only">Submit your project details to receive a free consultation from Sharp Digital Ireland</div>
         </form>
       </div>
+      {/* Fade-in animation keyframes */}
+      <style jsx>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: none; }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.5s ease-in;
+        }
+      `}</style>
     </section>
   );
 }

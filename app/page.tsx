@@ -176,7 +176,7 @@ export default function Home() {
         }}
       />
       
-      <main className="min-h-screen bg-[var(--background)]" role="main">
+      <main className="min-h-screen bg-[var(--gradient-background)] bg-no-repeat bg-fixed" role="main">
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="sr-only">
           <ol itemScope itemType="https://schema.org/BreadcrumbList">

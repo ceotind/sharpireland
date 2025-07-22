@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Pet Supply Websites: Boost E-commerce Sales",
+    "description": "Elevate your pet supply brand with custom e-commerce websites. Attract loyal customers, streamline operations, and dominate the pet market with SEO-optimized design.",
+    "keywords": "pet supply website design, pet e-commerce development, pet DTC website, pet product marketing, pet brand website, pet subscription website, GDPR compliant pet websites, pet supply SEO",
+    "openGraph": {
+      "title": "Premium Pet Supply DTC Website Design & Development | Pet E-Commerce Experts",
+      "description": "Transform your pet supply business with our specialized web development services. Attract loyal customers, streamline operations, and dominate the pet e-commerce market.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Pet Supply DTC",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a pet supply e-commerce website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, product catalog setup, and testing. Complex integrations with fulfillment systems may extend this timeline."
+      },
+      {
+        "name": "Do you work with pet supply businesses outside Europe?",
+        "answer": "We specialize exclusively in European pet supply companies to ensure deep understanding of GDPR, pet product regulations, and other regional compliance requirements."
+      },
+      {
+        "name": "What ROI can I expect from my pet supply website?",
+        "answer": "Most clients see 150-250% increase in conversion rates within 90 days. Our average client recovers their investment within 4-8 months through increased sales and customer lifetime value."
+      },
+      {
+        "name": "Do you offer ongoing support for my pet e-commerce store?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to market changes and seasonal pet product trends."
+      },
+      {
+        "name": "Can you integrate with my existing inventory management system?",
+        "answer": "We integrate with most major e-commerce and inventory systems including Shopify, WooCommerce, and specialized pet industry platforms. Custom integrations are available for proprietary systems."
+      },
+      {
+        "name": "What happens after my pet supply website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support with seasonal campaigns and product launches."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Unleash Growth: Pet Supply E-commerce Solutions",
+    "subheading": "Attract loyal pet parents and boost sales with a high-converting DTC website designed to streamline operations and maximize customer lifetime value.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Sales & Revenue",
+    "heading": "Common Problems Modern Pet Supply DTC Brands Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "High Cart Abandonment Rates",
+        "description": "Losing sales at checkout due to poor user experience and trust issues."
+      },
+      {
+        "title": "Poor Organic Visibility",
+        "description": "Competitors outrank you for valuable pet product searches."
+      },
+      {
+        "title": "Manual Inventory Management",
+        "description": "Staff overwhelmed by repetitive stock and order processing."
+      },
+      {
+        "title": "Low Customer Retention",
+        "description": "One-time buyers instead of recurring subscription customers."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Grows With You",
+    "subheading": "Transform your pet supply business with a website that attracts, converts, and retains customers at every stage of growth.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "Higher Conversion Rates",
+          "description": "Turn more visitors into customers with a website built for pet lovers."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Automated Operations",
+          "description": "Streamline inventory, orders, and subscriptions so you can focus on product innovation."
+        },
+        {
+          "icon": "🔒",
+          "title": "Peace of Mind",
+          "description": "Modern, secure, and compliant—no more tech headaches or customer data concerns."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Discovery & Strategy",
+          "description": "We learn your goals and design a plan for your pet supply brand."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your new site and integrate smart systems."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and support as your business grows."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your business goals. All packages are custom-quoted to fit your needs and ambitions.",
+    "items": [
+      {
+        "name": "Foundation",
+        "badge": "Best for New Brands",
+        "description": "Professional digital presence that builds immediate trust and credibility with pet owners.",
+        "features": [
+          "Bespoke mobile-first design",
+          "Core SEO & product optimization",
+          "Pet-focused content strategy",
+          "GDPR compliance audit",
+          "Lightning-fast hosting",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Growth Engine",
+        "badge": "Most Popular",
+        "description": "Accelerate customer acquisition and build a loyal pet owner community.",
+        "features": [
+          "Everything in Foundation",
+          "Advanced product SEO strategy",
+          "Subscription management system",
+          "Automated review generation",
+          "Pet breed/need filtering system",
+          "Monthly conversion optimization",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Enterprise Suite",
+        "badge": "For Established Brands",
+        "description": "Sophisticated integration for multi-product pet supply brands and market leaders.",
+        "features": [
+          "Everything in Growth Engine",
+          "Multi-product architecture",
+          "Custom inventory/ERP integration",
+          "Advanced customer segmentation",
+          "ROI dashboard & analytics",
+          "Dedicated account manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Pet E-Commerce",
+    "subheading": "Deep specialization means we build websites that don't just look good—they deliver measurable results for pet supply brands.",
+    "reasons": [
+      {
+        "title": "Pet Industry Specialization",
+        "description": "15+ years focused on pet supply e-commerce. We understand pet owner psychology, seasonal trends, and the unique challenges of selling consumable pet products online.",
+        "stat": "15+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "1,800+ pet brands served, €250M+ in annual recurring revenue generated, thousands of Page 1 Google rankings for competitive pet product terms.",
+        "stat": "1,800+ Brands",
+        "icon": "Star"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Lightning-fast websites with Core Web Vitals optimization, built for mobile pet shoppers and search engine visibility.",
+        "stat": "< 2s Load Times",
+        "icon": "Lightning"
+      },
+      {
+        "title": "European Compliance",
+        "description": "GDPR-first approach with deep expertise in pet product regulations and other European business requirements.",
+        "stat": "100% Compliant",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach that transforms your practice's digital presence into a growth engine.",
+    "steps": [
+      {
+        "title": "Discovery Call",
+        "description": "Understand your practice goals and current challenges through a focused strategy session.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Strategy & Planning",
+        "description": "Develop a custom growth strategy tailored to your practice, market, and competition.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create a bespoke website with SEO optimization and integrated booking systems.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous monitoring, optimization, and performance tracking.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from pet supply brands across Europe",
+    "items": [
+      {
+        "name": "Sarah Johnson",
+        "practice": "PawPerfect Nutrition, London",
+        "text": "Our new website increased subscription sign-ups by 215% within 60 days. The automated reorder system has dramatically improved our customer retention rates."
+      },
+      {
+        "name": "Marcus Hoffman",
+        "practice": "Bark & Purr Essentials, Berlin",
+        "text": "Finally, a web team that understands pet e-commerce. Our conversion rate doubled, and we're now ranking #1 for several high-value pet supplement keywords."
+      },
+      {
+        "name": "Isabella Moretti",
+        "practice": "Gatto Felice Pet Supplies, Milan",
+        "text": "The ROI has been incredible. Our average order value increased by 35% and customer lifetime value has nearly doubled since launch."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your pet supply brand's digital presence.",
+    "items": [
+      {
+        "question": "How long does it take to build a pet supply e-commerce website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, product catalog setup, and testing. Complex integrations with fulfillment systems may extend this timeline."
+      },
+      {
+        "question": "Do you work with pet supply businesses outside Europe?",
+        "answer": "We specialize exclusively in European pet supply companies to ensure deep understanding of GDPR, pet product regulations, and other regional compliance requirements."
+      },
+      {
+        "question": "What ROI can I expect from my pet supply website?",
+        "answer": "Most clients see 150-250% increase in conversion rates within 90 days. Our average client recovers their investment within 4-8 months through increased sales and customer lifetime value."
+      },
+      {
+        "question": "Do you offer ongoing support for my pet e-commerce store?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to market changes and seasonal pet product trends."
+      },
+      {
+        "question": "Can you integrate with my existing inventory management system?",
+        "answer": "We integrate with most major e-commerce and inventory systems including Shopify, WooCommerce, and specialized pet industry platforms. Custom integrations are available for proprietary systems."
+      },
+      {
+        "question": "What happens after my pet supply website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support with seasonal campaigns and product launches."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your pet supply business?",
+    "subheading": "Book a free strategy call to see how we can help you attract more loyal customers and increase sales.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Case Studies",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • No-risk trial"
+    }
+  }
+}

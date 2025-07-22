@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Financial Advisor Websites: Grow Your Practice",
+    "description": "Elevate your financial advisory practice with compliant websites. Attract high-net-worth clients, streamline operations, and boost your AUM.",
+    "keywords": "financial advisor website design, wealth management website, financial planning web development, financial advisor SEO services, GDPR compliant financial websites",
+    "openGraph": {
+      "title": "Premium Financial Advisor Website Design & Development | Wealth Management Experts",
+      "description": "Transform your financial advisory practice with our specialized web development services. Attract high-net-worth clients, streamline operations, and grow your assets under management.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Financial Advisor",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a financial advisor website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes compliance review, design, development, content creation, and testing."
+      },
+      {
+        "name": "Do you work with advisors outside Europe?",
+        "answer": "We specialize exclusively in European financial advisors to ensure deep understanding of GDPR, MiFID II, and other regional compliance requirements."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 150-250% increase in qualified client inquiries within 90 days. Our average client acquires 3-5 new high-net-worth clients within 6 months."
+      },
+      {
+        "name": "Do you offer compliance support?",
+        "answer": "Yes, all packages include compliance review and ongoing monitoring to ensure your website meets regulatory standards."
+      },
+      {
+        "name": "Can you integrate with my CRM?",
+        "answer": "We integrate with most major financial CRMs including Salesforce Financial Services Cloud, Redtail, and others."
+      },
+      {
+        "name": "What happens after the website launches?",
+        "answer": "We provide compliance training for your team, ongoing performance monitoring, and continuous optimization."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Secure Your Future: Digital Growth for Financial Advisors",
+    "subheading": "Attract high-net-worth clients and build trust with a compliant, high-performance website designed for wealth management professionals.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Clients & Opportunities",
+    "heading": "Common Problems Financial Advisors Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Attracting Low-Quality Prospects",
+        "description": "Time-consuming meetings with unqualified leads instead of high-net-worth clients."
+      },
+      {
+        "title": "Poor Digital Presence",
+        "description": "Outdated website that fails to establish credibility with affluent clients."
+      },
+      {
+        "title": "Compliance Challenges",
+        "description": "Struggling to maintain regulatory compliance in digital marketing."
+      },
+      {
+        "title": "Inefficient Client Onboarding",
+        "description": "Manual processes slowing down client acquisition and service delivery."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Grows Your Practice",
+    "subheading": "Transform your financial advisory business with a website that attracts ideal clients, ensures compliance, and streamlines operations.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "More High-Net-Worth Clients",
+          "description": "Attract qualified prospects ready to invest."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Streamlined Compliance",
+          "description": "GDPR and financial regulation compliant solutions."
+        },
+        {
+          "icon": "🔒",
+          "title": "Enhanced Security",
+          "description": "Enterprise-grade security for sensitive financial data."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Discovery & Compliance Review",
+          "description": "We understand your practice and regulatory requirements."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your compliant website with secure client portals."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and compliance monitoring."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your practice goals. All packages are custom-quoted.",
+    "items": [
+      {
+        "name": "Foundation",
+        "badge": "Best for New Advisors",
+        "description": "Professional digital presence that builds trust with prospects.",
+        "features": [
+          "Compliant website design",
+          "Core SEO setup",
+          "Expertly written content",
+          "GDPR/MiFID II compliance",
+          "Secure hosting",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Wealth Accelerator",
+        "badge": "Most Popular",
+        "description": "Attract and convert high-net-worth clients efficiently.",
+        "features": [
+          "Everything in Foundation",
+          "Advanced financial SEO",
+          "Client portal integration",
+          "Automated onboarding",
+          "Dedicated service pages",
+          "Monthly compliance checks",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Enterprise Suite",
+        "badge": "For Large Practices",
+        "description": "Comprehensive solution for growing advisory firms.",
+        "features": [
+          "Everything in Wealth Accelerator",
+          "Multi-advisor architecture",
+          "Custom CRM integration",
+          "Advanced analytics dashboard",
+          "Compliance workflow automation",
+          "Dedicated account manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Financial Advisory",
+    "subheading": "Specialized expertise in financial services means we build websites that comply and convert.",
+    "reasons": [
+      {
+        "title": "Financial Services Specialization",
+        "description": "15+ years focused exclusively on financial advisors. Deep understanding of wealth management, compliance, and client psychology.",
+        "stat": "15+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "1,200+ financial advisors served across Europe, with €500M+ in new AUM generated through our solutions.",
+        "stat": "1,200+ Advisors",
+        "icon": "Star"
+      },
+      {
+        "title": "Compliance First",
+        "description": "GDPR and financial regulation expertise built into every solution.",
+        "stat": "100% Compliant",
+        "icon": "ShieldCheck"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Secure, high-performance websites built for financial data protection.",
+        "stat": "Enterprise Security",
+        "icon": "Lock"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach to transforming your financial practice's digital presence.",
+    "steps": [
+      {
+        "title": "Strategy Session",
+        "description": "Understand your practice goals and compliance requirements.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Compliance Review",
+        "description": "Ensure all digital solutions meet regulatory standards.",
+        "icon": "DocumentCheck"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create a bespoke, compliant website with secure features.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous compliance monitoring.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from financial advisors across Europe",
+    "items": [
+      {
+        "name": "Sarah Johnson",
+        "practice": "Johnson Wealth Management, London",
+        "text": "Our new website attracted 5 new high-net-worth clients within 60 days. The compliance features give us peace of mind."
+      },
+      {
+        "name": "Thomas Müller",
+        "practice": "Müller Financial Planning, Frankfurt",
+        "text": "Finally a web team that understands financial regulations. Our client acquisition costs dropped 40% while quality improved."
+      },
+      {
+        "name": "Isabella Rossi",
+        "practice": "Rossi Investments, Milan",
+        "text": "The client portal integration has streamlined our onboarding process, saving us 10+ hours per week."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your financial advisory practice.",
+    "items": [
+      {
+        "question": "How do you ensure compliance with financial regulations?",
+        "answer": "We have a dedicated compliance team that reviews all content and features against MiFID II, GDPR, and other relevant regulations."
+      },
+      {
+        "question": "Can you integrate with my existing financial software?",
+        "answer": "Yes, we integrate with most major financial planning software, CRMs, and portfolio management systems."
+      },
+      {
+        "question": "Do you provide content for financial blogs?",
+        "answer": "Yes, we offer compliant content creation services tailored to financial regulations and your target audience."
+      },
+      {
+        "question": "How secure are your client portal solutions?",
+        "answer": "We implement bank-grade security with encryption, multi-factor authentication, and regular security audits."
+      },
+      {
+        "question": "Do you offer ongoing compliance updates?",
+        "answer": "Yes, we provide regular updates to ensure your website remains compliant as regulations evolve."
+      },
+      {
+        "question": "Can you help with lead generation for financial advisors?",
+        "answer": "Yes, we offer specialized SEO and content marketing services designed for financial lead generation within compliance guidelines."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your financial advisory practice?",
+    "subheading": "Book a free strategy call to see how we can help you attract more high-net-worth clients.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Compliance Features",
+        "action": "features"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • Compliance-first approach"
+    }
+  }
+}

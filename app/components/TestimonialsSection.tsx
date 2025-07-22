@@ -55,6 +55,7 @@ const testimonials: Testimonial[] = [
 const TestimonialsSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const testimonialRef = useRef<HTMLDivElement>(null);
+  const testimonialSwipeRef = useRef<HTMLDivElement>(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   // const [isAnimating, setIsAnimating] = useState(false);
 
@@ -89,6 +90,50 @@ const TestimonialsSection = () => {
       });
     };
   }, []);
+
+  // Swipe handlers for mobile
+  useEffect(() => {
+    const el = testimonialSwipeRef.current;
+    if (!el) return;
+    let startX: number = 0;
+    let endX: number = 0;
+    let isTouching = false;
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 0) return;
+      isTouching = true;
+      startX = e.touches[0]?.clientX ?? 0;
+      endX = startX;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isTouching || e.touches.length === 0) return;
+      endX = e.touches[0]?.clientX ?? startX;
+    };
+    const onTouchEnd = () => {
+      if (!isTouching) return;
+      const diff = endX - startX;
+      if (Math.abs(diff) > 50) {
+        if (diff < 0) {
+          // Swipe left: next
+          setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+        } else {
+          // Swipe right: prev
+          setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+        }
+      }
+      isTouching = false;
+      startX = 0;
+      endX = 0;
+    };
+    el.addEventListener('touchstart', onTouchStart);
+    el.addEventListener('touchmove', onTouchMove);
+    el.addEventListener('touchend', onTouchEnd);
+    return () => {
+      el.removeEventListener('touchstart', onTouchStart);
+      el.removeEventListener('touchmove', onTouchMove);
+      el.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [testimonials.length]);
 
   const nextTestimonial = () => {
     // Directly update to next testimonial without any animation
@@ -138,34 +183,51 @@ const TestimonialsSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="bg-[var(--bg-100)] text-[var(--text-100)] py-20 md:py-32"
+      className="bg-[var(--bg-100)] text-[var(--text-100)] py-12 md:py-32 px-2 sm:px-4"
       id="testimonials"
     >
-      <div className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col gap-12">
+      <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-8 flex flex-col gap-8 md:gap-12">
         {/* Heading Section */}
         <div className="text-center">
-          <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Testimonials</span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--text-100)]">
+          <span className="text-xs sm:text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Testimonials</span>
+          <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-5xl font-bold text-[var(--text-100)]">
             What Our Clients Say
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-[var(--text-100)] text-base md:text-lg opacity-80">
+          <p className="mt-3 sm:mt-4 max-w-2xl mx-auto text-[var(--text-100)] text-sm sm:text-base md:text-lg opacity-80">
             Don&apos;t just take our word for it - hear from our satisfied clients about their experience working with us.
           </p>
         </div>
 
         {/* Testimonial Section */}
-        <div className="mt-8 md:mt-12 max-w-4xl mx-auto">
-          <div className="bg-[var(--bg-200)] p-8 md:p-12 rounded-2xl border border-[var(--bg-300)]">
-            <div className="flex items-center justify-between">
+        <div className="mt-6 sm:mt-8 md:mt-12 max-w-4xl mx-auto">
+          <div className="bg-[var(--bg-200)] p-5 sm:p-8 md:p-12 rounded-2xl border border-[var(--bg-300)]">
+            {/* Mobile layout */}
+            <div ref={testimonialSwipeRef} className="flex flex-col items-center gap-6 sm:hidden touch-pan-x select-none">
+              <div className="flex flex-col items-center w-full">
+                <div className="w-16 h-16 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-blue)] rounded-full flex items-center justify-center text-[var(--white-color)] font-semibold text-xl mb-3">
+                  {testimonials[currentTestimonial]?.avatar}
+                </div>
+                <h3 className="font-semibold text-[var(--text-100)] text-lg text-center">
+                  {testimonials[currentTestimonial]?.name}
+                </h3>
+                <p className="text-[var(--text-100)] opacity-75 text-sm text-center mb-2">
+                  {testimonials[currentTestimonial]?.role}, {testimonials[currentTestimonial]?.company}
+                </p>
+                <blockquote className="text-base font-light text-[var(--text-100)] leading-relaxed text-center mt-2 mb-4 px-2">
+                  &ldquo;{testimonials[currentTestimonial]?.content}&rdquo;
+                </blockquote>
+              </div>
+            </div>
+            {/* Tablet/Desktop layout */}
+            <div className="hidden sm:flex flex-col md:flex-row items-center md:items-start justify-between gap-6 md:gap-0">
               {/* Single Testimonial Display */}
               <div 
                 ref={testimonialRef}
-                className="flex-1 pr-8 overflow-hidden"
+                className="flex-1 md:pr-8 overflow-hidden"
               >
-                <blockquote className="text-xl md:text-2xl font-light text-[var(--text-100)] leading-relaxed mb-8">
+                <blockquote className="text-xl md:text-2xl font-light text-[var(--text-100)] leading-relaxed mb-6 sm:mb-8">
                   &ldquo;{testimonials[currentTestimonial]?.content}&rdquo;
                 </blockquote>
-                
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-blue)] rounded-full flex items-center justify-center text-[var(--white-color)] font-semibold text-sm">
                     {testimonials[currentTestimonial]?.avatar}
@@ -180,11 +242,10 @@ const TestimonialsSection = () => {
                   </div>
                 </div>
               </div>
-
               {/* Next Button */}
               <button
                 onClick={nextTestimonial}
-                className="flex-shrink-0 w-16 h-16 border border-[var(--bg-300)] rounded-lg flex items-center justify-center hover:bg-[var(--accent-green)] hover:text-[var(--white-color)] hover:border-[var(--accent-green)] transition-all duration-300 group"
+                className="flex-shrink-0 w-16 h-16 border border-[var(--bg-300)] rounded-lg flex items-center justify-center hover:bg-[var(--accent-green)] hover:text-[var(--white-color)] hover:border-[var(--accent-green)] transition-all duration-300 group mt-6 md:mt-0"
                 aria-label="Next testimonial"
               >
                 <svg 
@@ -197,7 +258,6 @@ const TestimonialsSection = () => {
                 </svg>
               </button>
             </div>
-
             {/* Testimonial Indicators */}
             <div className="flex justify-center space-x-2 mt-8">
               {testimonials.map((_, index) => (

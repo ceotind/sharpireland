@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Construction Web Design: Build Your Online Presence",
+    "description": "Elevate your construction business with custom websites. Attract high-value projects, streamline operations, and boost your online visibility.",
+    "keywords": "construction website design Europe, web developer for builders, construction marketing agency UK, bespoke construction websites, construction web design Germany, construction SEO services, GDPR compliant construction websites",
+    "openGraph": {
+      "title": "Premium Construction Website Design & Development | European Builders",
+      "description": "Transform your construction business with our specialized web development services. Attract high-value projects, streamline operations, and dominate your local market.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Construction",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a construction website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, content creation, and testing. Complex integrations may extend this timeline."
+      },
+      {
+        "name": "Do you work with construction companies outside Europe?",
+        "answer": "We specialize exclusively in European construction companies to ensure deep understanding of GDPR, building regulations, and other regional compliance requirements."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 180-300% increase in qualified project inquiries within 90 days. Our average client recovers their investment within 3-6 months through increased high-value project acquisition."
+      },
+      {
+        "name": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to market changes."
+      },
+      {
+        "name": "Can you integrate with my existing project management system?",
+        "answer": "We integrate with most major construction project management systems including Procore, BuilderTrend, and others. Custom integrations are available for specialized systems."
+      },
+      {
+        "name": "What happens after the website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Build Your Digital Foundation: Web Solutions for Construction",
+    "subheading": "Attract high-value projects and streamline operations with a powerful, SEO-optimized website designed for the modern construction industry.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Projects & Revenue",
+    "heading": "Common Problems Modern Construction Companies Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Attracting Low-Quality Leads",
+        "description": "Small, unprofitable projects instead of high-value contracts."
+      },
+      {
+        "title": "Poor Local Visibility",
+        "description": "Competitors outrank you for key searches."
+      },
+      {
+        "title": "Manual, Time-Consuming Tasks",
+        "description": "Staff overwhelmed by repetitive admin work."
+      },
+      {
+        "title": "Project Coordination Issues",
+        "description": "Communication gaps hurt your timeline and budget."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Grows With You",
+    "subheading": "Transform your construction company with a website that attracts, automates, and supports your business at every stage.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "More High-Value Projects",
+          "description": "Attract the contracts you want with a website built for growth."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Less Admin, More Building",
+          "description": "Automate inquiries and follow-ups so your team can focus on projects."
+        },
+        {
+          "icon": "🔒",
+          "title": "Peace of Mind",
+          "description": "Modern, secure, and compliant—no more tech headaches."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Discovery & Strategy",
+          "description": "We learn your goals and design a plan for your company."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your new site and integrate smart systems."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and support as your business grows."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your business goals. All packages are custom-quoted to fit your needs and ambitions.",
+    "items": [
+      {
+        "name": "Foundation",
+        "badge": "Best for New Companies",
+        "description": "Professional digital presence that builds immediate trust and credibility.",
+        "features": [
+          "Bespoke mobile-first design",
+          "Core SEO & local search setup",
+          "Expertly written content",
+          "GDPR compliance audit",
+          "Lightning-fast hosting",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Growth Engine",
+        "badge": "Most Popular",
+        "description": "Accelerate project acquisition and dominate your local market.",
+        "features": [
+          "Everything in Foundation",
+          "Advanced local SEO dominance",
+          "24/7 online quote request system",
+          "Automated review generation",
+          "Dedicated service pages",
+          "Monthly SEO optimization",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Enterprise Suite",
+        "badge": "For Large Contractors",
+        "description": "Sophisticated integration for construction groups and market leaders.",
+        "features": [
+          "Everything in Growth Engine",
+          "Multi-location architecture",
+          "Custom CRM/ERP integration",
+          "Advanced conversion optimization",
+          "ROI dashboard & analytics",
+          "Dedicated account manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Construction",
+    "subheading": "Deep specialization means we build websites that don't just look good—they deliver measurable results.",
+    "reasons": [
+      {
+        "title": "Construction-Only Specialization",
+        "description": "20+ years focused exclusively on construction companies. We understand the difference between residential and commercial projects, client psychology, and regulatory complexities.",
+        "stat": "20+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "2,500+ construction businesses served, €3B+ in projects secured, thousands of Page 1 Google rankings across Europe.",
+        "stat": "2,500+ Companies",
+        "icon": "Star"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Lightning-fast websites with Core Web Vitals optimization, built for performance and search engine visibility.",
+        "stat": "< 2s Load Times",
+        "icon": "Lightning"
+      },
+      {
+        "title": "European Compliance",
+        "description": "GDPR-first approach with deep expertise in construction regulations and other European business requirements.",
+        "stat": "100% Compliant",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach that transforms your practice's digital presence into a growth engine.",
+    "steps": [
+      {
+        "title": "Discovery Call",
+        "description": "Understand your practice goals and current challenges through a focused strategy session.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Strategy & Planning",
+        "description": "Develop a custom growth strategy tailored to your practice, market, and competition.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create a bespoke website with SEO optimization and integrated booking systems.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous monitoring, optimization, and performance tracking.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from construction companies across Europe",
+    "items": [
+      {
+        "name": "John Blackwell",
+        "practice": "Blackwell Construction, London",
+        "text": "Our new website increased high-value project inquiries by 300% within 90 days. The quote request system alone saves us 15 hours per week."
+      },
+      {
+        "name": "Michael Schmidt",
+        "practice": "Schmidt & Sons Building, Berlin",
+        "text": "Finally, a web team that understands construction. Our commercial projects doubled, and we're now #1 for \"commercial builders Berlin\"."
+      },
+      {
+        "name": "Elena Rodriguez",
+        "practice": "Rodriguez Construction, Madrid",
+        "text": "The ROI has been incredible. Our website went from a cost center to our most profitable marketing channel."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your construction company's digital presence.",
+    "items": [
+      {
+        "question": "How long does it take to build a construction website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes design, development, content creation, and testing. Complex integrations may extend this timeline."
+      },
+      {
+        "question": "Do you work with construction companies outside Europe?",
+        "answer": "We specialize exclusively in European construction companies to ensure deep understanding of GDPR, building regulations, and other regional compliance requirements."
+      },
+      {
+        "question": "What ROI can I expect?",
+        "answer": "Most clients see 180-300% increase in qualified project inquiries within 90 days. Our average client recovers their investment within 3-6 months through increased high-value project acquisition."
+      },
+      {
+        "question": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to market changes."
+      },
+      {
+        "question": "Can you integrate with my existing project management system?",
+        "answer": "We integrate with most major construction project management systems including Procore, BuilderTrend, and others. Custom integrations are available for specialized systems."
+      },
+      {
+        "question": "What happens after the website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your construction business?",
+    "subheading": "Book a free strategy call to see how we can help you attract more high-value projects.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Case Studies",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • No-risk trial"
+    }
+  }
+}

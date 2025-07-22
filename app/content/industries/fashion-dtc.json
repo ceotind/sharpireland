@@ -1,0 +1,300 @@
+{
+  "metadata": {
+    "title": "Fashion DTC Websites: Elevate Your Brand Online",
+    "description": "Launch your fashion brand with a stunning DTC website. Showcase collections, streamline sales, and build customer loyalty with trend-focused design.",
+    "keywords": "fashion DTC website, clothing e-commerce, apparel web design, direct-to-consumer fashion, boutique clothing store, sustainable fashion e-commerce",
+    "openGraph": {
+      "title": "Fashion DTC Brand Website Design & Development | Style Forward Collective",
+      "description": "Elevate your fashion brand with our specialized DTC web development services. Showcase your collections, streamline shopping, and build a loyal customer base.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Fashion DTC",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How can a DTC website help my fashion brand?",
+        "answer": "A professional DTC website builds brand identity, controls customer experience, increases profit margins, and collects valuable first-party data for personalization."
+      },
+      {
+        "name": "Do you understand fashion industry challenges?",
+        "answer": "Yes, we design websites with features like virtual try-ons, detailed size guides, and seamless returns to address fashion-specific pain points."
+      },
+      {
+        "name": "Can you create lookbook functionality?",
+        "answer": "We build interactive lookbooks and outfit inspiration galleries that drive higher average order values."
+      },
+      {
+        "name": "How do you highlight our sustainability efforts?",
+        "answer": "Through material transparency features, ethical manufacturing stories, and sustainable care instructions."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Style Your Success: Fashion DTC E-commerce Solutions",
+    "subheading": "Launch your fashion brand with a stunning direct-to-consumer website. Showcase collections, streamline sales, and build lasting customer loyalty.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Common Challenges for Fashion Brands",
+    "heading": "Problems DTC Fashion Faces",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "High Return Rates",
+        "description": "Size and fit issues leading to costly returns and exchanges."
+      },
+      {
+        "title": "Intense Market Competition",
+        "description": "Difficulty standing out in crowded online fashion space."
+      },
+      {
+        "title": "Seasonal Inventory Management",
+        "description": "Challenges forecasting trends and managing stock levels."
+      },
+      {
+        "title": "Building Brand Loyalty",
+        "description": "Creating emotional connections that drive repeat purchases."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Digital Runway for Your Brand",
+    "subheading": "Transform your fashion business with a website that showcases your style while optimizing conversions.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "👗",
+          "title": "Elevated Brand Experience",
+          "description": "Immersive product showcases that highlight your design aesthetic."
+        },
+        {
+          "icon": "📏",
+          "title": "Reduced Returns",
+          "description": "Virtual fitting tools and detailed size guidance to improve fit accuracy."
+        },
+        {
+          "icon": "🔄",
+          "title": "Predictable Sales Cycles",
+          "description": "Pre-order systems and collection launches for revenue forecasting."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Brand Discovery Session",
+          "description": "Understand your aesthetic, target customer, and collection strategy."
+        },
+        {
+          "title": "Style-Focused Design & Development",
+          "description": "Create a website that showcases your collections and brand story."
+        },
+        {
+          "title": "Launch & Cultivate",
+          "description": "Go live with ongoing support as you release new collections."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Fashion Growth Packages",
+    "subheading": "Choose the package that matches your brand's stage. All packages are customized to your specific needs.",
+    "items": [
+      {
+        "name": "Capsule Collection",
+        "badge": "Emerging Brands",
+        "description": "Essential DTC presence to launch your brand and attract first customers.",
+        "features": [
+          "Fashion-forward website",
+          "Basic e-commerce functionality",
+          "Lookbook gallery",
+          "Size guide integration",
+          "Collection storytelling",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Seasonal Line",
+        "badge": "Growing Brands",
+        "description": "Expand your reach with advanced features for established fashion labels.",
+        "features": [
+          "Everything in Capsule Collection",
+          "Advanced product visualization",
+          "Outfit builder tool",
+          "Style quiz integration",
+          "Loyalty program setup",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Designer Collection",
+        "badge": "Established Brands",
+        "description": "Comprehensive solution for fashion houses with multiple lines.",
+        "features": [
+          "Everything in Seasonal Line",
+          "Virtual try-on technology",
+          "Personal styling portal",
+          "B2B wholesale showroom",
+          "Advanced inventory sync",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Fashion Retail",
+    "subheading": "We specialize in DTC fashion brands, creating websites that blend aesthetics with conversion optimization.",
+    "reasons": [
+      {
+        "title": "Fashion Industry Expertise",
+        "description": "7+ years working exclusively with apparel and accessory brands.",
+        "stat": "7+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Fashion Results",
+        "description": "180+ fashion brand websites launched with average 35% increase in conversion rates.",
+        "stat": "180+ Brands",
+        "icon": "Star"
+      },
+      {
+        "title": "Visual Storytelling Focus",
+        "description": "Websites designed to showcase garments through high-impact imagery and video.",
+        "stat": "Visual Excellence",
+        "icon": "Camera"
+      },
+      {
+        "title": "Size & Fit Technology",
+        "description": "Integration of virtual fitting solutions to reduce returns and improve customer satisfaction.",
+        "stat": "Fit Optimization",
+        "icon": "Ruler"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Fashion-Focused Process",
+    "subheading": "A tailored approach that aligns with your design cycles and collection launches.",
+    "steps": [
+      {
+        "title": "Creative Briefing",
+        "description": "Immerse in your brand aesthetic and target customer profile.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Collection Strategy",
+        "description": "Develop a digital plan aligned with your design calendar and marketing goals.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Runway-Ready Development",
+        "description": "Build your website with e-commerce and styling features.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Evolve",
+        "description": "Go live with continuous optimization for each new season.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What Designers Say",
+    "subheading": "Real results from fashion brands across Europe",
+    "items": [
+      {
+        "name": "Isabella Rossi",
+        "practice": "Rossi Milano, Italy",
+        "text": "The virtual try-on feature reduced our return rate by 40% while increasing average order value as customers bought complete outfits."
+      },
+      {
+        "name": "Thomas Jensen",
+        "practice": "Nordic Minimalist, Copenhagen",
+        "text": "Our conversion rate doubled after implementing the personalized style quiz that recommends pieces based on customer preferences."
+      },
+      {
+        "name": "Chloé Dubois",
+        "practice": "Dubois Paris, France",
+        "text": "The wholesale portal streamlined orders from boutique retailers, increasing our B2B revenue by 60% in the first season."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Fashion DTC Questions",
+    "subheading": "Everything you need to know about establishing your fashion brand online.",
+    "items": [
+      {
+        "question": "Can you implement sustainable fashion features?",
+        "answer": "Yes, we create material transparency tools, recycling programs, and sustainable care instructions."
+      },
+      {
+        "question": "Do you offer model photography?",
+        "answer": "We provide fashion photography services or can guide you on creating impactful product imagery."
+      },
+      {
+        "question": "How do you handle size internationalization?",
+        "answer": "Through automatic size conversion charts, measurement guides, and regional fit recommendations."
+      },
+      {
+        "question": "Can you integrate with our inventory systems?",
+        "answer": "We connect with fashion-specific inventory management platforms to sync stock levels in real-time."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to launch your fashion brand?",
+    "subheading": "Book a free consultation to see how we can help you connect with more customers.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Fashion Examples",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "Style-forward guarantee • Trend-responsive support"
+    }
+  }
+}

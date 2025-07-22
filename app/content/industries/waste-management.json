@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Waste Management Websites: Environmental Solutions",
+    "description": "Elevate your waste management business with custom websites. Attract commercial clients, streamline operations, and showcase your sustainability credentials.",
+    "keywords": "waste management website design, recycling company website, environmental services web development, waste management SEO services, GDPR compliant waste websites",
+    "openGraph": {
+      "title": "Premium Waste Management Website Design & Development | Environmental Solutions Experts",
+      "description": "Transform your waste management business with our specialized web development services. Attract commercial clients, streamline operations, and showcase your sustainability credentials.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Waste Management",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a waste management website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes sustainability content development, design, compliance review, and testing."
+      },
+      {
+        "name": "Do you work with waste companies outside Europe?",
+        "answer": "We specialize exclusively in European waste management companies to ensure deep understanding of GDPR, waste regulations, and circular economy requirements."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 120-200% increase in qualified commercial client inquiries within 90 days. Our average client secures 3-5 new municipal or corporate contracts within 6 months."
+      },
+      {
+        "name": "Can you showcase our sustainability credentials?",
+        "answer": "Yes, we specialize in highlighting environmental impact through data visualization and sustainability reporting features."
+      },
+      {
+        "name": "Can you integrate with our waste tracking systems?",
+        "answer": "We integrate with most major waste management software platforms for real-time reporting and customer portals."
+      },
+      {
+        "name": "What happens after the website launches?",
+        "answer": "We provide training for your team, ongoing performance monitoring, and continuous optimization of your digital presence."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Sustainable Solutions: Websites for Waste Management",
+    "subheading": "Attract commercial clients and showcase your green credentials with a modern, sustainable website designed to streamline operations and amplify your environmental impact.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Contracts & Efficiency",
+    "heading": "Common Problems Waste Management Companies Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Difficulty Attracting Commercial Clients",
+        "description": "Struggling to secure municipal and corporate waste contracts against larger competitors."
+      },
+      {
+        "title": "Inefficient Route Planning",
+        "description": "Manual scheduling leading to fuel waste and missed collections."
+      },
+      {
+        "title": "Poor Sustainability Reporting",
+        "description": "Inability to effectively showcase environmental impact to clients."
+      },
+      {
+        "title": "Compliance Challenges",
+        "description": "Keeping up with evolving waste regulations and reporting requirements."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Supports Your Green Mission",
+    "subheading": "Transform your waste management business with a website that attracts clients, showcases sustainability, and streamlines operations.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "More Commercial Contracts",
+          "description": "Attract municipal and corporate clients with compelling sustainability messaging."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Operational Efficiency",
+          "description": "Digital tools to optimize routes and resource allocation."
+        },
+        {
+          "icon": "🌿",
+          "title": "Sustainability Showcase",
+          "description": "Highlight your environmental impact with data visualization."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Discovery & Sustainability Audit",
+          "description": "We understand your operations and environmental impact."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your sustainability-focused website with client portals."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and compliance updates."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your business goals. All packages are custom-quoted.",
+    "items": [
+      {
+        "name": "Essential Recycling",
+        "badge": "Best for Small Operators",
+        "description": "Professional digital presence that establishes credibility.",
+        "features": [
+          "Sustainable website design",
+          "Core SEO setup",
+          "Environmental content",
+          "Compliance features",
+          "Secure hosting",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Commercial Waste Pro",
+        "badge": "Most Popular",
+        "description": "Attract and serve municipal and corporate clients efficiently.",
+        "features": [
+          "Everything in Essential Recycling",
+          "Advanced commercial SEO",
+          "Client portal for reporting",
+          "Route optimization showcase",
+          "Sustainability dashboard",
+          "Monthly content updates",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Circular Economy Suite",
+        "badge": "For Large Waste Firms",
+        "description": "Comprehensive solution for growing waste management companies.",
+        "features": [
+          "Everything in Commercial Waste Pro",
+          "Multi-facility management",
+          "Custom ERP integration",
+          "Advanced analytics dashboard",
+          "Automated compliance reporting",
+          "Dedicated account manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Waste Management",
+    "subheading": "Specialized expertise in environmental services means we build websites that showcase sustainability and drive business.",
+    "reasons": [
+      {
+        "title": "Environmental Sector Specialization",
+        "description": "10+ years focused on waste management and recycling companies. Deep understanding of circular economy principles and regulations.",
+        "stat": "10+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "800+ waste management companies served across Europe, helping divert 1M+ tons from landfills through better client acquisition.",
+        "stat": "800+ Companies",
+        "icon": "Star"
+      },
+      {
+        "title": "Sustainability Focus",
+        "description": "Expertise in showcasing environmental impact through compelling digital storytelling.",
+        "stat": "Green by Design",
+        "icon": "Leaf"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Websites built for operational efficiency and data visualization.",
+        "stat": "Efficiency Optimized",
+        "icon": "Lightning"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach to transforming your waste management company's digital presence.",
+    "steps": [
+      {
+        "title": "Sustainability Assessment",
+        "description": "Understand your operations and environmental impact.",
+        "icon": "DocumentSearch"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create a bespoke website showcasing your green credentials.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Compliance Integration",
+        "description": "Ensure all features meet waste regulation standards.",
+        "icon": "ShieldCheck"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous improvement of your digital tools.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from waste management companies across Europe",
+    "items": [
+      {
+        "name": "David Wilson",
+        "practice": "EcoWaste Solutions, Manchester",
+        "text": "Our new website helped secure 3 municipal contracts we'd been pursuing for years. The sustainability dashboard impresses every client."
+      },
+      {
+        "name": "Sophie Martin",
+        "practice": "GreenCycle Recycling, Paris",
+        "text": "The client portal has reduced service inquiries by 40% while improving customer satisfaction. Our digital transformation is paying off."
+      },
+      {
+        "name": "Markus Weber",
+        "practice": "Weber Abfallwirtschaft, Berlin",
+        "text": "Finally a web team that understands waste regulations. Our compliance reporting is now automated, saving us countless hours."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your waste management business.",
+    "items": [
+      {
+        "question": "Can you help us showcase our recycling rates?",
+        "answer": "Yes, we create interactive dashboards that visualize your diversion rates and environmental impact."
+      },
+      {
+        "question": "Do you integrate with waste tracking hardware?",
+        "answer": "We integrate with most major bin sensors and weighbridge systems for real-time data reporting."
+      },
+      {
+        "question": "Can you help with tender submissions?",
+        "answer": "Yes, we provide specialized content and digital tools to strengthen your municipal tender applications."
+      },
+      {
+        "question": "How do you handle compliance with waste regulations?",
+        "answer": "We build compliance features directly into your website including document libraries and automated reporting."
+      },
+      {
+        "question": "Can you create content about our sustainability initiatives?",
+        "answer": "Yes, we offer specialized content creation services focused on waste reduction and circular economy principles."
+      },
+      {
+        "question": "Do you offer multilingual support?",
+        "answer": "Yes, we provide multilingual websites to serve diverse European markets."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your waste management business?",
+    "subheading": "Book a free strategy call to see how we can help you attract more commercial clients.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Sustainability Features",
+        "action": "features"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • Sustainability-focused approach"
+    }
+  }
+}

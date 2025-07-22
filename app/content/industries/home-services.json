@@ -1,0 +1,300 @@
+{
+  "metadata": {
+    "title": "Home Services Websites: Attract Local Customers",
+    "description": "Elevate your home service business with custom websites. Attract local customers, streamline bookings, and expand your service area with SEO-optimized design.",
+    "keywords": "home services website, local service business, plumbing website, HVAC web design, electrician marketing, cleaning service SEO, landscaping booking",
+    "openGraph": {
+      "title": "Premium Home Services Website Design & Development | Local Service Pros",
+      "description": "Transform your home service business with our specialized web development services. Attract local customers, streamline bookings, and grow your service area.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Home Services",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How can a website help my home service business?",
+        "answer": "A professional website books appointments 24/7, establishes credibility, showcases your expertise, and helps you dominate local search results."
+      },
+      {
+        "name": "Do you understand emergency service needs?",
+        "answer": "Yes, we design websites with prominent emergency call buttons and immediate booking options for urgent service requests."
+      },
+      {
+        "name": "Can you integrate with my dispatch software?",
+        "answer": "We integrate with popular field service platforms like ServiceTitan, Housecall Pro, and Jobber for seamless scheduling."
+      },
+      {
+        "name": "How do you highlight our service areas?",
+        "answer": "Through clear service area maps, zip code checkers, and location-specific content for each community you serve."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Local Leads, Global Reach: Home Services Websites",
+    "subheading": "Attract more local customers and streamline bookings with a high-performance website designed to expand your service area and boost your online visibility.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Common Challenges for Service Businesses",
+    "heading": "Problems Home Service Pros Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Inconsistent Booking Flow",
+        "description": "Missed calls and scheduling conflicts leading to lost business."
+      },
+      {
+        "title": "Poor Local Visibility",
+        "description": "Difficulty standing out in competitive local service markets."
+      },
+      {
+        "title": "Scheduling Inefficiencies",
+        "description": "Manual dispatch processes wasting time and fuel."
+      },
+      {
+        "title": "Building Trust with Customers",
+        "description": "Challenges conveying expertise and reliability online."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Digital Solution for Your Service Business",
+    "subheading": "Transform your operations with a website that books appointments automatically and optimizes your service routes.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📱",
+          "title": "24/7 Booking Engine",
+          "description": "Capture leads anytime with instant online scheduling."
+        },
+        {
+          "icon": "📍",
+          "title": "Local SEO Dominance",
+          "description": "Rank #1 for service searches in your target neighborhoods."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Optimized Scheduling",
+          "description": "Route optimization and calendar sync to maximize technician efficiency."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Service Business Assessment",
+          "description": "Understand your service offerings, coverage area, and scheduling needs."
+        },
+        {
+          "title": "Service-Focused Development",
+          "description": "Create a website with booking, dispatch, and customer management features."
+        },
+        {
+          "title": "Launch & Scale",
+          "description": "Go live with ongoing support as you expand your service area."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Service Growth Packages",
+    "subheading": "Choose the package that matches your business size. All packages are customized to your specific needs.",
+    "items": [
+      {
+        "name": "Basic Service",
+        "badge": "New Businesses",
+        "description": "Essential online presence to establish your brand and attract first customers.",
+        "features": [
+          "Service-focused website",
+          "Online booking system",
+          "Service area mapping",
+          "Local SEO setup",
+          "Technician profiles",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Premium Service",
+        "badge": "Growing Businesses",
+        "description": "Expand your reach with advanced features for established service companies.",
+        "features": [
+          "Everything in Basic Service",
+          "Dispatch software integration",
+          "Maintenance plan management",
+          "Customer portal",
+          "Review generation system",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Elite Service",
+        "badge": "Established Companies",
+        "description": "Comprehensive solution for multi-truck operations.",
+        "features": [
+          "Everything in Premium Service",
+          "Multi-location management",
+          "Real-time technician tracking",
+          "Advanced route optimization",
+          "Performance analytics dashboard",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Service Businesses",
+    "subheading": "We specialize in home service companies, creating websites that attract local customers and streamline operations.",
+    "reasons": [
+      {
+        "title": "Service Industry Expertise",
+        "description": "12+ years working exclusively with home service businesses.",
+        "stat": "12+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Service Results",
+        "description": "300+ service business websites launched with average 50% increase in bookings.",
+        "stat": "300+ Businesses",
+        "icon": "Star"
+      },
+      {
+        "title": "Local Service Focus",
+        "description": "Websites optimized to dominate neighborhood-specific searches.",
+        "stat": "Hyperlocal SEO",
+        "icon": "MapPin"
+      },
+      {
+        "title": "Emergency Service Ready",
+        "description": "Priority features for urgent service requests and quick response.",
+        "stat": "Emergency Optimization",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Service-Focused Process",
+    "subheading": "A tailored approach that respects your operational needs and service demands.",
+    "steps": [
+      {
+        "title": "Business Discovery",
+        "description": "Understand your service offerings, team, and customer experience.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Service Strategy",
+        "description": "Develop a digital plan aligned with your business model and growth goals.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Operations-Focused Development",
+        "description": "Build your website with booking and dispatch integration.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Optimize",
+        "description": "Go live with continuous improvement based on performance data.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What Service Pros Say",
+    "subheading": "Real results from home service businesses across Europe",
+    "items": [
+      {
+        "name": "David Wilson",
+        "practice": "Wilson Plumbing, Manchester",
+        "text": "Our online bookings increased 80% after launching the new website. The 24/7 scheduling feature captures leads even when our office is closed."
+      },
+      {
+        "name": "Anja Schmidt",
+        "practice": "Schmidt HVAC, Berlin",
+        "text": "The maintenance plan management system helped us retain 30% more customers year-over-year with automatic reminders and renewals."
+      },
+      {
+        "name": "Marie Dubois",
+        "practice": "Dubois Cleaning Services, Paris",
+        "text": "Route optimization features reduced our travel time by 25% and allowed us to serve more customers each day."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Home Service Questions",
+    "subheading": "Everything you need to know about establishing your service business online.",
+    "items": [
+      {
+        "question": "Can you implement emergency service features?",
+        "answer": "Yes, we create prominent emergency call buttons with immediate dispatch options."
+      },
+      {
+        "question": "Do you offer after-hours support?",
+        "answer": "We provide maintenance packages that include after-hours support for urgent website issues."
+      },
+      {
+        "question": "How do you showcase our service areas?",
+        "answer": "Through zip code checkers, service area maps, and location-specific landing pages."
+      },
+      {
+        "question": "Can you integrate with our field service app?",
+        "answer": "We connect with popular field service management platforms to sync bookings and job details."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your home service business?",
+    "subheading": "Book a free consultation to see how we can help you attract more customers.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Service Examples",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "Service-focused guarantee • Priority support for urgent updates"
+    }
+  }
+}

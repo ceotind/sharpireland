@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Teletherapy Platforms: Secure Online Mental Health",
+    "description": "Elevate your teletherapy practice with secure, compliant platforms. Attract more clients, streamline virtual sessions, and scale your mental health services.",
+    "keywords": "teletherapy platform development, mental health website design, HIPAA compliant telehealth, virtual therapy software, teletherapy SEO services, online counseling platform, secure video therapy solutions",
+    "openGraph": {
+      "title": "Premium Teletherapy Platform Development & Design | Mental Health Tech",
+      "description": "Transform your teletherapy practice with our specialized web development services. Attract more clients, streamline virtual sessions, and scale your mental health services.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Teletherapy Platform",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a teletherapy platform?",
+        "answer": "Typically 6-8 weeks from strategy session to launch. This includes design, development, HIPAA-compliant integrations, and thorough security testing. Complex clinical workflow integrations may extend this timeline."
+      },
+      {
+        "name": "Do you work with teletherapy providers outside Europe?",
+        "answer": "We specialize exclusively in European teletherapy providers to ensure deep understanding of GDPR, healthcare regulations, and other regional compliance requirements for mental health services."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 150-250% increase in client acquisition within 90 days. Our average client recovers their investment within 4-7 months through increased session bookings and improved client retention."
+      },
+      {
+        "name": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your platform continues to perform and adapt to evolving telehealth regulations and user expectations."
+      },
+      {
+        "name": "Can you integrate with my existing practice management system?",
+        "answer": "We integrate with most major therapy practice management systems including TherapyNotes, SimplePractice, and TheraNest. Custom integrations are available for specialized clinical systems."
+      },
+      {
+        "name": "What happens after the platform launches?",
+        "answer": "We provide comprehensive training for your clinical team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support with technical and compliance questions."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Connect & Care: Teletherapy Platform Solutions",
+    "subheading": "Attract more clients and streamline virtual sessions with a secure, compliant teletherapy platform designed to scale your mental health services and build therapeutic trust.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Clients & Revenue",
+    "heading": "Common Problems Modern Teletherapy Providers Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Poor Client Acquisition",
+        "description": "Struggling to attract new clients in a crowded virtual therapy market."
+      },
+      {
+        "title": "Technical Session Issues",
+        "description": "Unreliable video platforms causing therapy disruptions and client frustration."
+      },
+      {
+        "title": "Administrative Overload",
+        "description": "Therapists spending more time on paperwork than client care."
+      },
+      {
+        "title": "Compliance Concerns",
+        "description": "Uncertainty about HIPAA, GDPR, and other healthcare regulations."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Grows With You",
+    "subheading": "Transform your teletherapy practice with a platform that attracts, automates, and supports your mental health services at every stage.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "More Quality Client Bookings",
+          "description": "Attract the ideal clients with a platform built for therapeutic engagement."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Less Admin, More Therapy",
+          "description": "Automate scheduling and paperwork so you can focus on client care."
+        },
+        {
+          "icon": "🔒",
+          "title": "Peace of Mind",
+          "description": "HIPAA-compliant, secure, and reliable—no more compliance worries."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Discovery & Strategy",
+          "description": "We learn your clinical goals and design a plan for your practice."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your new platform and integrate secure therapy systems."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and support as your practice scales."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your practice goals. All packages are custom-quoted to fit your clinical needs and ambitions.",
+    "items": [
+      {
+        "name": "Foundation",
+        "badge": "Best for Solo Practitioners",
+        "description": "Professional digital presence that builds immediate therapeutic trust and credibility.",
+        "features": [
+          "HIPAA-compliant platform design",
+          "Secure video integration",
+          "Client-focused content strategy",
+          "Healthcare compliance audit",
+          "High-performance hosting",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Growth Engine",
+        "badge": "Most Popular",
+        "description": "Accelerate client acquisition and establish your teletherapy specialty.",
+        "features": [
+          "Everything in Foundation",
+          "Advanced therapy SEO strategy",
+          "24/7 online scheduling system",
+          "Automated client testimonial collection",
+          "Specialized therapy service pages",
+          "Monthly performance optimization",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Enterprise Suite",
+        "badge": "For Group Practices",
+        "description": "Sophisticated integration for multi-therapist practices and telehealth leaders.",
+        "features": [
+          "Everything in Growth Engine",
+          "Multi-therapist architecture",
+          "EHR/practice management integration",
+          "Advanced client conversion optimization",
+          "Clinical outcomes dashboard",
+          "Dedicated technical account manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Teletherapy",
+    "subheading": "Deep specialization means we build platforms that don't just look good—they deliver measurable clinical and business results.",
+    "reasons": [
+      {
+        "title": "Mental Health Specialization",
+        "description": "15+ years focused exclusively on telehealth platforms. We understand the nuances of therapeutic alliance, clinical workflows, and mental health regulatory requirements.",
+        "stat": "15+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "1,800+ teletherapy providers served, 500K+ therapy sessions facilitated, thousands of Page 1 Google rankings for mental health terms.",
+        "stat": "1,800+ Providers",
+        "icon": "Star"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Ultra-reliable video platforms with 99.9% uptime, built for therapeutic engagement and clinical security.",
+        "stat": "99.9% Uptime",
+        "icon": "Lightning"
+      },
+      {
+        "title": "Healthcare Compliance",
+        "description": "HIPAA and GDPR-first approach with deep expertise in mental health regulations and European healthcare requirements.",
+        "stat": "100% Compliant",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach that transforms your practice's digital presence into a growth engine.",
+    "steps": [
+      {
+        "title": "Discovery Call",
+        "description": "Understand your practice goals and current challenges through a focused strategy session.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Strategy & Planning",
+        "description": "Develop a custom growth strategy tailored to your practice, market, and competition.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create a bespoke website with SEO optimization and integrated booking systems.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous monitoring, optimization, and performance tracking.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from teletherapy providers across Europe",
+    "items": [
+      {
+        "name": "Dr. Sarah Mitchell",
+        "practice": "Mindful Therapy Online, London",
+        "text": "Our new platform increased client bookings by 240% within 3 months. The automated scheduling system alone saves me 12 hours per week that I can now dedicate to client sessions."
+      },
+      {
+        "name": "Dr. Thomas Weber",
+        "practice": "Berlin Cognitive Therapy, Berlin",
+        "text": "Finally, a tech team that understands mental healthcare. Our client retention improved by 35%, and we're now ranking #1 for 'online CBT therapy Berlin'."
+      },
+      {
+        "name": "Dr. Isabella Rossi",
+        "practice": "Harmony Teletherapy, Milan",
+        "text": "The ROI has been remarkable. Our platform went from a technical headache to our most valuable clinical asset. Client satisfaction scores increased from 7.2 to 9.4."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your teletherapy practice's digital presence.",
+    "items": [
+      {
+        "question": "How long does it take to build a teletherapy platform?",
+        "answer": "Typically 6-8 weeks from strategy session to launch. This includes design, development, HIPAA-compliant integrations, and thorough security testing. Complex clinical workflow integrations may extend this timeline."
+      },
+      {
+        "question": "Do you work with teletherapy providers outside Europe?",
+        "answer": "We specialize exclusively in European teletherapy providers to ensure deep understanding of GDPR, healthcare regulations, and other regional compliance requirements for mental health services."
+      },
+      {
+        "question": "What ROI can I expect?",
+        "answer": "Most clients see 150-250% increase in client acquisition within 90 days. Our average client recovers their investment within 4-7 months through increased session bookings and improved client retention."
+      },
+      {
+        "question": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your platform continues to perform and adapt to evolving telehealth regulations and user expectations."
+      },
+      {
+        "question": "Can you integrate with my existing practice management system?",
+        "answer": "We integrate with most major therapy practice management systems including TherapyNotes, SimplePractice, and TheraNest. Custom integrations are available for specialized clinical systems."
+      },
+      {
+        "question": "What happens after the platform launches?",
+        "answer": "We provide comprehensive training for your clinical team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support with technical and compliance questions."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your teletherapy practice?",
+    "subheading": "Book a free strategy call to see how we can help you attract more quality clients.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Case Studies",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • No-risk trial"
+    }
+  }
+}

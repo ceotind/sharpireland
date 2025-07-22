@@ -1,8 +1,59 @@
 "use client";
 
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { gsap } from "gsap";
+import { RedditLogo, InstagramLogo, Globe } from "phosphor-react";
+import { Industry } from '@/app/types/content'; // Import Industry type
+import { slugToTitle } from '@/app/utils/text-utils'; // Import slugToTitle utility
 
-export default function Footer() {
+interface FooterProps {
+  randomIndustries: Industry[];
+}
+
+export default function Footer({ randomIndustries }: FooterProps) {
+  const socialIconsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const icons = socialIconsRef.current?.querySelectorAll(".social-icon-wrapper");
+      if (!icons || icons.length === 0) return;
+
+      icons.forEach(icon => {
+        const bgCircle = icon.querySelector(".bg-circle");
+
+        if (!bgCircle) return;
+
+        gsap.set(bgCircle, { scale: 0, backgroundColor: "var(--accent-green)", borderRadius: "9999px" });
+        gsap.set(icon, { color: "var(--text-100)" });
+
+        const tl = gsap.timeline({ paused: true });
+
+        tl.to(bgCircle, {
+            scale: 1,
+            duration: 0.3,
+            ease: "power2.out"
+        }).to(icon, {
+            color: "var(--white-color)",
+            duration: 0.3,
+            ease: "power2.out"
+        }, 0);
+
+        const enterFn = () => tl.play();
+        const leaveFn = () => tl.reverse();
+
+        icon.addEventListener("mouseenter", enterFn);
+        icon.addEventListener("mouseleave", leaveFn);
+
+        return () => {
+            icon.removeEventListener("mouseenter", enterFn);
+            icon.removeEventListener("mouseleave", leaveFn);
+            tl.kill();
+        };
+      });
+    }
+  }, []);
+
   const quickLinks = [
     { name: 'Technologies', href: '#technologies' },
     { name: 'Projects', href: '#projects' },
@@ -10,41 +61,21 @@ export default function Footer() {
     { name: 'Contact', href: '#contact' }
   ];
 
-  const services = [
-    'Web Development',
-    'React Development',
-    'Next.js Development',
-    'Full-Stack Development',
-    'UI/UX Design'
-  ];
-
   const socialLinks = [
     {
       name: 'Reddit',
       href: 'https://reddit.com/r/sharpdigital',
-      icon: (
-        <svg width="24" height="24" fill="#ffffff" viewBox="0 0 256 256">
-          <path d="M248,104a32,32,0,0,0-52.94-24.19C185.29,77.54,171.47,76,152,76c-28.84,0-56.45,2.38-80.08,6.91A32,32,0,0,0,24,104a31.1,31.1,0,0,0,5.31,17.11C28.74,125.3,28,129.6,28,134c0,42.66,54.24,78,124,78s124-35.34,124-78c0-4.4-.74-8.7-1.31-12.89A31.1,31.1,0,0,0,248,104ZM72,132a12,12,0,1,1,12,12A12,12,0,0,1,72,132Zm81,51.43c-10.29,5.15-23.88,7.57-41,7.57s-30.71-2.42-41-7.57a8,8,0,0,1,7.16-14.32c16.12,8.06,45.72,8.06,67.68,0a8,8,0,1,1,7.16,14.32ZM184,144a12,12,0,1,1,12-12A12,12,0,0,1,184,144Z"/>
-        </svg>
-      )
+      icon: <RedditLogo size={24} />
     },
     {
       name: 'Instagram',
       href: 'https://instagram.com/sharpdigital',
-      icon: (
-        <svg width="24" height="24" fill="#ffffff" viewBox="0 0 256 256">
-          <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/>
-        </svg>
-      )
+      icon: <InstagramLogo size={24} />
     },
     {
       name: 'Website',
       href: 'https://sharpdigital.ie',
-      icon: (
-        <svg width="24" height="24" fill="#ffffff" viewBox="0 0 256 256">
-          <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM101.63,168h52.74C149,186.34,140,202.87,128,215.89,116,202.87,107,186.34,101.63,168ZM98,152a145.72,145.72,0,0,1,0-48h60a145.72,145.72,0,0,1,0,48ZM40,128a87.61,87.61,0,0,1,3.33-24H81.79a161.79,161.79,0,0,0,0,48H43.33A87.61,87.61,0,0,1,40,128ZM154.37,88H101.63C107,69.66,116,53.13,128,40.11,140,53.13,149,69.66,154.37,88Zm19.84,16h38.46a88.15,88.15,0,0,1,0,48H174.21a161.79,161.79,0,0,0,0-48Zm32.16-16H170.94a142.39,142.39,0,0,0-20.26-45A88.37,88.37,0,0,1,206.37,88ZM105.32,43A142.39,142.39,0,0,0,85.06,88H49.63A88.37,88.37,0,0,1,105.32,43ZM49.63,168H85.06a142.39,142.39,0,0,0,20.26,45A88.37,88.37,0,0,1,49.63,168Zm101.05,45a142.39,142.39,0,0,0,20.26-45h35.43A88.37,88.37,0,0,1,150.68,213Z"/>
-        </svg>
-      )
+      icon: <Globe size={24} />
     }
   ];
 
@@ -62,20 +93,23 @@ export default function Footer() {
                 Premier web development agency delivering effective digital solutions.
                 We craft custom web applications with cutting-edge technologies.
               </p>
-              <div className="flex space-x-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    className="w-12 h-12 rounded-full flex items-center justify-center bg-[var(--bg-300)] hover:opacity-80 transition-opacity duration-300"
-                    aria-label={social.name}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
+              <div ref={socialIconsRef} className="flex space-x-2">
+                 {socialLinks.map((social) => (
+                   <a
+                     key={social.name}
+                     href={social.href}
+                     className="social-icon-wrapper w-12 h-12 rounded-full flex items-center justify-center relative bg-transparent border border-[var(--bg-300)]"
+                     aria-label={social.name}
+                     target="_blank"
+                     rel="noopener noreferrer"
+                   >
+                     <div className="bg-circle absolute inset-0"></div>
+                     <div className="relative z-10">
+                       {social.icon}
+                     </div>
+                   </a>
+                 ))}
+               </div>
             </div>
 
             {/* Quick Links */}
@@ -95,15 +129,28 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Services */}
+            {/* Web Development */}
             <div>
-              <h4 className="text-lg font-semibold mb-4 text-[var(--text-100)]">Services</h4>
+              <h4 className="text-lg font-semibold mb-4 text-[var(--text-100)]">Web Development</h4>
               <ul className="space-y-2">
-                {services.map((service) => (
-                  <li key={service} className="text-sm text-[var(--text-200)]">
-                    {service}
+                {randomIndustries.map((industry) => (
+                  <li key={industry.slug}>
+                    <Link
+                      href={`/${industry.slug}`}
+                      className="hover:opacity-80 transition-opacity duration-300 text-[var(--text-200)]"
+                    >
+                      {slugToTitle(industry.slug)}
+                    </Link>
                   </li>
                 ))}
+                <li>
+                  <Link
+                    href="/industries"
+                    className="hover:opacity-80 transition-opacity duration-300 text-[var(--accent-green)] font-medium"
+                  >
+                    More Industries &rarr;
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

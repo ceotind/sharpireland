@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Medical Specialist Websites: Enhance Patient Care",
+    "description": "Elevate your medical practice with secure, compliant websites. Attract patients, streamline operations, and provide exceptional care with patient-focused design.",
+    "keywords": "medical website design, specialist doctor website, healthcare web development, medical practice SEO, HIPAA compliant websites, GDPR medical sites",
+    "openGraph": {
+      "title": "Premium Medical Specialist Website Design & Development | Healthcare Technology Experts",
+      "description": "Transform your medical practice with our specialized healthcare web development. Attract patients, streamline operations, and provide exceptional care.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Medical Specialist",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a medical specialist website?",
+        "answer": "Typically 4-6 weeks from strategy session to launch. This includes compliance review, design, development, content creation, and rigorous security testing."
+      },
+      {
+        "name": "Do you work with medical practices outside Europe?",
+        "answer": "We specialize exclusively in European healthcare providers to ensure deep understanding of GDPR, HIPAA-equivalent regulations, and regional healthcare requirements."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 120-200% increase in new patient inquiries within 90 days. Our average practice fills their schedule with appropriate referrals within 3-6 months."
+      },
+      {
+        "name": "Can you integrate with my medical records system?",
+        "answer": "We integrate with most major healthcare systems with strict security protocols, ensuring seamless yet compliant data flow."
+      },
+      {
+        "name": "Do you offer patient portal features?",
+        "answer": "Yes, we build secure patient portals for appointment scheduling, medical records access, and telehealth integration."
+      },
+      {
+        "name": "What happens after the website launches?",
+        "answer": "We provide staff training, ongoing compliance monitoring, and continuous optimization to maintain security and performance."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Heal & Grow: Digital Solutions for Medical Specialists",
+    "subheading": "Enhance patient care and streamline operations with a secure, compliant website designed to attract appropriate referrals and improve patient engagement.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Patients & Efficiency",
+    "heading": "Common Problems Medical Specialists Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "Inefficient Patient Scheduling",
+        "description": "Staff overwhelmed by phone calls and manual appointment management."
+      },
+      {
+        "title": "Poor Online Visibility",
+        "description": "Patients can't find you when searching for specialists in your field."
+      },
+      {
+        "title": "Security Concerns",
+        "description": "Worries about data breaches and compliance with healthcare regulations."
+      },
+      {
+        "title": "Limited Patient Engagement",
+        "description": "Difficulty communicating with patients between visits."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Supports Patient Care",
+    "subheading": "Transform your medical practice with a platform that enhances accessibility, security, and patient outcomes.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "⚕️",
+          "title": "More Appropriate Referrals",
+          "description": "Attract patients who match your specialty and expertise."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Reduced Administrative Burden",
+          "description": "Automate scheduling and patient communications."
+        },
+        {
+          "icon": "🔒",
+          "title": "Compliance Confidence",
+          "description": "GDPR/HIPAA-compliant systems with enterprise security."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Compliance & Workflow Review",
+          "description": "We understand your specialty and regulatory requirements."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your secure practice platform with patient features."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and security updates."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your practice goals. All packages are custom-quoted.",
+    "items": [
+      {
+        "name": "Practice Essentials",
+        "badge": "Best for New Specialists",
+        "description": "Professional digital presence that builds trust with patients.",
+        "features": [
+          "Compliant website design",
+          "Core SEO setup",
+          "Expertly written content",
+          "GDPR/HIPAA compliance",
+          "Secure hosting",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Patient Experience Pro",
+        "badge": "Most Popular",
+        "description": "Comprehensive platform for established medical practices.",
+        "features": [
+          "Everything in Practice Essentials",
+          "Online appointment scheduling",
+          "Secure patient portal",
+          "Telehealth integration",
+          "Patient education resources",
+          "Monthly compliance checks",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Specialty Care Suite",
+        "badge": "For Large Medical Groups",
+        "description": "Enterprise solution for multi-specialty practices.",
+        "features": [
+          "Everything in Patient Experience Pro",
+          "Multi-provider scheduling",
+          "Custom EMR integration",
+          "Advanced patient communication",
+          "Referral tracking system",
+          "Dedicated account manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Healthcare",
+    "subheading": "Specialized expertise in medical technology means we build platforms that prioritize patient care and compliance.",
+    "reasons": [
+      {
+        "title": "Healthcare Specialization",
+        "description": "15+ years focused exclusively on medical practices. Deep understanding of healthcare workflows, compliance, and patient privacy.",
+        "stat": "15+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "1,000+ medical specialists served across Europe, with systems handling 500,000+ patient interactions annually.",
+        "stat": "1,000+ Specialists",
+        "icon": "Star"
+      },
+      {
+        "title": "Compliance Expertise",
+        "description": "GDPR and healthcare regulation knowledge built into every solution.",
+        "stat": "100% Compliant",
+        "icon": "ShieldCheck"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Secure, HIPAA-compliant platforms designed for healthcare data protection.",
+        "stat": "Enterprise Security",
+        "icon": "Lock"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach to transforming your medical practice's digital presence.",
+    "steps": [
+      {
+        "title": "Compliance & Workflow Review",
+        "description": "Understand your practice needs and regulatory requirements.",
+        "icon": "DocumentCheck"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create your secure platform with patient-focused features.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Security Validation",
+        "description": "Rigorous testing to ensure healthcare data protection.",
+        "icon": "ShieldCheck"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous compliance monitoring.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from medical specialists across Europe",
+    "items": [
+      {
+        "name": "Dr. Sarah Johnson",
+        "practice": "Cardiology Associates, London",
+        "text": "Our new patient portal reduced no-show rates by 35% and freed up 20 staff hours per week. The automated reminders are invaluable."
+      },
+      {
+        "name": "Dr. Thomas Müller",
+        "practice": "Orthopedic Center, Berlin",
+        "text": "The online scheduling system has optimized our patient flow. We're seeing 30% more new patients without extending clinic hours."
+      },
+      {
+        "name": "Dr. Isabella Rossi",
+        "practice": "Endocrinology Clinic, Milan",
+        "text": "The patient education resources have improved treatment adherence and outcomes. Our diabetes management results are significantly better."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your medical practice.",
+    "items": [
+      {
+        "question": "How do you ensure compliance with healthcare regulations?",
+        "answer": "We have a dedicated compliance team and build all solutions with GDPR/HIPAA requirements as the foundation."
+      },
+      {
+        "question": "Can you integrate with my existing EMR system?",
+        "answer": "We integrate with most major electronic medical record systems following strict security protocols."
+      },
+      {
+        "question": "Do you provide telehealth features?",
+        "answer": "Yes, we build secure video consultation capabilities with waiting room functionality and encrypted communications."
+      },
+      {
+        "question": "How secure is patient data on your platforms?",
+        "answer": "We implement healthcare-grade security with end-to-end encryption, audit trails, and regular penetration testing."
+      },
+      {
+        "question": "Can you help with patient education content?",
+        "answer": "Yes, we offer medically reviewed content creation services tailored to your specialty."
+      },
+      {
+        "question": "Do you offer multilingual patient support?",
+        "answer": "Yes, we provide multilingual interfaces and content to serve diverse patient populations."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to enhance your medical practice?",
+    "subheading": "Book a free strategy call to see how we can help you provide better patient care.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Healthcare Features",
+        "action": "features"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • Compliance-first approach"
+    }
+  }
+}

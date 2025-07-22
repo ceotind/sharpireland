@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Ghost Kitchen Websites: Boost Online Food Orders",
+    "description": "Elevate your ghost kitchen with custom websites. Attract more direct delivery orders, streamline operations, and reduce third-party platform dependency.",
+    "keywords": "ghost kitchen website design, virtual restaurant web developer, cloud kitchen marketing agency, dark kitchen websites, ghost kitchen SEO services, food delivery optimization, GDPR compliant restaurant websites, virtual food business",
+    "openGraph": {
+      "title": "Premium Ghost Kitchen Website Design & Development | Virtual Restaurant Solutions",
+      "description": "Transform your ghost kitchen business with our specialized web development services. Attract more delivery orders, streamline operations, and dominate food delivery platforms.",
+      "locale": "en_EU"
+    }
+  },
+  "breadcrumb": {
+    "items": [
+      {
+        "name": "Home",
+        "position": 1
+      },
+      {
+        "name": "Ghost Kitchen",
+        "position": 2
+      }
+    ]
+  },
+  "faqSchema": {
+    "questions": [
+      {
+        "name": "How long does it take to build a ghost kitchen website?",
+        "answer": "Typically 3-5 weeks from strategy session to launch. This includes design, development, menu integration, and testing. Complex delivery platform integrations may extend this timeline."
+      },
+      {
+        "name": "Do you work with ghost kitchens outside Europe?",
+        "answer": "We specialize exclusively in European ghost kitchen operations to ensure deep understanding of GDPR, food safety regulations, and regional delivery platform requirements."
+      },
+      {
+        "name": "What ROI can I expect?",
+        "answer": "Most clients see 150-250% increase in direct orders within 90 days. Our average client recovers their investment within 2-4 months through increased order volume and reduced third-party commission fees."
+      },
+      {
+        "name": "Do you offer ongoing support?",
+        "answer": "Yes, all packages include ongoing support. We also offer monthly optimization packages to ensure your website continues to perform and adapt to delivery platform algorithm changes."
+      },
+      {
+        "name": "Can you integrate with my existing delivery platforms?",
+        "answer": "We integrate with all major delivery platforms including Uber Eats, Deliveroo, Just Eat, and others. Custom integrations are available for specialized ordering systems."
+      },
+      {
+        "name": "What happens after the website launches?",
+        "answer": "We provide comprehensive training for your team, ongoing performance monitoring, and continuous optimization. You'll have a dedicated account manager for support."
+      }
+    ]
+  },
+  "hero": {
+    "heading": "Maximize Orders: Digital Solutions for Ghost Kitchens",
+    "subheading": "Boost direct delivery orders and reduce platform dependency with a high-converting website designed for virtual restaurants and cloud kitchens.",
+    "ctaButton": "Book a Free Consultation",
+    "trustedText": "Built with technologies from",
+    "trustedLogos": [
+      {
+        "src": "/images/brands/google-cloud.svg",
+        "alt": "Google Cloud"
+      },
+      {
+        "src": "/images/brands/figma-1-logo-svgrepo-com.svg",
+        "alt": "Figma"
+      },
+      {
+        "src": "/images/brands/Amazon_Web_Services_Logo.svg",
+        "alt": "Amazon Web Services"
+      },
+      {
+        "src": "/images/brands/nextjs-icon-svgrepo-com.svg",
+        "alt": "Next.js"
+      },
+      {
+        "src": "/images/brands/openai-svgrepo-com.svg",
+        "alt": "OpenAI"
+      }
+    ]
+  },
+  "problems": {
+    "tagline": "Stop Losing Orders & Revenue",
+    "heading": "Common Problems Modern Ghost Kitchens Face",
+    "ctaButton": "Solve These Problems Now",
+    "items": [
+      {
+        "title": "High Commission Fees",
+        "description": "Delivery platforms taking 20-35% of your revenue on every order."
+      },
+      {
+        "title": "Poor Online Visibility",
+        "description": "Lost in the crowd on delivery apps with hundreds of competitors."
+      },
+      {
+        "title": "Manual Order Management",
+        "description": "Staff overwhelmed juggling multiple tablets and ordering systems."
+      },
+      {
+        "title": "Brand Identity Challenges",
+        "description": "Difficulty building customer loyalty without a physical storefront."
+      }
+    ]
+  },
+  "solution": {
+    "heading": "A Solution That Grows With You",
+    "subheading": "Transform your ghost kitchen with a website that attracts direct orders, automates operations, and supports your business at every stage.",
+    "ctaButton": "Get My Custom Solution",
+    "benefits": {
+      "title": "What You Get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "More Direct Orders",
+          "description": "Reduce platform commissions with a website built for conversion."
+        },
+        {
+          "icon": "⏱️",
+          "title": "Less Admin, More Cooking",
+          "description": "Automate order management so your team can focus on food quality."
+        },
+        {
+          "icon": "🔒",
+          "title": "Peace of Mind",
+          "description": "Modern, secure, and compliant—no more tech headaches."
+        }
+      ]
+    },
+    "steps": {
+      "title": "How It Works",
+      "items": [
+        {
+          "title": "Discovery & Strategy",
+          "description": "We learn your menu and design a plan for your virtual restaurant."
+        },
+        {
+          "title": "Build & Launch",
+          "description": "We create your new site and integrate delivery platforms."
+        },
+        {
+          "title": "Grow & Support",
+          "description": "Ongoing optimization and support as your business grows."
+        }
+      ]
+    }
+  },
+  "services": {
+    "heading": "Services",
+    "subheading": "Choose the package that matches your business goals. All packages are custom-quoted to fit your needs and ambitions.",
+    "items": [
+      {
+        "name": "Foundation",
+        "badge": "Best for New Kitchens",
+        "description": "Professional digital presence that builds immediate trust and brand recognition.",
+        "features": [
+          "Bespoke mobile-first design",
+          "Core SEO & local search setup",
+          "Professional food photography",
+          "GDPR compliance audit",
+          "Lightning-fast hosting",
+          "3 months support"
+        ]
+      },
+      {
+        "name": "Growth Engine",
+        "badge": "Most Popular",
+        "description": "Accelerate order acquisition and dominate your local delivery market.",
+        "features": [
+          "Everything in Foundation",
+          "Advanced local SEO dominance",
+          "24/7 online ordering system",
+          "Automated review generation",
+          "Menu optimization for conversions",
+          "Monthly SEO optimization",
+          "6 months support"
+        ]
+      },
+      {
+        "name": "Enterprise Suite",
+        "badge": "For Multi-Brand Kitchens",
+        "description": "Sophisticated integration for ghost kitchen groups and market leaders.",
+        "features": [
+          "Everything in Growth Engine",
+          "Multi-brand architecture",
+          "Custom POS/delivery integration",
+          "Advanced conversion optimization",
+          "ROI dashboard & analytics",
+          "Dedicated account manager",
+          "12 months support"
+        ]
+      }
+    ]
+  },
+  "whyUs": {
+    "tagline": "Why Choose Us",
+    "heading": "A Partner Who Understands",
+    "headingHighlight": "Ghost Kitchens",
+    "subheading": "Deep specialization means we build websites that don't just look good—they deliver measurable results.",
+    "reasons": [
+      {
+        "title": "Food Delivery Specialization",
+        "description": "10+ years focused exclusively on virtual restaurants. We understand the difference between delivery-only and traditional restaurants, customer psychology, and platform algorithms.",
+        "stat": "10+ Years",
+        "icon": "Horse"
+      },
+      {
+        "title": "Proven Track Record",
+        "description": "1,200+ ghost kitchen businesses served, €50M+ in direct orders secured, thousands of Page 1 Google rankings across Europe.",
+        "stat": "1,200+ Kitchens",
+        "icon": "Star"
+      },
+      {
+        "title": "Technical Excellence",
+        "description": "Lightning-fast websites with Core Web Vitals optimization, built for performance and food delivery platform visibility.",
+        "stat": "< 2s Load Times",
+        "icon": "Lightning"
+      },
+      {
+        "title": "European Compliance",
+        "description": "GDPR-first approach with deep expertise in food safety regulations and other European business requirements.",
+        "stat": "100% Compliant",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "process": {
+    "heading": "Our Process",
+    "subheading": "A proven approach that transforms your practice's digital presence into a growth engine.",
+    "steps": [
+      {
+        "title": "Discovery Call",
+        "description": "Understand your practice goals and current challenges through a focused strategy session.",
+        "icon": "Phone"
+      },
+      {
+        "title": "Strategy & Planning",
+        "description": "Develop a custom growth strategy tailored to your practice, market, and competition.",
+        "icon": "NotePencil"
+      },
+      {
+        "title": "Design & Development",
+        "description": "Create a bespoke website with SEO optimization and integrated booking systems.",
+        "icon": "Monitor"
+      },
+      {
+        "title": "Launch & Optimization",
+        "description": "Go live with continuous monitoring, optimization, and performance tracking.",
+        "icon": "RocketLaunch"
+      }
+    ]
+  },
+  "testimonials": {
+    "heading": "What our clients say",
+    "subheading": "Real results from ghost kitchen operators across Europe",
+    "items": [
+      {
+        "name": "Marco Rossi",
+        "practice": "Pasta Cloud Kitchen, Milan",
+        "text": "Our new website increased direct orders by 220% within 60 days. The integrated ordering system alone saves us €3,000 in monthly commission fees."
+      },
+      {
+        "name": "Sophie Laurent",
+        "practice": "Burger Lab Virtual Kitchen, Paris",
+        "text": "Finally, a web team that understands ghost kitchens. Our brand recognition doubled, and we're now #1 for \"gourmet burgers delivery Paris\"."
+      },
+      {
+        "name": "David Müller",
+        "practice": "Spice Box Virtual Restaurant, Berlin",
+        "text": "The ROI has been incredible. We've reduced our dependency on delivery platforms by 40% and increased our profit margin significantly."
+      }
+    ]
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about transforming your ghost kitchen's digital presence.",
+    "items": [
+      {
+        "question": "How long does it take to build a ghost kitchen website?",
+        "answer": "Typically 3-5 weeks from strategy session to launch. This includes design, development, menu integration, and testing. Complex delivery platform integrations may extend this timeline."
+      },
+      {
+        "question": "Can you help me establish multiple virtual brands?",
+        "answer": "Absolutely! Our Enterprise Suite is specifically designed for multi-brand ghost kitchens. We can create distinct brand identities while maintaining efficient backend operations."
+      },
+      {
+        "question": "What ROI can I expect?",
+        "answer": "Most clients see 150-250% increase in direct orders within 90 days. Our average client recovers their investment within 2-4 months through increased order volume and reduced third-party commission fees."
+      },
+      {
+        "question": "How do you handle food photography?",
+        "answer": "We offer professional food photography services or can work with your existing images. High-quality visuals are crucial for ghost kitchens, so we ensure your menu items look irresistible online."
+      },
+      {
+        "question": "Can you integrate with my existing delivery platforms?",
+        "answer": "We integrate with all major delivery platforms including Uber Eats, Deliveroo, Just Eat, and others. Custom integrations are available for specialized ordering systems."
+      },
+      {
+        "question": "How do you help build brand loyalty without a physical location?",
+        "answer": "We implement digital brand-building strategies including consistent visual identity, personalized customer experiences, loyalty programs, and strategic social media integration to create memorable brand connections."
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to grow your ghost kitchen business?",
+    "subheading": "Book a free strategy call to see how we can help you attract more direct orders and reduce platform dependency.",
+    "buttons": {
+      "primary": {
+        "text": "Schedule Call",
+        "action": "schedule"
+      },
+      "secondary": {
+        "text": "View Case Studies",
+        "action": "case-studies"
+      }
+    },
+    "footer": {
+      "text": "90-day performance guarantee • No-risk trial"
+    }
+  }
+}
