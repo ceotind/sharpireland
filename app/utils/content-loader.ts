@@ -1,62 +1,79 @@
 import { Industry } from '@/app/types/content';
 import { loadIndustryContentLocal, getAllIndustriesLocal } from './server-content-loader';
+import { logError } from './error-logger';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.VERCEL_URL || 'http://localhost:3000';
+interface FetchOptions extends RequestInit {
+  next?: {
+    revalidate?: number | false;
+    tags?: string[];
+  };
+}
 
 function constructApiUrl(path: string): string {
+  const API_BASE_URL = (() => {
+    if (process.env.NEXT_PUBLIC_API_BASE_URL) {
+      return process.env.NEXT_PUBLIC_API_BASE_URL;
+    }
+    if (process.env.VERCEL_URL) {
+      return `https://${process.env.VERCEL_URL}`;
+    }
+    return 'http://localhost:3000';
+  })();
   const baseUrl = API_BASE_URL.endsWith('/') ? API_BASE_URL.slice(0, -1) : API_BASE_URL;
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-  
   return `${baseUrl}${normalizedPath}`;
 }
 
-interface ErrorContext {
-  operation: string;
-  source: 'api' | 'local';
-  slug?: string;
-  url?: string;
-  filePath?: string;
-}
-
-interface ErrorLog {
-  timestamp: string;
-  error: string;
-  context: ErrorContext & {
-    environment: string;
-    apiBaseUrl: string;
-  };
-}
-
-function logError(error: Error, context: ErrorContext): ErrorLog {
-  const log: ErrorLog = {
-    timestamp: new Date().toISOString(),
-    error: error.message,
-    context: {
-      ...context,
-      environment: process.env.NODE_ENV,
-      apiBaseUrl: API_BASE_URL
-    }
-  };
-  
-  console.error('Content Loading Error:', log);
-  return log;
-}
-
 export async function loadIndustryContent(slug: string): Promise<Industry | null> {
-  return await loadIndustryContentLocal(slug);
+  // During build, prioritize local files to avoid unnecessary network requests
+  if (process.env.NODE_ENV === 'production' && process.env.NEXT_PHASE === 'phase-production-build') {
+    return await loadIndustryContentLocal(slug);
+  }
+  
+  // For runtime, try API first, then fall back to local files
+  let apiUrl: string = '';
+  try {
+    apiUrl = constructApiUrl(`/api/industries/${slug}`); // Assuming a similar API endpoint for single industry
+    const response = await fetch(apiUrl, {
+      next: { revalidate: 3600 } // Cache for 1 hour
+    } as FetchOptions);
+    
+    if (!response.ok) {
+      throw new Error(`API request for industry slug '${slug}' failed with status ${response.status}. Response: ${await response.text()}`);
+    }
+    
+    return await response.json();
+  } catch (apiError) {
+    if (apiError instanceof Error) {
+      logError(apiError, {
+        operation: 'loadIndustryContent',
+        source: 'api',
+        slug,
+        url: apiUrl
+      });
+    }
+    
+    // Fallback to local file
+    return await loadIndustryContentLocal(slug);
+  }
 }
 
 export async function getAllIndustries(): Promise<Industry[]> {
-  let apiUrl: string = ''; // Declare apiUrl outside try block
+  // During build, prioritize local files to avoid unnecessary network requests
+  if (process.env.NODE_ENV === 'production' && process.env.NEXT_PHASE === 'phase-production-build') {
+    return await getAllIndustriesLocal();
+  }
+  
+  // For runtime, try API first, then fall back to local files
+  let apiUrl: string = '';
   try {
-    // First try API
     apiUrl = constructApiUrl('/api/industries');
     const response = await fetch(apiUrl, {
       next: { revalidate: 3600 } // Cache for 1 hour
-    });
+    } as FetchOptions);
     
     if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
+      throw new Error(`API request for all industries failed with status ${response.status}. Response: ${await response.text()}`);
     }
     
     return await response.json();
@@ -75,16 +92,21 @@ export async function getAllIndustries(): Promise<Industry[]> {
 }
 
 export async function getIndustryBySlug(slug: string): Promise<Industry | null> {
-  let apiUrl: string = ''; // Declare apiUrl outside try block
+  // During build, prioritize local files to avoid unnecessary network requests
+  if (process.env.NODE_ENV === 'production' && process.env.NEXT_PHASE === 'phase-production-build') {
+    return await loadIndustryContentLocal(slug);
+  }
+  
+  // For runtime, try API first, then fall back to local files
+  let apiUrl: string = '';
   try {
-    // First try API with specific industry endpoint
     apiUrl = constructApiUrl(`/api/industries/${slug}`);
     const response = await fetch(apiUrl, {
       next: { revalidate: 3600 } // Cache for 1 hour
-    });
+    } as FetchOptions);
     
     if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
+      throw new Error(`API request for industry slug '${slug}' failed with status ${response.status}. Response: ${await response.text()}`);
     }
     
     return await response.json();

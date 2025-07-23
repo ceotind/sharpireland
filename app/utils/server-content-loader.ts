@@ -4,45 +4,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { Industry } from '@/app/types/content';
 
-// Assuming logError is defined elsewhere or needs to be passed/imported
-// For now, I'll define a placeholder logError or assume it's imported from content-loader.ts
-// Let's assume it's imported from content-loader.ts for consistency.
-// However, to avoid circular dependencies, it's better to define it here or in a common utility.
-// For simplicity, I'll duplicate it for now, but a better solution would be a shared logging utility.
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.VERCEL_URL || 'http://localhost:3000';
-
-interface ErrorContext {
-  operation: string;
-  source: 'api' | 'local';
-  slug?: string;
-  url?: string;
-  filePath?: string;
-}
-
-interface ErrorLog {
-  timestamp: string;
-  error: string;
-  context: ErrorContext & {
-    environment: string;
-    apiBaseUrl: string;
-  };
-}
-
-function logError(error: Error, context: ErrorContext): ErrorLog {
-  const log: ErrorLog = {
-    timestamp: new Date().toISOString(),
-    error: error.message,
-    context: {
-      ...context,
-      environment: process.env.NODE_ENV,
-      apiBaseUrl: API_BASE_URL
-    }
-  };
-  
-  console.error('Content Loading Error:', log);
-  return log;
-}
+import { logError } from './error-logger';
 
 export async function loadIndustryContentLocal(slug: string): Promise<Industry | null> {
   try {
@@ -80,7 +42,7 @@ export async function getAllIndustriesLocal(): Promise<Industry[]> {
     const validIndustries = industries.filter((industry: Industry | null): industry is Industry => industry !== null);
     
     if (validIndustries.length === 0) {
-      throw new Error('No valid industry content found in local files');
+      throw new Error(`No valid industry content found in local files in directory: ${contentDir}`);
     }
     
     return validIndustries;
