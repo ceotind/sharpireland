@@ -12,7 +12,7 @@ export default function Testimonials() {
   const x = useMotionValue(0);
 
   // Framer Motion drag logic for snapping
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const width = typeof window !== 'undefined' ? window.innerWidth : 0;
     const threshold = width / 4;
     let newIndex = current;

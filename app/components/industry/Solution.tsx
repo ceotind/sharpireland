@@ -24,6 +24,7 @@ export default function Solution() {
       );
     }
   }, []);
+  if (!solution) return null; // Add null check
 
   return (
     <section ref={sectionRef} id="solution" className="py-20">

@@ -26,8 +26,8 @@ export default function ServicesPage() {
   }, []);
 
   const filteredIndustries = industries.filter(industry => {
-    const title = industry.hero?.title?.toLowerCase() || '';
-    const description = industry.hero?.description?.toLowerCase() || '';
+    const title = industry.hero?.heading?.toLowerCase() || '';
+    const description = industry.hero?.subheading?.toLowerCase() || '';
     return (
       title.includes(searchTerm.toLowerCase()) ||
       description.includes(searchTerm.toLowerCase())
@@ -63,8 +63,8 @@ export default function ServicesPage() {
           {filteredIndustries.map(industry => (
             <ServiceCard 
               key={industry.slug}
-              title={industry.hero.title}
-              description={industry.hero.description}
+              title={industry.hero.heading}
+              description={industry.hero.subheading}
               slug={industry.slug}
             />
           ))}

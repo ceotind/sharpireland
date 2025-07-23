@@ -11,13 +11,32 @@ export default function Testimonials() {
   const [current, setCurrent] = useState(0);
   const controls = useAnimation();
   const x = useMotionValue(0);
+  
+  // Snap to current on change (in useEffect) - must be called before conditional return
+  const cardWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
+  useEffect(() => {
+    if (cardWidth && testimonials) controls.start({ x: -current * cardWidth });
+  }, [current, cardWidth, controls, testimonials]);
+  
+  if (!testimonials) {
+    return null; // Don't render if testimonials content is not available
+  }
+
+
+
+
+
+
+
+
 
   // Framer Motion drag logic for snapping
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const width = typeof window !== 'undefined' ? window.innerWidth : 0;
     const threshold = width / 4;
     let newIndex = current;
-    if (info.offset.x < -threshold && current < testimonials.items.length - 1) {
+    // testimonials is guaranteed to be defined here because the null check is after this
+    if (info.offset.x < -threshold && current < testimonials!.items.length - 1) {
       newIndex = current + 1;
     } else if (info.offset.x > threshold && current > 0) {
       newIndex = current - 1;
@@ -26,11 +45,6 @@ export default function Testimonials() {
     controls.start({ x: -newIndex * width });
   };
 
-  // Snap to current on change (in useEffect)
-  const cardWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
-  useEffect(() => {
-    if (cardWidth) controls.start({ x: -current * cardWidth });
-  }, [current, cardWidth, controls]);
 
   return (
     <section ref={sectionRef} id="testimonials" className="py-20 md:py-32">

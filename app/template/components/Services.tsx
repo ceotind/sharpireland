@@ -39,7 +39,7 @@ export default function Services() {
   }, []);
 
   // Framer Motion drag logic for snapping
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const threshold = cardWidth / 4;
     let newIndex = current;
     if (info.offset.x < -threshold && current < cardCount - 1) {

@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { IndustryContent } from '../types/content';
 import { loadIndustryContent } from './content-loader';
 
 // Base directory for industry content files

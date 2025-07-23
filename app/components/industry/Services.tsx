@@ -14,15 +14,11 @@ export default function Services() {
   const [current, setCurrent] = useState(0);
   const x = useMotionValue(0);
   const controls = useAnimation();
-
-  if (!services) {
-    return null; // Don't render if services content is not available
-  }
-
-  const cardCount = services.items.length;
   const cardWidth = typeof window !== 'undefined' ? 0.9 * window.innerWidth : 0;
 
+  // First useEffect (moved up and added conditional return)
   useEffect(() => {
+    if (!services) return; // Ensure services is available
     const elements = sectionRef.current?.querySelectorAll('.animate-element');
     if (elements) {
       gsap.fromTo(
@@ -42,10 +38,21 @@ export default function Services() {
         }
       );
     }
-  }, [services]); // Re-run effect if services content changes
+  }, [services]);
+
+  // Second useEffect (moved up)
+  useEffect(() => {
+    controls.start({ x: -current * cardWidth });
+  }, [current, controls, cardWidth]);
+
+  if (!services) {
+    return null; // Don't render if services content is not available
+  }
+
+  const cardCount = services.items.length; // Moved down
 
   // Framer Motion drag logic for snapping
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const threshold = cardWidth / 4;
     let newIndex = current;
     if (info.offset.x < -threshold && current < cardCount - 1) {
@@ -56,10 +63,6 @@ export default function Services() {
     setCurrent(newIndex);
     controls.start({ x: -newIndex * cardWidth });
   };
-
-  useEffect(() => {
-    controls.start({ x: -current * cardWidth });
-  }, [current, controls, cardWidth]);
 
   return (
     <section ref={sectionRef} id="services" className="py-20 md:py-32">
@@ -109,7 +112,7 @@ export default function Services() {
           </motion.div>
         </div>
 
-        {/* Desktop grid */}
+        {/* Mobile slider with gesture */}
         <div className="hidden lg:grid grid-cols-1 lg:grid-cols-3 gap-8">
           {services.items.map((service, index) => (
             <div
