@@ -344,7 +344,7 @@ export default function HeroSection() {
           <div className="flex flex-row gap-6 mt-10">
             <a
               href="#projects"
-              className="inline-block bg-[var(--accent-green)] py-3 px-8 rounded-lg font-semibold shadow-md contact-button-text-white hover:bg-[var(--accent-green-base)] transition-colors duration-300"
+              className="inline-block bg-[#006fff] py-3 px-8 rounded-lg font-semibold shadow-md text-white hover:bg-[#0055cc] transition-colors duration-300"
             >
               Our Work
             </a>

@@ -218,7 +218,7 @@ export default function Analytics({ gaId, gtmId }: AnalyticsProps) {
 
       {/* Privacy-compliant tracking notice */}
       {(gaId || gtmId) && (
-        <div id="analytics-notice" style={{ display: 'none' }}>
+        <div id="analytics-div-1" style={{ display: 'none' }}>
           This site uses analytics to improve user experience while respecting privacy.
         </div>
       )}

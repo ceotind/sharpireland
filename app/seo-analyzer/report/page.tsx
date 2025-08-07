@@ -50,16 +50,17 @@ export default function SEOReportPage() {
     description?: string
   }) => (
     <div className="bg-[var(--bg-100)] p-4 rounded-lg shadow-sm border border-[var(--bg-300)]">
-      <h3 className="text-sm font-medium text-[var(--text-300)]">{title}</h3>
-      <p className="text-xl font-semibold mt-1 text-[var(--text-100)]">{value}</p>
-      {description && <p className="text-sm text-[var(--text-300)] mt-1">{description}</p>}
+      <h3 className="text-sm font-medium text-[var(--text-300)]" style={{ fontSize: 'clamp(0.875rem, 1.5vw, 1rem)' }}>{title}</h3>
+      <p className="text-xl font-semibold mt-1 text-[var(--text-100)]" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.5rem)' }}>{value}</p>
+      {description && <p className="text-sm text-[var(--text-300)] mt-1" style={{ fontSize: 'clamp(0.875rem, 1.5vw, 1rem)' }}>{description}</p>}
     </div>
   );
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[var(--background)] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="min-h-screen bg-[var(--background)] flex flex-col items-center justify-center p-4">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+        <p className="text-center" style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)' }}>Loading SEO report...</p>
       </div>
     );
   }
@@ -68,7 +69,7 @@ export default function SEOReportPage() {
     return (
       <div className="min-h-screen bg-[var(--background)] flex flex-col items-center justify-center p-4">
         <h2 className="text-2xl font-bold mb-4">No SEO report found</h2>
-        <p className="mb-6 text-center">Please analyze a URL first</p>
+        <p className="mb-6 text-center" style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)' }}>Please analyze a URL first</p>
         <Link href="/seo-analyzer" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg">
           Analyze a URL
         </Link>
@@ -79,10 +80,10 @@ export default function SEOReportPage() {
   return (
     <div>
       <NavBar />
-      <main className="min-h-screen bg-[var(--background)]" role="main">
+      <main className="min-h-screen bg-[var(--background)] pt-16" role="main">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-3xl font-bold text-[var(--text-100)]">SEO Report</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold text-[var(--text-100)]" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)' }}>SEO Report</h1>
             <Link href="/seo-analyzer" className="text-[var(--accent-blue)] hover:text-[var(--accent-blue-hover)]">
               Analyze Another URL
             </Link>
@@ -92,7 +93,7 @@ export default function SEOReportPage() {
             <h2 className="text-2xl font-bold mb-2 text-[var(--text-100)]">
               Analysis for <span className="text-[var(--accent-blue)] break-all">{report.url}</span>
             </h2>
-            <p className="text-[var(--text-300)]">
+            <p className="text-[var(--text-300)]" style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)' }}>
               Analyzed on {new Date().toLocaleDateString()}
             </p>
           </div>

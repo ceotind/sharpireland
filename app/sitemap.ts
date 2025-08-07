@@ -49,6 +49,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly' as const,
       priority: 0.3,
     },
+
+    // SEO Analyzer page - Utility page for SEO tools
+    {
+      url: `${baseUrl}/seo-analyzer`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.3,
+    },
     
     // Future pages structure - uncomment and modify when adding new pages
     /*

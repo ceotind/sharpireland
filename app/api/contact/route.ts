@@ -244,7 +244,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const formData = validation.sanitizedData!;
+    const formData: ContactFormData = validation.sanitizedData as ContactFormData;
 
     // Create transporter
     const transporter = createTransporter();

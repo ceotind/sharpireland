@@ -117,53 +117,55 @@ const TripleSwitchSection = () => {
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="triple-switch" 
+      id="triple-switch"
       className="bg-[var(--background)] py-12 md:py-32 px-2 sm:px-4"
     >
-      <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-8 flex flex-col md:flex-row gap-8 md:gap-12">
+      <div id="tripleswitch-div-1" className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-8 flex flex-col md:flex-row gap-8 md:gap-12">
         {/* Left Column */}
-        <div className="md:w-1/2 animate-element">
-          <div className="text-center md:text-left">
-            <span className="text-xs sm:text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">
+        <div id="tripleswitch-div-2" className="md:w-1/2 animate-element">
+          <div id="tripleswitch-div-3" className="text-center md:text-left">
+            <span id="tripleswitch-div-4" className="text-xs sm:text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">
               Project Constraints
             </span>
-            <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-5xl font-bold text-[var(--foreground)]">
+            <h2 id="tripleswitch-div-5" className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-5xl font-bold text-[var(--foreground)]">
               Choose what you want
             </h2>
-            <p className="mt-3 sm:mt-4 text-[var(--foreground)] text-sm sm:text-base md:text-lg opacity-80">
+            <p id="tripleswitch-div-6" className="mt-3 sm:mt-4 text-[var(--foreground)] text-sm sm:text-base md:text-lg opacity-80">
               You get what to aim for and what you choose to prioritize with Sharp Digital.
             </p>
           </div>
         </div>
         
         {/* Right Column - Switches */}
-        <div className="md:w-1/2 flex flex-col gap-5 sm:gap-8 animate-element">
-          {Object.entries(switches).map(([key, value]) => (
+        <div id="tripleswitch-div-7" className="md:w-1/2 flex flex-col gap-5 sm:gap-8 animate-element">
+          {Object.entries(switches).map(([key, value], index) => (
             <div
               key={key}
+              id={`tripleswitch-div-${8 + index}`}
               className="flex items-center justify-between p-4 sm:p-6 bg-[var(--bg-200)] rounded-xl border border-[var(--bg-300)]"
             >
-              <span className="text-base sm:text-lg font-medium text-[var(--text-100)] capitalize">
+              <span id={`tripleswitch-div-${11 + index}`} className="text-base sm:text-lg font-medium text-[var(--text-100)] capitalize">
                 {key}
               </span>
-              <label className="relative inline-flex items-center cursor-pointer">
+              <label id={`tripleswitch-div-${14 + index}`} className="relative inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
                   checked={value}
                   onChange={() => handleToggle(key as keyof typeof switches)}
                   className="sr-only peer"
                 />
-                <div className="w-12 h-7 sm:w-14 sm:h-7 bg-[var(--bg-300)] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-[var(--accent-green)]"></div>
+                <div id={`tripleswitch-div-${17 + index}`} className="w-12 h-7 sm:w-14 sm:h-7 bg-[var(--bg-300)] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-[var(--accent-green)]"></div>
               </label>
             </div>
           ))}
           
           {/* Submit Button */}
-          <div className="mt-2 sm:mt-4">
+          <div id="tripleswitch-div-20" className="mt-2 sm:mt-4">
             <button
               onClick={handleSubmit}
+              id="tripleswitch-div-21"
               className="w-full px-6 py-3 bg-[var(--accent-green)] text-[var(--white-color)] rounded-lg font-semibold text-base sm:text-lg transition-colors hover:bg-[var(--accent-green-base)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--background)]"
             >
               Submit Choices

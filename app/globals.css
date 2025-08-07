@@ -17,9 +17,6 @@
   --bg-100: #1E1E1E;
   --bg-200: #2d2d2d;
   --bg-300: #454545;
-  --accent-green: #006fff;
-  --accent-green-base: #0085ff;
-  --accent-green-light: #1a2e1a;
   --accent-red: #f56565;
   --accent-red-light: #2d0000;
   --white-color: #FFFFFF;
@@ -103,10 +100,12 @@
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Darker, more subtle shadow */
 }
 
 .btn-primary:hover {
   background-color: var(--primary-200);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Darker, more subtle shadow */
 }
 
 .btn-secondary {
@@ -118,10 +117,12 @@
   font-weight: 500;
   transition: all 0.3s ease;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Darker, more subtle shadow */
 }
 
 .btn-secondary:hover {
   background-color: var(--bg-200);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker, more subtle shadow */
 }
 
 .btn-accent {
@@ -133,10 +134,12 @@
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Darker, more subtle shadow */
 }
 
 .btn-accent:hover {
   background-color: var(--accent-200);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Darker, more subtle shadow */
 }
 
 .card-base {
@@ -145,6 +148,13 @@
   border-radius: 0.5rem;
   padding: 1.5rem;
   color: var(--text-100);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-base:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-100);
 }
 
 .input-base {

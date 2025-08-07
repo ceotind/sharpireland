@@ -8,13 +8,14 @@ import React from 'react';
 const ColorShowcase: React.FC = () => {
   return (
     <div
+      id="colorshowcase-div-1"
       className="p-8 space-y-6 transition-colors duration-300"
       style={{
         backgroundColor: 'var(--bg-100)',
         color: 'var(--text-100)'
       }}
     >
-      <div className="text-center space-y-4">
+      <div id="colorshowcase-div-2" className="text-center space-y-4">
         <h2
           className="text-3xl font-bold"
           style={{ color: 'var(--primary-100)' }}
@@ -27,12 +28,13 @@ const ColorShowcase: React.FC = () => {
       </div>
 
       {/* Primary Colors */}
-      <div className="space-y-4">
+      <div id="colorshowcase-div-3" className="space-y-4">
         <h3 className="text-xl font-semibold" style={{ color: 'var(--text-100)' }}>
           Primary Colors
         </h3>
-        <div className="grid grid-cols-3 gap-4">
-          <div 
+        <div id="colorshowcase-div-4" className="grid grid-cols-3 gap-4">
+          <div
+            id="colorshowcase-div-5"
             className="p-6 rounded-lg text-center"
             style={{ backgroundColor: 'var(--primary-100)' }}
           >
@@ -43,7 +45,8 @@ const ColorShowcase: React.FC = () => {
               var(--primary-100)
             </code>
           </div>
-          <div 
+          <div
+            id="colorshowcase-div-6"
             className="p-6 rounded-lg text-center"
             style={{ backgroundColor: 'var(--primary-200)' }}
           >
@@ -54,7 +57,8 @@ const ColorShowcase: React.FC = () => {
               var(--primary-200)
             </code>
           </div>
-          <div 
+          <div
+            id="colorshowcase-div-7"
             className="p-6 rounded-lg text-center"
             style={{ backgroundColor: 'var(--primary-300)' }}
           >
@@ -69,12 +73,13 @@ const ColorShowcase: React.FC = () => {
       </div>
 
       {/* Accent Colors */}
-      <div className="space-y-4">
+      <div id="colorshowcase-div-8" className="space-y-4">
         <h3 className="text-xl font-semibold" style={{ color: 'var(--text-100)' }}>
           Accent Colors
         </h3>
-        <div className="grid grid-cols-2 gap-4">
-          <div 
+        <div id="colorshowcase-div-9" className="grid grid-cols-2 gap-4">
+          <div
+            id="colorshowcase-div-10"
             className="p-6 rounded-lg text-center"
             style={{ backgroundColor: 'var(--accent-100)' }}
           >
@@ -85,7 +90,8 @@ const ColorShowcase: React.FC = () => {
               var(--accent-100)
             </code>
           </div>
-          <div 
+          <div
+            id="colorshowcase-div-11"
             className="p-6 rounded-lg text-center"
             style={{ backgroundColor: 'var(--accent-200)' }}
           >
@@ -100,11 +106,11 @@ const ColorShowcase: React.FC = () => {
       </div>
 
       {/* Text Colors */}
-      <div className="space-y-4">
+      <div id="colorshowcase-div-12" className="space-y-4">
         <h3 className="text-xl font-semibold" style={{ color: 'var(--text-100)' }}>
           Text Colors
         </h3>
-        <div className="space-y-2">
+        <div id="colorshowcase-div-13" className="space-y-2">
           <p className="text-lg" style={{ color: 'var(--text-100)' }}>
             Primary text using var(--text-100)
           </p>
@@ -115,14 +121,15 @@ const ColorShowcase: React.FC = () => {
       </div>
 
       {/* Background Colors */}
-      <div className="space-y-4">
+      <div id="colorshowcase-div-14" className="space-y-4">
         <h3 className="text-xl font-semibold" style={{ color: 'var(--text-100)' }}>
           Background Colors
         </h3>
-        <div className="grid grid-cols-3 gap-4">
-          <div 
+        <div id="colorshowcase-div-15" className="grid grid-cols-3 gap-4">
+          <div
+            id="colorshowcase-div-16"
             className="p-6 rounded-lg border text-center"
-            style={{ 
+            style={{
               backgroundColor: 'var(--bg-100)',
               borderColor: 'var(--bg-300)',
               color: 'var(--text-100)'
@@ -131,9 +138,10 @@ const ColorShowcase: React.FC = () => {
             <p className="font-medium">BG 100</p>
             <code className="text-xs opacity-60">var(--bg-100)</code>
           </div>
-          <div 
+          <div
+            id="colorshowcase-div-17"
             className="p-6 rounded-lg border text-center"
-            style={{ 
+            style={{
               backgroundColor: 'var(--bg-200)',
               borderColor: 'var(--bg-300)',
               color: 'var(--text-100)'
@@ -142,9 +150,10 @@ const ColorShowcase: React.FC = () => {
             <p className="font-medium">BG 200</p>
             <code className="text-xs opacity-60">var(--bg-200)</code>
           </div>
-          <div 
+          <div
+            id="colorshowcase-div-18"
             className="p-6 rounded-lg border text-center"
-            style={{ 
+            style={{
               backgroundColor: 'var(--bg-300)',
               borderColor: 'var(--bg-300)',
               color: 'var(--text-100)'
@@ -157,15 +166,16 @@ const ColorShowcase: React.FC = () => {
       </div>
 
       {/* Usage Examples */}
-      <div className="space-y-4">
+      <div id="colorshowcase-div-19" className="space-y-4">
         <h3 className="text-xl font-semibold" style={{ color: 'var(--text-100)' }}>
           Usage Examples
         </h3>
-        <div className="space-y-4">
+        <div id="colorshowcase-div-20" className="space-y-4">
           {/* Card Example */}
-          <div 
+          <div
+            id="colorshowcase-div-21"
             className="p-6 rounded-lg border"
-            style={{ 
+            style={{
               backgroundColor: 'var(--bg-200)',
               borderColor: 'var(--bg-300)'
             }}
@@ -176,9 +186,9 @@ const ColorShowcase: React.FC = () => {
             <p className="mb-4" style={{ color: 'var(--text-100)' }}>
               This is a card using the new color system.
             </p>
-            <button 
+            <button
               className="px-4 py-2 rounded font-medium transition-opacity hover:opacity-80"
-              style={{ 
+              style={{
                 backgroundColor: 'var(--accent-100)',
                 color: 'var(--bg-100)'
               }}
@@ -188,9 +198,10 @@ const ColorShowcase: React.FC = () => {
           </div>
 
           {/* Alert Example */}
-          <div 
+          <div
+            id="colorshowcase-div-22"
             className="p-4 rounded border-l-4"
-            style={{ 
+            style={{
               backgroundColor: 'var(--primary-300)',
               borderLeftColor: 'var(--primary-100)',
               color: 'var(--text-100)'

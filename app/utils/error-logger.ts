@@ -23,6 +23,13 @@ export interface ErrorContext {
   slug?: string;
   url?: string;
   filePath?: string;
+  endpoint?: string; // Added for API errors
+  ip?: string; // Added for rate limiting context
+  csrfToken?: string; // Added for CSRF context
+  errors?: string[]; // Added for validation errors
+  formData?: Record<string, unknown>; // Added for form data context
+  error?: string; // Added for general error message
+  stack?: string; // Added for error stack trace
 }
 
 export interface ErrorLog {

@@ -186,9 +186,9 @@ const TestimonialsSection = () => {
       className="bg-[var(--bg-100)] text-[var(--text-100)] py-12 md:py-32 px-2 sm:px-4"
       id="testimonials"
     >
-      <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-8 flex flex-col gap-8 md:gap-12">
+      <div id="testimonials-div-1" className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-8 flex flex-col gap-8 md:gap-12">
         {/* Heading Section */}
-        <div className="text-center">
+        <div id="testimonials-div-2" className="text-center">
           <span className="text-xs sm:text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Testimonials</span>
           <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-5xl font-bold text-[var(--text-100)]">
             What Our Clients Say
@@ -199,12 +199,12 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Testimonial Section */}
-        <div className="mt-6 sm:mt-8 md:mt-12 max-w-4xl mx-auto">
-          <div className="bg-[var(--bg-200)] p-5 sm:p-8 md:p-12 rounded-2xl border border-[var(--bg-300)]">
+        <div id="testimonials-div-3" className="mt-6 sm:mt-8 md:mt-12 max-w-4xl mx-auto">
+          <div id="testimonials-div-4" className="bg-[var(--bg-200)] p-5 sm:p-8 md:p-12 rounded-2xl border border-[var(--bg-300)]">
             {/* Mobile layout */}
-            <div ref={testimonialSwipeRef} className="flex flex-col items-center gap-6 sm:hidden touch-pan-x select-none">
-              <div className="flex flex-col items-center w-full">
-                <div className="w-16 h-16 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-blue)] rounded-full flex items-center justify-center text-[var(--white-color)] font-semibold text-xl mb-3">
+            <div id="testimonials-div-5" ref={testimonialSwipeRef} className="flex flex-col items-center gap-6 sm:hidden touch-pan-x select-none">
+              <div id="testimonials-div-6" className="flex flex-col items-center w-full">
+                <div id="testimonials-div-7" className="w-16 h-16 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-blue)] rounded-full flex items-center justify-center text-[var(--white-color)] font-semibold text-xl mb-3">
                   {testimonials[currentTestimonial]?.avatar}
                 </div>
                 <h3 className="font-semibold text-[var(--text-100)] text-lg text-center">
@@ -219,20 +219,21 @@ const TestimonialsSection = () => {
               </div>
             </div>
             {/* Tablet/Desktop layout */}
-            <div className="hidden sm:flex flex-col md:flex-row items-center md:items-start justify-between gap-6 md:gap-0">
+            <div id="testimonials-div-8" className="hidden sm:flex flex-col md:flex-row items-center md:items-start justify-between gap-6 md:gap-0">
               {/* Single Testimonial Display */}
-              <div 
+              <div
+                id="testimonials-div-9"
                 ref={testimonialRef}
                 className="flex-1 md:pr-8 overflow-hidden"
               >
                 <blockquote className="text-xl md:text-2xl font-light text-[var(--text-100)] leading-relaxed mb-6 sm:mb-8">
                   &ldquo;{testimonials[currentTestimonial]?.content}&rdquo;
                 </blockquote>
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-blue)] rounded-full flex items-center justify-center text-[var(--white-color)] font-semibold text-sm">
+                <div id="testimonials-div-10" className="flex items-center space-x-4">
+                  <div id="testimonials-div-11" className="w-12 h-12 bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-blue)] rounded-full flex items-center justify-center text-[var(--white-color)] font-semibold text-sm">
                     {testimonials[currentTestimonial]?.avatar}
                   </div>
-                  <div>
+                  <div id="testimonials-div-12">
                     <h3 className="font-semibold text-[var(--text-100)] text-lg">
                       {testimonials[currentTestimonial]?.name}
                     </h3>
@@ -259,14 +260,14 @@ const TestimonialsSection = () => {
               </button>
             </div>
             {/* Testimonial Indicators */}
-            <div className="flex justify-center space-x-2 mt-8">
+            <div id="testimonials-div-13" className="flex justify-center space-x-2 mt-8">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToTestimonial(index)}
                   className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                    index === currentTestimonial 
-                      ? 'bg-[var(--accent-green)]' 
+                    index === currentTestimonial
+                      ? 'bg-[var(--accent-green)]'
                       : 'bg-[var(--bg-300)] hover:bg-[var(--accent-green)] hover:opacity-60'
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}

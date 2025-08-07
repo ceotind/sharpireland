@@ -176,11 +176,11 @@ export default function Home() {
         }}
       />
       
-      <main className="min-h-screen bg-[var(--gradient-background)] bg-no-repeat bg-fixed" role="main">
+      <main id="page-div-1" className="min-h-screen bg-[var(--bg-100)] bg-no-repeat bg-fixed" role="main">
         {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="sr-only">
-          <ol itemScope itemType="https://schema.org/BreadcrumbList">
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+        <nav id="page-div-2" aria-label="Breadcrumb" className="sr-only">
+          <ol id="page-div-3" itemScope itemType="https://schema.org/BreadcrumbList">
+            <li id="page-div-4" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
               <span itemProp="name">Home</span>
               <meta itemProp="position" content="1" />
             </li>
@@ -188,42 +188,42 @@ export default function Home() {
         </nav>
 
         {/* Hero Section - Primary landing area */}
-        <section aria-labelledby="hero-heading">
+        <section id="page-div-5" aria-labelledby="hero-heading">
           <HeroSection />
         </section>
         
         {/* Technologies Section - Our expertise */}
-        <section aria-labelledby="technologies-heading">
+        <section id="page-div-6" aria-labelledby="technologies-heading">
           <TechGridSection />
         </section>
         
         {/* Triple Switch Section - Project constraints */}
-        <section aria-labelledby="triple-switch-heading">
+        <section id="page-div-7" aria-labelledby="triple-switch-heading">
           <TripleSwitchSection />
         </section>
         
         {/* Portfolio Section - Our work */}
-        <section aria-labelledby="projects-heading">
+        <section id="page-div-8" aria-labelledby="projects-heading">
           <ProjectsSection />
         </section>
         
         {/* Process Section - How we work */}
-        <section aria-labelledby="process-heading">
+        <section id="page-div-9" aria-labelledby="process-heading">
           <ProcessSection />
         </section>
         
         {/* Comparison Section - Why choose us */}
-        <section aria-labelledby="comparison-heading">
+        <section id="page-div-10" aria-labelledby="comparison-heading">
           <SaaSComparisonSection />
         </section>
         
         {/* Testimonials Section - Social proof */}
-        <section aria-labelledby="testimonials-heading">
+        <section id="page-div-11" aria-labelledby="testimonials-heading">
           <TestimonialsSection />
         </section>
         
         {/* Contact Section - Get in touch */}
-        <section aria-labelledby="contact-heading">
+        <section id="page-div-12" aria-labelledby="contact-heading">
           <ContactSectionWrapper />
         </section>
       </main>

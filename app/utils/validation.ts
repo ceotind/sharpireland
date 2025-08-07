@@ -4,7 +4,7 @@ import sanitizeHtml from 'sanitize-html';
 export interface ValidationResult {
   isValid: boolean;
   errors: string[];
-  sanitizedData?: ContactFormData | undefined;
+  sanitizedData?: ContactFormData | BookingFormData | undefined;
 }
 
 export interface ContactFormData {
@@ -12,6 +12,15 @@ export interface ContactFormData {
   email: string;
   phone?: string;
   description: string;
+  csrfToken?: string;
+}
+
+export interface BookingFormData {
+  name: string;
+  email: string;
+  purpose: string;
+  company?: string;
+  phone?: string;
   csrfToken?: string;
 }
 
@@ -106,7 +115,7 @@ export class InputValidator {
     return { isValid: true, sanitized };
   }
 
-  // Main validation function
+  // Main validation function for contact form
   public validateContactForm(data: Record<string, unknown>): ValidationResult {
     const errors: string[] = [];
     const sanitizedData: Partial<ContactFormData> = {};
@@ -213,3 +222,75 @@ export class InputValidator {
 const inputValidator = new InputValidator();
 
 export default inputValidator;
+
+export function validateBookingForm(data: Record<string, unknown>): ValidationResult {
+  const errors: string[] = [];
+  const sanitizedData: Partial<BookingFormData> = {};
+
+  // Validate name
+  const nameResult = inputValidator['validateName'](data.name);
+  if (!nameResult.isValid) {
+    errors.push(nameResult.error!);
+  } else {
+    sanitizedData.name = nameResult.sanitized!;
+  }
+
+  // Validate email
+  const emailResult = inputValidator['validateEmail'](data.email);
+  if (!emailResult.isValid) {
+    errors.push(emailResult.error!);
+  } else {
+    sanitizedData.email = emailResult.sanitized!;
+  }
+
+  // Validate purpose (new field for booking)
+  const purpose = data.purpose;
+  if (!purpose || typeof purpose !== 'string' || purpose.trim().length === 0) {
+    errors.push('Purpose of meeting is required');
+  } else {
+    const sanitizedPurpose = inputValidator['sanitizeHtml'](purpose.trim());
+    if (sanitizedPurpose.length < 10 || sanitizedPurpose.length > 1000) {
+      errors.push('Purpose must be between 10 and 1000 characters');
+    }
+    sanitizedData.purpose = sanitizedPurpose;
+  }
+
+  // Validate company (optional)
+  if (data.company) {
+    const company = data.company;
+    if (typeof company !== 'string' || company.trim().length === 0) {
+      errors.push('Company name must be a string');
+    } else {
+      const sanitizedCompany = inputValidator['sanitizeHtml'](company.trim());
+      if (sanitizedCompany.length > 200) {
+        errors.push('Company name must be less than 200 characters');
+      }
+      sanitizedData.company = sanitizedCompany;
+    }
+  }
+
+  // Validate phone (optional)
+  const phoneResult = inputValidator['validatePhone'](data.phone);
+  if (!phoneResult.isValid) {
+    errors.push(phoneResult.error!);
+  } else if (phoneResult.sanitized !== undefined) {
+    sanitizedData.phone = phoneResult.sanitized;
+  }
+
+  // Basic spam check for purpose
+  if (sanitizedData.purpose) {
+    const spamPatterns = [
+      /\b(viagra|cialis|casino|poker|lottery|winner|congratulations)\b/i,
+      /(http|https):\/\/[^\s]+/gi, // URLs in purpose
+    ];
+    if (spamPatterns.some(pattern => pattern.test(sanitizedData.purpose!))) {
+      errors.push('Purpose contains suspicious content');
+    }
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+    sanitizedData: errors.length === 0 ? sanitizedData as BookingFormData : undefined
+  };
+}
