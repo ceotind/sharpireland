@@ -2,361 +2,409 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import Image from "next/image";
+
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement | null>(null);
-  const cometRef = useRef<HTMLCanvasElement | null>(null);
-  const [glowOpacity, setGlowOpacity] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
 
-  // Detect mobile view
-  useEffect(() => {
-    function handleResize() {
-      setIsMobile(window.innerWidth <= 768);
+  const [bentoImages, setBentoImages] = useState<string[]>([]);
+
+  // Fallbacks used if API fails or before load. Keep within public/ for Next/Image optimization.
+  const DEFAULT_FALLBACKS = [
+    "/images/bento_grid/brutalist_poster.webp",
+    "/images/bento_grid/girl_sitting_on_car.webp",
+    "/images/bento_grid/gradient_art.webp",
+    "/images/bento_grid/landscape_view.webp",
+    "/images/bento_grid/laptop_on_desk.webp",
+    "/images/bento_grid/pixar_turtle.webp",
+    "/images/bento_grid/working_on_laptop.webp",
+  ] as const;
+
+  // Absolute fallback string to satisfy strict indexing types
+  const ABSOLUTE_FALLBACK = "/images/bento_grid/brutalist_poster.webp" as const;
+
+  function sampleRandom<T>(arr: readonly T[], count: number): T[] {
+    if (!arr || arr.length === 0) return [];
+    const copy = [...arr];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = copy[i] as T;
+      copy[i] = copy[j] as T;
+      copy[j] = temp;
     }
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return copy.slice(0, Math.min(count, copy.length));
+  }
+
+  // Ensure we always have 5 items by topping up from defaults (future-proof if folder has fewer than 5)
+  function ensureFive(arr: string[]): string[] {
+    const res = [...arr];
+    let i = 0;
+    while (res.length < 5) {
+      const idx = i % DEFAULT_FALLBACKS.length;
+      const candidate = DEFAULT_FALLBACKS[idx] as string;
+      if (candidate && !res.includes(candidate)) res.push(candidate);
+      i++;
+      if (i > DEFAULT_FALLBACKS.length * 3) break;
+    }
+    return res.slice(0, 5);
+  }
+
+  // Safe accessor for Image src with proper string fallback (handles noUncheckedIndexedAccess)
+  function getImg(i: number): string {
+    const fromState = bentoImages[i];
+    if (fromState) return fromState;
+    const fromDefaults = DEFAULT_FALLBACKS[i] as string | undefined;
+    return fromDefaults ?? ABSOLUTE_FALLBACK;
+  }
+
+  // Fetch dynamic image list and pick 5 at every reload
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/bento-images", { cache: "no-store" });
+        if (!res.ok) throw new Error("Failed to load images");
+        const data = await res.json();
+        const files: string[] = Array.isArray(data?.images) ? data.images : [];
+        const base = files.length ? files : Array.from(DEFAULT_FALLBACKS);
+        const picks = sampleRandom<string>(base, 5);
+        const ensured = ensureFive(picks);
+        if (!cancelled) setBentoImages(ensured);
+      } catch {
+        const picks = sampleRandom<string>(Array.from(DEFAULT_FALLBACKS), 5);
+        const ensured = ensureFive(picks);
+        if (!cancelled) setBentoImages(ensured);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  // Animate text on mount with standardized timing
+  // Fade-in animation for key elements
   useEffect(() => {
     const el = heroRef.current;
-    if (el) {
-      const animation = gsap.from(el.querySelectorAll("h1, p, a"), {
-        opacity: 0,
-        y: 20,
-        stagger: 0.1,
-        duration: 0.6,
-        ease: "power2.out",
-      });
-      
-      return () => {
-        animation.kill();
-      };
-    }
-    
+    if (!el) return;
+    const anim = gsap.from(el.querySelectorAll(".animate-element"), {
+      opacity: 0,
+      y: 24,
+      stagger: 0.1,
+      duration: 0.6,
+      ease: "power2.out",
+    });
     return () => {
-      // Cleanup function for when element is not found
+      anim.kill();
     };
-  }, []);
-
-  // Infinite glow animation effect
-  useEffect(() => {
-    const glowAnimation = () => {
-      // Extremely smooth fade in (3 seconds)
-      gsap.to({ opacity: 0 }, {
-        opacity: 1,
-        duration: 3,
-        ease: "power2.inOut",
-        onUpdate: function() {
-          setGlowOpacity(this.targets()[0].opacity);
-        },
-        onComplete: () => {
-          // Stay at full glow for 8 seconds
-          setTimeout(() => {
-            // Extremely smooth fade out (3 seconds)
-            gsap.to({ opacity: 1 }, {
-              opacity: 0,
-              duration: 3,
-              ease: "power2.inOut",
-              onUpdate: function() {
-                setGlowOpacity(this.targets()[0].opacity);
-              },
-              onComplete: () => {
-                // Wait 2 seconds then restart the cycle
-                setTimeout(glowAnimation, 2000);
-              }
-            });
-          }, 8000);
-        }
-      });
-    };
-
-    // Start the first cycle after 1.5 seconds
-    const timer = setTimeout(glowAnimation, 1500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Comet animation logic
-    useEffect(() => {
-      const canvas = cometRef.current;
-      if (!canvas) return;
-
-      let width = window.innerWidth;
-      let height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-
-      let cometX = width / 2;
-      let cometY = height / 2;
-      let targetX = cometX;
-      let targetY = cometY;
-
-      // Store previous positions for a flowing tail
-      const tailHistory: { x: number; y: number }[] = [];
-      const maxTailPoints = 100;
-
-      const ctx = canvas.getContext("2d")!;
-      let animationFrame: number;
-
-      // Fade-out state for smooth disappearance
-      let fadeOut = 1;
-
-      function drawComet() {
-        ctx.clearRect(0, 0, width, height);
-
-        // Disappearance threshold
-        const atRest =
-          Math.abs(cometX - targetX) < 8 && Math.abs(cometY - targetY) < 8;
-
-        // Smoothly fade out when at rest, fade in when moving
-        if (atRest) {
-          fadeOut = Math.max(0, fadeOut - 0.04);
-        } else {
-          fadeOut = Math.min(1, fadeOut + 0.08);
-        }
-        if (fadeOut <= 0.01) return;
-
-        // Draw tail as a smooth curve with gradient from #0f51dd to transparent and noise texture
-        if (tailHistory.length > 2) {
-          ctx.save();
-          ctx.lineCap = "round";
-          for (let i = tailHistory.length - 1; i > 1; i--) {
-            const p0 = tailHistory[i];
-            const p1 = tailHistory[i - 1];
-            const p2 = tailHistory[i - 2];
-            
-            if (!p0 || !p1 || !p2) continue;
-            
-            const t = i / tailHistory.length;
-            // Fade tail out after tip
-            const tailAlpha = 0.18 * t * fadeOut * Math.max(0, (tailHistory.length - i) / tailHistory.length + fadeOut);
-            ctx.beginPath();
-            ctx.globalAlpha = tailAlpha;
-            ctx.lineWidth = 64 * t;
-            // Gradient: tip is #0f51dd, tail is transparent
-            const grad = ctx.createLinearGradient(p1.x, p1.y, p0.x, p0.y);
-            grad.addColorStop(0, "#0f51dd");
-            grad.addColorStop(1, "rgba(15,81,221,0)");
-            ctx.strokeStyle = grad;
-            // Quadratic curve for smoothness
-            ctx.moveTo(p2.x, p2.y);
-            ctx.quadraticCurveTo(p1.x, p1.y, p0.x, p0.y);
-            ctx.stroke();
-
-            // Add noise texture along the trail
-            for (let n = 0; n < 8; n++) {
-              const noiseT = Math.random();
-              const nx =
-                p2.x +
-                (p1.x - p2.x) * noiseT +
-                (Math.random() - 0.5) * 8 * (1 - t);
-              const ny =
-                p2.y +
-                (p1.y - p2.y) * noiseT +
-                (Math.random() - 0.5) * 8 * (1 - t);
-              ctx.save();
-              ctx.globalAlpha = (0.03 + 0.07 * t) * Math.random() * fadeOut;
-              ctx.beginPath();
-              ctx.arc(nx, ny, 1.2 + Math.random() * 1.5 * t, 0, Math.PI * 2);
-              ctx.fillStyle = "#0f51dd";
-              ctx.fill();
-              ctx.restore();
-            }
-          }
-          ctx.restore();
-        }
-
-        // Comet head: dense, gradient-filled, visually consistent with trail
-        for (let i = 0; i < 16; i++) {
-          ctx.save();
-          const r = 32 - (i * 2);
-          // Fade tip first, then tail
-          const alpha = (0.12 + 0.06 * (1 - i / 16)) * fadeOut;
-          ctx.globalAlpha = alpha;
-          ctx.beginPath();
-          ctx.arc(cometX, cometY, r, 0, Math.PI * 2);
-          // Use same gradient as trail for fill
-          const grad = ctx.createRadialGradient(cometX, cometY, 0, cometX, cometY, r);
-          grad.addColorStop(0, "#0f51dd");
-          grad.addColorStop(1, "rgba(15,81,221,0)");
-          ctx.fillStyle = grad;
-          ctx.fill();
-          ctx.restore();
-        }
-      }
-
-      function animate() {
-        // Slower and smoother movement for more natural turns
-        cometX += (targetX - cometX) * 0.025;
-        cometY += (targetY - cometY) * 0.025;
-
-        // Add current position to tail history
-        tailHistory.push({ x: cometX, y: cometY });
-        if (tailHistory.length > maxTailPoints) {
-          tailHistory.shift();
-        }
-
-        drawComet();
-        animationFrame = requestAnimationFrame(animate);
-      }
-
-    function handleMouse(e: MouseEvent) {
-      // Quantize cursor position to reduce precision and sudden movements
-      const grid = 24;
-      targetX = Math.round(e.clientX / grid) * grid;
-      targetY = Math.round(e.clientY / grid) * grid;
-    }
-
-    function handleResize() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      if (canvas) {
-        canvas.width = width;
-        canvas.height = height;
-      }
-    }
-
-    window.addEventListener("mousemove", handleMouse);
-    window.addEventListener("resize", handleResize);
-    animate();
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouse);
-      window.removeEventListener("resize", handleResize);
-      cancelAnimationFrame(animationFrame);
-    };
-  }, []);
-
-  // --- Responsive hero text logic ---
-  const firstLineRef = useRef<HTMLSpanElement | null>(null);
-  const secondLineRef = useRef<HTMLSpanElement | null>(null);
-  const [firstLineWidth, setFirstLineWidth] = useState<number | null>(null);
-  const [secondLineFontSize, setSecondLineFontSize] = useState<string>("clamp(2.5rem, 10vw, 8rem)");
-
-  useEffect(() => {
-    function updateWidthsAndFont() {
-      if (!firstLineRef.current || !secondLineRef.current) return;
-      const width = firstLineRef.current.offsetWidth;
-      setFirstLineWidth(width);
-
-      // Dynamically increase font size of second line to match width
-      const testSpan = secondLineRef.current;
-      let min = 10;
-      let max = 300;
-      let best = min;
-      let tries = 0;
-      testSpan.style.fontSize = min + "px";
-      testSpan.style.width = "auto";
-      testSpan.style.display = "inline-block";
-      testSpan.style.whiteSpace = "nowrap";
-      // Binary search for best font size
-      while (min <= max && tries < 20) {
-        const mid = Math.floor((min + max) / 2);
-        testSpan.style.fontSize = mid + "px";
-        const testWidth = testSpan.offsetWidth;
-        if (Math.abs(testWidth - width) <= 2) {
-          best = mid;
-          break;
-        }
-        if (testWidth < width) {
-          best = mid;
-          min = mid + 1;
-        } else {
-          max = mid - 1;
-        }
-        tries++;
-      }
-      testSpan.style.fontSize = best + "px";
-      setSecondLineFontSize(best + "px");
-    }
-
-    updateWidthsAndFont();
-    window.addEventListener("resize", updateWidthsAndFont);
-    return () => window.removeEventListener("resize", updateWidthsAndFont);
   }, []);
 
   return (
     <section
+      id="hero-section"
       ref={heroRef}
-      className="hero-section relative min-h-screen h-screen flex items-center justify-center bg-[var(--bg-100)] overflow-hidden pt-16"
-      style={{ width: "100vw", height: "100vh" }}
+      className="relative min-h-screen pt-36 overflow-hidden"
+      aria-label="Venture studio hero"
     >
-      {/* Comet Canvas */}
-      <canvas
-        ref={cometRef}
-        className="pointer-events-none absolute inset-0 w-full h-full z-0"
-        aria-hidden="true"
+      {/* Base deep-teal gradient */}
+      <div
+        id="hero-bg-base"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(180deg, var(--bg-100) 0%, #f9fafb 40%, var(--bg-200) 100%)",
+        }}
       />
-      <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-4 h-full">
-        <div className="flex flex-col items-center justify-center w-full">
-          <div
-            className="font-bold text-[var(--text-100)] leading-tight tracking-tight w-full"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              width: "100vw",
-              maxWidth: "100vw",
-              overflow: "hidden",
-              margin: 0,
-              padding: 0,
-            }}
-          >
-            <span
-              ref={firstLineRef}
-              style={{
-                display: "inline-block",
-                fontSize: "clamp(2.5rem, 10vw, 8rem)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.03em",
-                textAlign: "center",
-                whiteSpace: "nowrap",
-                width: "auto",
-                minWidth: 0,
-                maxWidth: "100vw",
-              }}
-            >
-              WE CRAFT DIGITAL
-            </span>
-            <span
-              ref={secondLineRef}
-              style={{
-                display: "inline-block",
-                fontSize: secondLineFontSize,
-                lineHeight: 1.05,
-                letterSpacing: "-0.03em",
-                textAlign: "center",
-                whiteSpace: "nowrap",
-                width: firstLineWidth ? `${firstLineWidth}px` : "auto",
-                minWidth: 0,
-                maxWidth: "100vw",
-                textShadow: glowOpacity > 0 ? (
-                  isMobile
-                    ? `0 0 6px rgba(255, 255, 255, ${0.4 * glowOpacity}), 0 0 12px rgba(255, 255, 255, ${0.2 * glowOpacity}), 0 0 18px rgba(255, 255, 255, ${0.1 * glowOpacity})`
-                    : `0 0 12px rgba(255, 255, 255, ${0.4 * glowOpacity}), 0 0 24px rgba(255, 255, 255, ${0.2 * glowOpacity}), 0 0 36px rgba(255, 255, 255, ${0.1 * glowOpacity})`
-                ) : "none",
-              }}
-            >
-              EXPERIENCES
-            </span>
+
+      {/* Subtle full-width vertical bands */}
+      <div
+        id="hero-bg-bands"
+        className="absolute inset-0 pointer-events-none mix-blend-multiply"
+        style={{
+          opacity: 0.5,
+          backgroundImage:
+            "repeating-linear-gradient(90deg, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 78px, rgba(0,0,0,0.06) 78px, rgba(0,0,0,0.06) 96px)",
+        }}
+      />
+
+      {/* Content container */}
+      <div
+        id="hero-container"
+        className="relative z-10 w-full max-w-screen-xl mx-auto px-6 lg:px-8"
+      >
+        {/* Responsive 2-column layout: left content, right bento grid */}
+        <div id="hero-content-grid" className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          {/* Left Column - Existing content */}
+          <div id="hero-left-col" className="lg:col-span-7 flex flex-col">
+            {/* Announcement pill */}
+            <div id="hero-announcement-wrap" className="animate-element">
+              <div
+                id="hero-announcement"
+                className="inline-flex items-center gap-3 rounded-2xl border px-4 py-2"
+                style={{
+                  background: "var(--bg-100)",
+                  borderColor: "var(--bg-300)",
+                  boxShadow:
+                    "0 1px 0 rgba(255,255,255,0.6) inset, 0 6px 18px rgba(0,0,0,0.06)",
+                }}
+              >
+                <span
+                  id="hero-announcement-text"
+                  className="text-[12px] tracking-[0.14em] uppercase text-[var(--text-200)]"
+                >
+                  Applications open for February
+                </span>
+                <span
+                  id="hero-announcement-sep"
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ backgroundColor: "var(--accent-green, #C0FF5A)" }}
+                />
+                <span
+                  id="hero-announcement-chip"
+                  className="text-[11px] font-bold leading-none rounded-md px-2.5 py-1"
+                  style={{
+                    color: "#0B1B14",
+                    backgroundColor: "var(--accent-green, #C0FF5A)",
+                    boxShadow: "0 8px 20px rgba(192,255,90,0.28)",
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  4 Spots Left
+                </span>
+              </div>
+            </div>
+
+            {/* Heading + subtext */}
+            <div id="hero-copy-wrap" className="mt-8 animate-element">
+              <h1
+                id="hero-heading"
+                className="text-[var(--text-100)] font-light leading-[1.08]"
+                style={{
+                  fontSize: "clamp(2.4rem, 6.2vw, 4.8rem)",
+                  textShadow: "none",
+                }}
+              >
+                AI-Driven Web Solutions for
+                <br />
+                Growth & Google Rankings
+              </h1>
+
+              <p
+                id="hero-subtext"
+                className="mt-6 max-w-3xl text-[1.0625rem] md:text-[1.125rem] leading-relaxed text-[var(--text-200)]"
+              >
+                High-performance websites powered by AI-driven innovation to grow your business with Sharp Digital.
+              </p>
+
+              {/* Action buttons */}
+              <div
+                id="hero-buttons"
+                className="mt-8 flex flex-col sm:flex-row gap-4 animate-element"
+              >
+                <button
+                  id="hero-btn-explore"
+                  className="btn-primary px-8 py-4 rounded-xl text-base transition-all duration-300 hover:scale-105 active:scale-95"
+                >
+                  Explore Our Products
+                </button>
+
+                <button
+                  id="hero-btn-book"
+                  className="px-8 py-4 rounded-xl text-base font-medium transition-all duration-300 hover:scale-105 active:scale-95"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.1)",
+                    backdropFilter: "blur(10px)",
+                    border: "1px solid rgba(255, 255, 255, 0.2)",
+                    color: "var(--text-100)",
+                    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
+                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
+                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.2)";
+                  }}
+                >
+                  Book a Call
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-row gap-6 mt-10">
-            <a
-              href="#projects"
-              className="inline-block bg-[#006fff] py-3 px-8 rounded-lg font-semibold shadow-md text-white hover:bg-[#0055cc] transition-colors duration-300"
-            >
-              Our Work
-            </a>
-            <a
-              href="#contact"
-              className="inline-block py-3 px-8 rounded-lg font-semibold border-2 border-[var(--accent-green)] bg-transparent contact-button-text-white hover:bg-[var(--accent-green)] hover:text-[var(--white-color)] transition-colors duration-300"
-            >
-              Contact Us
-            </a>
+
+          {/* Right Column - Bento Grid */}
+          <div id="hero-right-col" className="lg:col-span-5">
+            <div id="hero-bento-wrap" className="hidden lg:block animate-element">
+              <div
+                id="hero-bento"
+                className="grid grid-cols-6 auto-rows-[96px] gap-4"
+                aria-label="Showcase grid"
+              >
+                {/* Large tile */}
+                <div
+                  id="bento-tile-1"
+                  className="relative col-span-4 row-span-4 rounded-2xl overflow-hidden border"
+                  style={{
+                    background: "var(--bg-100)",
+                    borderColor: "var(--bg-300)",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+                  }}
+                >
+                  <div id="bento-tile-1-inner" className="absolute inset-0">
+                    <Image
+                      id="bento-tile-1-img"
+                      src={getImg(0)}
+                      alt="Placeholder project 1"
+                      fill
+                      sizes="(min-width: 1024px) 420px, 100vw"
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                  <div
+                    id="bento-tile-1-overlay"
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.12) 100%)",
+                    }}
+                  />
+                </div>
+
+                {/* Small square */}
+                <div
+                  id="bento-tile-2"
+                  className="relative col-span-2 row-span-2 rounded-2xl overflow-hidden border"
+                  style={{
+                    background: "var(--bg-100)",
+                    borderColor: "var(--bg-300)",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+                  }}
+                >
+                  <div id="bento-tile-2-inner" className="absolute inset-0">
+                    <Image
+                      id="bento-tile-2-img"
+                      src={getImg(1)}
+                      alt="Placeholder project 2"
+                      fill
+                      sizes="(min-width: 1024px) 220px, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div
+                    id="bento-tile-2-overlay"
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.10) 100%)",
+                    }}
+                  />
+                </div>
+
+                {/* Small square */}
+                <div
+                  id="bento-tile-3"
+                  className="relative col-span-2 row-span-2 rounded-2xl overflow-hidden border"
+                  style={{
+                    background: "var(--bg-100)",
+                    borderColor: "var(--bg-300)",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+                  }}
+                >
+                  <div id="bento-tile-3-inner" className="absolute inset-0">
+                    <Image
+                      id="bento-tile-3-img"
+                      src={getImg(2)}
+                      alt="Placeholder project 3"
+                      fill
+                      sizes="(min-width: 1024px) 220px, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div
+                    id="bento-tile-3-overlay"
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.10) 100%)",
+                    }}
+                  />
+                </div>
+
+                {/* Wide tile */}
+                <div
+                  id="bento-tile-4"
+                  className="relative col-span-3 row-span-2 rounded-2xl overflow-hidden border"
+                  style={{
+                    background: "var(--bg-100)",
+                    borderColor: "var(--bg-300)",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+                  }}
+                >
+                  <div id="bento-tile-4-inner" className="absolute inset-0">
+                    <Image
+                      id="bento-tile-4-img"
+                      src={getImg(3)}
+                      alt="Placeholder project 4"
+                      fill
+                      sizes="(min-width: 1024px) 300px, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div
+                    id="bento-tile-4-overlay"
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.10) 100%)",
+                    }}
+                  />
+                </div>
+
+                {/* Wide tile */}
+                <div
+                  id="bento-tile-5"
+                  className="relative col-span-3 row-span-2 rounded-2xl overflow-hidden border"
+                  style={{
+                    background: "var(--bg-100)",
+                    borderColor: "var(--bg-300)",
+                    boxShadow: "0 6px 18px rgba(0,0,0,0.06)",
+                  }}
+                >
+                  <div id="bento-tile-5-inner" className="absolute inset-0">
+                    <Image
+                      id="bento-tile-5-img"
+                      src={getImg(4)}
+                      alt="Placeholder project 5"
+                      fill
+                      sizes="(min-width: 1024px) 300px, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div
+                    id="bento-tile-5-overlay"
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(0,0,0,0.03) 0%, rgba(0,0,0,0.10) 100%)",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Vignette for edge softness */}
+      <div
+        id="hero-vignette"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          boxShadow:
+            "inset 0 -60px 80px rgba(0,0,0,0.08), inset 0 60px 120px rgba(0,0,0,0.06)",
+        }}
+      />
     </section>
   );
 }

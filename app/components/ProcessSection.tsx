@@ -72,7 +72,7 @@ export default function ProcessSection() {
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
+          duration: 0.35,
           ease: "power2.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -92,9 +92,9 @@ export default function ProcessSection() {
         {
           opacity: 1,
           y: 0,
-          duration: 0.6,
+          duration: 0.35,
           ease: "power2.out",
-          delay: 0.1,
+          delay: 0.06,
           scrollTrigger: {
             trigger: ".process-content",
             start: "top 80%",
@@ -115,10 +115,10 @@ export default function ProcessSection() {
           opacity: 1,
           rotateX: 0,
           y: 0,
-          duration: 0.6,
+          duration: 0.35,
           ease: "power2.out",
-          stagger: 0.1,
-          delay: 0.2,
+          stagger: 0.06,
+          delay: 0.12,
           scrollTrigger: {
             trigger: ".process-visualization",
             start: "top 80%",

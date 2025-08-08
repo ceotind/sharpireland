@@ -9,6 +9,15 @@ export const metadata: Metadata = {
     description: 'Get a comprehensive SEO analysis of any website. Check title tags, meta descriptions, headings, images, and receive actionable recommendations.',
     type: 'website',
     url: 'https://sharpdigital.ie/seo-analyzer',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Sharp Digital Ireland - Web Development Agency Dublin',
+        type: 'image/jpeg',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',

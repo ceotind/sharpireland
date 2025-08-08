@@ -26,6 +26,7 @@
     "@fontsource/alex-brush": "^5.2.5",
     "@fontsource/anton": "^5.2.5",
     "@fontsource/inter": "^5.2.5",
+    "@fontsource/roboto": "^5.2.6",
     "@heroicons/react": "^2.2.0",
     "@types/cheerio": "^0.22.35",
     "@types/gsap": "^1.20.2",
