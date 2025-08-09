@@ -24,7 +24,7 @@ export default function Process() {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.13
+        staggerChildren: 0.1
       }
     }
   };

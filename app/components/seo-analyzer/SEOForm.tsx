@@ -100,7 +100,7 @@ export default function SEOForm({
               placeholder="Enter website URL (e.g., https://example.com)"
               aria-describedby={describedBy}
               aria-invalid={!!validationMsg}
-              className={`w-full px-6 py-3 sm:py-4 rounded-xl focus:outline-none text-base sm:text-lg transition-all break-all bg-[var(--bg-300)] border border-[var(--border-100)] text-[var(--text-100)] ${
+              className={`w-full px-6 py-3 sm:py-4 rounded-xl focus:outline-none text-base sm:text-lg transition-all duration-200 break-all bg-[var(--bg-200)] border-2 border-[var(--bg-300)] text-[var(--text-100)] focus:border-[var(--primary-100)] focus:shadow-lg shadow-sm ${
                 url.length > 48 ? "font-mono" : ""
               }`}
               autoCapitalize="none"
@@ -125,7 +125,7 @@ export default function SEOForm({
                 onClick={() => {
                   onExampleSelect(ex);
                 }}
-                className="px-3 py-1.5 rounded-full text-sm border transition-colors bg-[var(--bg-300)] text-[var(--text-100)] border-[var(--border-100)]"
+                className="px-3 py-1.5 rounded-full text-sm border transition-colors bg-[var(--bg-300)] text-[var(--text-100)] border-[var(--bg-400)]"
               >
                 {ex}
               </button>
@@ -153,10 +153,10 @@ export default function SEOForm({
               ref={submitRef}
               type="submit"
               disabled={!isValid || loading}
-              className="w-full px-6 py-3 sm:py-3 rounded-md font-semibold text-base sm:text-lg shadow-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap bg-[var(--accent-green)] hover:bg-[var(--accent-green-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2"
+              className="w-full px-6 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg shadow-lg transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap bg-gradient-to-r from-[var(--primary-100)] to-[var(--primary-200)] hover:scale-105 hover:shadow-2xl active:scale-100 active:shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-100)] focus:ring-offset-2"
               style={{
                 color: "var(--white-color)",
-                boxShadow: "0 4px 14px var(--accent-green-shadow)",
+                boxShadow: "0 4px 14px rgba(15, 81, 221, 0.3)",
                 willChange: "transform, opacity",
               }}
               whileHover="hover"
@@ -235,20 +235,14 @@ export default function SEOForm({
                 </svg>
               </div>
               <div id="seo-error-text" className="ml-3">
-                <p
-                  className="text-sm"
-                  style={{
-                    color: "var(--error-text)",
-                    fontSize: "clamp(0.875rem, 1.5vw, 1rem)",
-                  }}
-                >
+                <p className="text-sm text-[var(--error-text)]">
                   {error}
                 </p>
                 <div id="seo-error-actions" className="mt-2">
                   <a
                     id="seo-error-contact-link"
                     href="/contact"
-                    className="underline text-[var(--accent-green)]"
+                    className="underline text-[var(--primary-100)]"
                   >
                     Contact us
                   </a>
@@ -276,27 +270,19 @@ export default function SEOForm({
               {!prefersReducedMotion ? (
                 <div
                   id="seo-loading-spinner"
-                  className="rounded-full h-16 w-16 mx-auto border-4 border-t-[var(--accent-green)] border-b-[var(--bg-300)] border-l-transparent border-r-transparent"
+                  className="rounded-full h-16 w-16 mx-auto border-4 border-t-[var(--primary-100)] border-b-[var(--bg-300)] border-l-transparent border-r-transparent"
                 />
               ) : null}
               <motion.p
                 id="seo-loading-text"
-                className="mt-4 text-lg font-medium"
-                style={{
-                  color: "var(--text-100)",
-                  fontSize: "clamp(1.125rem, 2vw, 1.25rem)",
-                }}
+                className="mt-4 text-lg md:text-xl font-medium text-[var(--text-100)]"
                 variants={titleVariants}
               >
                 Analyzing your website…
               </motion.p>
               <motion.p
                 id="seo-loading-subtext"
-                className="mt-2"
-                style={{
-                  color: "var(--text-200)",
-                  fontSize: "clamp(1rem, 1.5vw, 1.125rem)",
-                }}
+                className="mt-2 text-base md:text-lg text-[var(--text-200)]"
                 variants={titleVariants}
               >
                 This may take a few moments

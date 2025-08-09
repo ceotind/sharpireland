@@ -33,7 +33,7 @@ export default function FeatureCards({
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          style={{ color: "var(--accent-blue)" }}
+          style={{ color: "var(--primary-100)" }}
         >
           <path
             strokeLinecap="round"
@@ -55,7 +55,7 @@ export default function FeatureCards({
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          style={{ color: "var(--accent-green)" }}
+          style={{ color: "var(--primary-100)" }}
         >
           <path
             strokeLinecap="round"
@@ -77,7 +77,7 @@ export default function FeatureCards({
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
-          style={{ color: "var(--accent-purple)" }}
+          style={{ color: "var(--primary-100)" }}
         >
           <path
             strokeLinecap="round"
@@ -99,7 +99,7 @@ export default function FeatureCards({
         <motion.div
           id={`seo-feature-card-${index + 1}`}
           key={index}
-          className="p-6 rounded-2xl transition-all bg-[var(--bg-200)] border border-[var(--border-100)] shadow-sm"
+          className="p-6 rounded-2xl transition-all bg-[var(--bg-200)] border border-[var(--bg-300)] shadow-sm"
           custom={index}
           variants={featureCardVariants}
           initial="hidden"
@@ -115,14 +115,12 @@ export default function FeatureCards({
             {feature.icon}
           </div>
           <h3
-            className="text-xl font-semibold mb-2"
-            style={{ color: "var(--text-100)", fontSize: "clamp(1.25rem, 2vw, 1.5rem)" }}
+            className="text-xl font-semibold mb-2 text-[var(--text-100)]"
           >
             {feature.title}
           </h3>
           <p
-            className="text-[var(--text-200)]"
-            style={{ fontSize: "clamp(1rem, 1.5vw, 1.125rem)" }}
+            className="text-base md:text-lg text-[var(--text-200)]"
           >
             {feature.description}
           </p>

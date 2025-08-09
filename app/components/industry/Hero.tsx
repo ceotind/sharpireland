@@ -19,7 +19,7 @@ export default function Hero() {
           {
             opacity: 1,
             y: 0,
-            duration: 1,
+            duration: 0.6,
             stagger: 0.1,
             ease: 'power2.out',
           }
@@ -50,7 +50,7 @@ export default function Hero() {
         </p>
         <div className="animate-element flex justify-center mt-6">
           <button
-            className="px-8 py-3 bg-[var(--accent-green)] text-white font-semibold rounded-lg shadow-md hover:bg-[var(--accent-green-base)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2"
+            className="px-8 py-3 bg-[var(--primary-100)] text-white font-semibold rounded-lg shadow-md hover:bg-[var(--primary-200)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-100)] focus:ring-offset-2"
           >
             {hero.ctaButton}
           </button>

@@ -22,7 +22,7 @@ export default function CTA() {
           {
             opacity: 1,
             y: 0,
-            duration: 0.5,
+            duration: 0.6,
             stagger: 0.1,
             ease: 'power2.out',
             scrollTrigger: {
@@ -56,13 +56,13 @@ export default function CTA() {
 
         <div className="animate-element flex flex-col sm:flex-row gap-3 justify-center">
           <button
-            className="px-6 py-3 bg-[var(--accent-green)] text-white rounded-md hover:bg-[var(--accent-green-hover)] transition-colors"
+            className="px-6 py-3 bg-[var(--primary-100)] text-white rounded-md hover:bg-[var(--primary-200)] transition-colors"
             data-action={cta.buttons.primary.action}
           >
             {cta.buttons.primary.text}
           </button>
           <button
-            className="px-6 py-3 border border-[var(--border-200)] text-[var(--text-100)] rounded-md hover:bg-[var(--bg-200)] transition-colors"
+            className="px-6 py-3 border border-[var(--bg-300)] text-[var(--text-100)] rounded-md hover:bg-[var(--bg-200)] transition-colors"
             data-action={cta.buttons.secondary.action}
           >
             {cta.buttons.secondary.text}

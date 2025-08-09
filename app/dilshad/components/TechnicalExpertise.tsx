@@ -107,17 +107,17 @@ const ExpertiseCard: React.FC<ExpertiseCardProps> = ({ title, category, techStac
       id={`expertise-card-${title.toLowerCase().replace(/\s/g, '-')}`}
       className="bg-[var(--bg-200)] p-6 md:p-8 rounded-xl shadow-lg border border-[var(--bg-300)] flex flex-col items-center text-center transform transition-all duration-300 ease-out hover:shadow-xl hover:scale-105"
     >
-      <h3 className="text-xl md:text-2xl font-semibold text-[var(--foreground)] mb-2">{title}</h3>
-      <p className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium mb-4 md:mb-6">{category}</p>
+      <h3 className="text-xl md:text-2xl font-semibold text-[var(--text-100)] mb-2">{title}</h3>
+      <p className="text-sm uppercase tracking-wide text-[var(--primary-100)] font-medium mb-4 md:mb-6">{category}</p>
       <div className="flex flex-wrap justify-center gap-2">
         {techStack.map((tech, index) => {
           const IconComponent = techIconMap[tech] || FaCode;
           return (
             <span
               key={index}
-              className="px-3 py-1 rounded-full text-xs font-medium bg-[var(--accent-green-base)] bg-opacity-40 text-white flex items-center gap-1"
+              className="px-3 py-1 rounded-full text-xs font-medium bg-[var(--primary-100)] text-[var(--white-color)] flex items-center gap-1"
             >
-              <IconComponent className="w-3 h-3 text-white" />
+              <IconComponent className="w-3 h-3 text-[var(--white-color)]" />
               {tech}
             </span>
           );
@@ -184,17 +184,17 @@ export default function TechnicalExpertise() {
   }, []);
 
   return (
-    <section id="technical-expertise" ref={sectionRef} className="bg-[var(--background)] py-20 md:py-32">
+    <section id="technical-expertise" ref={sectionRef} className="bg-[var(--bg-100)] py-20 md:py-32">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Pattern */}
         <div className="text-center animate-element mb-12 md:mb-16">
-          <span className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">
+          <span className="text-sm uppercase tracking-wide text-[var(--primary-100)] font-medium">
             Our Capabilities
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--foreground)]">
+          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-[var(--text-100)]">
             Technical Expertise
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-[var(--foreground)] text-base md:text-lg opacity-80">
+          <p className="mt-4 max-w-2xl mx-auto text-[var(--text-100)] text-base md:text-lg opacity-80">
             Leveraging a diverse stack of modern technologies to build robust and innovative solutions.
           </p>
         </div>

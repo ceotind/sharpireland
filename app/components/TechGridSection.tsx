@@ -159,7 +159,7 @@ export default function TechGridSection() {
       <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-8 flex flex-col gap-8 md:gap-12">
       {/* Heading Section */}
       <header className="text-center">
-        <span className="text-xs sm:text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium">Our Technology Stack</span>
+        <span className="text-xs sm:text-sm uppercase tracking-wide text-[var(--primary-100)] font-medium">Our Technology Stack</span>
         <h2 id="technologies-heading" className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-5xl font-bold text-[var(--text-100)]">
           Expert Web Development Technologies Ireland
         </h2>
@@ -197,7 +197,7 @@ export default function TechGridSection() {
                 alt={`${tech.name} logo - Professional ${tech.name} development services by Sharp Digital Ireland`}
                 width={80}
                 height={80}
-                className={`relative z-[2] h-auto max-w-[60px] ${tech.needsBackground ? 'bg-gray-800 rounded p-2' : ''}`}
+                className={`relative z-[2] h-auto max-w-[60px] ${tech.needsBackground ? 'bg-[var(--bg-400)] rounded p-2' : ''}`}
                 loading={index < 6 ? "eager" : "lazy"}
                 priority={index < 6}
                 title={`${tech.name} - Expert development services in Ireland`}
@@ -226,7 +226,7 @@ export default function TechGridSection() {
                 alt={`${tech.name} logo - Professional ${tech.name} development services by Sharp Digital Ireland`}
                 width={index === 14 ? 100 : (index === 15 ? 100 : 120)}
                 height={index === 14 ? 100 : (index === 15 ? 100 : 80)}
-                className={`${tech.widthClass} relative z-[2] h-auto max-w-[90px] md:max-w-none ${tech.needsBackground ? 'bg-gray-800 rounded p-2' : ''}`}
+                className={`${tech.widthClass} relative z-[2] h-auto max-w-[90px] md:max-w-none ${tech.needsBackground ? 'bg-[var(--bg-400)] rounded p-2' : ''}`}
                 loading={index < 6 ? "eager" : "lazy"}
                 priority={index < 6}
                 title={`${tech.name} - Expert development services in Ireland`}
