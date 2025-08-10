@@ -22,7 +22,7 @@ export default function WebDevelopmentSection({ content }: WebDevelopmentSection
     if (sectionRef.current) {
       gsap.fromTo(
         sectionRef.current.querySelectorAll(".animate-element"),
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
@@ -55,10 +55,10 @@ export default function WebDevelopmentSection({ content }: WebDevelopmentSection
           <div id="web-dev-features-column" className="animate-element">
             <FeatureGrid id="web-dev-features-grid" features={content.features} />
           </div>
-          <div id="web-dev-brand-collage-column" className="animate-element p-4 rounded-lg shadow-lg bg-[var(--bg-200)]">
+          <div id="web-dev-brand-collage-column" className="animate-element p-4 rounded-xl shadow-lg bg-[var(--bg-200)] border border-[var(--bg-300)]">
             <div id="web-dev-brand-collage-grid" className="grid grid-cols-3 sm:grid-cols-4 gap-4">
               {content.brandLogos.map((logoSrc, index) => (
-                <div id={`brand-logo-${index}`} key={logoSrc} className="flex items-center justify-center p-2 sm:p-4 bg-[var(--bg-300)] rounded-md shadow-sm">
+                <div id={`brand-logo-${index}`} key={logoSrc} className="flex items-center justify-center p-2 sm:p-4 bg-[var(--bg-100)] rounded-md shadow-sm border border-[var(--bg-300)]">
                   <Image
                     src={logoSrc}
                     alt={`Brand logo ${index + 1}`}

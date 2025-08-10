@@ -43,7 +43,7 @@ export default function SocialMediaSection({ content }: SocialMediaSectionProps)
       // Animation configuration based on motion preference
       const animationConfig = {
         opacity: prefersReducedMotion ? { from: 0.8, to: 1 } : { from: 0, to: 1 },
-        y: prefersReducedMotion ? { from: 0, to: 0 } : { from: 30, to: 0 },
+        y: prefersReducedMotion ? { from: 0, to: 0 } : { from: 24, to: 0 },
         scale: prefersReducedMotion ? { from: 0.98, to: 1 } : { from: 0.95, to: 1 },
         duration: prefersReducedMotion ? 0.3 : 0.6,
         stagger: prefersReducedMotion ? 0.05 : 0.1,
@@ -56,7 +56,7 @@ export default function SocialMediaSection({ content }: SocialMediaSectionProps)
           elements,
           {
             opacity: animationConfig.opacity.from,
-            y: animationConfig.y.from
+            y: animationConfig.y.from,
           },
           {
             opacity: animationConfig.opacity.to,
@@ -136,18 +136,18 @@ export default function SocialMediaSection({ content }: SocialMediaSectionProps)
             aria-labelledby="content-board-title"
           >
             <div id="content-board-header" className="mb-6 flex justify-between items-center">
-              <h3 id="content-board-title" className="text-xl md:text-2xl font-bold text-[var(--text-100)] font-anton">
+              <h3 id="content-board-title" className="text-xl md:text-2xl font-bold text-[var(--text-100)]">
                 Content Planning Board
               </h3>
               <div id="content-board-legend" className="flex gap-3" aria-label="Post status legend">
-                <span className="text-sm text-[var(--text-200)] font-inter">
+                <span className="text-sm text-[var(--text-200)]">
                   <span
                     className="inline-block w-3 h-3 rounded-full bg-[var(--accent-green)] mr-1"
                     aria-hidden="true"
                   ></span>
                   Published
                 </span>
-                <span className="text-sm text-[var(--text-200)] font-inter">
+                <span className="text-sm text-[var(--text-200)]">
                   <span
                     className="inline-block w-3 h-3 rounded-full bg-[var(--bg-300)] mr-1"
                     aria-hidden="true"
@@ -167,7 +167,7 @@ export default function SocialMediaSection({ content }: SocialMediaSectionProps)
                 <div
                   id={`social-post-${post.id}`}
                   key={post.id}
-                  className="relative bg-[var(--bg-100)] rounded-lg overflow-hidden border border-[var(--bg-300)] shadow-sm transition-all duration-300 hover:shadow-md focus-within:ring-2 focus-within:ring-[var(--accent-green)]"
+                  className="relative bg-[var(--bg-100)] rounded-xl overflow-hidden border border-[var(--bg-300)] shadow-sm transition-all duration-300 hover:shadow-md focus-within:ring-2 focus-within:ring-[var(--accent-green)]"
                   onMouseEnter={() => setHoveredPost(post.id)}
                   onMouseLeave={() => setHoveredPost(null)}
                   tabIndex={0} // Make focusable for keyboard navigation
@@ -234,7 +234,7 @@ export default function SocialMediaSection({ content }: SocialMediaSectionProps)
             <Link
               href="/contact"
               id="social-media-contact-link"
-              className="text-[var(--accent-green)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] rounded-md px-2 py-1 font-medium"
+              className="text-[var(--accent-green)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] rounded-xl px-2 py-1 font-medium"
               aria-label="Contact us about social media management services"
             >
               Contact us about social media management
@@ -242,7 +242,7 @@ export default function SocialMediaSection({ content }: SocialMediaSectionProps)
             <Link
               href="/case-studies"
               id="social-media-case-studies-link"
-              className="text-[var(--accent-green)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] rounded-md px-2 py-1 font-medium"
+              className="text-[var(--accent-green)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] rounded-xl px-2 py-1 font-medium"
               aria-label="View our social media case studies and success stories"
             >
               View our social media case studies

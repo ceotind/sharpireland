@@ -37,7 +37,7 @@ export default function StatBarExample() {
 
   return (
     <div id="stat-bar-example-container" className="py-12 px-6">
-      <h2 id="stat-bar-example-heading" className="text-3xl font-bold text-[var(--text-100)] mb-8 text-center font-anton">
+      <h2 id="stat-bar-example-heading" className="text-3xl font-bold text-[var(--text-100)] mb-8 text-center">
         Social Media Performance
       </h2>
       

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 interface ServiceCTAProps {
@@ -20,14 +22,29 @@ export default function ServiceCTA({
       <a
         id={`${id}-primary-button`}
         href={primaryLink}
-        className="px-8 py-3 rounded-full bg-[var(--accent-green)] text-[var(--white-color)] font-semibold text-lg shadow-lg hover:bg-[var(--accent-green-base)] transition-colors duration-300 text-center"
+        className="btn-primary px-8 py-3 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 text-center"
       >
         {primaryText}
       </a>
       <a
         id={`${id}-secondary-button`}
         href={secondaryLink}
-        className="px-8 py-3 rounded-full border-2 border-[var(--accent-green)] text-[var(--accent-green)] font-semibold text-lg hover:bg-[var(--accent-green)] hover:text-[var(--white-color)] transition-colors duration-300 text-center"
+        className="px-8 py-3 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 text-center"
+        style={{
+          background: "rgba(255, 255, 255, 0.1)",
+          backdropFilter: "blur(10px)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          color: "var(--text-100)",
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
+          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
+          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.2)";
+        }}
       >
         {secondaryText}
       </a>

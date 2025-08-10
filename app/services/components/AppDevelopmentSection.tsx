@@ -20,8 +20,8 @@ const AppDevelopmentSection: React.FC<AppDevelopmentSectionProps> = ({ content }
     gsap.registerPlugin(ScrollTrigger);
     if (sectionRef.current) {
       gsap.fromTo(
-        sectionRef.current.querySelectorAll('.animate-in'),
-        { opacity: 0, y: 50 },
+        sectionRef.current.querySelectorAll('.animate-element'),
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
@@ -38,7 +38,7 @@ const AppDevelopmentSection: React.FC<AppDevelopmentSectionProps> = ({ content }
 
       gsap.fromTo(
         mockupsRef.current,
-        { opacity: 0, scale: 0.9 },
+        { opacity: 0, scale: 0.95 },
         {
           opacity: 1,
           scale: 1,
@@ -65,15 +65,15 @@ const AppDevelopmentSection: React.FC<AppDevelopmentSectionProps> = ({ content }
         />
 
         <div id="services-app-dev-content" className="grid lg:grid-cols-2 gap-12 items-center">
-          <div id="services-app-dev-features" className="animate-in">
+          <div id="services-app-dev-features" className="animate-element">
             <FeatureGrid id="app-dev-features-grid" features={content.features} />
           </div>
 
-          <div id="services-app-dev-visuals" className="relative animate-in" ref={mockupsRef}>
+          <div id="services-app-dev-visuals" className="relative animate-element" ref={mockupsRef}>
             {/* Placeholder for device mockups and tabs */}
-            <div id="app-dev-mockups-placeholder" className="relative w-full h-96 bg-[var(--bg-200)] rounded-2xl flex items-center justify-center text-[var(--text-200)] text-center p-4 border border-[var(--bg-300)]">
+            <div id="app-dev-mockups-placeholder" className="relative w-full h-96 bg-[var(--bg-200)] rounded-xl flex items-center justify-center text-[var(--text-200)] text-center p-4 border border-[var(--bg-300)]">
               <p>Device Mockups and Tabs will go here</p>
-              <div id="app-dev-mockups-gradient" className="absolute inset-0 rounded-2xl opacity-30" style={{ background: 'linear-gradient(135deg, var(--accent-green-base) 0%, var(--accent-green) 100%)' }}></div>
+              <div id="app-dev-mockups-gradient" className="absolute inset-0 rounded-xl opacity-30" style={{ background: 'linear-gradient(135deg, var(--primary-200) 0%, var(--primary-100) 100%)' }}></div>
             </div>
           </div>
         </div>

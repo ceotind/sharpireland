@@ -94,7 +94,7 @@ export default function StatBar({ id, stats, animationDelay = 0, className = "" 
         <div 
           key={stat.id} 
           id={`${id}-stat-${stat.id}`} 
-          className="animate-element bg-[var(--bg-200)] p-6 rounded-lg border border-[var(--bg-300)] shadow-sm flex flex-col items-center text-center"
+          className="animate-element bg-[var(--bg-200)] p-6 rounded-xl border border-[var(--bg-300)] shadow-sm flex flex-col items-center text-center"
         >
           <div 
             id={`${id}-stat-${stat.id}-value-container`} 
@@ -102,7 +102,7 @@ export default function StatBar({ id, stats, animationDelay = 0, className = "" 
           >
             <span 
               id={`${id}-stat-${stat.id}-value`} 
-              className="stat-counter text-4xl md:text-5xl font-bold text-[var(--text-100)] font-anton"
+              className="stat-counter text-4xl md:text-5xl font-bold text-[var(--text-100)]"
               aria-live="polite"
             >
               {stat.prefix || ""}{0}{stat.suffix || ""}
@@ -114,7 +114,7 @@ export default function StatBar({ id, stats, animationDelay = 0, className = "" 
           >
             <span 
               id={`${id}-stat-${stat.id}-label`} 
-              className="text-sm md:text-base text-[var(--text-200)] font-medium uppercase tracking-wide font-inter"
+              className="text-sm md:text-base text-[var(--text-200)] font-medium uppercase tracking-wide"
             >
               {stat.label}
             </span>

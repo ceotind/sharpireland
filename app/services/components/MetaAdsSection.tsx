@@ -31,7 +31,7 @@ export default function MetaAdsSection({ content }: MetaAdsSectionProps) {
       // Animate section elements
       gsap.fromTo(
         sectionRef.current.querySelectorAll(".animate-element"),
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
@@ -140,7 +140,7 @@ export default function MetaAdsSection({ content }: MetaAdsSectionProps) {
         {/* Creative Carousel */}
         <div id="meta-ads-creative-carousel-wrapper" className="animate-element">
           <div id="meta-ads-creative-carousel-container" className="bg-[var(--bg-200)] p-6 md:p-8 rounded-xl border border-[var(--bg-300)] shadow-md">
-            <h3 id="meta-ads-creative-carousel-title" className="text-xl md:text-2xl font-bold text-[var(--text-100)] font-anton mb-6">
+            <h3 id="meta-ads-creative-carousel-title" className="text-xl md:text-2xl font-bold text-[var(--text-100)] mb-6">
               Ad Creative Formats
             </h3>
             
@@ -206,7 +206,7 @@ export default function MetaAdsSection({ content }: MetaAdsSectionProps) {
                       activeCreative === index ? "opacity-100" : "opacity-0 hidden md:block"
                     }`}
                   >
-                    <div id={`${creative.id}-content`} className="flex flex-col md:flex-row gap-6 bg-[var(--bg-100)] rounded-lg overflow-hidden border border-[var(--bg-300)]">
+                    <div id={`${creative.id}-content`} className="flex flex-col md:flex-row gap-6 bg-[var(--bg-100)] rounded-xl overflow-hidden border border-[var(--bg-300)]">
                       {/* Creative Media */}
                       <div id={`${creative.id}-media`} className="relative w-full md:w-1/2 h-64 md:h-auto">
                         {creative.type === "video" ? (
@@ -242,7 +242,7 @@ export default function MetaAdsSection({ content }: MetaAdsSectionProps) {
                         <span id={`${creative.id}-type`} className="text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium mb-2">
                           {creative.type} Format
                         </span>
-                        <h4 id={`${creative.id}-title`} className="text-xl font-bold text-[var(--text-100)] mb-2 font-anton">
+                        <h4 id={`${creative.id}-title`} className="text-xl font-bold text-[var(--text-100)] mb-2">
                           {creative.title}
                         </h4>
                         <p id={`${creative.id}-description`} className="text-[var(--text-200)]">
@@ -265,7 +265,7 @@ export default function MetaAdsSection({ content }: MetaAdsSectionProps) {
         {/* Audience Persona Cards */}
         <div id="meta-ads-personas-wrapper" className="animate-element">
           <div id="meta-ads-personas-container" ref={personasRef} className="bg-[var(--bg-200)] p-6 md:p-8 rounded-xl border border-[var(--bg-300)] shadow-md">
-            <h3 id="meta-ads-personas-title" className="text-xl md:text-2xl font-bold text-[var(--text-100)] font-anton mb-6">
+            <h3 id="meta-ads-personas-title" className="text-xl md:text-2xl font-bold text-[var(--text-100)] mb-6">
               Audience Targeting Personas
             </h3>
             
@@ -274,7 +274,7 @@ export default function MetaAdsSection({ content }: MetaAdsSectionProps) {
                 <div
                   key={persona.id}
                   id={persona.id}
-                  className="persona-card bg-[var(--bg-100)] rounded-lg overflow-hidden border border-[var(--bg-300)] shadow-sm transition-all duration-300 hover:shadow-md"
+                  className="persona-card bg-[var(--bg-100)] rounded-xl overflow-hidden border border-[var(--bg-300)] shadow-sm transition-all duration-300 hover:shadow-md"
                   style={{ backgroundColor: persona.backgroundColor }}
                 >
                   {/* Persona Header */}
@@ -295,7 +295,7 @@ export default function MetaAdsSection({ content }: MetaAdsSectionProps) {
                   
                   {/* Persona Content */}
                   <div id={`${persona.id}-content`} className="p-6 pt-12">
-                    <h4 id={`${persona.id}-name`} className="text-lg font-bold text-[var(--text-100)] mb-1 font-anton">
+                    <h4 id={`${persona.id}-name`} className="text-lg font-bold text-[var(--text-100)] mb-1">
                       {persona.name}
                     </h4>
                     
@@ -355,16 +355,16 @@ export default function MetaAdsSection({ content }: MetaAdsSectionProps) {
         <div id="meta-ads-links-wrapper" className="animate-element text-center">
           <div id="meta-ads-links" className="flex flex-col md:flex-row justify-center gap-4 md:gap-8">
             <Link 
-              href="/contact" 
+              href="/contact"
               id="meta-ads-contact-link"
-              className="text-[var(--accent-green)] hover:underline font-medium"
+              className="text-[var(--accent-green)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] rounded-xl px-2 py-1 font-medium"
             >
               Contact us about Meta advertising management
             </Link>
             <Link 
-              href="/case-studies" 
+              href="/case-studies"
               id="meta-ads-case-studies-link"
-              className="text-[var(--accent-green)] hover:underline font-medium"
+              className="text-[var(--accent-green)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] rounded-xl px-2 py-1 font-medium"
             >
               View our Meta advertising case studies
             </Link>

@@ -152,7 +152,7 @@ export default function AutomationSection({ content }: AutomationSectionProps) {
       // Animate section elements
       gsap.fromTo(
         sectionRef.current.querySelectorAll(".animate-element"),
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
@@ -261,7 +261,7 @@ export default function AutomationSection({ content }: AutomationSectionProps) {
                     id={`node-${node.id}`}
                     data-node-id={node.id}
                     className={`
-                      relative bg-[var(--bg-100)] p-5 rounded-lg border-2 transition-all duration-300
+                      relative bg-[var(--bg-100)] p-5 rounded-xl border-2 transition-all duration-300
                       ${isHighlighted ? 'border-[var(--accent-green)] shadow-lg scale-105' : 'border-[var(--bg-300)] shadow-sm'}
                       ${node.position === 'start' ? 'md:col-start-1' : ''}
                       ${node.position === 'end' ? 'md:col-start-3' : ''}
@@ -276,10 +276,10 @@ export default function AutomationSection({ content }: AutomationSectionProps) {
                     `}>
                       {node.icon}
                     </div>
-                    <h4 id={`node-${node.id}-title`} className="text-lg font-bold text-[var(--text-100)] font-anton mb-2">
+                    <h4 id={`node-${node.id}-title`} className="text-lg font-bold text-[var(--text-100)] mb-2">
                       {node.title}
                     </h4>
-                    <p id={`node-${node.id}-description`} className="text-sm text-[var(--text-200)] font-inter">
+                    <p id={`node-${node.id}-description`} className="text-sm text-[var(--text-200)]">
                       {node.description}
                     </p>
                     
@@ -308,7 +308,7 @@ export default function AutomationSection({ content }: AutomationSectionProps) {
         
         {/* Industry Use Cases */}
         <div id="automation-use-cases-wrapper" className="animate-element">
-          <h3 id="use-cases-title" className="text-xl md:text-2xl font-bold text-[var(--text-100)] font-anton mb-6 text-center">
+          <h3 id="use-cases-title" className="text-xl md:text-2xl font-bold text-[var(--text-100)] mb-6 text-center">
             Industry-Specific Automation Solutions
           </h3>
           
@@ -317,12 +317,12 @@ export default function AutomationSection({ content }: AutomationSectionProps) {
               <div
                 key={useCase.id}
                 id={`use-case-${useCase.id}`}
-                className="bg-[var(--bg-200)] p-6 rounded-lg border border-[var(--bg-300)] shadow-sm"
+                className="bg-[var(--bg-200)] p-6 rounded-xl border border-[var(--bg-300)] shadow-sm"
               >
-                <h4 id={`use-case-${useCase.id}-industry`} className="text-lg font-bold text-[var(--text-100)] font-anton mb-2">
+                <h4 id={`use-case-${useCase.id}-industry`} className="text-lg font-bold text-[var(--text-100)] mb-2">
                   {useCase.industry}
                 </h4>
-                <p id={`use-case-${useCase.id}-description`} className="text-sm text-[var(--text-200)] font-inter mb-4">
+                <p id={`use-case-${useCase.id}-description`} className="text-sm text-[var(--text-200)] mb-4">
                   {useCase.description}
                 </p>
                 <ul id={`use-case-${useCase.id}-benefits-list`} className="space-y-2">
@@ -333,7 +333,7 @@ export default function AutomationSection({ content }: AutomationSectionProps) {
                       className="flex items-start"
                     >
                       <span className="text-[var(--accent-green)] mr-2">✓</span>
-                      <span className="text-sm text-[var(--text-200)] font-inter">{benefit}</span>
+                      <span className="text-sm text-[var(--text-200)]">{benefit}</span>
                     </li>
                   ))}
                 </ul>

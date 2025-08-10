@@ -22,8 +22,8 @@ const AppMaintenanceSection: React.FC<AppMaintenanceSectionProps> = ({ content }
   useEffect(() => {
     if (sectionRef.current) {
       gsap.fromTo(
-        sectionRef.current.querySelectorAll('.animate-in'),
-        { opacity: 0, y: 50 },
+        sectionRef.current.querySelectorAll('.animate-element'),
+        { opacity: 0, y: 24 },
         {
           opacity: 1,
           y: 0,
@@ -51,20 +51,20 @@ const AppMaintenanceSection: React.FC<AppMaintenanceSectionProps> = ({ content }
         />
 
         <div id="services-maintenance-content" className="grid lg:grid-cols-2 gap-12 items-start">
-          <div id="services-maintenance-features" className="animate-in">
-            <h3 id="services-maintenance-features-title" className="text-2xl font-bold text-[var(--text-100)] mb-6 font-anton">Key Maintenance Areas</h3>
+          <div id="services-maintenance-features" className="animate-element">
+            <h3 id="services-maintenance-features-title" className="text-2xl font-bold text-[var(--text-100)] mb-6">Key Maintenance Areas</h3>
             <FeatureGrid id="app-maint-features-grid" features={content.features} />
           </div>
 
-          <div id="services-maintenance-process" className="animate-in">
-            <h3 id="services-maintenance-process-title" className="text-2xl font-bold text-[var(--text-100)] mb-6 font-anton">Our Maintenance Process</h3>
+          <div id="services-maintenance-process" className="animate-element">
+            <h3 id="services-maintenance-process-title" className="text-2xl font-bold text-[var(--text-100)] mb-6">Our Maintenance Process</h3>
             <ProcessSteps id="app-maint-process-steps" steps={content.processSteps} />
           </div>
         </div>
 
         {content.faqs && content.faqs.length > 0 && (
-          <div id="services-maintenance-faq" className="animate-in">
-            <h3 id="services-maintenance-faq-title" className="text-2xl font-bold text-[var(--text-100)] mb-6 font-anton">Frequently Asked Questions</h3>
+          <div id="services-maintenance-faq" className="animate-element">
+            <h3 id="services-maintenance-faq-title" className="text-2xl font-bold text-[var(--text-100)] mb-6">Frequently Asked Questions</h3>
             <FAQSlice id="app-maint-faq-slice" faqs={content.faqs} />
           </div>
         )}

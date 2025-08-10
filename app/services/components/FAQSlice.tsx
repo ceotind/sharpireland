@@ -30,7 +30,7 @@ export default function FAQSlice({ id, faqs }: FAQSliceProps) {
         >
           <button
             id={`${faq.id}-question-button`}
-            className="flex justify-between items-center w-full text-left text-lg font-semibold text-[var(--text-100)] font-inter"
+            className="flex justify-between items-center w-full text-left text-lg font-semibold text-[var(--text-100)]"
             onClick={() => toggleFAQ(index)}
             aria-expanded={openIndex === index}
             aria-controls={`${faq.id}-answer`}
@@ -45,7 +45,7 @@ export default function FAQSlice({ id, faqs }: FAQSliceProps) {
               id={`${faq.id}-answer`}
               role="region"
               aria-labelledby={`${faq.id}-question-button`}
-              className="mt-2 text-[var(--text-200)] font-inter"
+              className="mt-2 text-[var(--text-200)]"
             >
               {faq.answer}
             </div>

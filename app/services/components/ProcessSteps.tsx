@@ -23,15 +23,15 @@ export default function ProcessSteps({ id, steps }: ProcessStepsProps) {
         >
           <div
             id={`${step.id}-icon-container`}
-            className="flex-shrink-0 w-20 h-20 rounded-full bg-[var(--accent-green)] flex items-center justify-center text-[var(--white-color)] text-3xl font-bold font-anton mb-4 md:mb-0 md:mr-8"
+            className="flex-shrink-0 w-20 h-20 rounded-full bg-[var(--accent-green)] flex items-center justify-center text-white text-3xl font-bold mb-4 md:mb-0 md:mr-8"
           >
             {index + 1}
           </div>
           <div id={`${step.id}-content`}>
-            <h3 id={`${step.id}-title`} className="text-2xl font-semibold text-[var(--text-100)] font-anton">
+            <h3 id={`${step.id}-title`} className="text-2xl font-semibold text-[var(--text-100)]">
               {step.title}
             </h3>
-            <p id={`${step.id}-description`} className="mt-2 text-[var(--text-200)] font-inter">
+            <p id={`${step.id}-description`} className="mt-2 text-[var(--text-200)]">
               {step.description}
             </p>
           </div>

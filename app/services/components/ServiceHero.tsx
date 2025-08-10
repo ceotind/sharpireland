@@ -40,13 +40,13 @@ export default function ServiceHero({ content }: ServiceHeroProps) {
         <div id="services-hero-left-column" className="lg:w-1/2 text-center lg:text-left">
           <h1
             id="services-hero-title"
-            className="animate-element text-4xl md:text-6xl font-extrabold text-[var(--text-100)] leading-tight font-anton"
+            className="animate-element text-4xl md:text-6xl font-extrabold text-[var(--text-100)] leading-tight"
           >
             {content.title}
           </h1>
           <p
             id="services-hero-subtitle"
-            className="animate-element mt-4 text-lg md:text-xl text-[var(--text-200)] font-inter"
+            className="animate-element mt-4 text-lg md:text-xl text-[var(--text-200)]"
           >
             {content.subtitle}
           </p>
@@ -56,14 +56,29 @@ export default function ServiceHero({ content }: ServiceHeroProps) {
           >
             <button
               id="services-hero-primary-cta"
-              className="px-8 py-3 rounded-full bg-[var(--accent-green)] text-[var(--white-color)] font-semibold text-lg shadow-lg hover:bg-[var(--accent-green-base)] transition-colors duration-300"
+              className="btn-primary px-8 py-3 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95"
               onClick={() => window.location.href = content.primaryCtaLink}
             >
               {content.primaryCtaText}
             </button>
             <button
               id="services-hero-secondary-cta"
-              className="px-8 py-3 rounded-full border-2 border-[var(--accent-green)] text-[var(--accent-green)] font-semibold text-lg hover:bg-[var(--accent-green)] hover:text-[var(--white-color)] transition-colors duration-300"
+              className="px-8 py-3 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95"
+              style={{
+                background: "rgba(255, 255, 255, 0.1)",
+                backdropFilter: "blur(10px)",
+                border: "1px solid rgba(255, 255, 255, 0.2)",
+                color: "var(--text-100)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
+                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.2)";
+              }}
               onClick={() => window.location.href = content.secondaryCtaLink}
             >
               {content.secondaryCtaText}
@@ -76,7 +91,7 @@ export default function ServiceHero({ content }: ServiceHeroProps) {
           {/* Placeholder for visual collage */}
           <div
             id="services-hero-visual-placeholder"
-            className="animate-element w-full h-64 md:h-96 bg-[var(--bg-300)] rounded-lg flex items-center justify-center text-[var(--text-200)] text-xl"
+            className="animate-element w-full h-64 md:h-96 bg-[var(--bg-300)] rounded-xl flex items-center justify-center text-[var(--text-200)] text-xl border border-[var(--bg-300)]"
           >
             Visual Collage Placeholder
           </div>
