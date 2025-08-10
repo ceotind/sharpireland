@@ -8,6 +8,9 @@ export default function HeroSection() {
   const heroRef = useRef<HTMLElement | null>(null);
 
   const [bentoImages, setBentoImages] = useState<string[]>([]);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [gsapReady, setGsapReady] = useState(false);
+  const [isInitializing, setIsInitializing] = useState(true);
 
   // Fallbacks used if API fails or before load. Keep within public/ for Next/Image optimization.
   const DEFAULT_FALLBACKS = [
@@ -57,6 +60,28 @@ export default function HeroSection() {
     return fromDefaults ?? ABSOLUTE_FALLBACK;
   }
 
+  // Initialize component with small delay to ensure DOM is ready
+  useEffect(() => {
+    const initTimer = setTimeout(() => {
+      setIsInitializing(false);
+    }, 100);
+
+    return () => clearTimeout(initTimer);
+  }, []);
+
+  // Check GSAP availability
+  useEffect(() => {
+    const checkGSAP = () => {
+      if (typeof window !== 'undefined' && (window as any).gsapReady && gsap) {
+        setGsapReady(true);
+      } else {
+        // Retry until GSAP is available
+        setTimeout(checkGSAP, 50);
+      }
+    };
+    checkGSAP();
+  }, []);
+
   // Fetch dynamic image list and pick 5 at every reload
   useEffect(() => {
     let cancelled = false;
@@ -69,11 +94,17 @@ export default function HeroSection() {
         const base = files.length ? files : Array.from(DEFAULT_FALLBACKS);
         const picks = sampleRandom<string>(base, 5);
         const ensured = ensureFive(picks);
-        if (!cancelled) setBentoImages(ensured);
+        if (!cancelled) {
+          setBentoImages(ensured);
+          setImagesLoaded(true);
+        }
       } catch {
         const picks = sampleRandom<string>(Array.from(DEFAULT_FALLBACKS), 5);
         const ensured = ensureFive(picks);
-        if (!cancelled) setBentoImages(ensured);
+        if (!cancelled) {
+          setBentoImages(ensured);
+          setImagesLoaded(true);
+        }
       }
     })();
     return () => {
@@ -81,21 +112,73 @@ export default function HeroSection() {
     };
   }, []);
 
-  // Fade-in animation for key elements
+  // Fade-in animation for key elements - only run when everything is ready
   useEffect(() => {
+    if (!gsapReady || !imagesLoaded || isInitializing) return;
+    
     const el = heroRef.current;
     if (!el) return;
-    const anim = gsap.from(el.querySelectorAll(".animate-element"), {
-      opacity: 0,
-      y: 24,
-      stagger: 0.1,
-      duration: 0.6,
-      ease: "power2.out",
-    });
+
+    // Use GSAP context for proper cleanup
+    const ctx = gsap.context(() => {
+      const elements = el.querySelectorAll(".animate-element");
+      if (elements.length > 0) {
+        gsap.fromTo(elements,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
+            duration: 0.6,
+            ease: "power2.out",
+          }
+        );
+      }
+    }, el);
+
     return () => {
-      anim.kill();
+      ctx.revert();
     };
-  }, []);
+  }, [gsapReady, imagesLoaded, isInitializing]);
+
+  // Show loading state during initialization
+  if (isInitializing) {
+    return (
+      <section
+        id="hero-section"
+        className="relative min-h-screen pt-36 overflow-hidden"
+        aria-label="Venture studio hero"
+      >
+        {/* Base gradient background */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(180deg, var(--bg-100) 0%, #f9fafb 40%, var(--bg-200) 100%)",
+          }}
+        />
+        {/* Loading content container */}
+        <div className="relative z-10 w-full max-w-screen-xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div className="lg:col-span-7 flex flex-col">
+              <div className="mt-8">
+                <h1
+                  className="text-[var(--text-100)] font-light leading-[1.08] opacity-0"
+                  style={{
+                    fontSize: "clamp(2.4rem, 6.2vw, 4.8rem)",
+                  }}
+                >
+                  AI-Driven Web Solutions for
+                  <br />
+                  Growth & Google Rankings
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

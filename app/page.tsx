@@ -17,16 +17,18 @@ import TripleSwitchSection from './components/TripleSwitchSection';
 // Force dynamic rendering for this page since it has interactive elements
 // export const dynamic = 'force-dynamic';
 
-// Register GSAP plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 export default function Home() {
-  // Clean up ScrollTrigger on component unmount
+  // Clean up only page-specific ScrollTriggers on component unmount
   useEffect(() => {
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      // Only clean up ScrollTriggers that might be created by this page
+      // Let individual components manage their own ScrollTrigger cleanup
+      ScrollTrigger.getAll().forEach(trigger => {
+        // Only kill triggers that don't have component-specific cleanup
+        if (trigger.vars?.id?.startsWith('page-')) {
+          trigger.kill();
+        }
+      });
     };
   }, []);
 
