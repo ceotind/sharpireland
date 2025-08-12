@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { Phone, NotePencil, Monitor, RocketLaunch } from 'phosphor-react';
+import { Phone, NotePencil, Monitor, RocketLaunch } from '@phosphor-icons/react';
 import { motion } from 'framer-motion';
 import content from '../content.json';
 

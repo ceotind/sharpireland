@@ -2,9 +2,8 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import ServiceHero from "./components/ServiceHero";
-import ServiceCTA from "./components/ServiceCTA";
+import EnhancedCTA from "./components/EnhancedCTA";
 import ErrorBoundary from "../components/ErrorBoundary";
-import LoadingUI from "../components/LoadingUI";
 import {
   serviceHeroContent,
   webDevelopmentContent,
@@ -20,25 +19,25 @@ import { generateAllServicesSchemas } from "../utils/services-schema";
 
 // Dynamically import components for code splitting
 const WebDevelopmentSection = dynamic(() => import("./components/WebDevelopmentSection"), {
-  loading: () => <div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading Web Development section...</div>
+  loading: () => <div className="py-20 bg-[var(--bg-100)]">Loading Web Development section...</div>
 });
 const AppDevelopmentSection = dynamic(() => import("./components/AppDevelopmentSection"), {
-  loading: () => <div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading App Development section...</div>
+  loading: () => <div className="py-20 bg-[var(--bg-100)]">Loading App Development section...</div>
 });
 const AppMaintenanceSection = dynamic(() => import("./components/AppMaintenanceSection"), {
-  loading: () => <div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading App Maintenance section...</div>
+  loading: () => <div className="py-20 bg-[var(--bg-100)]">Loading App Maintenance section...</div>
 });
 const SocialMediaSection = dynamic(() => import("./components/SocialMediaSection"), {
-  loading: () => <div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading Social Media section...</div>
+  loading: () => <div className="py-20 bg-[var(--bg-100)]">Loading Social Media section...</div>
 });
 const GoogleAdsSection = dynamic(() => import("./components/GoogleAdsSection"), {
-  loading: () => <div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading Google Ads section...</div>
+  loading: () => <div className="py-20 bg-[var(--bg-100)]">Loading Google Ads section...</div>
 });
 const MetaAdsSection = dynamic(() => import("./components/MetaAdsSection"), {
-  loading: () => <div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading Meta Ads section...</div>
+  loading: () => <div className="py-20 bg-[var(--bg-100)]">Loading Meta Ads section...</div>
 });
 const AutomationSection = dynamic(() => import("./components/AutomationSection"), {
-  loading: () => <div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading Automation section...</div>
+  loading: () => <div className="py-20 bg-[var(--bg-100)]">Loading Automation section...</div>
 });
 
 export const metadata: Metadata = {
@@ -89,14 +88,6 @@ const servicesSchemas = generateAllServicesSchemas(
 export default function ServicesPage() {
   return (
     <>
-      {/* Skip to content link for accessibility */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--accent-green)] focus:text-[var(--white-color)] focus:rounded-md"
-      >
-        Skip to main content
-      </a>
-
       {/* Add JSON-LD structured data */}
       {servicesSchemas.map((schema, index) => (
         <script
@@ -119,70 +110,66 @@ export default function ServicesPage() {
         
         {/* Core Service Sections */}
         <ErrorBoundary>
-          <Suspense fallback={<div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading Web Development section...</div>}>
+          <Suspense fallback={<div className="py-20 bg-[var(--bg-100)]">Loading Web Development section...</div>}>
             <WebDevelopmentSection content={webDevelopmentContent} />
           </Suspense>
         </ErrorBoundary>
         
         <ErrorBoundary>
-          <Suspense fallback={<div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading App Development section...</div>}>
+          <Suspense fallback={<div className="py-20 bg-[var(--bg-100)]">Loading App Development section...</div>}>
             <AppDevelopmentSection content={appDevelopmentContent} />
           </Suspense>
         </ErrorBoundary>
         
         <ErrorBoundary>
-          <Suspense fallback={<div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading App Maintenance section...</div>}>
+          <Suspense fallback={<div className="py-20 bg-[var(--bg-100)]">Loading App Maintenance section...</div>}>
             <AppMaintenanceSection content={appMaintenanceContent} />
           </Suspense>
         </ErrorBoundary>
         
         {/* Marketing Service Sections */}
         <ErrorBoundary>
-          <Suspense fallback={<div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading Social Media section...</div>}>
+          <Suspense fallback={<div className="py-20 bg-[var(--bg-100)]">Loading Social Media section...</div>}>
             <SocialMediaSection content={socialMediaContent} />
           </Suspense>
         </ErrorBoundary>
         
         <ErrorBoundary>
-          <Suspense fallback={<div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading Google Ads section...</div>}>
+          <Suspense fallback={<div className="py-20 bg-[var(--bg-100)]">Loading Google Ads section...</div>}>
             <GoogleAdsSection content={googleAdsContent} />
           </Suspense>
         </ErrorBoundary>
         
         <ErrorBoundary>
-          <Suspense fallback={<div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading Meta Ads section...</div>}>
+          <Suspense fallback={<div className="py-20 bg-[var(--bg-100)]">Loading Meta Ads section...</div>}>
             <MetaAdsSection content={metaAdsContent} />
           </Suspense>
         </ErrorBoundary>
         
         <ErrorBoundary>
-          <Suspense fallback={<div className="py-20 animate-pulse bg-[var(--bg-100)]">Loading Automation section...</div>}>
+          <Suspense fallback={<div className="py-20 bg-[var(--bg-100)]">Loading Automation section...</div>}>
             <AutomationSection content={automationContent} />
           </Suspense>
         </ErrorBoundary>
         
-        {/* Global CTA Section */}
+        {/* Global CTA Section - Enhanced */}
         <section
           id="services-global-cta"
-          className="w-full py-20 md:py-32 bg-[var(--bg-200)]"
+          className="w-full py-16 sm:py-20 md:py-24 lg:py-32 bg-[var(--bg-200)]"
           aria-labelledby="services-global-cta-title"
         >
-          <div className="w-full max-w-screen-xl mx-auto px-6 lg:px-8 flex flex-col items-center gap-12">
-            <div id="services-global-cta-header" className="text-center">
-              <h2 id="services-global-cta-title" className="text-4xl md:text-5xl font-bold text-[var(--text-100)]">
-                Ready to grow your business?
-              </h2>
-              <p className="mt-4 max-w-2xl mx-auto text-[var(--text-200)] text-base md:text-lg opacity-80">
-                Get in touch with our team to discuss how our services can help you achieve your business goals.
-              </p>
+          <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="services-global-cta-container" className="flex flex-col items-center gap-8 sm:gap-10 md:gap-12">
+              <div id="services-global-cta-header" className="text-center max-w-4xl">
+                <h2 id="services-global-cta-title" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text-100)] leading-tight">
+                  Ready to grow your business?
+                </h2>
+                <p className="mt-4 sm:mt-6 max-w-2xl mx-auto text-[var(--text-200)] text-base sm:text-lg md:text-xl opacity-80 leading-relaxed">
+                  Get in touch with our team to discuss how our services can help you achieve your business goals.
+                </p>
+              </div>
+              <EnhancedCTA content={commonCtaContent} />
             </div>
-            <ServiceCTA
-              id={commonCtaContent.id}
-              primaryText={commonCtaContent.primaryText}
-              secondaryText={commonCtaContent.secondaryText}
-              primaryLink={commonCtaContent.primaryLink}
-              secondaryLink={commonCtaContent.secondaryLink}
-            />
           </div>
         </section>
       </main>

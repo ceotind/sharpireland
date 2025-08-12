@@ -45,14 +45,15 @@ export default function StatBar({ id, stats, animationDelay = 0, className = "" 
             ease: "power2.out",
             delay: animationDelay,
             stagger: 0.1,
-            onUpdate: function(this: any) {
+            onUpdate: function(this: gsap.core.Tween) {
               // Format the number with commas and add prefix/suffix
-              const statIndex = Array.from(counterElements).indexOf(this.targets()[0]);
+              const target = this.targets()[0] as HTMLElement;
+              const statIndex = Array.from(counterElements).indexOf(target);
               const stat = stats[statIndex];
               if (stat) {
-                const value = Math.round(this.targets()[0].innerHTML);
+                const value = Math.round(Number(target.innerHTML));
                 const formattedValue = value.toLocaleString();
-                this.targets()[0].innerHTML = `${stat.prefix || ""}${formattedValue}${stat.suffix || ""}`;
+                target.innerHTML = `${stat.prefix || ""}${formattedValue}${stat.suffix || ""}`;
               }
             },
             onComplete: () => {

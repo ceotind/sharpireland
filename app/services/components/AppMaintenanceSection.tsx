@@ -1,81 +1,74 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import SectionHeader from './SectionHeader';
-import FeatureGrid from './FeatureGrid';
-import ProcessSteps from './ProcessSteps';
-import FAQSlice from './FAQSlice';
-import ServiceCTA from './ServiceCTA';
-import { AppMaintenanceContent, commonCtaContent } from '../data/services-content';
-
-gsap.registerPlugin(ScrollTrigger);
+import React from 'react';
+import { AppMaintenanceContent } from '../data/services-content';
 
 interface AppMaintenanceSectionProps {
   content: AppMaintenanceContent;
 }
 
 const AppMaintenanceSection: React.FC<AppMaintenanceSectionProps> = ({ content }) => {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (sectionRef.current) {
-      gsap.fromTo(
-        sectionRef.current.querySelectorAll('.animate-element'),
-        { opacity: 0, y: 24 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    }
-  }, []);
 
   return (
-    <section id="services-maintenance-root" className="py-20 md:py-32 bg-[var(--bg-100)]" ref={sectionRef}>
-      <div id="services-maintenance-container" className="w-full max-w-screen-xl mx-auto px-4 lg:px-8 flex flex-col gap-12">
-        <SectionHeader
-          id="services-maintenance-header"
-          eyebrow={content.eyebrow}
-          title={content.title}
-          description={content.description}
-        />
-
-        <div id="services-maintenance-content" className="grid lg:grid-cols-2 gap-12 items-start">
-          <div id="services-maintenance-features" className="animate-element">
-            <h3 id="services-maintenance-features-title" className="text-2xl font-bold text-[var(--text-100)] mb-6">Key Maintenance Areas</h3>
-            <FeatureGrid id="app-maint-features-grid" features={content.features} />
-          </div>
-
-          <div id="services-maintenance-process" className="animate-element">
-            <h3 id="services-maintenance-process-title" className="text-2xl font-bold text-[var(--text-100)] mb-6">Our Maintenance Process</h3>
-            <ProcessSteps id="app-maint-process-steps" steps={content.processSteps} />
-          </div>
+    <section id="services-maintenance-root" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-[var(--bg-100)]">
+      <div id="services-maintenance-container" className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div id="services-maintenance-header" className="mb-12 sm:mb-16 lg:mb-20">
+          <span className="text-xs sm:text-sm uppercase tracking-wide text-[var(--primary-100)] font-medium">
+            {content.eyebrow}
+          </span>
+          <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text-100)] leading-tight">
+            {content.title}
+          </h2>
+          <p className="mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg md:text-xl text-[var(--text-200)] leading-relaxed">
+            {content.description}
+          </p>
         </div>
 
-        {content.faqs && content.faqs.length > 0 && (
-          <div id="services-maintenance-faq" className="animate-element">
-            <h3 id="services-maintenance-faq-title" className="text-2xl font-bold text-[var(--text-100)] mb-6">Frequently Asked Questions</h3>
-            <FAQSlice id="app-maint-faq-slice" faqs={content.faqs} />
+        {/* Main Content Grid */}
+        <div id="services-maintenance-content" className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-20 items-start">
+          {/* Left Side - Features List */}
+          <div id="services-maintenance-features" className="order-2 lg:order-1">
+            <div className="space-y-6 sm:space-y-8">
+              {content.features.map((feature, index) => (
+                <div key={feature.id} id={`maintenance-feature-${index + 1}`} className="border-l-4 border-[var(--bg-300)] pl-4 sm:pl-6 py-2">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[var(--text-100)] mb-2 sm:mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm sm:text-base md:text-lg text-[var(--text-200)] leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
-        )}
 
-        <ServiceCTA
-          id="app-maint-cta-section"
-          primaryText={commonCtaContent.primaryText}
-          secondaryText={commonCtaContent.secondaryText}
-          primaryLink={commonCtaContent.primaryLink}
-          secondaryLink={commonCtaContent.secondaryLink}
-        />
+          {/* Right Side - Enhanced Visual */}
+          <div id="services-maintenance-visual" className="order-1 lg:order-2">
+            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[450px] xl:h-[500px] rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-[var(--primary-100)] via-[var(--primary-200)] to-[var(--primary-300)] p-6 sm:p-8 flex items-center justify-center shadow-lg">
+              {/* Enhanced placeholder content */}
+              <div id="maintenance-visual-content" className="text-center text-white relative z-10">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-lg bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <p className="text-base sm:text-lg font-medium opacity-90 mb-1">
+                  App Maintenance Dashboard
+                </p>
+                <p className="text-xs sm:text-sm opacity-70">
+                  24/7 monitoring & optimization
+                </p>
+              </div>
+              
+              {/* Enhanced decorative elements */}
+              <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 blur-xl"></div>
+              <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-white/5 blur-2xl"></div>
+              <div className="absolute top-1/2 left-1/4 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/10 blur-lg"></div>
+              <div className="absolute bottom-1/3 right-1/3 w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/15 blur-md"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

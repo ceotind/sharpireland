@@ -11,30 +11,40 @@
 @import '@fontsource/roboto/700.css';
 
 :root {
+  /* Primary Brand Colors */
+  --primary-100: #0f51dd;
+  --primary-200: #0d46c2;
+  --primary-300: #4a7aff;
+  
+  /* Background Colors */
   --bg-100: #ffffff;
   --bg-200: #f5f5f5;
   --bg-300: #e5e5e5;
-  --bg-400: #d1d5db;
-
+  
+  /* Text Colors */
   --text-100: #000000;
   --text-200: #555555;
   --text-300: #6b7280;
-
-  --primary-100: #0f51dd;
-  --primary-200: #0d46c2;
-
-  --accent-green: #0f51dd;
-  --accent-red: #EF4444;
-  --accent-red-light: #FEE2E2;
-
-  --error-text: #DC2626;
-  --error-bg: #FEE2E2;
-  --error-border: #FECACA;
-  --error-icon: #EF4444;
-
+  
+  /* Accent Colors */
+  --accent-green: #10b981;
+  --accent-green-base: #059669;
+  --accent-red: #ef4444;
+  --accent-red-light: #fee2e2;
+  
+  /* Error States */
+  --error-text: #dc2626;
+  --error-bg: #fee2e2;
+  --error-border: #fecaca;
+  
+  /* Utility Colors */
   --white-color: #ffffff;
-
-  /* Compatibility aliases */
+  --border-color: #e5e5e5;
+  
+  /* Shadow Colors */
+  --primary-shadow: rgba(15, 81, 221, 0.3);
+  
+  /* Legacy Compatibility */
   --background: var(--bg-100);
   --foreground: var(--text-100);
 }
@@ -56,30 +66,17 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Inter', sans-serif;
 }
 
-a {
+a:not([class*="bg-"]):not([class*="btn-"]) {
   color: var(--primary-100);
   text-decoration: none;
   transition: color 200ms ease;
 }
 
-a:hover {
+a:not([class*="bg-"]):not([class*="btn-"]):hover {
   color: var(--primary-200);
 }
 
 /* Minimal components kept for functionality */
-button {
-  background-color: var(--primary-100);
-  color: var(--white-color);
-  border: none;
-  font-family: inherit;
-  transition: background-color 200ms ease, color 200ms ease;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: var(--primary-200);
-}
-
 button:disabled {
   background-color: var(--bg-300);
   color: var(--text-200);
@@ -88,15 +85,30 @@ button:disabled {
 
 .btn-primary {
   background-color: var(--primary-100);
-  color: var(--white-color);
+  color: var(--white-color) !important;
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
   font-weight: 500;
   transition: background-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
+  border: none;
+  text-decoration: none;
 }
 
 .btn-primary:hover {
   background-color: var(--primary-200);
+  color: var(--white-color) !important;
+}
+
+.btn-primary:visited {
+  color: var(--white-color) !important;
+}
+
+.btn-primary:focus {
+  color: var(--white-color) !important;
+}
+
+.btn-primary:active {
+  color: var(--white-color) !important;
 }
 
 .btn-secondary {

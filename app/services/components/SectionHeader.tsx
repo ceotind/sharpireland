@@ -12,13 +12,13 @@ interface SectionHeaderProps {
 export default function SectionHeader({ id, eyebrow, title, description }: SectionHeaderProps) {
   return (
     <div id={id} className="text-center">
-      <span className="text-sm uppercase tracking-wide text-[var(--primary-100)] font-medium">
+      <span className="text-xs sm:text-sm uppercase tracking-wide text-[var(--primary-100)] font-medium">
         {eyebrow}
       </span>
-      <h2 className="mt-4 text-3xl md:text-4xl font-bold text-[var(--text-100)]">
+      <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text-100)] leading-tight">
         {title}
       </h2>
-      <p className="mt-4 max-w-2xl mx-auto text-[var(--text-200)] text-base md:text-lg opacity-80">
+      <p className="mt-3 sm:mt-4 max-w-2xl mx-auto text-[var(--text-200)] text-sm sm:text-base md:text-lg opacity-80 leading-relaxed px-4 sm:px-0">
         {description}
       </p>
     </div>

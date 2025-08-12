@@ -42,29 +42,23 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
         <meta name="robots" content="noindex,nofollow" />
         <style>{`
           :root {
-            --background: #ffffff;
-            --text-100: #1f2937;
-            --text-200: #6b7280;
-            --text-300: #9ca3af;
-            --bg-200: #f9fafb;
-            --bg-300: #e5e7eb;
-            --bg-400: #d1d5db;
+            /* Light mode only - consistent with globals.css */
+            --primary-100: #0f51dd;
+            --primary-200: #0d46c2;
+            --bg-100: #ffffff;
+            --bg-200: #f5f5f5;
+            --bg-300: #e5e5e5;
+            --text-100: #000000;
+            --text-200: #555555;
+            --text-300: #6b7280;
             --accent-green: #10b981;
-            --accent-green-hover: #059669;
-          }
-          
-          @media (prefers-color-scheme: dark) {
-            :root {
-              --background: #0f172a;
-              --text-100: #f1f5f9;
-              --text-200: #cbd5e1;
-              --text-300: #94a3b8;
-              --bg-200: #1e293b;
-              --bg-300: #334155;
-              --bg-400: #475569;
-              --accent-green: #10b981;
-              --accent-green-hover: #34d399;
-            }
+            --accent-red: #ef4444;
+            --white-color: #ffffff;
+            --border-color: #e5e5e5;
+            
+            /* Legacy compatibility */
+            --background: var(--bg-100);
+            --foreground: var(--text-100);
           }
           
           * {
@@ -75,7 +69,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
           
           body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--background);
+            background-color: var(--bg-100);
             color: var(--text-100);
             line-height: 1.6;
           }
@@ -107,7 +101,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                     margin: '0 auto',
                     height: '3rem',
                     width: '3rem',
-                    color: '#ef4444'
+                    color: 'var(--accent-red)'
                   }}
                   fill="none" 
                   viewBox="0 0 24 24" 
@@ -189,10 +183,10 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                     transition: 'background-color 0.2s'
                   }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--accent-green-hover)';
+                    e.currentTarget.style.opacity = '0.9';
                   }}
                   onMouseOut={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--accent-green)';
+                    e.currentTarget.style.opacity = '1';
                   }}
                 >
                   Try Again
@@ -212,10 +206,10 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                     transition: 'background-color 0.2s'
                   }}
                   onMouseOver={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--bg-400)';
+                    e.currentTarget.style.opacity = '0.9';
                   }}
                   onMouseOut={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--bg-300)';
+                    e.currentTarget.style.opacity = '1';
                   }}
                 >
                   Go to Homepage

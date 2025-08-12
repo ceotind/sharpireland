@@ -1,14 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { motion, useInView } from "framer-motion";
 import { useSearchParams } from "next/navigation";
-import { User, EnvelopeSimple, Phone, NotePencil } from "phosphor-react";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { User, EnvelopeSimple, Phone, NotePencil } from "@phosphor-icons/react";
+import { contactContainer, contactField, contactButton } from "../utils/motion-variants";
 
 // Form data interface
 interface FormData {
@@ -24,6 +20,7 @@ type FormState = 'idle' | 'submitting' | 'success' | 'error';
 export default function ContactSection() {
   const searchParams = useSearchParams();
   const sectionRef = useRef<HTMLElement | null>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-20%" });
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -34,42 +31,6 @@ export default function ContactSection() {
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [csrfToken, setCsrfToken] = useState<string>('');
-
-  useEffect(() => {
-    const elements = sectionRef.current?.querySelectorAll(".animate-element");
-    if (elements && sectionRef.current) {
-      const animation = gsap.fromTo(
-        elements,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
-      
-      return () => {
-        const currentSection = sectionRef.current;
-        animation.kill();
-        ScrollTrigger.getAll().forEach(trigger => {
-          if (trigger.trigger === currentSection) {
-            trigger.kill();
-          }
-        });
-      };
-    }
-    
-    return () => {
-      // Cleanup function for when elements are not found
-    };
-  }, []);
 
   // Fetch CSRF token on mount and handle search params
   useEffect(() => {
@@ -217,40 +178,65 @@ export default function ContactSection() {
       // Cleanup function for when condition is not met
     };
   }, [formState]);
+
   return (
-    <section id="contact" ref={sectionRef} className="relative bg-[var(--bg-100)] py-20 md:py-32 overflow-hidden" aria-labelledby="contact-heading">
+    <motion.section 
+      id="contact" 
+      ref={sectionRef} 
+      className="relative bg-[var(--bg-100)] py-20 md:py-32 overflow-hidden" 
+      aria-labelledby="contact-heading"
+      variants={contactContainer}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+    >
       <div className="relative w-full max-w-screen-md mx-auto px-4 lg:px-8 flex flex-col gap-10 z-10">
-        <header className="text-center animate-element">
+        <motion.header className="text-center" variants={contactField}>
           <span className="inline-block px-4 py-1 rounded-full bg-[var(--primary-100)]/10 text-[var(--primary-100)] text-xs uppercase tracking-wider font-semibold shadow-sm mb-2">Contact Sharp Digital Ireland</span>
           <h2 id="contact-heading" className="mt-4 text-4xl md:text-5xl font-extrabold text-[var(--text-100)] drop-shadow-lg">Get Your Web Development Quote</h2>
           <p className="mt-4 max-w-2xl mx-auto text-[var(--text-100)] text-base md:text-lg opacity-80">
             Ready to transform your business with expert web development? Contact Sharp Digital Ireland today for a free consultation. We serve Dublin and all of Ireland with professional React, Next.js, and custom web solutions.
           </p>
-        </header>
+        </motion.header>
+        
         {/* Success Message */}
         {formState === 'success' && (
-          <div className="animate-element mb-6 p-4 bg-[var(--primary-100)]/10 border border-[var(--primary-100)] rounded-lg shadow-md transition-all duration-500 ease-in-out animate-fade-in">
+          <motion.div 
+            className="mb-6 p-4 bg-[var(--primary-100)]/10 border border-[var(--primary-100)] rounded-lg shadow-md"
+            variants={contactField}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
            <div className="flex items-center">
              <svg className="w-5 h-5 text-[var(--primary-100)] mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <p className="text-[var(--text-100)] font-medium">{message}</p>
             </div>
-          </div>
+          </motion.div>
         )}
+        
         {/* Error Message */}
         {formState === 'error' && message && (
-          <div className="animate-element mb-6 p-4 bg-[var(--error-bg)] border border-[var(--error-border)] rounded-lg shadow-md transition-all duration-500 ease-in-out animate-fade-in">
+          <motion.div 
+            className="mb-6 p-4 bg-[var(--error-bg)] border border-[var(--error-border)] rounded-lg shadow-md"
+            variants={contactField}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
            <div className="flex items-center">
              <svg className="w-5 h-5 text-[var(--error-text)] mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
               </svg>
               <p className="text-[var(--text-100)] font-medium">{message}</p>
             </div>
-          </div>
+          </motion.div>
         )}
-        <form
-          className="animate-element space-y-8 bg-[var(--bg-200)]/90 px-4 pt-6 pb-6 sm:px-6 sm:pt-8 sm:pb-8 md:px-10 md:pt-10 md:pb-10 rounded-2xl border border-[var(--bg-300)] shadow-2xl backdrop-blur-md"
+        
+        <motion.form
+          className="space-y-8 bg-[var(--bg-200)]/90 px-4 pt-6 pb-6 sm:px-6 sm:pt-8 sm:pb-8 md:px-10 md:pt-10 md:pb-10 rounded-2xl border border-[var(--bg-300)] shadow-2xl backdrop-blur-md"
+          variants={contactField}
           autoComplete="on"
           onSubmit={handleSubmit}
           role="form"
@@ -258,7 +244,7 @@ export default function ContactSection() {
           itemScope
           itemType="https://schema.org/ContactForm"
         >
-          <div className="relative">
+          <motion.div className="relative" variants={contactField}>
             <label htmlFor="contact-name" className="block text-sm font-semibold text-[var(--text-100)] mb-2">
               Full Name
             </label>
@@ -287,11 +273,12 @@ export default function ContactSection() {
               />
             </div>
             {errors.name && (
-              <p className="mt-1 text-sm text-[var(--error-text)] animate-fade-in" role="alert">{errors.name}</p>
+              <p className="mt-1 text-sm text-[var(--error-text)]" role="alert">{errors.name}</p>
             )}
             <div id="name-help" className="sr-only">Enter your full name for our web development consultation</div>
-          </div>
-          <div className="relative">
+          </motion.div>
+          
+          <motion.div className="relative" variants={contactField}>
             <label htmlFor="contact-email" className="block text-sm font-semibold text-[var(--text-100)] mb-2">
               Email Address
             </label>
@@ -320,11 +307,12 @@ export default function ContactSection() {
               />
             </div>
             {errors.email && (
-              <p className="mt-1 text-sm text-[var(--error-text)] animate-fade-in" role="alert">{errors.email}</p>
+              <p className="mt-1 text-sm text-[var(--error-text)]" role="alert">{errors.email}</p>
             )}
             <div id="email-help" className="sr-only">We&apos;ll use this email to send you our web development proposal</div>
-          </div>
-          <div className="relative">
+          </motion.div>
+          
+          <motion.div className="relative" variants={contactField}>
             <label htmlFor="contact-phone" className="block text-sm font-semibold text-[var(--text-100)] mb-2">
               Phone Number
             </label>
@@ -351,11 +339,12 @@ export default function ContactSection() {
               />
             </div>
             {errors.phone && (
-              <p className="mt-1 text-sm text-[var(--error-text)] animate-fade-in" role="alert">{errors.phone}</p>
+              <p className="mt-1 text-sm text-[var(--error-text)]" role="alert">{errors.phone}</p>
             )}
             <div id="phone-help" className="sr-only">Optional phone number for faster communication about your project</div>
-          </div>
-          <div className="relative">
+          </motion.div>
+          
+          <motion.div className="relative" variants={contactField}>
             <label htmlFor="contact-description" className="block text-sm font-semibold text-[var(--text-100)] mb-2">
               Project Description
             </label>
@@ -383,18 +372,24 @@ export default function ContactSection() {
               />
             </div>
             {errors.description && (
-              <p className="mt-1 text-sm text-[var(--error-text)] animate-fade-in" role="alert">{errors.description}</p>
+              <p className="mt-1 text-sm text-[var(--error-text)]" role="alert">{errors.description}</p>
             )}
             <div id="description-help" className="sr-only">Tell us about your web development needs, budget, and timeline</div>
-          </div>
-          <button
+          </motion.div>
+          
+          <motion.button
             type="submit"
             disabled={formState === 'submitting' || formState === 'success'}
-            className={`w-full px-6 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--primary-100)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] bg-gradient-to-r from-[var(--primary-100)] to-[var(--primary-200)] hover:scale-105 hover:shadow-2xl active:scale-100 active:shadow-lg mb-0 ${
+            className={`w-full px-6 py-4 rounded-xl font-semibold text-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-100)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] bg-gradient-to-r from-[var(--primary-100)] to-[var(--primary-200)] mb-0 ${
               formState === 'submitting' || formState === 'success'
-                ? 'bg-gray-400 text-gray-600 cursor-not-allowed opacity-70'
+                ? 'bg-[var(--bg-300)] text-[var(--text-200)] cursor-not-allowed opacity-70'
                 : 'text-[var(--white-color)]'
             }`}
+            variants={contactButton}
+            {...(!(formState === 'submitting' || formState === 'success') && {
+              whileHover: "hover",
+              whileTap: "tap"
+            })}
             aria-describedby="submit-help"
           >
             {formState === 'submitting' ? (
@@ -410,20 +405,10 @@ export default function ContactSection() {
             ) : (
               'Get My Free Quote'
             )}
-          </button>
+          </motion.button>
           <div id="submit-help" className="sr-only">Submit your project details to receive a free consultation from Sharp Digital Ireland</div>
-        </form>
+        </motion.form>
       </div>
-      {/* Fade-in animation keyframes */}
-      <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: none; }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.5s ease-in;
-        }
-      `}</style>
-    </section>
+    </motion.section>
   );
 }

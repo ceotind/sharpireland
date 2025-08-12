@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   titleVariants as createTitleVariants,
@@ -156,7 +157,7 @@ export default function SEOForm({
               className="w-full px-6 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg shadow-lg transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap bg-gradient-to-r from-[var(--primary-100)] to-[var(--primary-200)] hover:scale-105 hover:shadow-2xl active:scale-100 active:shadow-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-100)] focus:ring-offset-2"
               style={{
                 color: "var(--white-color)",
-                boxShadow: "0 4px 14px rgba(15, 81, 221, 0.3)",
+                boxShadow: "0 4px 14px var(--primary-shadow)",
                 willChange: "transform, opacity",
               }}
               whileHover="hover"
@@ -239,13 +240,13 @@ export default function SEOForm({
                   {error}
                 </p>
                 <div id="seo-error-actions" className="mt-2">
-                  <a
+                  <Link
                     id="seo-error-contact-link"
                     href="/contact"
                     className="underline text-[var(--primary-100)]"
                   >
                     Contact us
-                  </a>
+                  </Link>
                   <span className="ml-2 text-[var(--text-300)]">
                     for assistance if this keeps happening.
                   </span>

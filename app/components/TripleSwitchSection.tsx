@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useMemo, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useRef } from 'react';
+import { tripleSwitchSection, tripleSwitchCard, tripleSwitchButton } from '../utils/motion-variants';
 
 type SwitchKey = 'fast' | 'cheap' | 'good';
 
@@ -43,6 +42,7 @@ const LABELS: Record<SwitchKey, { title: string; desc: string; icon: React.React
 
 const TripleSwitchSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-20%" });
   const router = useRouter();
 
   const [switches, setSwitches] = useState<Record<SwitchKey, boolean>>({
@@ -129,7 +129,8 @@ const TripleSwitchSection = () => {
       if (typeof window === 'undefined') return;
 
       const AudioContextClass =
-        (window as any).AudioContext || (window as any).webkitAudioContext;
+        (window as unknown as { AudioContext?: typeof AudioContext; webkitAudioContext?: typeof AudioContext }).AudioContext ||
+        (window as unknown as { AudioContext?: typeof AudioContext; webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       if (!AudioContextClass) return;
 
       const context = new AudioContextClass();
@@ -153,41 +154,25 @@ const TripleSwitchSection = () => {
     }
   };
 
-  // Animation setup
-  useEffect(() => {
-    const elements = sectionRef.current?.querySelectorAll('.animate-element');
-    if (elements) {
-      gsap.fromTo(
-        elements,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            once: true,
-          },
-        }
-      );
-    }
-  }, []);
-
   return (
-    <section
+    <motion.section
       ref={sectionRef}
       id="triple-switch"
       className="bg-[var(--bg-100)] py-12 md:py-32 px-2 sm:px-4"
+      variants={tripleSwitchSection}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
     >
       <div
         id="tripleswitch-div-1"
         className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-8 flex flex-col md:flex-row gap-8 md:gap-12"
       >
         {/* Left Column */}
-        <div id="tripleswitch-div-2" className="md:w-1/2 animate-element">
+        <motion.div
+          id="tripleswitch-div-2"
+          className="md:w-1/2"
+          variants={tripleSwitchSection}
+        >
           <div id="tripleswitch-div-3" className="text-center md:text-left">
             <span
               id="tripleswitch-div-4"
@@ -227,10 +212,14 @@ const TripleSwitchSection = () => {
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column - Switches */}
-        <div id="tripleswitch-div-10" className="md:w-1/2 flex flex-col gap-5 sm:gap-6 animate-element">
+        <motion.div
+          id="tripleswitch-div-10"
+          className="md:w-1/2 flex flex-col gap-5 sm:gap-6"
+          variants={tripleSwitchSection}
+        >
           {error && (
             <div
               id="tripleswitch-div-11"
@@ -246,13 +235,14 @@ const TripleSwitchSection = () => {
             const selected = switches[key];
             const baseId = 30 + index * 10; // Reserve 4 ids per card to keep uniqueness
             return (
-              <div
+              <motion.div
                 key={key}
                 id={`tripleswitch-div-${baseId}`}
-                className={`group relative z-0 flex items-center justify-between gap-4 p-5 sm:p-6 rounded-xl border bg-[var(--bg-200)] border-[var(--bg-300)] shadow-sm transition 
-                hover:shadow-md overflow-hidden ${
+                className={`group relative z-0 flex items-center justify-between gap-4 p-5 sm:p-6 rounded-xl border bg-[var(--bg-200)] border-[var(--bg-300)] shadow-sm overflow-hidden ${
                   selected ? 'ring-1 ring-[var(--accent-green)] border-[var(--accent-green)]' : ''
                 }`}
+                variants={tripleSwitchCard}
+                whileHover="hover"
               >
                 {/* Accent glow when selected */}
                 <div
@@ -304,26 +294,31 @@ const TripleSwitchSection = () => {
                       ${selected ? 'after:translate-x-[24px] sm:after:translate-x-[32px]' : ''}`}
                   />
                 </label>
-              </div>
+              </motion.div>
             );
           })}
 
           {/* Submit Button */}
           <div id="tripleswitch-div-24" className="mt-2 sm:mt-4">
-            <button
+            <motion.button
               onClick={handleSubmit}
               id="tripleswitch-div-25"
               disabled={submitDisabled}
-              className={`w-full px-6 py-3 rounded-lg font-semibold text-base sm:text-lg transition 
+              className={`w-full px-6 py-3 rounded-lg font-semibold text-base sm:text-lg
                 focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)]
                 ${
                   submitDisabled
                     ? 'bg-[var(--bg-300)] text-[var(--text-100)] opacity-60 cursor-not-allowed'
-                    : 'bg-[var(--accent-green)] text-[var(--white-color)] hover:bg-[var(--accent-green-base)]'
+                    : 'bg-[var(--accent-green)] text-[var(--white-color)]'
                 }`}
+              variants={tripleSwitchButton}
+              {...(!submitDisabled && {
+                whileHover: "hover",
+                whileTap: "tap"
+              })}
             >
               Submit Choices
-            </button>
+            </motion.button>
             <div
               id="tripleswitch-div-26"
               className="mt-2 text-xs sm:text-sm text-[var(--text-100)] opacity-70 text-center md:text-left"
@@ -331,9 +326,9 @@ const TripleSwitchSection = () => {
               Tip: Your selection updates the contact section with a tailored message.
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -1,12 +1,8 @@
 "use client";
 
 import { useRef, useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { motion, useInView } from 'framer-motion';
+import { testimonialsSection, navButton } from '../utils/motion-variants';
 
 interface Testimonial {
   id: string;
@@ -57,39 +53,8 @@ const TestimonialsSection = () => {
   const testimonialRef = useRef<HTMLDivElement>(null);
   const testimonialSwipeRef = useRef<HTMLDivElement>(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  // const [isAnimating, setIsAnimating] = useState(false);
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const section = sectionRef.current;
-    if (!section) return;
-
-    // Standardized animation for section entrance
-    const animation = gsap.fromTo(section,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%",
-          once: true,
-        }
-      }
-    );
-
-    return () => {
-      animation.kill();
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.trigger === section) {
-          trigger.kill();
-        }
-      });
-    };
-  }, []);
+  const isInView = useInView(sectionRef, { once: true, margin: "-20%" });
 
   // Swipe handlers for mobile
   useEffect(() => {
@@ -181,10 +146,13 @@ const TestimonialsSection = () => {
   // }
 
   return (
-    <section 
+    <motion.section
       ref={sectionRef}
       className="bg-[var(--bg-100)] text-[var(--text-100)] py-12 md:py-32 px-2 sm:px-4"
       id="testimonials"
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={testimonialsSection}
     >
       <div id="testimonials-div-1" className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-8 flex flex-col gap-8 md:gap-12">
         {/* Heading Section */}
@@ -244,20 +212,23 @@ const TestimonialsSection = () => {
                 </div>
               </div>
               {/* Next Button */}
-              <button
+              <motion.button
                 onClick={nextTestimonial}
-                className="flex-shrink-0 w-16 h-16 border border-[var(--bg-300)] rounded-lg flex items-center justify-center hover:bg-[var(--accent-green)] hover:text-[var(--white-color)] hover:border-[var(--accent-green)] transition-all duration-300 group mt-6 md:mt-0"
+                className="flex-shrink-0 w-16 h-16 border border-[var(--bg-300)] rounded-lg flex items-center justify-center mt-6 md:mt-0"
                 aria-label="Next testimonial"
+                variants={navButton}
+                initial="rest"
+                whileHover="hover"
               >
-                <svg 
-                  className="w-6 h-6 transform group-hover:translate-x-1 transition-transform duration-300" 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </button>
+              </motion.button>
             </div>
             {/* Testimonial Indicators */}
             <div id="testimonials-div-13" className="flex justify-center space-x-2 mt-8">
@@ -277,7 +248,7 @@ const TestimonialsSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

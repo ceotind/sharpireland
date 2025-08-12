@@ -18,35 +18,23 @@ export default function ServiceCTA({
   secondaryLink,
 }: ServiceCTAProps) {
   return (
-    <div id={id} className="flex flex-col sm:flex-row justify-center gap-4">
+    <div id={id} className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
+      {/* Primary Button - Enhanced with better styling */}
       <a
         id={`${id}-primary-button`}
         href={primaryLink}
-        className="btn-primary px-8 py-3 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 text-center"
+        className="btn-primary relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl focus:outline-none focus:ring-4 focus:ring-[var(--primary-100)]/20 shadow-lg text-center w-full sm:w-auto transition-all duration-300 hover:shadow-xl"
       >
-        {primaryText}
+        <span className="relative z-10">{primaryText}</span>
       </a>
+
+      {/* Secondary Button */}
       <a
         id={`${id}-secondary-button`}
         href={secondaryLink}
-        className="px-8 py-3 rounded-xl text-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 text-center"
-        style={{
-          background: "rgba(255, 255, 255, 0.1)",
-          backdropFilter: "blur(10px)",
-          border: "1px solid rgba(255, 255, 255, 0.2)",
-          color: "var(--text-100)",
-          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
-          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
-          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.2)";
-        }}
+        className="relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-[var(--text-100)] bg-[var(--bg-200)] border-2 border-[var(--bg-300)] rounded-xl focus:outline-none focus:ring-4 focus:ring-[var(--primary-100)]/20 shadow-md text-center backdrop-blur-sm w-full sm:w-auto transition-all duration-300 hover:shadow-lg hover:border-[var(--primary-100)]"
       >
-        {secondaryText}
+        <span className="relative z-10">{secondaryText}</span>
       </a>
     </div>
   );

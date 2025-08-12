@@ -3,7 +3,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 type Theme = 'light' | 'dark';
-type MotionPreference = 'full' | 'reduced';
 
 interface ThemeContextType {
   theme: Theme;

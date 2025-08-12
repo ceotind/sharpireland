@@ -16,7 +16,7 @@ export default function ClientProviders({
       gsap.registerPlugin(ScrollTrigger);
       
       // Make GSAP globally available for components to check
-      (window as any).gsapReady = true;
+      (window as typeof window & { gsapReady?: boolean }).gsapReady = true;
     }
   }, []);
 

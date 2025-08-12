@@ -1,51 +1,38 @@
 /**
- * Color utility functions and constants for Sharp Ireland
- * Based on the new color scheme defined in copy.txt
+ * Light-mode-only color utility functions and constants for Sharp Ireland
+ * Single source of truth: CSS variables defined in globals.css
  */
 
+// Light mode colors (matches CSS variables)
 export const colors = {
-  // Light mode colors
-  light: {
-    primary: {
-      100: '#0f51dd',
-      200: '#4a7aff',
-      300: '#c8d9ff',
-    },
-    accent: {
-      100: '#0f51dd',
-      200: '#0a3bb8',
-    },
-    text: {
-      100: '#333333',
-      200: '#5c5c5c',
-    },
-    bg: {
-      100: '#FFFFFF',
-      200: '#f5f5f5',
-      300: '#cccccc',
-    },
+  primary: {
+    100: '#0f51dd',
+    200: '#0d46c2',
+    300: '#4a7aff',
   },
-  
-  // Dark mode colors
-  dark: {
-    primary: {
-      100: '#0085ff',
-      200: '#69b4ff',
-      300: '#e0ffff',
-    },
-    accent: {
-      100: '#006fff',
-      200: '#e1ffff',
-    },
-    text: {
-      100: '#FFFFFF',
-      200: '#9e9e9e',
-    },
-    bg: {
-      100: '#1E1E1E',
-      200: '#2d2d2d',
-      300: '#454545',
-    },
+  accent: {
+    green: '#10b981',
+    red: '#ef4444',
+    redLight: '#fee2e2',
+  },
+  text: {
+    100: '#000000',
+    200: '#555555',
+    300: '#6b7280',
+  },
+  bg: {
+    100: '#ffffff',
+    200: '#f5f5f5',
+    300: '#e5e5e5',
+  },
+  error: {
+    text: '#dc2626',
+    bg: '#fee2e2',
+    border: '#fecaca',
+  },
+  utility: {
+    white: '#ffffff',
+    border: '#e5e5e5',
   },
 } as const;
 
@@ -59,29 +46,28 @@ export const cssVars = {
     300: '--primary-300',
   },
   accent: {
-    100: '--accent-100',
-    200: '--accent-200',
+    green: '--accent-green',
+    red: '--accent-red',
+    redLight: '--accent-red-light',
   },
   text: {
     100: '--text-100',
     200: '--text-200',
+    300: '--text-300',
   },
   bg: {
     100: '--bg-100',
     200: '--bg-200',
     300: '--bg-300',
   },
-  // Legacy variables for backward compatibility
-  legacy: {
-    background: '--background',
-    foreground: '--foreground',
-    backgroundBlack: '--background-black',
-    backgroundLighter: '--background-lighter',
-    whiteColor: '--white-color',
-    borderDark: '--border-dark',
-    borderLight: '--border-light',
-    borderMedium: '--border-medium',
-    borderDarker: '--border-darker',
+  error: {
+    text: '--error-text',
+    bg: '--error-bg',
+    border: '--error-border',
+  },
+  utility: {
+    white: '--white-color',
+    border: '--border-color',
   },
 } as const;
 
@@ -93,20 +79,23 @@ export const getCSSVar = (variable: string): string => `var(${variable})`;
 /**
  * Type-safe color getter for components
  */
-export type ColorCategory = keyof typeof colors.light;
-export type ColorShade = keyof typeof colors.light.primary;
+export type ColorCategory = keyof typeof colors;
+export type PrimaryShade = keyof typeof colors.primary;
+export type AccentColor = keyof typeof colors.accent;
+export type TextShade = keyof typeof colors.text;
+export type BgShade = keyof typeof colors.bg;
 
 export const getColor = (
   category: ColorCategory,
-  shade: ColorShade,
-  theme: 'light' | 'dark' = 'light'
+  shade: string
 ): string => {
-  return colors[theme][category][shade as keyof typeof colors.light[ColorCategory]];
+  const categoryColors = colors[category] as Record<string, string>;
+  return categoryColors[shade] || colors.text[100];
 };
 
 /**
  * Tailwind CSS custom color configuration
- * Add this to your tailwind.config.js to use the new colors
+ * These map to CSS variables for consistency
  */
 export const tailwindColors = {
   primary: {
@@ -115,16 +104,52 @@ export const tailwindColors = {
     300: 'var(--primary-300)',
   },
   accent: {
-    100: 'var(--accent-100)',
-    200: 'var(--accent-200)',
+    green: 'var(--accent-green)',
+    red: 'var(--accent-red)',
+    'red-light': 'var(--accent-red-light)',
   },
   text: {
     100: 'var(--text-100)',
     200: 'var(--text-200)',
+    300: 'var(--text-300)',
   },
   bg: {
     100: 'var(--bg-100)',
     200: 'var(--bg-200)',
     300: 'var(--bg-300)',
   },
+  error: {
+    text: 'var(--error-text)',
+    bg: 'var(--error-bg)',
+    border: 'var(--error-border)',
+  },
+  border: 'var(--border-color)',
+  white: 'var(--white-color)',
 };
+
+/**
+ * Common color combinations for quick use
+ */
+export const colorCombinations = {
+  primaryButton: {
+    bg: getCSSVar(cssVars.primary[100]),
+    text: getCSSVar(cssVars.utility.white),
+    hover: getCSSVar(cssVars.primary[200]),
+  },
+  secondaryButton: {
+    bg: 'transparent',
+    text: getCSSVar(cssVars.text[100]),
+    border: getCSSVar(cssVars.bg[300]),
+    hover: getCSSVar(cssVars.bg[200]),
+  },
+  errorState: {
+    text: getCSSVar(cssVars.error.text),
+    bg: getCSSVar(cssVars.error.bg),
+    border: getCSSVar(cssVars.error.border),
+  },
+  successState: {
+    text: getCSSVar(cssVars.utility.white),
+    bg: getCSSVar(cssVars.accent.green),
+    border: getCSSVar(cssVars.accent.green),
+  },
+} as const;

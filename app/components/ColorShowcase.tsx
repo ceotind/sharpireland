@@ -2,8 +2,7 @@
 
 import React from 'react';
 /**
- * Example component demonstrating the new color system
- * (Now fixed to dark mode only)
+ * Example component demonstrating the light-mode color system
  */
 const ColorShowcase: React.FC = () => {
   return (
@@ -20,10 +19,10 @@ const ColorShowcase: React.FC = () => {
           className="text-3xl font-bold"
           style={{ color: 'var(--primary-100)' }}
         >
-          Sharp Ireland Color Scheme (Dark Mode Only)
+          Sharp Ireland Color Scheme (Light Mode)
         </h2>
         <p style={{ color: 'var(--text-200)' }}>
-          This component now demonstrates the color system in dark mode only.
+          This component demonstrates the unified light-mode color system.
         </p>
       </div>
 

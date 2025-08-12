@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Horse, Star, Lightning, ShieldCheck } from 'phosphor-react';
+import { Horse, Star, Lightning, ShieldCheck } from '@phosphor-icons/react';
 import content from '../content.json';
 
 gsap.registerPlugin(ScrollTrigger);

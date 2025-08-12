@@ -1,15 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import { heroFadeIn, heroElement, heroButton } from "../utils/motion-variants";
 
 export default function HeroSection() {
-  const heroRef = useRef<HTMLElement | null>(null);
-
   const [bentoImages, setBentoImages] = useState<string[]>([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [gsapReady, setGsapReady] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
 
   // Fallbacks used if API fails or before load. Keep within public/ for Next/Image optimization.
@@ -69,19 +67,6 @@ export default function HeroSection() {
     return () => clearTimeout(initTimer);
   }, []);
 
-  // Check GSAP availability
-  useEffect(() => {
-    const checkGSAP = () => {
-      if (typeof window !== 'undefined' && (window as any).gsapReady && gsap) {
-        setGsapReady(true);
-      } else {
-        // Retry until GSAP is available
-        setTimeout(checkGSAP, 50);
-      }
-    };
-    checkGSAP();
-  }, []);
-
   // Fetch dynamic image list and pick 5 at every reload
   useEffect(() => {
     let cancelled = false;
@@ -112,34 +97,6 @@ export default function HeroSection() {
     };
   }, []);
 
-  // Fade-in animation for key elements - only run when everything is ready
-  useEffect(() => {
-    if (!gsapReady || !imagesLoaded || isInitializing) return;
-    
-    const el = heroRef.current;
-    if (!el) return;
-
-    // Use GSAP context for proper cleanup
-    const ctx = gsap.context(() => {
-      const elements = el.querySelectorAll(".animate-element");
-      if (elements.length > 0) {
-        gsap.fromTo(elements,
-          { opacity: 0, y: 24 },
-          {
-            opacity: 1,
-            y: 0,
-            stagger: 0.1,
-            duration: 0.6,
-            ease: "power2.out",
-          }
-        );
-      }
-    }, el);
-
-    return () => {
-      ctx.revert();
-    };
-  }, [gsapReady, imagesLoaded, isInitializing]);
 
   // Show loading state during initialization
   if (isInitializing) {
@@ -154,7 +111,7 @@ export default function HeroSection() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(180deg, var(--bg-100) 0%, #f9fafb 40%, var(--bg-200) 100%)",
+              "linear-gradient(180deg, var(--bg-100) 0%, var(--bg-200) 40%, var(--bg-200) 100%)",
           }}
         />
         {/* Loading content container */}
@@ -181,11 +138,13 @@ export default function HeroSection() {
   }
 
   return (
-    <section
+    <motion.section
       id="hero-section"
-      ref={heroRef}
       className="relative min-h-screen pt-36 overflow-hidden"
       aria-label="Venture studio hero"
+      initial="hidden"
+      animate={!isInitializing && imagesLoaded ? "visible" : "hidden"}
+      variants={heroFadeIn}
     >
       {/* Base deep-teal gradient */}
       <div
@@ -193,7 +152,7 @@ export default function HeroSection() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, var(--bg-100) 0%, #f9fafb 40%, var(--bg-200) 100%)",
+            "linear-gradient(180deg, var(--bg-100) 0%, var(--bg-200) 40%, var(--bg-200) 100%)",
         }}
       />
 
@@ -218,7 +177,7 @@ export default function HeroSection() {
           {/* Left Column - Existing content */}
           <div id="hero-left-col" className="lg:col-span-7 flex flex-col">
             {/* Announcement pill */}
-            <div id="hero-announcement-wrap" className="animate-element">
+            <motion.div id="hero-announcement-wrap" variants={heroElement}>
               <div
                 id="hero-announcement"
                 className="inline-flex items-center gap-3 rounded-2xl border px-4 py-2"
@@ -238,15 +197,15 @@ export default function HeroSection() {
                 <span
                   id="hero-announcement-sep"
                   className="w-1.5 h-1.5 rounded-full"
-                  style={{ backgroundColor: "var(--accent-green, #C0FF5A)" }}
+                  style={{ backgroundColor: "var(--accent-green)" }}
                 />
                 <span
                   id="hero-announcement-chip"
                   className="text-[11px] font-bold leading-none rounded-md px-2.5 py-1"
                   style={{
-                    color: "#0B1B14",
-                    backgroundColor: "var(--accent-green, #C0FF5A)",
-                    boxShadow: "0 8px 20px rgba(192,255,90,0.28)",
+                    color: "var(--white-color)",
+                    backgroundColor: "var(--accent-green)",
+                    boxShadow: "0 8px 20px rgba(16,185,129,0.28)",
                     letterSpacing: "0.06em",
                     textTransform: "uppercase",
                   }}
@@ -254,10 +213,10 @@ export default function HeroSection() {
                   4 Spots Left
                 </span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Heading + subtext */}
-            <div id="hero-copy-wrap" className="mt-8 animate-element">
+            <motion.div id="hero-copy-wrap" className="mt-8" variants={heroElement}>
               <h1
                 id="hero-heading"
                 className="text-[var(--text-100)] font-light leading-[1.08]"
@@ -279,20 +238,25 @@ export default function HeroSection() {
               </p>
 
               {/* Action buttons */}
-              <div
+              <motion.div
                 id="hero-buttons"
-                className="mt-8 flex flex-col sm:flex-row gap-4 animate-element"
+                className="mt-8 flex flex-col sm:flex-row gap-4"
+                variants={heroElement}
               >
-                <button
+                <motion.button
                   id="hero-btn-explore"
-                  className="btn-primary px-8 py-4 rounded-xl text-base transition-all duration-300 hover:scale-105 active:scale-95"
+                  className="btn-primary px-8 py-4 rounded-xl text-base"
+                  variants={heroButton}
+                  initial="rest"
+                  whileHover="hover"
+                  whileTap="tap"
                 >
                   Explore Our Products
-                </button>
+                </motion.button>
 
-                <button
+                <motion.button
                   id="hero-btn-book"
-                  className="px-8 py-4 rounded-xl text-base font-medium transition-all duration-300 hover:scale-105 active:scale-95"
+                  className="px-8 py-4 rounded-xl text-base font-medium"
                   style={{
                     background: "rgba(255, 255, 255, 0.1)",
                     backdropFilter: "blur(10px)",
@@ -300,24 +264,20 @@ export default function HeroSection() {
                     color: "var(--text-100)",
                     boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
-                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
-                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.2)";
-                  }}
+                  variants={heroButton}
+                  initial="rest"
+                  whileHover="hover"
+                  whileTap="tap"
                 >
                   Book a Call
-                </button>
-              </div>
-            </div>
+                </motion.button>
+              </motion.div>
+            </motion.div>
           </div>
 
           {/* Right Column - Bento Grid */}
           <div id="hero-right-col" className="lg:col-span-5">
-            <div id="hero-bento-wrap" className="hidden lg:block animate-element">
+            <motion.div id="hero-bento-wrap" className="hidden lg:block" variants={heroElement}>
               <div
                 id="hero-bento"
                 className="grid grid-cols-6 auto-rows-[96px] gap-4"
@@ -474,7 +434,7 @@ export default function HeroSection() {
                   />
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -488,6 +448,6 @@ export default function HeroSection() {
             "inset 0 -60px 80px rgba(0,0,0,0.08), inset 0 60px 120px rgba(0,0,0,0.06)",
         }}
       />
-    </section>
+    </motion.section>
   );
 }

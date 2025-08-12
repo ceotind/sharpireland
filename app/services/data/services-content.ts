@@ -1,4 +1,8 @@
-import React from "react";
+// Icon type definition for components to use
+export interface IconConfig {
+  name: string;
+  size: number;
+}
 
 // Interfaces for shared components
 export interface SectionHeaderData {
@@ -10,7 +14,7 @@ export interface SectionHeaderData {
 
 export interface FeatureItemData {
   id: string;
-  icon: React.ReactNode; // Or string for image path
+  icon: IconConfig; // Changed from React.ReactNode to IconConfig
   title: string;
   description: string;
 }
@@ -25,7 +29,7 @@ export interface StatItemData {
 
 export interface ProcessStepData {
   id: string;
-  icon: React.ReactNode;
+  icon: IconConfig; // Changed from React.ReactNode to IconConfig
   title: string;
   description: string;
 }
@@ -36,42 +40,308 @@ export interface FAQItemData {
   answer: string;
 }
 
+// New interfaces for enhanced data types
+export interface DashboardMetric {
+  id: string;
+  label: string;
+  value: number;
+  change?: string;
+  changeType?: 'positive' | 'negative' | 'neutral';
+  suffix?: string;
+  prefix?: string;
+  period?: string;
+  icon?: string;
+}
+
+export interface PlatformData {
+  platform: string;
+  engagement: number;
+  reach: number;
+  color: string;
+}
+
+export interface RecentPost {
+  id: string;
+  platform: string;
+  content: string;
+  engagement: string;
+  time: string;
+  status: 'published' | 'scheduled' | 'draft';
+}
+
+export interface ConversionFunnelStage {
+  stage: string;
+  value: number;
+  percentage: number;
+}
+
+export interface PerformanceChartData {
+  date: string;
+  conversions: number;
+  spend: number;
+  roas: number;
+}
+
+export interface CreativeTest {
+  id: string;
+  name: string;
+  status: 'active' | 'completed' | 'paused';
+  variants: CreativeVariant[];
+}
+
+export interface CreativeVariant {
+  id: string;
+  name: string;
+  type: 'video' | 'image' | 'carousel';
+  impressions: number;
+  clicks: number;
+  ctr: number;
+  conversions: number;
+  cpa: number;
+  winning: boolean;
+}
+
+export interface AudienceInsight {
+  id: string;
+  name: string;
+  size: string;
+  reach: number;
+  engagement: number;
+  conversions: number;
+  performance: 'high' | 'medium' | 'low';
+}
+
+export interface WorkflowTemplate {
+  id: string;
+  name: string;
+  description: string;
+  steps: number;
+  conversions: string;
+  timesSaved: string;
+  active: boolean;
+}
+
+export interface Integration {
+  name: string;
+  category: string;
+  connected: boolean;
+}
+
+export interface CTAVariant {
+  id: string;
+  text: string;
+  link: string;
+  style: 'primary' | 'secondary';
+  icon: string;
+  description: string;
+}
+
+export interface TrustIndicator {
+  id: string;
+  value: string;
+  label: string;
+}
+
+export interface SocialProof {
+  rating: number;
+  reviewCount: number;
+  platform: string;
+}
+
 export interface ServiceCTAData {
   id: string;
   primaryText: string;
   secondaryText: string;
   primaryLink: string;
   secondaryLink: string;
+  ctaVariants?: CTAVariant[];
+  trustIndicators?: TrustIndicator[];
+  socialProof?: SocialProof;
 }
 
-// Content for ServiceHero
+// Enhanced Content for ServiceHero
 export interface ServiceHeroContent {
   id: string;
   title: string;
   subtitle: string;
+  description: string;
   primaryCtaText: string;
   primaryCtaLink: string;
   secondaryCtaText: string;
   secondaryCtaLink: string;
+  trustIndicators: TrustIndicator[];
+  keyHighlights: {
+    id: string;
+    icon: string;
+    title: string;
+    description: string;
+  }[];
+  heroMetrics: DashboardMetric[];
+  socialProof: SocialProof;
 }
 
 export const serviceHeroContent: ServiceHeroContent = {
   id: "services-hero-section",
-  title: "AI powered services for growth",
-  subtitle: "Business outcomes driven by modern engineering and marketing",
-  primaryCtaText: "Get a Free Consultation",
+  title: "Transform Your Business with Results-Driven Digital Solutions",
+  subtitle: "From concept to conversion, we deliver comprehensive digital experiences that drive measurable growth",
+  description: "Partner with Sharp Ireland's expert team to accelerate your business growth through cutting-edge web development, strategic marketing, and intelligent automation solutions.",
+  primaryCtaText: "Start Your Growth Journey",
   primaryCtaLink: "/contact",
-  secondaryCtaText: "Explore Our Services",
-  secondaryCtaLink: "/services#explore",
+  secondaryCtaText: "View Our Case Studies",
+  secondaryCtaLink: "/case-studies",
+  
+  // Trust indicators for credibility
+  trustIndicators: [
+    {
+      id: "clients-served",
+      value: "500+",
+      label: "Clients Served"
+    },
+    {
+      id: "projects-delivered",
+      value: "1,200+",
+      label: "Projects Delivered"
+    },
+    {
+      id: "avg-roi-increase",
+      value: "340%",
+      label: "Average ROI Increase"
+    },
+    {
+      id: "client-retention",
+      value: "95%",
+      label: "Client Retention Rate"
+    }
+  ],
+  
+  // Key service highlights
+  keyHighlights: [
+    {
+      id: "web-development",
+      icon: "Code",
+      title: "Web Development",
+      description: "Next.js, React, and modern frameworks for high-performance applications"
+    },
+    {
+      id: "digital-marketing",
+      icon: "TrendUp",
+      title: "Digital Marketing",
+      description: "Google Ads, Meta Ads, and social media campaigns that convert"
+    },
+    {
+      id: "automation",
+      icon: "Robot",
+      title: "Business Automation",
+      description: "Streamline operations and boost efficiency with custom workflows"
+    },
+    {
+      id: "app-development",
+      icon: "DeviceMobile",
+      title: "App Development",
+      description: "Native iOS, Android, and cross-platform mobile solutions"
+    }
+  ],
+  
+  // Hero dashboard metrics
+  heroMetrics: [
+    {
+      id: "active-projects",
+      label: "Active Projects",
+      value: 47,
+      change: "+12",
+      changeType: "positive",
+      icon: "Briefcase"
+    },
+    {
+      id: "client-satisfaction",
+      label: "Client Satisfaction",
+      value: 98,
+      suffix: "%",
+      change: "+2%",
+      changeType: "positive",
+      icon: "Smiley"
+    },
+    {
+      id: "avg-project-roi",
+      label: "Avg Project ROI",
+      value: 285,
+      suffix: "%",
+      change: "+45%",
+      changeType: "positive",
+      icon: "ChartLineUp"
+    },
+    {
+      id: "response-time",
+      label: "Response Time",
+      value: 2,
+      suffix: "h",
+      change: "-30min",
+      changeType: "positive",
+      icon: "Clock"
+    }
+  ],
+  
+  // Social proof
+  socialProof: {
+    rating: 4.9,
+    reviewCount: 127,
+    platform: "Google Reviews"
+  }
 };
 
-// Shared CTA content (example)
+// Enhanced CTA content
 export const commonCtaContent: ServiceCTAData = {
-  id: "common-cta-section",
-  primaryText: "Book a Call",
-  secondaryText: "Request Proposal",
+  id: "enhanced-cta-section",
+  primaryText: "Start Your Growth Journey",
+  secondaryText: "Get Free Consultation",
   primaryLink: "/contact",
-  secondaryLink: "/contact#proposal",
+  secondaryLink: "/contact#consultation",
+  
+  // Enhanced CTA data
+  ctaVariants: [
+    {
+      id: "primary-cta",
+      text: "Start Your Growth Journey",
+      link: "/contact",
+      style: "primary",
+      icon: "ArrowRight",
+      description: "Book a strategy call with our experts"
+    },
+    {
+      id: "secondary-cta",
+      text: "Get Free Consultation",
+      link: "/contact#consultation",
+      style: "secondary",
+      icon: "Calendar",
+      description: "30-minute free consultation call"
+    }
+  ],
+  
+  // Trust indicators
+  trustIndicators: [
+    {
+      id: "clients-served",
+      value: "500+",
+      label: "Clients Served"
+    },
+    {
+      id: "projects-completed",
+      value: "1,200+",
+      label: "Projects Completed"
+    },
+    {
+      id: "avg-roi",
+      value: "340%",
+      label: "Average ROI"
+    }
+  ],
+  
+  // Social proof
+  socialProof: {
+    rating: 4.9,
+    reviewCount: 127,
+    platform: "Google Reviews"
+  }
 };
 
 // --- Phase 2: Core Service Sections Content ---
@@ -94,37 +364,37 @@ export const webDevelopmentContent: WebDevelopmentContent = {
   features: [
     {
       id: "web-dev-feature-nextjs",
-      icon: "🚀", // Placeholder
+      icon: { name: "Rocket", size: 32 },
       title: "Next.js Apps",
       description: "SSR, SSG, SEO, and performance-optimized applications.",
     },
     {
       id: "web-dev-feature-react",
-      icon: "⚛️", // Placeholder
+      icon: { name: "Atom", size: 32 },
       title: "React SPAs",
       description: "Scalable UIs and interactive single-page applications.",
     },
     {
       id: "web-dev-feature-wordpress",
-      icon: "⚙️", // Placeholder
+      icon: { name: "Gear", size: 32 },
       title: "WordPress",
       description: "Custom themes, Gutenberg, and WooCommerce solutions.",
     },
     {
       id: "web-dev-feature-wix",
-      icon: "✨", // Placeholder
+      icon: { name: "Sparkle", size: 32 },
       title: "Wix",
       description: "Rapid build and custom section development.",
     },
     {
       id: "web-dev-feature-headless-cms",
-      icon: "🔗", // Placeholder
+      icon: { name: "Link", size: 32 },
       title: "Headless CMS",
       description: "Contentful, Sanity, and other headless CMS integrations.",
     },
     {
       id: "web-dev-feature-e2e-quality",
-      icon: "✅", // Placeholder
+      icon: { name: "CheckCircle", size: 32 },
       title: "E2E Quality",
       description: "Comprehensive testing, CI/CD, and analytics integration.",
     },
@@ -155,25 +425,25 @@ export const appDevelopmentContent: AppDevelopmentContent = {
   features: [
     {
       id: "app-dev-feature-android",
-      icon: "🤖", // Placeholder
+      icon: { name: "AndroidLogo", size: 32 },
       title: "Native Android",
       description: "High-performance apps using Kotlin.",
     },
     {
       id: "app-dev-feature-ios",
-      icon: "🍎", // Placeholder
+      icon: { name: "AppleLogo", size: 32 },
       title: "Native iOS",
       description: "Seamless experiences with Swift.",
     },
     {
       id: "app-dev-feature-cross-platform",
-      icon: "📱", // Placeholder
+      icon: { name: "DeviceMobile", size: 32 },
       title: "Cross-Platform",
       description: "React Native or Flutter for multi-OS reach.",
     },
     {
       id: "app-dev-feature-pwa",
-      icon: "🌐", // Placeholder
+      icon: { name: "Globe", size: 32 },
       title: "Progressive Web Apps",
       description: "Installable web apps with native-like feel.",
     },
@@ -199,31 +469,31 @@ export const appMaintenanceContent: AppMaintenanceContent = {
   features: [
     {
       id: "app-maint-feature-performance",
-      icon: "⚡", // Placeholder
+      icon: { name: "Lightning", size: 32 },
       title: "Performance Optimization",
       description: "Speed improvements and bug fixes.",
     },
     {
       id: "app-maint-feature-security",
-      icon: "🔒", // Placeholder
+      icon: { name: "Lock", size: 32 },
       title: "Security Patches",
       description: "Regular security updates and vulnerability assessments.",
     },
     {
       id: "app-maint-feature-updates",
-      icon: "✨", // Placeholder
+      icon: { name: "Sparkle", size: 32 },
       title: "Feature Updates",
       description: "New functionality and user experience improvements.",
     },
     {
       id: "app-maint-feature-monitoring",
-      icon: "👁️", // Placeholder
+      icon: { name: "Eye", size: 32 },
       title: "24x7 Monitoring",
       description: "Continuous monitoring and issue resolution.",
     },
     {
       id: "app-maint-feature-db-backup",
-      icon: "💾", // Placeholder
+      icon: { name: "FloppyDisk", size: 32 },
       title: "DB Backups & Restoration",
       description: "Optimization and reliable backup solutions.",
     },
@@ -231,19 +501,19 @@ export const appMaintenanceContent: AppMaintenanceContent = {
   processSteps: [
     {
       id: "maint-step-1",
-      icon: "🗓️",
+      icon: { name: "Calendar", size: 32 },
       title: "Monthly Checks",
       description: "Routine performance and security audits.",
     },
     {
       id: "maint-step-2",
-      icon: "🗓️",
+      icon: { name: "Calendar", size: 32 },
       title: "Quarterly Reviews",
       description: "Feature roadmap and strategic planning.",
     },
     {
       id: "maint-step-3",
-      icon: "🛠️",
+      icon: { name: "Gear", size: 32 },
       title: "On-Demand Support",
       description: "Immediate assistance for critical issues.",
     },
@@ -270,123 +540,115 @@ export interface SocialMediaContent {
   eyebrow: string;
   title: string;
   description: string;
+  dashboardMetrics: DashboardMetric[];
+  platformData: PlatformData[];
+  recentPosts: RecentPost[];
   features: FeatureItemData[];
-  stats: {
-    id: string;
-    label: string;
-    value: number;
-    prefix?: string;
-    suffix?: string;
-  }[];
-  mockPosts: {
-    id: string;
-    platform: string;
-    image: string;
-    content: string;
-    engagement: string;
-    author: string;
-  }[];
 }
 
 export const socialMediaContent: SocialMediaContent = {
   id: "services-social-section",
   eyebrow: "Brand presence",
-  title: "Social media management",
-  description: "Strategic content planning and community engagement across all major platforms",
-  features: [
+  title: "Social media management that drives engagement",
+  description: "Strategic content planning and community engagement across all major platforms with data-driven insights",
+  
+  // Dashboard mockup data
+  dashboardMetrics: [
     {
-      id: "social-feature-strategy",
-      icon: "📅", // Placeholder
-      title: "Strategy & Calendar",
-      description: "Brand-aligned content planning and creation with strategic posting schedules.",
-    },
-    {
-      id: "social-feature-community",
-      icon: "💬", // Placeholder
-      title: "Community Management",
-      description: "Active engagement and customer interaction to build loyal communities.",
-    },
-    {
-      id: "social-feature-platforms",
-      icon: "📱", // Placeholder
-      title: "Multi-Platform Operations",
-      description: "Coordinated presence across Facebook, Instagram, LinkedIn, Twitter, and TikTok.",
-    },
-    {
-      id: "social-feature-analytics",
-      icon: "📊", // Placeholder
-      title: "Analytics & Reporting",
-      description: "Comprehensive performance tracking and actionable insights.",
-    },
-    {
-      id: "social-feature-influencer",
-      icon: "🌟", // Placeholder
-      title: "Influencer Collaboration",
-      description: "Strategic partnerships and campaign management with relevant influencers.",
-    },
-  ],
-  stats: [
-    {
-      id: "reach",
-      label: "Monthly Reach",
+      id: "total-reach",
+      label: "Total Reach",
       value: 125000,
-      prefix: "",
-      suffix: "+"
+      change: "+23%",
+      changeType: "positive",
+      icon: "Users"
     },
     {
-      id: "engagement",
+      id: "engagement-rate",
       label: "Engagement Rate",
-      value: 8,
-      prefix: "",
-      suffix: "%"
+      value: 8.4,
+      suffix: "%",
+      change: "+1.2%",
+      changeType: "positive",
+      icon: "Heart"
     },
     {
-      id: "growth",
+      id: "follower-growth",
       label: "Follower Growth",
-      value: 27,
-      prefix: "+",
-      suffix: "%"
+      value: 2847,
+      change: "+15%",
+      changeType: "positive",
+      icon: "TrendUp"
     },
     {
-      id: "conversion",
-      label: "Conversion Rate",
-      value: 3.5,
-      prefix: "",
-      suffix: "%"
+      id: "content-published",
+      label: "Content Published",
+      value: 156,
+      change: "+8",
+      changeType: "positive",
+      icon: "FileText"
     }
   ],
-  mockPosts: [
+  
+  // Platform performance chart data
+  platformData: [
+    { platform: "Instagram", engagement: 85, reach: 45000, color: "#E4405F" },
+    { platform: "Facebook", engagement: 72, reach: 38000, color: "#1877F2" },
+    { platform: "LinkedIn", engagement: 91, reach: 28000, color: "#0A66C2" },
+    { platform: "Twitter", engagement: 68, reach: 14000, color: "#1DA1F2" }
+  ],
+  
+  // Recent posts for dashboard
+  recentPosts: [
     {
       id: "post-1",
       platform: "Instagram",
-      image: "/images/social/instagram-post-1.jpg",
-      content: "Elevate your brand with our latest design techniques. #DigitalMarketing #BrandDesign",
-      engagement: "1.2k likes • 45 comments",
-      author: "Sharp Digital"
+      content: "New product launch campaign",
+      engagement: "1.2k likes",
+      time: "2h ago",
+      status: "published"
     },
     {
       id: "post-2",
       platform: "LinkedIn",
-      image: "/images/social/linkedin-post-1.jpg",
-      content: "How our clients achieved 43% growth in Q2 through strategic social campaigns.",
-      engagement: "89 reactions • 12 comments",
-      author: "Sharp Digital"
+      content: "Industry insights article",
+      engagement: "89 reactions",
+      time: "4h ago",
+      status: "published"
     },
     {
       id: "post-3",
-      platform: "Twitter",
-      image: "/images/social/twitter-post-1.jpg",
-      content: "Just launched: Our comprehensive guide to social media success in 2025. Download now!",
-      engagement: "56 retweets • 112 likes",
-      author: "Sharp Digital"
+      platform: "Facebook",
+      content: "Behind the scenes video",
+      engagement: "456 views",
+      time: "6h ago",
+      status: "scheduled"
+    }
+  ],
+  
+  features: [
+    {
+      id: "social-feature-strategy",
+      icon: { name: "Calendar", size: 32 },
+      title: "Content Strategy & Planning",
+      description: "Data-driven content calendars with optimal posting schedules and audience insights."
     },
     {
-      id: "post-4",
-      platform: "Facebook",
-      image: "/images/social/facebook-post-1.jpg",
-      content: "Join our webinar next Tuesday to learn the secrets of viral content creation.",
-      engagement: "78 likes • 23 shares",
-      author: "Sharp Digital"
+      id: "social-feature-community",
+      icon: { name: "ChatCircle", size: 32 },
+      title: "Community Management",
+      description: "Active engagement and customer interaction to build loyal brand communities."
+    },
+    {
+      id: "social-feature-analytics",
+      icon: { name: "ChartBar", size: 32 },
+      title: "Performance Analytics",
+      description: "Comprehensive tracking and reporting with actionable growth insights."
+    },
+    {
+      id: "social-feature-automation",
+      icon: { name: "Robot", size: 32 },
+      title: "Smart Automation",
+      description: "Automated posting, response management, and lead qualification systems."
     }
   ]
 };
@@ -397,209 +659,124 @@ export interface GoogleAdsContent {
   eyebrow: string;
   title: string;
   description: string;
-  features: FeatureItemData[];
+  dashboardMetrics: DashboardMetric[];
+  conversionFunnel: ConversionFunnelStage[];
+  performanceChart: PerformanceChartData[];
   campaignTypes: {
     id: string;
     name: string;
     description: string;
-    metrics: {
-      id: string;
-      label: string;
-      value: number;
-      prefix?: string;
-      suffix?: string;
-      color?: string;
-    }[];
+    active: boolean;
   }[];
+  features: FeatureItemData[];
 }
 
 export const googleAdsContent: GoogleAdsContent = {
   id: "services-google-ads-section",
   eyebrow: "Performance marketing",
-  title: "Google Ads management",
-  description: "Data-driven campaigns that maximize ROI across Search, Display, and Performance Max",
-  features: [
+  title: "Google Ads that deliver measurable ROI",
+  description: "Data-driven campaigns optimized for conversions across Search, Display, and Performance Max",
+  
+  // Dashboard metrics for current campaign
+  dashboardMetrics: [
     {
-      id: "google-ads-feature-keyword",
-      icon: "🔍", // Placeholder
-      title: "Keyword Research",
-      description: "Strategic keyword targeting based on search intent and competition analysis.",
+      id: "total-conversions",
+      label: "Total Conversions",
+      value: 1247,
+      change: "+18%",
+      changeType: "positive",
+      period: "This month"
     },
     {
-      id: "google-ads-feature-ad-creation",
-      icon: "✏️", // Placeholder
-      title: "Ad Creation",
-      description: "Compelling ad copy and extensions that drive clicks and conversions.",
+      id: "roas",
+      label: "Return on Ad Spend",
+      value: 4.2,
+      suffix: "x",
+      change: "+0.8x",
+      changeType: "positive",
+      period: "This month"
     },
     {
-      id: "google-ads-feature-bid",
-      icon: "📊", // Placeholder
-      title: "Bid Strategy",
-      description: "Automated and manual bidding optimized for your campaign goals.",
+      id: "cpc",
+      label: "Avg. Cost Per Click",
+      value: 1.85,
+      prefix: "$",
+      change: "-$0.23",
+      changeType: "positive",
+      period: "This month"
     },
     {
-      id: "google-ads-feature-conversion",
-      icon: "🎯", // Placeholder
-      title: "Conversion Tracking",
-      description: "Comprehensive tracking setup to measure campaign performance.",
-    },
-    {
-      id: "google-ads-feature-landing",
-      icon: "📱", // Placeholder
-      title: "Landing Page Optimization",
-      description: "Conversion-focused landing pages that turn clicks into customers.",
-    },
+      id: "ctr",
+      label: "Click-Through Rate",
+      value: 6.8,
+      suffix: "%",
+      change: "+1.2%",
+      changeType: "positive",
+      period: "This month"
+    }
   ],
+  
+  // Conversion funnel data
+  conversionFunnel: [
+    { stage: "Impressions", value: 125000, percentage: 100 },
+    { stage: "Clicks", value: 8500, percentage: 6.8 },
+    { stage: "Landing Page Views", value: 7650, percentage: 90 },
+    { stage: "Conversions", value: 1247, percentage: 16.3 }
+  ],
+  
+  // Campaign performance over time
+  performanceChart: [
+    { date: "Week 1", conversions: 280, spend: 2400, roas: 3.8 },
+    { date: "Week 2", conversions: 320, spend: 2600, roas: 4.1 },
+    { date: "Week 3", conversions: 295, spend: 2300, roas: 4.3 },
+    { date: "Week 4", conversions: 352, spend: 2700, roas: 4.5 }
+  ],
+  
   campaignTypes: [
     {
       id: "search",
       name: "Search Campaigns",
-      description: "Target users actively searching for your products or services with text ads on Google Search.",
-      metrics: [
-        {
-          id: "impressions",
-          label: "Impressions",
-          value: 125000,
-          suffix: "+",
-          color: "var(--bg-300)"
-        },
-        {
-          id: "clicks",
-          label: "Clicks",
-          value: 7500,
-          suffix: "+",
-          color: "var(--accent-green-base)"
-        },
-        {
-          id: "ctr",
-          label: "CTR",
-          value: 6,
-          suffix: "%",
-          color: "var(--accent-green)"
-        },
-        {
-          id: "cpc",
-          label: "Avg. CPC",
-          value: 1.85,
-          prefix: "$",
-          color: "var(--bg-300)"
-        },
-        {
-          id: "conversions",
-          label: "Conversions",
-          value: 450,
-          suffix: "+",
-          color: "var(--accent-green)"
-        },
-        {
-          id: "roas",
-          label: "ROAS",
-          value: 4.2,
-          prefix: "",
-          suffix: "x",
-          color: "var(--accent-green)"
-        }
-      ]
+      description: "Target high-intent users actively searching for your products or services",
+      active: true
     },
     {
       id: "display",
-      name: "Display Campaigns",
-      description: "Reach potential customers with visual ads across millions of websites in the Google Display Network.",
-      metrics: [
-        {
-          id: "impressions",
-          label: "Impressions",
-          value: 450000,
-          suffix: "+",
-          color: "var(--bg-300)"
-        },
-        {
-          id: "clicks",
-          label: "Clicks",
-          value: 9000,
-          suffix: "+",
-          color: "var(--accent-green-base)"
-        },
-        {
-          id: "ctr",
-          label: "CTR",
-          value: 2,
-          suffix: "%",
-          color: "var(--accent-green)"
-        },
-        {
-          id: "cpc",
-          label: "Avg. CPC",
-          value: 0.75,
-          prefix: "$",
-          color: "var(--bg-300)"
-        },
-        {
-          id: "conversions",
-          label: "Conversions",
-          value: 270,
-          suffix: "+",
-          color: "var(--accent-green)"
-        },
-        {
-          id: "roas",
-          label: "ROAS",
-          value: 3.8,
-          prefix: "",
-          suffix: "x",
-          color: "var(--accent-green)"
-        }
-      ]
+      name: "Display Network",
+      description: "Reach potential customers across millions of websites with visual ads",
+      active: false
     },
     {
       id: "pmax",
       name: "Performance Max",
-      description: "AI-powered campaigns that show your ads across all Google channels for maximum performance.",
-      metrics: [
-        {
-          id: "impressions",
-          label: "Impressions",
-          value: 275000,
-          suffix: "+",
-          color: "var(--bg-300)"
-        },
-        {
-          id: "clicks",
-          label: "Clicks",
-          value: 8200,
-          suffix: "+",
-          color: "var(--accent-green-base)"
-        },
-        {
-          id: "ctr",
-          label: "CTR",
-          value: 3,
-          suffix: "%",
-          color: "var(--accent-green)"
-        },
-        {
-          id: "cpc",
-          label: "Avg. CPC",
-          value: 1.25,
-          prefix: "$",
-          color: "var(--bg-300)"
-        },
-        {
-          id: "conversions",
-          label: "Conversions",
-          value: 520,
-          suffix: "+",
-          color: "var(--accent-green)"
-        },
-        {
-          id: "roas",
-          label: "ROAS",
-          value: 5.1,
-          prefix: "",
-          suffix: "x",
-          color: "var(--accent-green)"
-        }
-      ]
+      description: "AI-powered campaigns across all Google channels for maximum reach",
+      active: false
+    }
+  ],
+  
+  features: [
+    {
+      id: "google-ads-feature-keyword",
+      icon: { name: "MagnifyingGlass", size: 32 },
+      title: "Strategic Keyword Research",
+      description: "Advanced keyword targeting based on search intent and competitive analysis."
+    },
+    {
+      id: "google-ads-feature-optimization",
+      icon: { name: "ChartLineUp", size: 32 },
+      title: "Continuous Optimization",
+      description: "AI-driven bid management and ad optimization for maximum ROI performance."
+    },
+    {
+      id: "google-ads-feature-tracking",
+      icon: { name: "Target", size: 32 },
+      title: "Advanced Conversion Tracking",
+      description: "Comprehensive tracking setup to measure every aspect of campaign performance."
+    },
+    {
+      id: "google-ads-feature-reporting",
+      icon: { name: "PresentationChart", size: 32 },
+      title: "Detailed Performance Reports",
+      description: "Clear, actionable reports with insights and recommendations for growth."
     }
   ]
 };
@@ -610,131 +787,119 @@ export interface MetaAdsContent {
   eyebrow: string;
   title: string;
   description: string;
+  creativeTests: CreativeTest[];
+  audienceInsights: AudienceInsight[];
+  platformBreakdown: {
+    platform: string;
+    impressions: number;
+    conversions: number;
+    cpa: number;
+  }[];
   features: FeatureItemData[];
-  creativeCarousel: {
-    id: string;
-    type: string; // "image", "video", "carousel"
-    title: string;
-    description: string;
-    mediaUrl: string;
-    thumbnailUrl?: string;
-  }[];
-  personaCards: {
-    id: string;
-    name: string;
-    age: string;
-    location: string;
-    interests: string[];
-    behaviors: string[];
-    avatar: string;
-    backgroundColor: string;
-  }[];
 }
 
 export const metaAdsContent: MetaAdsContent = {
   id: "services-meta-ads-section",
-  eyebrow: "Social ads at scale",
-  title: "Meta advertising management",
-  description: "Strategic Facebook and Instagram ad campaigns that drive engagement, leads, and sales",
-  features: [
+  eyebrow: "Social advertising",
+  title: "Meta ads that convert audiences into customers",
+  description: "Strategic Facebook and Instagram campaigns with advanced targeting and creative optimization",
+  
+  // A/B testing dashboard data
+  creativeTests: [
     {
-      id: "meta-ads-feature-campaigns",
-      icon: "📱", // Placeholder
-      title: "Facebook & Instagram Campaigns",
-      description: "Targeted campaigns across Facebook, Instagram, Messenger, and Audience Network.",
-    },
-    {
-      id: "meta-ads-feature-lookalikes",
-      icon: "👥", // Placeholder
-      title: "Lookalikes & Retargeting",
-      description: "Advanced audience targeting using custom and lookalike audiences.",
-    },
-    {
-      id: "meta-ads-feature-testing",
-      icon: "🧪", // Placeholder
-      title: "Creative Testing",
-      description: "A/B testing of ad creative, copy, and audience segments for optimal performance.",
-    },
-    {
-      id: "meta-ads-feature-budget",
-      icon: "💰", // Placeholder
-      title: "Budget Pacing",
-      description: "Strategic budget allocation and pacing to maximize campaign ROI.",
-    },
-    {
-      id: "meta-ads-feature-pixel",
-      icon: "📊", // Placeholder
-      title: "Pixel Implementation",
-      description: "Proper tracking setup for accurate conversion measurement and optimization.",
-    },
-    {
-      id: "meta-ads-feature-reporting",
-      icon: "📈", // Placeholder
-      title: "Performance Reporting",
-      description: "Comprehensive reporting with actionable insights and recommendations.",
-    },
-  ],
-  creativeCarousel: [
-    {
-      id: "meta-creative-1",
-      type: "image",
-      title: "Single Image Ad",
-      description: "High-impact visual ads that capture attention in feeds",
-      mediaUrl: "/images/ads/meta-image-ad.jpg",
-    },
-    {
-      id: "meta-creative-2",
-      type: "video",
-      title: "Video Ad",
-      description: "Engaging video content that tells your brand story",
-      mediaUrl: "/images/ads/meta-video-ad.mp4",
-      thumbnailUrl: "/images/ads/meta-video-thumbnail.jpg",
-    },
-    {
-      id: "meta-creative-3",
-      type: "carousel",
-      title: "Carousel Ad",
-      description: "Multiple images or videos in a single ad unit",
-      mediaUrl: "/images/ads/meta-carousel-ad.jpg",
-    },
-    {
-      id: "meta-creative-4",
-      type: "image",
-      title: "Collection Ad",
-      description: "Showcase products from your catalog with a main image",
-      mediaUrl: "/images/ads/meta-collection-ad.jpg",
+      id: "test-1",
+      name: "Product Launch Campaign",
+      status: "active",
+      variants: [
+        {
+          id: "variant-a",
+          name: "Variant A - Video",
+          type: "video",
+          impressions: 45000,
+          clicks: 1800,
+          ctr: 4.0,
+          conversions: 72,
+          cpa: 25.50,
+          winning: true
+        },
+        {
+          id: "variant-b",
+          name: "Variant B - Carousel",
+          type: "carousel",
+          impressions: 43000,
+          clicks: 1550,
+          ctr: 3.6,
+          conversions: 58,
+          cpa: 31.20,
+          winning: false
+        }
+      ]
     }
   ],
-  personaCards: [
+  
+  // Audience insights data
+  audienceInsights: [
     {
-      id: "persona-1",
-      name: "Urban Professional",
-      age: "28-42",
-      location: "Major cities",
-      interests: ["Technology", "Career growth", "Premium brands", "Fitness"],
-      behaviors: ["Mobile shoppers", "Early adopters", "Frequent travelers"],
-      avatar: "/images/personas/professional.jpg",
-      backgroundColor: "var(--bg-200)"
+      id: "audience-1",
+      name: "Lookalike Audience",
+      size: "2.1M",
+      reach: 450000,
+      engagement: 8.2,
+      conversions: 156,
+      performance: "high"
     },
     {
-      id: "persona-2",
-      name: "Young Parent",
-      age: "25-38",
-      location: "Suburban areas",
-      interests: ["Parenting", "Home improvement", "Education", "Family activities"],
-      behaviors: ["Value seekers", "Research-driven", "Community focused"],
-      avatar: "/images/personas/parent.jpg",
-      backgroundColor: "var(--bg-200)"
+      id: "audience-2",
+      name: "Interest-Based",
+      size: "1.8M",
+      reach: 380000,
+      engagement: 6.8,
+      conversions: 124,
+      performance: "medium"
     },
     {
-      id: "persona-3",
-      name: "Digital Native",
-      age: "18-27",
-      location: "Mixed urban/suburban",
-      interests: ["Social media", "Entertainment", "Fashion", "Gaming"],
-      behaviors: ["Trend followers", "Content creators", "Impulse buyers"],
-      avatar: "/images/personas/digital-native.jpg",
-      backgroundColor: "var(--bg-200)"
+      id: "audience-3",
+      name: "Retargeting",
+      size: "85K",
+      reach: 65000,
+      engagement: 12.4,
+      conversions: 89,
+      performance: "high"
+    }
+  ],
+  
+  // Platform performance breakdown
+  platformBreakdown: [
+    { platform: "Facebook Feed", impressions: 125000, conversions: 245, cpa: 28.50 },
+    { platform: "Instagram Feed", impressions: 98000, conversions: 198, cpa: 31.20 },
+    { platform: "Instagram Stories", impressions: 67000, conversions: 134, cpa: 26.80 },
+    { platform: "Facebook Stories", impressions: 45000, conversions: 78, cpa: 35.60 }
+  ],
+  
+  features: [
+    {
+      id: "meta-ads-feature-targeting",
+      icon: { name: "Crosshair", size: 32 },
+      title: "Advanced Audience Targeting",
+      description: "Precision targeting using custom audiences, lookalikes, and behavioral data."
+    },
+    {
+      id: "meta-ads-feature-creative",
+      icon: { name: "Palette", size: 32 },
+      title: "Creative Optimization",
+      description: "A/B testing of ad formats, copy, and visuals for maximum engagement."
+    },
+    {
+      id: "meta-ads-feature-automation",
+      icon: { name: "Robot", size: 32 },
+      title: "Smart Campaign Automation",
+      description: "Automated bid optimization and budget allocation across campaigns."
+    },
+    {
+      id: "meta-ads-feature-insights",
+      icon: { name: "ChartPie", size: 32 },
+      title: "Audience Insights",
+      description: "Deep audience analysis and behavioral insights for better targeting."
     }
   ]
 };
@@ -745,160 +910,118 @@ export interface AutomationContent {
   eyebrow: string;
   title: string;
   description: string;
+  workflowTemplates: WorkflowTemplate[];
+  automationMetrics: DashboardMetric[];
+  integrations: Integration[];
   features: FeatureItemData[];
-  workflowNodes: {
-    id: string;
-    title: string;
-    description: string;
-    icon: React.ReactNode;
-    position: 'start' | 'middle' | 'end';
-    connections: string[]; // IDs of nodes this connects to
-  }[];
-  industryUseCases: {
-    id: string;
-    industry: string;
-    description: string;
-    benefits: string[];
-  }[];
 }
 
 export const automationContent: AutomationContent = {
   id: "services-automation-section",
-  eyebrow: "Scale operations",
-  title: "Business and workflow automation",
-  description: "Streamline operations and boost efficiency with custom automation solutions",
-  features: [
+  eyebrow: "Process optimization",
+  title: "Business automation that scales with you",
+  description: "Custom workflow automation solutions that streamline operations and boost efficiency",
+  
+  // Workflow builder interface data
+  workflowTemplates: [
     {
-      id: "automation-feature-process",
-      icon: "⚙️", // Placeholder
-      title: "Process Automation",
-      description: "Streamline repetitive tasks and workflows for increased efficiency.",
+      id: "lead-nurturing",
+      name: "Lead Nurturing Workflow",
+      description: "Automated lead qualification and nurturing sequence",
+      steps: 6,
+      conversions: "23% increase",
+      timesSaved: "15 hours/week",
+      active: true
     },
     {
-      id: "automation-feature-crm",
-      icon: "👥", // Placeholder
-      title: "CRM Integration",
-      description: "Seamless customer data flow between systems and touchpoints.",
+      id: "customer-onboarding",
+      name: "Customer Onboarding",
+      description: "Streamlined new customer welcome and setup process",
+      steps: 8,
+      conversions: "45% faster onboarding",
+      timesSaved: "8 hours/week",
+      active: false
     },
     {
-      id: "automation-feature-email",
-      icon: "📧", // Placeholder
-      title: "Email & Lead Flows",
-      description: "Automated lead nurturing and personalized communication sequences.",
-    },
-    {
-      id: "automation-feature-inventory",
-      icon: "📦", // Placeholder
-      title: "Inventory Operations",
-      description: "Automated stock tracking, ordering, and management systems.",
-    },
-    {
-      id: "automation-feature-finance",
-      icon: "💰", // Placeholder
-      title: "Finance Automation",
-      description: "Streamlined invoicing, payments, and financial reporting.",
-    },
-    {
-      id: "automation-feature-api",
-      icon: "🔄", // Placeholder
-      title: "API Integrations",
-      description: "Connect different business tools and platforms for seamless data flow.",
-    },
-  ],
-  workflowNodes: [
-    {
-      id: "trigger-customer-action",
-      title: "Customer Action",
-      description: "Website visit, form submission, or purchase",
-      icon: "👤", // Placeholder
-      position: "start",
-      connections: ["process-data-collection"]
-    },
-    {
-      id: "process-data-collection",
-      title: "Data Collection",
-      description: "Gather and validate customer information",
-      icon: "📊", // Placeholder
-      position: "middle",
-      connections: ["process-crm-update", "process-segmentation"]
-    },
-    {
-      id: "process-crm-update",
-      title: "CRM Update",
-      description: "Store customer data and update records",
-      icon: "💾", // Placeholder
-      position: "middle",
-      connections: ["process-segmentation"]
-    },
-    {
-      id: "process-segmentation",
-      title: "Segmentation",
-      description: "Categorize based on behavior and attributes",
-      icon: "🔍", // Placeholder
-      position: "middle",
-      connections: ["action-email-sequence", "action-notification"]
-    },
-    {
-      id: "action-email-sequence",
-      title: "Email Sequence",
-      description: "Trigger personalized email campaign",
-      icon: "✉️", // Placeholder
-      position: "end",
-      connections: []
-    },
-    {
-      id: "action-notification",
-      title: "Team Notification",
-      description: "Alert sales team for follow-up",
-      icon: "🔔", // Placeholder
-      position: "end",
-      connections: []
+      id: "inventory-management",
+      name: "Inventory Management",
+      description: "Automated stock tracking and reorder notifications",
+      steps: 5,
+      conversions: "Zero stockouts",
+      timesSaved: "12 hours/week",
+      active: false
     }
   ],
-  industryUseCases: [
+  
+  // Automation metrics
+  automationMetrics: [
     {
-      id: "ecommerce-automation",
-      industry: "E-commerce",
-      description: "Streamline order processing, inventory management, and customer communications",
-      benefits: [
-        "Automated order confirmation and shipping updates",
-        "Inventory level monitoring and reordering",
-        "Abandoned cart recovery sequences",
-        "Customer segmentation and personalized recommendations"
-      ]
+      id: "time-saved",
+      label: "Time Saved Weekly",
+      value: 35,
+      suffix: " hours",
+      change: "+8 hours",
+      changeType: "positive"
     },
     {
-      id: "healthcare-automation",
-      industry: "Healthcare",
-      description: "Improve patient experience and administrative efficiency",
-      benefits: [
-        "Automated appointment reminders and scheduling",
-        "Patient intake form processing",
-        "Insurance verification workflows",
-        "Follow-up care coordination"
-      ]
+      id: "processes-automated",
+      label: "Processes Automated",
+      value: 24,
+      change: "+6",
+      changeType: "positive"
     },
     {
-      id: "finance-automation",
-      industry: "Financial Services",
-      description: "Enhance compliance and client service operations",
-      benefits: [
-        "Automated document collection and verification",
-        "Regulatory compliance reporting",
-        "Client onboarding workflows",
-        "Personalized financial update notifications"
-      ]
+      id: "error-reduction",
+      label: "Error Reduction",
+      value: 89,
+      suffix: "%",
+      change: "+12%",
+      changeType: "positive"
     },
     {
-      id: "manufacturing-automation",
-      industry: "Manufacturing",
-      description: "Optimize supply chain and production processes",
-      benefits: [
-        "Automated inventory and materials management",
-        "Production scheduling and resource allocation",
-        "Quality control alert systems",
-        "Supplier communication and order processing"
-      ]
+      id: "cost-savings",
+      label: "Monthly Cost Savings",
+      value: 4500,
+      prefix: "$",
+      change: "+$800",
+      changeType: "positive"
+    }
+  ],
+  
+  // Integration ecosystem
+  integrations: [
+    { name: "Salesforce", category: "CRM", connected: true },
+    { name: "HubSpot", category: "Marketing", connected: true },
+    { name: "Slack", category: "Communication", connected: true },
+    { name: "Zapier", category: "Automation", connected: true },
+    { name: "Google Workspace", category: "Productivity", connected: false },
+    { name: "Microsoft 365", category: "Productivity", connected: false }
+  ],
+  
+  features: [
+    {
+      id: "automation-feature-workflows",
+      icon: { name: "FlowArrow", size: 32 },
+      title: "Custom Workflow Design",
+      description: "Tailored automation workflows designed specifically for your business processes."
+    },
+    {
+      id: "automation-feature-integrations",
+      icon: { name: "Plugs", size: 32 },
+      title: "Seamless Integrations",
+      description: "Connect all your business tools and platforms for unified data flow."
+    },
+    {
+      id: "automation-feature-monitoring",
+      icon: { name: "Monitor", size: 32 },
+      title: "Real-time Monitoring",
+      description: "24/7 monitoring with instant alerts and performance optimization."
+    },
+    {
+      id: "automation-feature-scaling",
+      icon: { name: "TrendUp", size: 32 },
+      title: "Scalable Solutions",
+      description: "Automation systems that grow and adapt with your business needs."
     }
   ]
 };

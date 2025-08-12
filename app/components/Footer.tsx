@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { gsap } from "gsap";
-import { RedditLogo, InstagramLogo, Globe } from "phosphor-react";
+import { RedditLogo, InstagramLogo, Globe } from "@phosphor-icons/react";
 import { Industry } from '@/app/types/content'; // Import Industry type
 import { slugToTitle } from '@/app/utils/text-utils'; // Import slugToTitle utility
 

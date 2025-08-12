@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { Quotes } from 'phosphor-react';
+import { Quotes } from '@phosphor-icons/react';
 import { motion, useAnimation, useMotionValue, PanInfo } from 'framer-motion';
 import { useContentSection } from '../../context/ContentContext';
 

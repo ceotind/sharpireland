@@ -250,8 +250,8 @@ export default function SEOPage() {
       setTimeout(() => {
         router.push('/seo-analyzer/report');
       }, 150);
-    } catch (err: any) {
-      if (err?.name === 'AbortError') {
+    } catch (err: unknown) {
+      if (err instanceof Error && err.name === 'AbortError') {
         setStatusMessage('Request cancelled');
         trackEvent('seo analyze error', { reason: 'aborted' });
       } else {
@@ -263,16 +263,6 @@ export default function SEOPage() {
     }
   };
 
-  const helperId = 'seo-input-help';
-  const errorId = 'seo-error';
-  const describedBy = [helperId, error ? errorId : null].filter(Boolean).join(' ') || undefined;
-
-  // Example URLs
-  const exampleUrls = [
-    'https://example.com',
-    'https://www.wikipedia.org',
-    'https://rte.ie',
-  ];
 
   const jsonLd = {
     "@context": "https://schema.org",

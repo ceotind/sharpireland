@@ -5,7 +5,7 @@ import { colorClasses, componentStyles, inlineStyles } from '../utils/globalStyl
 
 /**
  * Example component showing different ways to use the global color system
- * (Now fixed to dark mode only)
+ * Light mode only implementation
  */
 const GlobalColorExample: React.FC = () => {
   return (
@@ -13,10 +13,10 @@ const GlobalColorExample: React.FC = () => {
       {/* Header */}
       <header className="text-center space-y-4">
         <h1 className={`text-4xl font-bold ${colorClasses.textPrimary}`}>
-          Global Color System Examples (Dark Mode Only)
+          Global Color System Examples (Light Mode)
         </h1>
         <p className={colorClasses.textSecondary}>
-          This component now demonstrates the color system in dark mode only.
+          This component demonstrates the unified light-mode color system with various implementation approaches.
         </p>
       </header>
 

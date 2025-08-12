@@ -24,9 +24,9 @@ export default function SEOReportPage() {
   }, [router]);
 
   const ScoreMeter = ({ score }: { score: number }) => {
-    let color = 'bg-red-500';
-    if (score >= 80) color = 'bg-green-500';
-    else if (score >= 60) color = 'bg-yellow-500';
+    let color = 'bg-[var(--accent-red)]';
+    if (score >= 80) color = 'bg-[var(--accent-green)]';
+    else if (score >= 60) color = 'bg-[var(--primary-300)]';
     
     return (
       <div className="w-full mb-6">
@@ -59,7 +59,7 @@ export default function SEOReportPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-[var(--background)] flex flex-col items-center justify-center p-4">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[var(--primary-100)] mb-4"></div>
         <p className="text-center" style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)' }}>Loading SEO report...</p>
       </div>
     );
@@ -70,7 +70,7 @@ export default function SEOReportPage() {
       <div className="min-h-screen bg-[var(--background)] flex flex-col items-center justify-center p-4">
         <h2 className="text-2xl font-bold mb-4">No SEO report found</h2>
         <p className="mb-6 text-center" style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)' }}>Please analyze a URL first</p>
-        <Link href="/seo-analyzer" className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg">
+        <Link href="/seo-analyzer" className="bg-[var(--primary-100)] hover:bg-[var(--primary-200)] text-[var(--white-color)] px-6 py-3 rounded-lg">
           Analyze a URL
         </Link>
       </div>

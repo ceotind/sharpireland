@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Plus, Minus } from "@phosphor-icons/react";
 
 interface FAQItem {
   id: string;
@@ -37,7 +38,7 @@ export default function FAQSlice({ id, faqs }: FAQSliceProps) {
           >
             {faq.question}
             <span id={`${faq.id}-toggle-icon`} className="text-xl">
-              {openIndex === index ? "-" : "+"}
+              {openIndex === index ? <Minus size={20} /> : <Plus size={20} />}
             </span>
           </button>
           {openIndex === index && (

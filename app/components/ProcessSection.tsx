@@ -1,13 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
-// Register GSAP plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import { motion, useInView } from "framer-motion";
+import { processHeader, processContent, processBoxContainer, processBox } from "../utils/motion-variants";
 
 interface ProcessStep {
   id: number;
@@ -45,8 +40,12 @@ const processSteps: ProcessStep[] = [
 
 export default function ProcessSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const visualizationRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const isInView = useInView(sectionRef, { once: true, margin: "-20%" });
+  const isVisualizationInView = useInView(visualizationRef, { once: true, margin: "-20%" });
 
   // Auto-advance slides
   useEffect(() => {
@@ -58,78 +57,6 @@ export default function ProcessSection() {
 
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
-
-  // Standardized GSAP animations
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate header
-      gsap.fromTo(
-        ".process-header",
-        {
-          opacity: 0,
-          y: 20,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.35,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
-
-      // Animate content
-      gsap.fromTo(
-        ".process-content",
-        {
-          opacity: 0,
-          y: 20,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.35,
-          ease: "power2.out",
-          delay: 0.06,
-          scrollTrigger: {
-            trigger: ".process-content",
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
-
-      // Animate 3D boxes with standardized timing
-      gsap.fromTo(
-        ".process-box",
-        {
-          opacity: 0,
-          rotateX: -10,
-          y: 20,
-        },
-        {
-          opacity: 1,
-          rotateX: 0,
-          y: 0,
-          duration: 0.35,
-          ease: "power2.out",
-          stagger: 0.06,
-          delay: 0.12,
-          scrollTrigger: {
-            trigger: ".process-visualization",
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   const handleStepChange = useCallback((index: number) => {
     setActiveStep(index);
@@ -151,24 +78,34 @@ export default function ProcessSection() {
   // };
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="our-process" 
+      id="our-process"
       className="bg-[var(--bg-100)] py-12 md:py-32 px-2 sm:px-4"
     >
       <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-8 flex flex-col gap-8 md:gap-12">
         {/* Section Header */}
-        <div className="text-center process-header">
+        <motion.div
+          className="text-center"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={processHeader}
+        >
           <span className="text-xs sm:text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium mb-2 sm:mb-4 block">
             Our Process
           </span>
           <h2 className="mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-5xl font-bold text-[var(--text-100)]">
             Our Professional Web Development Process
           </h2>
-        </div>
+        </motion.div>
 
         {/* Process Content */}
-        <div className="process-content grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-stretch">
+        <motion.div
+          className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-stretch"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={processContent}
+        >
           {/* Process Content */}
           <div className="order-2 lg:order-1 flex">
             <div className="text-left flex flex-col w-full h-full min-h-[120px]">
@@ -200,7 +137,13 @@ export default function ProcessSection() {
           </div>
 
           {/* Process Icons */}
-          <div className="order-1 lg:order-2 process-visualization">
+          <motion.div
+            ref={visualizationRef}
+            className="order-1 lg:order-2"
+            initial="hidden"
+            animate={isVisualizationInView ? "visible" : "hidden"}
+            variants={processBoxContainer}
+          >
             <div className="max-w-full sm:max-w-md mx-auto min-h-[180px]">
               {/* Top Row - 3 containers */}
               <div className="grid grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12">
@@ -247,33 +190,35 @@ export default function ProcessSection() {
                   };
 
                   return (
-                    <div
+                    <motion.div
                       key={step.id}
-                      className={`process-box cursor-pointer transition-all duration-300 group ${
-                        isActive ? 'transform scale-105' : 'hover:scale-105'
-                      }`}
+                      className="cursor-pointer"
                       onClick={() => handleStepChange(index)}
+                      variants={processBox}
+                      initial="hidden"
+                      animate={isActive ? "active" : "visible"}
+                      whileHover="hover"
                     >
                       {/* Icon Container */}
-                      <div className={`w-24 h-24 mx-auto rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-2xl ${
+                      <div className={`w-24 h-24 mx-auto rounded-2xl flex items-center justify-center shadow-lg ${
                         isActive
-                          ? 'bg-[var(--primary-100)] text-[var(--white-color)] shadow-2xl transform scale-110'
-                          : 'bg-[var(--bg-200)] text-[var(--text-200)] border border-[var(--bg-300)] group-hover:border-[var(--primary-100)] group-hover:bg-[var(--bg-300)]'
-                      }`}>
+                          ? 'bg-[var(--primary-100)] shadow-2xl'
+                          : 'bg-[var(--bg-200)] text-[var(--text-200)] border border-[var(--bg-300)]'
+                      }`} style={isActive ? { color: 'var(--white-color)' } : {}}>
                         {getStepIcon(step.id)}
                       </div>
 
                       {/* Step Title */}
                       <div className="mt-5 text-center">
-                        <span className={`text-sm font-semibold transition-colors duration-300 leading-tight ${
+                        <span className={`text-sm font-semibold leading-tight ${
                           isActive
                             ? 'text-[var(--primary-100)]'
-                            : 'text-[var(--text-200)] group-hover:text-[var(--text-100)]'
+                            : 'text-[var(--text-200)]'
                           }`}>
                           {step.title}
                         </span>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
@@ -324,39 +269,41 @@ export default function ProcessSection() {
                   };
 
                   return (
-                    <div
+                    <motion.div
                       key={step.id}
-                      className={`process-box cursor-pointer transition-all duration-300 group ${
-                        isActive ? 'transform scale-105' : 'hover:scale-105'
-                      }`}
+                      className="cursor-pointer"
                       onClick={() => handleStepChange(actualIndex)}
+                      variants={processBox}
+                      initial="hidden"
+                      animate={isActive ? "active" : "visible"}
+                      whileHover="hover"
                     >
                       {/* Icon Container */}
-                      <div className={`w-24 h-24 mx-auto rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-2xl ${
+                      <div className={`w-24 h-24 mx-auto rounded-2xl flex items-center justify-center shadow-lg ${
                         isActive
-                          ? 'bg-[var(--primary-100)] text-[var(--white-color)] shadow-2xl transform scale-110'
-                          : 'bg-[var(--bg-200)] text-[var(--text-200)] border border-[var(--bg-300)] group-hover:border-[var(--primary-100)] group-hover:bg-[var(--bg-300)]'
-                      }`}>
+                          ? 'bg-[var(--primary-100)] shadow-2xl'
+                          : 'bg-[var(--bg-200)] text-[var(--text-200)] border border-[var(--bg-300)]'
+                      }`} style={isActive ? { color: 'var(--white-color)' } : {}}>
                         {getStepIcon(step.id)}
                       </div>
 
                       {/* Step Title */}
                       <div className="mt-5 text-center">
-                        <span className={`text-sm font-semibold transition-colors duration-300 leading-tight ${
+                        <span className={`text-sm font-semibold leading-tight ${
                           isActive
                             ? 'text-[var(--primary-100)]'
-                            : 'text-[var(--text-200)] group-hover:text-[var(--text-100)]'
+                            : 'text-[var(--text-200)]'
                           }`}>
                           {step.title}
                         </span>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

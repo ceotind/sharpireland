@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import * as PhosphorIcons from 'phosphor-react';
+import * as PhosphorIcons from '@phosphor-icons/react';
 import { useContentSection } from '../../context/ContentContext';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -60,7 +60,7 @@ export default function WhyUs() {
           <ul className="space-y-10">
             {whyUs?.reasons?.map((reason, idx) => {
               // Dynamically get icon component
-              const Icon = PhosphorIcons[reason.icon as keyof typeof PhosphorIcons]
+              const Icon = (PhosphorIcons[reason.icon as keyof typeof PhosphorIcons] as React.ElementType)
                            || PhosphorIcons.Question;
               return (
                 <li key={idx} className="animate-element flex items-start relative">

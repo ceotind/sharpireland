@@ -46,14 +46,14 @@ function generateNotificationEmail(data: ContactFormData): string {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>New Contact Form Submission</title>
       <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: var(--text-200, #555555); }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background: #10b981; color: white; padding: 20px; text-align: center; }
-        .content { background: #f9f9f9; padding: 20px; }
+        .header { background: var(--accent-green, #10b981); color: var(--white-color, #ffffff); padding: 20px; text-align: center; }
+        .content { background: var(--bg-200, #f5f5f5); padding: 20px; }
         .field { margin-bottom: 15px; }
-        .label { font-weight: bold; color: #555; }
-        .value { margin-top: 5px; padding: 10px; background: white; border-left: 4px solid #10b981; }
-        .footer { text-align: center; padding: 20px; color: #666; font-size: 14px; }
+        .label { font-weight: bold; color: var(--text-200, #555555); }
+        .value { margin-top: 5px; padding: 10px; background: var(--bg-100, #ffffff); border-left: 4px solid var(--accent-green, #10b981); }
+        .footer { text-align: center; padding: 20px; color: var(--text-300, #6b7280); font-size: 14px; }
       </style>
     </head>
     <body>
@@ -105,13 +105,13 @@ function generateConfirmationEmail(data: ContactFormData): string {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Thank you for contacting Sharp Digital Ireland</title>
       <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: var(--text-200, #555555); }
         .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .header { background: #10b981; color: white; padding: 20px; text-align: center; }
-        .content { background: #f9f9f9; padding: 20px; }
-        .highlight { background: white; padding: 15px; border-left: 4px solid #10b981; margin: 15px 0; }
-        .footer { text-align: center; padding: 20px; color: #666; font-size: 14px; }
-        .contact-info { background: white; padding: 15px; margin: 15px 0; }
+        .header { background: var(--accent-green, #10b981); color: var(--white-color, #ffffff); padding: 20px; text-align: center; }
+        .content { background: var(--bg-200, #f5f5f5); padding: 20px; }
+        .highlight { background: var(--bg-100, #ffffff); padding: 15px; border-left: 4px solid var(--accent-green, #10b981); margin: 15px 0; }
+        .footer { text-align: center; padding: 20px; color: var(--text-300, #6b7280); font-size: 14px; }
+        .contact-info { background: var(--bg-100, #ffffff); padding: 15px; margin: 15px 0; }
       </style>
     </head>
     <body>

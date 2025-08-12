@@ -88,10 +88,10 @@ class ErrorBoundary extends Component<Props, State> {
           <div className="max-w-md w-full mx-4">
             <div className="bg-[var(--bg-200)] border border-[var(--bg-300)] rounded-lg p-6 text-center">
               <div className="mb-4">
-                <svg 
-                  className="mx-auto h-12 w-12 text-red-500" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
+                <svg
+                  className="mx-auto h-12 w-12 text-[var(--accent-red)]"
+                  fill="none"
+                  viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
                   <path 
@@ -126,14 +126,14 @@ class ErrorBoundary extends Component<Props, State> {
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <button
                   onClick={this.handleRetry}
-                  className="px-4 py-2 bg-[var(--accent-green)] text-[var(--white-color)] rounded-md hover:bg-[var(--accent-green-hover)] transition-colors"
+                  className="px-4 py-2 bg-[var(--accent-green)] text-[var(--white-color)] rounded-md hover:opacity-90 transition-all duration-200"
                 >
                   Try Again
                 </button>
                 
                 <button
                   onClick={() => window.location.reload()}
-                  className="px-4 py-2 bg-[var(--bg-300)] text-[var(--text-100)] rounded-md hover:bg-[var(--bg-400)] transition-colors"
+                  className="px-4 py-2 bg-[var(--bg-300)] text-[var(--text-100)] rounded-md hover:opacity-90 transition-all duration-200"
                 >
                   Refresh Page
                 </button>

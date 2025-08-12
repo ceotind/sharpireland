@@ -1,6 +1,6 @@
 "use client";
 
-import { EnvelopeSimple, Phone, MapPin, Globe } from 'phosphor-react';
+import { EnvelopeSimple, Phone, MapPin, Globe } from '@phosphor-icons/react';
 
 export default function ContactInfoGrid() {
   return (

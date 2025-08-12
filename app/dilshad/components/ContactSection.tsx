@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { User, EnvelopeSimple, Phone, NotePencil, MapPin, Globe } from "phosphor-react";
+import { User, EnvelopeSimple, Phone, NotePencil, MapPin, Globe } from "@phosphor-icons/react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -339,7 +339,7 @@ export default function ContactSection() {
                     disabled={formState === 'submitting'}
                     className={`w-full pl-10 border-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-all duration-200 rounded-lg shadow-sm focus:shadow-lg focus:border-[var(--accent-green)] placeholder-[var(--text-200)] ${
                       errors.name
-                        ? 'border-red-500 focus:border-red-500'
+                        ? 'border-[var(--accent-red)] focus:border-[var(--accent-red)]'
                         : 'border-[var(--bg-300)]'
                     } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
                     aria-required="true"
@@ -349,7 +349,7 @@ export default function ContactSection() {
                   />
                 </div>
                 {errors.name && (
-                  <p className="mt-1 text-sm text-red-600 animate-fade-in" role="alert">{errors.name}</p>
+                  <p className="mt-1 text-sm text-[var(--error-text)] animate-fade-in" role="alert">{errors.name}</p>
                 )}
                 <div id="dilshad-name-help" className="sr-only">Enter your full name</div>
               </div>
@@ -372,7 +372,7 @@ export default function ContactSection() {
                     disabled={formState === 'submitting'}
                     className={`w-full pl-10 border-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-all duration-200 rounded-lg shadow-sm focus:shadow-lg focus:border-[var(--accent-green)] placeholder-[var(--text-200)] ${
                       errors.email
-                        ? 'border-red-500 focus:border-red-500'
+                        ? 'border-[var(--accent-red)] focus:border-[var(--accent-red)]'
                         : 'border-[var(--bg-300)]'
                     } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
                     aria-required="true"
@@ -382,7 +382,7 @@ export default function ContactSection() {
                   />
                 </div>
                 {errors.email && (
-                  <p className="mt-1 text-sm text-red-600 animate-fade-in" role="alert">{errors.email}</p>
+                  <p className="mt-1 text-sm text-[var(--error-text)] animate-fade-in" role="alert">{errors.email}</p>
                 )}
                 <div id="dilshad-email-help" className="sr-only">We'll use this email to respond to your inquiry</div>
               </div>
@@ -405,7 +405,7 @@ export default function ContactSection() {
                     disabled={formState === 'submitting'}
                     className={`w-full pl-10 border-2 bg-transparent py-3 px-2 text-[var(--text-100)] focus:outline-none transition-all duration-200 rounded-lg shadow-sm focus:shadow-lg focus:border-[var(--accent-green)] placeholder-[var(--text-200)] ${
                       errors.subject
-                        ? 'border-red-500 focus:border-red-500'
+                        ? 'border-[var(--accent-red)] focus:border-[var(--accent-red)]'
                         : 'border-[var(--bg-300)]'
                     } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
                     aria-required="true"
@@ -414,7 +414,7 @@ export default function ContactSection() {
                   />
                 </div>
                 {errors.subject && (
-                  <p className="mt-1 text-sm text-red-600 animate-fade-in" role="alert">{errors.subject}</p>
+                  <p className="mt-1 text-sm text-[var(--error-text)] animate-fade-in" role="alert">{errors.subject}</p>
                 )}
                 <div id="dilshad-subject-help" className="sr-only">Enter the subject of your message</div>
               </div>
@@ -437,7 +437,7 @@ export default function ContactSection() {
                     disabled={formState === 'submitting'}
                     className={`w-full pl-10 border-2 bg-transparent p-4 text-[var(--text-100)] focus:outline-none transition-all duration-200 rounded-lg shadow-sm focus:shadow-lg focus:border-[var(--accent-green)] resize-none placeholder-[var(--text-200)] ${
                       errors.message
-                        ? 'border-red-500 focus:border-red-500'
+                        ? 'border-[var(--accent-red)] focus:border-[var(--accent-red)]'
                         : 'border-[var(--bg-300)]'
                     } ${formState === 'submitting' ? 'opacity-50 cursor-not-allowed' : ''}`}
                     aria-required="true"
@@ -446,7 +446,7 @@ export default function ContactSection() {
                   />
                 </div>
                 {errors.message && (
-                  <p className="mt-1 text-sm text-red-600 animate-fade-in" role="alert">{errors.message}</p>
+                  <p className="mt-1 text-sm text-[var(--error-text)] animate-fade-in" role="alert">{errors.message}</p>
                 )}
                 <div id="dilshad-message-help" className="sr-only">Type your message or inquiry here</div>
               </div>
@@ -455,7 +455,7 @@ export default function ContactSection() {
                 disabled={formState === 'submitting' || formState === 'success'}
                 className={`w-full px-6 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--accent-green)] focus:ring-offset-2 focus:ring-offset-[var(--bg-100)] bg-gradient-to-r from-[var(--accent-green)] to-[var(--accent-green-base)] hover:scale-105 hover:shadow-2xl active:scale-100 active:shadow-lg mb-0 ${
                   formState === 'submitting' || formState === 'success'
-                    ? 'bg-gray-400 text-gray-600 cursor-not-allowed opacity-70'
+                    ? 'bg-[var(--bg-300)] text-[var(--text-200)] cursor-not-allowed opacity-70'
                     : 'text-[var(--white-color)]'
                 }`}
                 aria-describedby="dilshad-submit-help"

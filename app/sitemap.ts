@@ -42,18 +42,66 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     
-    // Color system showcase page - Lower priority utility page
+    // Contact page - High priority for lead generation
     {
-      url: `${baseUrl}/colors`,
-      lastModified: buildDate,
+      url: `${baseUrl}/contact`,
+      lastModified: currentDate,
       changeFrequency: 'monthly' as const,
-      priority: 0.3,
+      priority: 0.8,
     },
-
+    
+    // Services page - High priority for business content
+    {
+      url: `${baseUrl}/services`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
+    },
+    
+    // Industries listing page - High priority for showcasing expertise
+    {
+      url: `${baseUrl}/industries`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
+    
     // SEO Analyzer page - Utility page for SEO tools
     {
       url: `${baseUrl}/seo-analyzer`,
       lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.3,
+    },
+    
+    // SEO Analyzer Report page - Dynamic utility page
+    {
+      url: `${baseUrl}/seo-analyzer/report`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.2,
+    },
+    
+    // Personal page - Medium priority for team/about content
+    {
+      url: `${baseUrl}/dilshad`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    },
+    
+    // Template page - Lower priority showcase page
+    {
+      url: `${baseUrl}/template`,
+      lastModified: buildDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.4,
+    },
+    
+    // Color system showcase page - Lower priority utility page
+    {
+      url: `${baseUrl}/colors`,
+      lastModified: buildDate,
       changeFrequency: 'monthly' as const,
       priority: 0.3,
     },
@@ -163,20 +211,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 /**
  * Priority Guidelines:
  * 1.0 - Homepage (most important)
- * 0.9 - Main service pages, portfolio
- * 0.8 - Individual service pages, contact, case studies, pricing, industry pages
- * 0.7 - About page, secondary industry pages
- * 0.6 - Blog/news section, tertiary industry pages
- * 0.3 - Utility pages (colors, tools)
- * 0.2 - Legal pages
+ * 0.9 - Main service pages
+ * 0.8 - Contact, industries listing, high-value industry pages (construction, dental, etc.)
+ * 0.7 - Medium priority industry pages
+ * 0.6 - Personal/team pages, default industry pages
+ * 0.4 - Template/showcase pages
+ * 0.3 - Utility pages (colors, seo-analyzer)
+ * 0.2 - Dynamic utility pages (seo-analyzer/report)
  * 0.1 - API endpoints (if publicly accessible)
  *
  * Change Frequency Guidelines:
  * - 'always' - Only for pages that change every time they're accessed
  * - 'hourly' - News sites, live data
  * - 'daily' - Blog, frequently updated content
- * - 'weekly' - Homepage, portfolio, industry pages (if updated regularly)
- * - 'monthly' - Service pages, about page, contact
+ * - 'weekly' - Homepage, industries listing, dynamic industry pages
+ * - 'monthly' - Service pages, contact, personal pages, utility pages
  * - 'yearly' - Legal pages, rarely updated content
  * - 'never' - Archived content
  */

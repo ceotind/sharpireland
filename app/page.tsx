@@ -1,9 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import gsap from "gsap";
-
 import HeroSection from './components/HeroSection';
 import TechGridSection from './components/TechGridSection';
 import ProjectsSection from './components/ProjectsSection';
@@ -18,19 +14,6 @@ import TripleSwitchSection from './components/TripleSwitchSection';
 // export const dynamic = 'force-dynamic';
 
 export default function Home() {
-  // Clean up only page-specific ScrollTriggers on component unmount
-  useEffect(() => {
-    return () => {
-      // Only clean up ScrollTriggers that might be created by this page
-      // Let individual components manage their own ScrollTrigger cleanup
-      ScrollTrigger.getAll().forEach(trigger => {
-        // Only kill triggers that don't have component-specific cleanup
-        if (trigger.vars?.id?.startsWith('page-')) {
-          trigger.kill();
-        }
-      });
-    };
-  }, []);
 
   return (
     <>
