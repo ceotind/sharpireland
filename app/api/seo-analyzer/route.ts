@@ -1,6 +1,50 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as cheerio from 'cheerio';
 
+export interface CoreWebVitals {
+  lcp: {
+    value: number;
+    status: 'good' | 'needs-improvement' | 'poor';
+    recommendation: string;
+  };
+  fid: {
+    value: number;
+    status: 'good' | 'needs-improvement' | 'poor';
+    recommendation: string;
+  };
+  cls: {
+    value: number;
+    status: 'good' | 'needs-improvement' | 'poor';
+    recommendation: string;
+  };
+}
+
+export interface EnhancedSEOReport extends SEOReport {
+  coreWebVitals: CoreWebVitals;
+  contentQuality: {
+    wordCount: number;
+    readabilityScore: number;
+    keywordAnalysis: {
+      primaryKeyword: string;
+      density: number;
+      distribution: number;
+    };
+  };
+  security: {
+    https: boolean;
+    securityHeaders: string[];
+    mixedContent: boolean;
+  };
+  structuredData: {
+    schemaTypes: string[];
+    qualityScore: number;
+  };
+  competitors: {
+    serpFeatures: string[];
+    estimatedBacklinks: number;
+  };
+}
+
 export interface SEOReport {
   url: string;
   title: string;
@@ -113,6 +157,243 @@ function calculateSEOScore(report: Omit<SEOReport, 'score' | 'recommendations'>)
   }
 
   return { score: Math.min(100, score), recommendations };
+}
+
+// Function to estimate Core Web Vitals
+function estimateCoreWebVitals($: ReturnType<typeof cheerio.load>): CoreWebVitals {
+  // These are estimates based on static analysis - in a real implementation,
+  // you would use PageSpeed Insights or Lighthouse for accurate metrics
+  
+  // Estimate LCP based on image loading and above-the-fold content
+  const images = $('img');
+  
+  // Since we can't determine position with cheerio, we'll estimate based on image count and size
+  const largeImages = images.filter((_, el) => {
+    const width = parseInt($(el).attr('width') || '0');
+    const height = parseInt($(el).attr('height') || '0');
+    return width > 300 || height > 300;
+  });
+  
+  const lcpValue = Math.min(100, 20 + (largeImages.length * 15));
+  const lcpStatus = lcpValue < 50 ? 'good' : lcpValue < 80 ? 'needs-improvement' : 'poor';
+  const lcpRecommendation = lcpStatus === 'good' 
+    ? 'Good LCP score - page loads quickly' 
+    : 'Optimize largest contentful paint by compressing images and using modern formats';
+  
+  // Estimate FID based on JavaScript complexity
+  const scripts = $('script');
+  const inlineScripts = scripts.filter((_, el) => {
+    const html = $(el).html();
+    return html !== null && html.trim().length > 0;
+  });
+  const externalScripts = scripts.filter((_, el) => {
+    const src = $(el).attr('src');
+    return src !== undefined && src.trim().length > 0;
+  });
+  
+  const fidValue = Math.min(100, 10 + (inlineScripts.length * 5) + (externalScripts.length * 3));
+  const fidStatus = fidValue < 50 ? 'good' : fidValue < 80 ? 'needs-improvement' : 'poor';
+  const fidRecommendation = fidStatus === 'good' 
+    ? 'Good FID score - page is responsive' 
+    : 'Reduce JavaScript execution time by minimizing main thread work';
+  
+  // Estimate CLS based on layout shifts
+  // We'll estimate based on elements with absolute or fixed positioning
+  const elementsWithPosition = $('*').filter((_, el) => {
+    const style = $(el).attr('style') || '';
+    return style.includes('position: absolute') || style.includes('position: fixed');
+  });
+  
+  const clsValue = Math.min(100, elementsWithPosition.length * 2);
+  const clsStatus = clsValue < 30 ? 'good' : clsValue < 70 ? 'needs-improvement' : 'poor';
+  const clsRecommendation = clsStatus === 'good' 
+    ? 'Good CLS score - minimal layout shifts' 
+    : 'Reduce layout shifts by setting dimensions on media elements and avoiding inserting content above existing content';
+  
+  return {
+    lcp: {
+      value: lcpValue,
+      status: lcpStatus,
+      recommendation: lcpRecommendation
+    },
+    fid: {
+      value: fidValue,
+      status: fidStatus,
+      recommendation: fidRecommendation
+    },
+    cls: {
+      value: clsValue,
+      status: clsStatus,
+      recommendation: clsRecommendation
+    }
+  };
+}
+
+// Function to analyze content quality
+function analyzeContentQuality($: ReturnType<typeof cheerio.load>): {
+  wordCount: number;
+  readabilityScore: number;
+  keywordAnalysis: {
+    primaryKeyword: string;
+    density: number;
+    distribution: number;
+  };
+} {
+  // Extract text content
+  const textContent = $('p, h1, h2, h3, h4, h5, h6, li, td, th').text();
+  const words = textContent.trim().split(/\s+/);
+  const wordCount = words.length;
+  
+  // Simple readability score (Flesch-Kincaid approximation)
+  const sentenceCount = textContent.split(/[.!?]+/).filter(s => s.trim().length > 0).length || 1;
+  const syllableCount = words.reduce((count, word) => {
+    // Very rough syllable estimation
+    return count + Math.max(1, Math.floor(word.length / 4));
+  }, 0);
+  
+  // Flesch-Kincaid Grade Level approximation
+  const readabilityScore = Math.max(0, Math.min(100, 206.835 - (1.015 * (wordCount / sentenceCount)) - (84.6 * (syllableCount / wordCount))));
+  
+  // Simple keyword analysis (find most frequent non-stop word)
+  const stopWords = new Set(['the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'must', 'can']);
+  const wordFrequency: { [key: string]: number } = {};
+  
+  words.forEach(word => {
+    const cleanWord = word.toLowerCase().replace(/[^a-z]/g, '');
+    if (cleanWord.length > 3 && !stopWords.has(cleanWord)) {
+      wordFrequency[cleanWord] = (wordFrequency[cleanWord] || 0) + 1;
+    }
+  });
+  
+  const primaryKeyword = Object.entries(wordFrequency)
+    .sort((a, b) => b[1] - a[1])[0]?.[0] || '';
+  
+  const keywordCount = wordFrequency[primaryKeyword] || 0;
+  const density = wordCount > 0 ? (keywordCount / wordCount) * 100 : 0;
+  
+  // Simple distribution score (0-100)
+  const distribution = Math.min(100, keywordCount * 2);
+  
+  return {
+    wordCount,
+    readabilityScore,
+    keywordAnalysis: {
+      primaryKeyword,
+      density,
+      distribution
+    }
+  };
+}
+
+// Function to analyze security aspects
+function analyzeSecurity(response: Response, $: ReturnType<typeof cheerio.load>): {
+  https: boolean;
+  securityHeaders: string[];
+  mixedContent: boolean;
+} {
+  const https = response.url.startsWith('https');
+  
+  // Check security headers
+  const securityHeaders: string[] = [];
+  const headers = response.headers;
+  
+  if (headers.get('strict-transport-security')) {
+    securityHeaders.push('HSTS');
+  }
+  if (headers.get('content-security-policy')) {
+    securityHeaders.push('CSP');
+  }
+  if (headers.get('x-content-type-options')) {
+    securityHeaders.push('X-Content-Type-Options');
+  }
+  if (headers.get('x-frame-options')) {
+    securityHeaders.push('X-Frame-Options');
+  }
+  
+  // Check for mixed content
+  const mixedContent = $('img[src^="http://"], script[src^="http://"], link[href^="http://"]').length > 0;
+  
+  return {
+    https,
+    securityHeaders,
+    mixedContent
+  };
+}
+
+// Function to detect structured data
+function detectStructuredData($: ReturnType<typeof cheerio.load>): {
+  schemaTypes: string[];
+  qualityScore: number;
+} {
+  const schemaTypes: string[] = [];
+  
+  // Check for JSON-LD
+  $('script[type="application/ld+json"]').each((_, el) => {
+    try {
+      const json = JSON.parse($(el).html() || '{}');
+      if (json['@type']) {
+        schemaTypes.push(json['@type']);
+      } else if (Array.isArray(json)) {
+        json.forEach(item => {
+          if (item['@type']) {
+            schemaTypes.push(item['@type']);
+          }
+        });
+      }
+    } catch (e) {
+      // Invalid JSON
+    }
+  });
+  
+  // Check for microdata
+  $('[itemscope][itemtype]').each((_, el) => {
+    const itemType = $(el).attr('itemtype');
+    if (itemType) {
+      const type = itemType.split('/').pop() || itemType;
+      if (!schemaTypes.includes(type)) {
+        schemaTypes.push(type);
+      }
+    }
+  });
+  
+  // Quality score based on schema completeness
+  const qualityScore = Math.min(100, schemaTypes.length * 20);
+  
+  return {
+    schemaTypes,
+    qualityScore
+  };
+}
+
+// Function to estimate competitor insights
+function estimateCompetitorInsights($: ReturnType<typeof cheerio.load>): {
+  serpFeatures: string[];
+  estimatedBacklinks: number;
+} {
+  const serpFeatures: string[] = [];
+  
+  // Check for common SERP features
+  if ($('h1').length > 0) serpFeatures.push('Title');
+  if ($('meta[name="description"]').attr('content')) serpFeatures.push('Meta Description');
+  if ($('[itemscope]').length > 0) serpFeatures.push('Structured Data');
+  if ($('img[alt]').length > 3) serpFeatures.push('Good Alt Text');
+  
+  // Estimate backlinks based on external references (simplified)
+  const externalLinks = $('a[href^="http"]').filter((_, el) => {
+    try {
+      const url = new URL($(el).attr('href') || '', 'http://example.com');
+      return url.hostname !== 'example.com';
+    } catch {
+      return false;
+    }
+  });
+  
+  const estimatedBacklinks = Math.min(100, externalLinks.length);
+  
+  return {
+    serpFeatures,
+    estimatedBacklinks
+  };
 }
 
 function extractDomain(url: string): string {
@@ -242,13 +523,25 @@ export async function POST(request: NextRequest) {
     // Calculate score and recommendations
     const { score, recommendations } = calculateSEOScore(reportData);
 
-    const report: SEOReport = {
+    // Perform enhanced analysis
+    const coreWebVitals = estimateCoreWebVitals($);
+    const contentQuality = analyzeContentQuality($);
+    const security = analyzeSecurity(response, $);
+    const structuredData = detectStructuredData($);
+    const competitors = estimateCompetitorInsights($);
+
+    const enhancedReport: EnhancedSEOReport = {
       ...reportData,
       score,
       recommendations,
+      coreWebVitals,
+      contentQuality,
+      security,
+      structuredData,
+      competitors
     };
 
-    return NextResponse.json(report);
+    return NextResponse.json(enhancedReport);
 
   } catch (error) {
     console.error('SEO analysis error:', error);

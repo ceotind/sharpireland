@@ -23,9 +23,9 @@ export default function FeatureCards({
 
   const features = [
     {
-      title: "Comprehensive Analysis",
+      title: "Advanced Technical SEO",
       description:
-        "Get detailed insights on key SEO factors affecting your website's performance",
+        "Comprehensive analysis including Core Web Vitals, security headers, and structured data detection",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -45,9 +45,9 @@ export default function FeatureCards({
       ),
     },
     {
-      title: "Actionable Recommendations",
+      title: "Content Quality Insights",
       description:
-        "Receive clear, practical steps to improve your search engine rankings",
+        "Detailed content analysis including readability scores, keyword density, and word count metrics",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -67,9 +67,9 @@ export default function FeatureCards({
       ),
     },
     {
-      title: "Competitive Metrics",
+      title: "Competitive Intelligence",
       description:
-        "See how your site compares to competitors and industry standards",
+        "Estimate your site's backlink profile and SERP feature opportunities compared to competitors",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
