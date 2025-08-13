@@ -39,7 +39,7 @@ const nextConfig: NextConfig = {
       },
       {
         key: 'Permissions-Policy',
-        value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), magnetometer=(), gyroscope=(), accelerometer=()'
+        value: 'camera=(self), microphone=(self), geolocation=(), payment=(), usb=(), bluetooth=(), magnetometer=(), gyroscope=(), accelerometer=()'
       }
     ]
 
@@ -58,7 +58,7 @@ const nextConfig: NextConfig = {
           "font-src 'self' https://fonts.gstatic.com data:",
           "img-src 'self' data: blob: https: http:",
           "media-src 'self' data: blob:",
-          "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com",
+          "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://*.agora.io https://*.sd-rtn.com",
           "frame-src 'none'",
           "object-src 'none'",
           "base-uri 'self'",
@@ -91,7 +91,7 @@ const nextConfig: NextConfig = {
         "font-src 'self' https://fonts.gstatic.com data:",
         "img-src 'self' data: blob: https: http:",
         "media-src 'self' data: blob:",
-        "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com ws: wss:",
+        "connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://*.agora.io https://*.sd-rtn.com ws: wss:",
         "frame-src 'none'",
         "object-src 'none'",
         "base-uri 'self'",
