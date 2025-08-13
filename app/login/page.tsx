@@ -1,13 +1,11 @@
 'use client'
 
 import { createClient } from '../utils/supabase/client'
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 export default function LoginPage() {
   const [loading, setLoading] = useState<string | null>(null)
   const supabase = createClient()
-  const router = useRouter()
 
   const handleOAuthLogin = async (provider: 'google' | 'github') => {
     try {
