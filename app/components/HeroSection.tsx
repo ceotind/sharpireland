@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { heroFadeIn, heroElement, heroButton } from "../utils/motion-variants";
 
 export default function HeroSection() {
+  const router = useRouter();
   const [bentoImages, setBentoImages] = useState<string[]>([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
@@ -192,7 +194,7 @@ export default function HeroSection() {
                   id="hero-announcement-text"
                   className="text-[12px] tracking-[0.14em] uppercase text-[var(--text-200)]"
                 >
-                  Applications open for February
+                  Applications open for DevOps
                 </span>
                 <span
                   id="hero-announcement-sep"
@@ -250,6 +252,7 @@ export default function HeroSection() {
                   initial="rest"
                   whileHover="hover"
                   whileTap="tap"
+                  onClick={() => router.push("/services")}
                 >
                   Explore Our Products
                 </motion.button>
@@ -268,6 +271,7 @@ export default function HeroSection() {
                   initial="rest"
                   whileHover="hover"
                   whileTap="tap"
+                  onClick={() => router.push("/contact")}
                 >
                   Book a Call
                 </motion.button>

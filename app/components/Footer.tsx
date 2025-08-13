@@ -55,10 +55,11 @@ export default function Footer({ randomIndustries }: FooterProps) {
   }, []);
 
   const quickLinks = [
+    { name: 'Services', href: '/services' },
     { name: 'Technologies', href: '#technologies' },
     { name: 'Projects', href: '#projects' },
     { name: 'Process', href: '#our-process' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Contact', href: '/contact' }
   ];
 
   const socialLinks = [
