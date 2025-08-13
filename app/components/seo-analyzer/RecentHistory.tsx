@@ -21,7 +21,7 @@ export default function RecentHistory({ history, onSelect, className = "" }: Pro
             id={`seo-recent-${idx + 1}`}
             key={u}
             type="button"
-            className="px-3 py-1.5 rounded-lg border text-sm transition-colors bg-[var(--bg-300)] text-[var(--text-100)] border-[var(--border-100)]"
+            className="px-3 py-1.5 rounded-lg border text-sm transition-colors bg-white text-[var(--text-100)] border-[var(--border-100)]"
             onClick={() => onSelect(u)}
           >
             {u}

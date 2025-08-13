@@ -101,7 +101,7 @@ export default function SEOForm({
               placeholder="Enter website URL (e.g., https://example.com)"
               aria-describedby={describedBy}
               aria-invalid={!!validationMsg}
-              className={`w-full px-6 py-3 sm:py-4 rounded-xl focus:outline-none text-base sm:text-lg transition-all duration-200 break-all bg-[var(--bg-200)] border-2 border-[var(--bg-300)] text-[var(--text-100)] focus:border-[var(--primary-100)] focus:shadow-lg shadow-sm ${
+              className={`w-full px-6 py-3 sm:py-4 rounded-xl focus:outline-none text-base sm:text-lg transition-all duration-200 break-all bg-white border-2 border-[var(--bg-300)] text-[var(--text-100)] focus:border-[var(--primary-100)] focus:shadow-lg shadow-sm ${
                 url.length > 48 ? "font-mono" : ""
               }`}
               autoCapitalize="none"
@@ -126,7 +126,7 @@ export default function SEOForm({
                 onClick={() => {
                   onExampleSelect(ex);
                 }}
-                className="px-3 py-1.5 rounded-full text-sm border transition-colors bg-[var(--bg-300)] text-[var(--text-100)] border-[var(--bg-400)]"
+                className="px-3 py-1.5 rounded-full text-sm border transition-colors bg-white text-[var(--text-100)] border-[var(--bg-400)]"
               >
                 {ex}
               </button>

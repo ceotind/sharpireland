@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { gsap } from "gsap";
 import { RedditLogo, InstagramLogo, Globe } from "@phosphor-icons/react";
 import { Industry } from '@/app/types/content'; // Import Industry type
 import { slugToTitle } from '@/app/utils/text-utils'; // Import slugToTitle utility
@@ -16,41 +15,47 @@ export default function Footer({ randomIndustries }: FooterProps) {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const icons = socialIconsRef.current?.querySelectorAll(".social-icon-wrapper");
-      if (!icons || icons.length === 0) return;
+      const loadGSAP = async () => {
+        const { gsap } = await import('gsap');
+        
+        const icons = socialIconsRef.current?.querySelectorAll(".social-icon-wrapper");
+        if (!icons || icons.length === 0) return;
 
-      icons.forEach(icon => {
-        const bgCircle = icon.querySelector(".bg-circle");
+        icons.forEach(icon => {
+          const bgCircle = icon.querySelector(".bg-circle");
 
-        if (!bgCircle) return;
+          if (!bgCircle) return;
 
-        gsap.set(bgCircle, { scale: 0, backgroundColor: "var(--accent-green)", borderRadius: "9999px" });
-        gsap.set(icon, { color: "var(--text-100)" });
+          gsap.set(bgCircle, { scale: 0, backgroundColor: "var(--accent-green)", borderRadius: "9999px" });
+          gsap.set(icon, { color: "var(--text-100)" });
 
-        const tl = gsap.timeline({ paused: true });
+          const tl = gsap.timeline({ paused: true });
 
-        tl.to(bgCircle, {
-            scale: 1,
-            duration: 0.3,
-            ease: "power2.out"
-        }).to(icon, {
-            color: "var(--white-color)",
-            duration: 0.3,
-            ease: "power2.out"
-        }, 0);
+          tl.to(bgCircle, {
+              scale: 1,
+              duration: 0.3,
+              ease: "power2.out"
+          }).to(icon, {
+              color: "var(--white-color)",
+              duration: 0.3,
+              ease: "power2.out"
+          }, 0);
 
-        const enterFn = () => tl.play();
-        const leaveFn = () => tl.reverse();
+          const enterFn = () => tl.play();
+          const leaveFn = () => tl.reverse();
 
-        icon.addEventListener("mouseenter", enterFn);
-        icon.addEventListener("mouseleave", leaveFn);
+          icon.addEventListener("mouseenter", enterFn);
+          icon.addEventListener("mouseleave", leaveFn);
 
-        return () => {
-            icon.removeEventListener("mouseenter", enterFn);
-            icon.removeEventListener("mouseleave", leaveFn);
-            tl.kill();
-        };
-      });
+          return () => {
+              icon.removeEventListener("mouseenter", enterFn);
+              icon.removeEventListener("mouseleave", leaveFn);
+              tl.kill();
+          };
+        });
+      };
+      
+      loadGSAP();
     }
   }, []);
 
