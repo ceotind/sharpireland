@@ -6,6 +6,7 @@ import ProjectsSection from './components/ProjectsSection';
 import ProcessSection from './components/ProcessSection';
 import ContactSectionWrapper from './components/ContactSectionWrapper';
 import SaaSComparisonSection from './components/SaaSComparisonSection';
+import SEOAnalyzerSection from './components/SEOAnalyzerSection';
 import TestimonialsSection from './components/TestimonialsSection';
 // import SharpImageSection from './components/SharpImageSection'; // Commented out as it's not used
 import TripleSwitchSection from './components/TripleSwitchSection';
@@ -197,18 +198,23 @@ export default function Home() {
           <ProcessSection />
         </section>
         
+        {/* SEO Analyzer Section - Free SEO tools */}
+        <section id="page-div-10" aria-labelledby="seo-analyzer-heading">
+          <SEOAnalyzerSection />
+        </section>
+        
         {/* Comparison Section - Why choose us */}
-        <section id="page-div-10" aria-labelledby="comparison-heading">
+        <section id="page-div-11" aria-labelledby="comparison-heading">
           <SaaSComparisonSection />
         </section>
         
         {/* Testimonials Section - Social proof */}
-        <section id="page-div-11" aria-labelledby="testimonials-heading">
+        <section id="page-div-12" aria-labelledby="testimonials-heading">
           <TestimonialsSection />
         </section>
         
         {/* Contact Section - Get in touch */}
-        <section id="page-div-12" aria-labelledby="contact-heading">
+        <section id="page-div-13" aria-labelledby="contact-heading">
           <ContactSectionWrapper />
         </section>
       </main>

@@ -5,11 +5,13 @@ import { useRouter } from 'next/navigation';
 import { EnhancedSEOReport } from '@/app/api/seo-analyzer/route';
 import NavBar from '@/app/components/NavBar';
 import Link from 'next/link';
+import DetailedSEOReportPopup from '@/app/components/seo-analyzer/DetailedSEOReportPopup';
 
 export default function SEOReportPage() {
   const router = useRouter();
   const [report, setReport] = useState<EnhancedSEOReport | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     // Retrieve report from localStorage
@@ -22,6 +24,26 @@ export default function SEOReportPage() {
     }
     setLoading(false);
   }, [router]);
+
+  // Popup trigger with 5-second delay
+  useEffect(() => {
+    if (!report || loading) return;
+
+    // Set 5-second delay before showing popup
+    const timer = setTimeout(() => {
+      setShowPopup(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [report, loading]);
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
+  const handleOpenPopup = () => {
+    setShowPopup(true);
+  };
 
   const ScoreMeter = ({ score, label }: { score: number; label?: string }) => {
     let color = 'bg-[var(--accent-red)]';
@@ -119,7 +141,7 @@ export default function SEOReportPage() {
   return (
     <div>
       <NavBar />
-      <main className="min-h-screen bg-[var(--background)] pt-16" role="main">
+      <main className={`min-h-screen bg-[var(--background)] pt-16 transition-all duration-300 ${showPopup ? 'blur-sm' : ''}`} role="main">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-4xl sm:text-5xl font-bold text-[var(--text-100)]" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)' }}>SEO Report</h1>
@@ -303,8 +325,77 @@ export default function SEOReportPage() {
               </ul>
             </div>
           </div>
+
+          {/* CTA Section for Detailed SEO Report */}
+          <div id="detailed-seo-cta" className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl shadow-lg p-6 sm:p-8 mt-8 text-white">
+            <div className="text-center">
+              <div className="mb-4">
+                <svg className="w-16 h-16 mx-auto text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold mb-3">
+                Want a More Comprehensive Analysis?
+              </h3>
+              <p className="text-lg sm:text-xl text-blue-100 mb-6 max-w-3xl mx-auto">
+                This free report gives you a great overview, but there's so much more we can uncover! Get a detailed,
+                professional SEO audit with competitor analysis, keyword opportunities, and a custom action plan.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left">
+                <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                  <div className="flex items-center mb-2">
+                    <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    <h4 className="font-semibold" style={{ color: '#1f2937' }}>Deep Analysis</h4>
+                  </div>
+                  <p className="text-sm" style={{ color: '#374151' }}>Complete technical audit, content analysis, and performance review</p>
+                </div>
+                
+                <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                  <div className="flex items-center mb-2">
+                    <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                    <h4 className="font-semibold" style={{ color: '#1f2937' }}>Competitor Insights</h4>
+                  </div>
+                  <p className="text-sm" style={{ color: '#374151' }}>See what your competitors are doing right and find opportunities</p>
+                </div>
+                
+                <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                  <div className="flex items-center mb-2">
+                    <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    <h4 className="font-semibold" style={{ color: '#1f2937' }}>Action Plan</h4>
+                  </div>
+                  <p className="text-sm" style={{ color: '#374151' }}>Step-by-step roadmap to improve your search rankings</p>
+                </div>
+              </div>
+
+              <button
+                id="detailed-seo-cta-button"
+                onClick={handleOpenPopup}
+                className="bg-white text-blue-600 hover:bg-blue-50 font-bold py-4 px-8 rounded-xl text-lg transition-all duration-200 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50"
+              >
+                Get Your Detailed SEO Report
+              </button>
+              
+              <p className="text-sm text-blue-200 mt-4">
+                ✨ Free consultation included • 📧 Delivered within 24 hours • 🚀 No obligations
+              </p>
+            </div>
+          </div>
         </div>
       </main>
+      
+      {/* Detailed SEO Report Popup */}
+      <DetailedSEOReportPopup
+        isOpen={showPopup}
+        onClose={handleClosePopup}
+        websiteUrl={report?.url}
+      />
     </div>
   );
 }

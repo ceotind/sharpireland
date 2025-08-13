@@ -310,7 +310,7 @@ export default function SEOPage() {
 
           <motion.div
             id="seo-form-card"
-            className="rounded-2xl shadow-xl p-4 sm:p-8 mb-6 sm:mb-8 bg-[var(--bg-200)] border border-[var(--border-100)]"
+            className="rounded-2xl shadow-xl p-4 sm:p-8 mb-6 sm:mb-8 bg-white border border-blue-500"
             variants={formContainerVariants}
             style={{ willChange: 'transform, opacity' }}
           >
