@@ -1,11 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useContentSection } from '../../context/ContentContext';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function CTA() {
   const cta = useContentSection('cta');
@@ -13,26 +9,35 @@ export default function CTA() {
 
   useEffect(() => {
     // Only run animations if cta content is available and sectionRef is mounted
-    if (cta && sectionRef.current) {
-      const elements = sectionRef.current.querySelectorAll('.animate-element');
-      if (elements.length > 0) {
-        gsap.fromTo(
-          elements,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top 85%',
-              once: true,
-            },
-          }
-        );
-      }
+    if (cta && sectionRef.current && typeof window !== 'undefined') {
+      const loadGSAP = async () => {
+        const { gsap } = await import('gsap');
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        
+        gsap.registerPlugin(ScrollTrigger);
+        
+        const elements = sectionRef.current?.querySelectorAll('.animate-element');
+        if (elements && elements.length > 0) {
+          gsap.fromTo(
+            elements,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top 85%',
+                once: true,
+              },
+            }
+          );
+        }
+      };
+      
+      loadGSAP();
     }
   }, [cta]); // Re-run effect if cta content changes
 
