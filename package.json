@@ -31,6 +31,8 @@
     "@phosphor-icons/react": "^2.1.10",
     "@types/cheerio": "^0.22.35",
     "@types/nodemailer": "^6.4.17",
+    "agora-rtc-sdk-ng": "^4.24.0",
+    "agora-token": "^2.0.5",
     "cheerio": "^1.1.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
