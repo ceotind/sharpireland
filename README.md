@@ -7,7 +7,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC)](https://tailwindcss.com/)
 [![GSAP](https://img.shields.io/badge/GSAP-3.13.0-green)](https://greensock.com/gsap/)
 
-A sophisticated, modern web application serving as Sharp Digital Ireland's digital agency portfolio and business platform. Built with cutting-edge web technologies, featuring interactive animations, responsive design, and comprehensive SEO optimization.
+A sophisticated, modern web application serving as Sharp Digital Ireland's digital agency portfolio and business platform. Built with cutting-edge web technologies, featuring interactive animations, responsive design, and compsrehensive SEO optimization.
 
 ## 🌟 Features
 
