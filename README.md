@@ -49,7 +49,7 @@ A sophisticated, modern web application serving as Sharp Digital Ireland's digit
 - **Canvas API**: Hardware-accelerated interactive graphics
 
 ### Development Tools
-- **ESLint 9**: Code quality enforcement
+- **ESLint 9**: Code quality enfsorcement
 - **PostCSS**: CSS processing and optimization
 - **Turbopack**: Next.js development server optimization
 
