@@ -140,7 +140,7 @@ export default function SEOReportPage() {
 
   return (
     <div>
-      <NavBar />
+      <NavBar user={null} />
       <main className={`min-h-screen bg-[var(--background)] pt-16 transition-all duration-300 ${showPopup ? 'blur-sm' : ''}`} role="main">
         <div className="max-w-4xl mx-auto px-4 py-8">
           <div className="flex justify-between items-center mb-6">

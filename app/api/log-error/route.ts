@@ -28,18 +28,50 @@ export async function POST(request: NextRequest) {
       if (text.length > 50000) { // 50KB limit for error logs
         throw new Error('Error log too large');
       }
-      errorData = JSON.parse(text);
-    } catch {
+      
+      // Handle empty or malformed JSON
+      if (!text.trim()) {
+        return NextResponse.json(
+          { success: false, message: 'Empty request body' },
+          { status: 400 }
+        );
+      }
+      
+      try {
+        errorData = JSON.parse(text);
+      } catch (parseError) {
+        console.error('JSON parse error:', parseError);
+        return NextResponse.json(
+          { success: false, message: 'Invalid JSON format' },
+          { status: 400 }
+        );
+      }
+    } catch (error) {
+      console.error('Error reading request body:', error);
       return NextResponse.json(
-        { success: false, message: 'Invalid error data' },
+        { success: false, message: 'Error reading request body' },
         { status: 400 }
       );
     }
 
-    // Validate required fields
-    if (!errorData.message || !errorData.timestamp) {
+    // Validate required fields with more detailed error messages
+    if (!errorData) {
       return NextResponse.json(
-        { success: false, message: 'Missing required error data' },
+        { success: false, message: 'Missing error data' },
+        { status: 400 }
+      );
+    }
+    
+    if (!errorData.message) {
+      return NextResponse.json(
+        { success: false, message: 'Missing required field: message' },
+        { status: 400 }
+      );
+    }
+    
+    if (!errorData.timestamp) {
+      return NextResponse.json(
+        { success: false, message: 'Missing required field: timestamp' },
         { status: 400 }
       );
     }

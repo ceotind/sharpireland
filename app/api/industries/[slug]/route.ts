@@ -12,6 +12,13 @@ export async function GET(
   try {
     const { params: awaitedParams } = context;
     const { slug } = await awaitedParams;
+    
+    // Check if the slug looks like an image file and reject it
+    if (slug.match(/\.(jpg|jpeg|png|gif|webp|svg|ico)$/i)) {
+      console.error(`Rejected image file as industry slug: ${slug}`);
+      return NextResponse.json({ error: 'Invalid industry slug' }, { status: 400 });
+    }
+    
     const filePath = path.join(process.cwd(), 'app/content/industries', `${slug}.json`);
     
     try {
