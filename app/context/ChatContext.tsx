@@ -36,13 +36,13 @@ const AI_RESPONSE_TIMEOUT = 30000; // 30 seconds
 const MAX_RETRIES = 3; // Maximum number of retries for timed-out requests
 
 // Helper for logging errors
-const logError = (context: string, error: any, details?: any) => {
+const logError = (context: string, error: unknown, details?: unknown) => {
   console.error(`[ChatContext Error] ${context}:`, error, details);
-  errorLogger(error, context, details); // Use the centralized errorLogger
+  errorLogger(error instanceof Error ? error : new Error(String(error)), context, (typeof details === 'object' && details !== null) ? details as Record<string, unknown> : undefined); // Use the centralized errorLogger
 };
 
 // Helper for validating API responses
-function validateApiResponse<T>(data: any, type: 'chat' | 'session'): T {
+function validateApiResponse<T>(data: unknown, type: 'chat' | 'session'): T {
   if (!data) {
     throw new Error(`API response is empty for type ${type}.`);
   }
@@ -249,7 +249,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
       let lastError: Error | null = null;
 
       // Prepare for streaming AI response
-      let assistantMessage: ChatMessage = {
+      const assistantMessage: ChatMessage = {
         id: `ai-${Date.now()}`, // Temporary ID for streaming
         session_id: sessionId || state.currentSession?.id || "",
         user_id: "assistant", // AI's user ID
@@ -362,21 +362,21 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
           }));
 
           success = true;
-        } catch (err: any) {
+        } catch (err: unknown) {
           clearTimeout(timeoutId);
-          lastError = err;
+          lastError = err instanceof Error ? err : new Error(String(err));
           logError('sendMessage Catch Error', err);
 
-          const isTimeout = err.name === "AbortError" || err.message.includes("timed out");
+          const isTimeout = (err instanceof Error && err.name === "AbortError") || (err instanceof Error && err.message.includes("timed out"));
           const errorMessage = isTimeout
             ? `AI response timed out. Retrying... (Attempt ${currentRetry + 1}/${MAX_RETRIES + 1})`
-            : `Failed to send message: ${err.message}`;
+            : `Failed to send message: ${err instanceof Error ? err.message : String(err)}`;
 
           setState((prevState) => ({
             ...prevState,
             loading: { isLoading: false },
             aiResponseLoading: { isLoading: false },
-            aiResponseError: { hasError: true, error: err, message: errorMessage, isTimeout: isTimeout },
+            aiResponseError: { hasError: true, error: lastError, message: errorMessage, isTimeout: isTimeout },
             isTyping: false,
             messages: prevState.messages.map((msg) => {
               if (msg.temp_id === newMessage.temp_id) {
@@ -551,12 +551,12 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
 
           await sendMessage(message, newSession.id);
           success = true;
-        } catch (err: any) {
+        } catch (err: unknown) {
           clearTimeout(timeoutId);
           logError('createSession Catch Error', err);
           let sessionError: SessionError;
 
-          if (err.name === "AbortError") {
+          if (err instanceof Error && err.name === "AbortError") {
             sessionError = {
               code: "TIMEOUT",
               message: "Session creation timed out.",
@@ -574,16 +574,16 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
               isTransient: true,
               originalError: err,
             };
-          } else if (err.type) { // Custom SessionError
-            sessionError = err;
+          } else if (typeof err === 'object' && err !== null && 'type' in err && typeof (err as SessionError).type === 'string') { // Custom SessionError
+            sessionError = err as SessionError;
           } else {
             sessionError = {
               code: "UNKNOWN_ERROR",
-              message: err.message || "An unknown error occurred during session creation.",
+              message: (err instanceof Error ? err.message : String(err)) || "An unknown error occurred during session creation.",
               timestamp: new Date().toISOString(),
               type: SessionErrorType.UNKNOWN,
               isTransient: false,
-              originalError: err,
+              originalError: err instanceof Error ? err : new Error(String(err)),
             };
           }
 

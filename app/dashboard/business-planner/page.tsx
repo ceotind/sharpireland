@@ -5,6 +5,7 @@ import SessionListWrapper from './components/SessionListWrapper';
 import UsageTrackerWrapper from './components/UsageTrackerWrapper';
 import { BusinessPlannerSession, BusinessPlannerUsage, BusinessPlannerProfile } from '@/app/types/business-planner';
 import { UserProfile, DashboardStats } from '@/app/types/dashboard';
+import Link from 'next/link';
 
 /**
  * Business Planner Dashboard Page
@@ -127,7 +128,7 @@ export default async function BusinessPlannerDashboard() {
                 </p>
               </div>
               <div id="dashboard-actions" className="mt-4 sm:mt-0 flex flex-col sm:flex-row gap-3">
-                <a
+                <Link
                   href="/dashboard/business-planner/chat"
                   className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
@@ -135,8 +136,8 @@ export default async function BusinessPlannerDashboard() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
                   New Conversation
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/dashboard/business-planner/onboarding"
                   className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
@@ -145,7 +146,7 @@ export default async function BusinessPlannerDashboard() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                   Update Profile
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -247,7 +248,7 @@ export default async function BusinessPlannerDashboard() {
           <div id="quick-actions-section" className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             <h2 className="text-lg font-medium text-gray-900 mb-4">Quick Actions</h2>
             <div id="quick-actions-grid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <a
+              <Link
                 href="/dashboard/business-planner/chat"
                 className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
@@ -260,9 +261,9 @@ export default async function BusinessPlannerDashboard() {
                   <p className="text-sm font-medium text-gray-900">Start New Chat</p>
                   <p className="text-xs text-gray-500">Begin planning session</p>
                 </div>
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/dashboard/business-planner/onboarding"
                 className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
@@ -275,9 +276,9 @@ export default async function BusinessPlannerDashboard() {
                   <p className="text-sm font-medium text-gray-900">Update Profile</p>
                   <p className="text-xs text-gray-500">Modify business info</p>
                 </div>
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/dashboard/billing"
                 className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
@@ -290,9 +291,9 @@ export default async function BusinessPlannerDashboard() {
                   <p className="text-sm font-medium text-gray-900">Upgrade Plan</p>
                   <p className="text-xs text-gray-500">Get more conversations</p>
                 </div>
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/dashboard/support"
                 className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
@@ -305,7 +306,7 @@ export default async function BusinessPlannerDashboard() {
                   <p className="text-sm font-medium text-gray-900">Get Help</p>
                   <p className="text-xs text-gray-500">Contact support</p>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -11,9 +11,21 @@ export default function HeroSection() {
   const [bentoImages, setBentoImages] = useState<string[]>([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
+  const [currentBgImage, setCurrentBgImage] = useState(0);
 
   // Fallbacks used if API fails or before load. Keep within public/ for Next/Image optimization.
   const DEFAULT_FALLBACKS = [
+    "/images/bento_grid/brutalist_poster.webp",
+    "/images/bento_grid/girl_sitting_on_car.webp",
+    "/images/bento_grid/gradient_art.webp",
+    "/images/bento_grid/landscape_view.webp",
+    "/images/bento_grid/laptop_on_desk.webp",
+    "/images/bento_grid/pixar_turtle.webp",
+    "/images/bento_grid/working_on_laptop.webp",
+  ] as const;
+
+  // Background images for mobile view
+  const BACKGROUND_IMAGES = [
     "/images/bento_grid/brutalist_poster.webp",
     "/images/bento_grid/girl_sitting_on_car.webp",
     "/images/bento_grid/gradient_art.webp",
@@ -99,6 +111,24 @@ export default function HeroSection() {
     };
   }, []);
 
+  // Cycle through background images for mobile view
+  useEffect(() => {
+    // Check if we're on mobile view
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    
+    if (!isMobile) {
+      // Reset to first image when switching to desktop
+      setCurrentBgImage(0);
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setCurrentBgImage(prev => (prev + 1) % BACKGROUND_IMAGES.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [typeof window !== 'undefined' ? window.innerWidth : null]);
+
 
   // Show loading state during initialization
   if (isInitializing) {
@@ -168,6 +198,32 @@ export default function HeroSection() {
             "repeating-linear-gradient(90deg, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 78px, rgba(0,0,0,0.06) 78px, rgba(0,0,0,0.06) 96px)",
         }}
       />
+
+      {/* Mobile background image slideshow */}
+      <div
+        id="hero-mobile-bg"
+        className="absolute inset-0 sm:hidden -z-10"
+      >
+        <div
+          id="hero-mobile-bg-image"
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${BACKGROUND_IMAGES[currentBgImage]})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.3,
+            transition: "opacity 1s ease-in-out",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, var(--bg-100) 0%, var(--bg-200) 40%, var(--bg-200) 100%)",
+            opacity: 0.7,
+          }}
+        />
+      </div>
 
       {/* Content container */}
       <div
@@ -254,7 +310,7 @@ export default function HeroSection() {
                   whileTap="tap"
                   onClick={() => router.push("/services")}
                 >
-                  Explore Our Products
+                  Explore Our Services
                 </motion.button>
 
                 <motion.button
@@ -281,16 +337,16 @@ export default function HeroSection() {
 
           {/* Right Column - Bento Grid */}
           <div id="hero-right-col" className="lg:col-span-5">
-            <motion.div id="hero-bento-wrap" className="hidden lg:block" variants={heroElement}>
+            <motion.div id="hero-bento-wrap" className="hidden sm:block" variants={heroElement}>
               <div
                 id="hero-bento"
-                className="grid grid-cols-6 auto-rows-[96px] gap-4"
+                className="grid grid-cols-3 sm:grid-cols-6 auto-rows-[64px] sm:auto-rows-[96px] gap-3 sm:gap-4"
                 aria-label="Showcase grid"
               >
                 {/* Large tile */}
                 <div
                   id="bento-tile-1"
-                  className="relative col-span-4 row-span-4 rounded-2xl overflow-hidden border"
+                  className="relative col-span-3 sm:col-span-4 row-span-4 rounded-2xl overflow-hidden border"
                   style={{
                     background: "var(--bg-100)",
                     borderColor: "var(--bg-300)",
@@ -321,7 +377,7 @@ export default function HeroSection() {
                 {/* Small square */}
                 <div
                   id="bento-tile-2"
-                  className="relative col-span-2 row-span-2 rounded-2xl overflow-hidden border"
+                  className="relative col-span-1 sm:col-span-2 row-span-2 rounded-2xl overflow-hidden border"
                   style={{
                     background: "var(--bg-100)",
                     borderColor: "var(--bg-300)",
@@ -351,7 +407,7 @@ export default function HeroSection() {
                 {/* Small square */}
                 <div
                   id="bento-tile-3"
-                  className="relative col-span-2 row-span-2 rounded-2xl overflow-hidden border"
+                  className="relative col-span-1 sm:col-span-2 row-span-2 rounded-2xl overflow-hidden border"
                   style={{
                     background: "var(--bg-100)",
                     borderColor: "var(--bg-300)",
@@ -381,7 +437,7 @@ export default function HeroSection() {
                 {/* Wide tile */}
                 <div
                   id="bento-tile-4"
-                  className="relative col-span-3 row-span-2 rounded-2xl overflow-hidden border"
+                  className="relative col-span-3 sm:col-span-3 row-span-2 rounded-2xl overflow-hidden border"
                   style={{
                     background: "var(--bg-100)",
                     borderColor: "var(--bg-300)",
@@ -411,7 +467,7 @@ export default function HeroSection() {
                 {/* Wide tile */}
                 <div
                   id="bento-tile-5"
-                  className="relative col-span-3 row-span-2 rounded-2xl overflow-hidden border"
+                  className="relative col-span-3 sm:col-span-3 row-span-2 rounded-2xl overflow-hidden border"
                   style={{
                     background: "var(--bg-100)",
                     borderColor: "var(--bg-300)",

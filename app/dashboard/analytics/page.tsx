@@ -66,7 +66,7 @@ export default async function AnalyticsPage() {
     .eq('user_id', user.id)
     .in('status', ['pending', 'overdue']);
 
-  const totalInvoiceAmount = invoiceAmounts?.reduce((sum: number, invoice: any) => sum + (invoice.total || 0), 0) || 0;
+  const totalInvoiceAmount = invoiceAmounts?.reduce((sum: number, invoice: { total: number }) => sum + (invoice.total || 0), 0) || 0;
 
   // Get recent activity count
   const sevenDaysAgo = new Date();

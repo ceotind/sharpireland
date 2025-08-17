@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '../../utils/supabase/client';
+import { RealtimeChannel } from '@supabase/supabase-js';
 import { logActivity } from '../../utils/activity-logger-client';
 
 interface VisitorData {
@@ -25,6 +26,16 @@ interface LiveVisitorsProps {
   userId: string;
 }
 
+interface SupabaseRealtimePayload<T> {
+  commit_timestamp: string;
+  errors: string[] | null;
+  eventType: 'INSERT' | 'UPDATE' | 'DELETE';
+  new: T; // The new record. Present for 'INSERT' and 'UPDATE' events.
+  old: T; // The previous record. Present for 'UPDATE' and 'DELETE' events.
+  schema: string;
+  table: string;
+}
+
 export default function LiveVisitors({ userId }: LiveVisitorsProps) {
   const [visitors, setVisitors] = useState<VisitorData[]>([]);
   const [totalVisitors, setTotalVisitors] = useState(0);
@@ -35,7 +46,7 @@ export default function LiveVisitors({ userId }: LiveVisitorsProps) {
   const supabase = createClient();
 
   useEffect(() => {
-    let channel: any;
+    let channel: RealtimeChannel | null = null;
 
     const setupRealtimeConnection = async () => {
       try {
@@ -67,7 +78,7 @@ export default function LiveVisitors({ userId }: LiveVisitorsProps) {
               table: 'live_visitors',
               filter: `user_id=eq.${userId}`,
             },
-            (payload: any) => {
+            (payload: SupabaseRealtimePayload<VisitorData>) => {
               console.log('Live visitor update received:', payload);
               
               if (payload.eventType === 'INSERT') {

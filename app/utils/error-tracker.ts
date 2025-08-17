@@ -13,7 +13,7 @@ interface ErrorContext {
   timestamp?: string;
   buildVersion?: string;
   environment?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface ErrorEvent {
@@ -34,7 +34,7 @@ interface Breadcrumb {
   message: string;
   category: 'navigation' | 'user' | 'http' | 'console' | 'custom';
   level: 'info' | 'warning' | 'error';
-  data?: Record<string, any>;
+  data?: Record<string, unknown>;
 }
 
 interface UserInfo {
@@ -280,7 +280,7 @@ export class ErrorTracker {
     options: {
       type?: ErrorEvent['type'];
       severity?: ErrorEvent['severity'];
-      context?: Record<string, any>;
+      context?: Record<string, unknown>;
       tags?: Record<string, string>;
       fingerprint?: string;
     } = {}
@@ -315,7 +315,7 @@ export class ErrorTracker {
     level: 'info' | 'warning' | 'error' = 'info',
     options: {
       type?: ErrorEvent['type'];
-      context?: Record<string, any>;
+      context?: Record<string, unknown>;
       tags?: Record<string, string>;
     } = {}
   ): string {
@@ -346,7 +346,7 @@ export class ErrorTracker {
     message: string,
     category: Breadcrumb['category'] = 'custom',
     level: Breadcrumb['level'] = 'info',
-    data?: Record<string, any>
+    data?: Record<string, unknown>
   ): void {
     if (!this.config.enableBreadcrumbs) return;
 
@@ -377,7 +377,7 @@ export class ErrorTracker {
   /**
    * Update context
    */
-  updateContext(context: Record<string, any>): void {
+  updateContext(context: Record<string, unknown>): void {
     this.context = { ...this.context, ...context };
   }
 
@@ -593,7 +593,7 @@ export const ErrorTrackerUtils = {
   /**
    * Track user actions
    */
-  trackUserAction: (action: string, data?: Record<string, any>) => {
+  trackUserAction: (action: string, data?: Record<string, unknown>) => {
     getErrorTracker().addBreadcrumb(`User action: ${action}`, 'user', 'info', data);
   },
 
@@ -617,7 +617,7 @@ export const ErrorTrackerUtils = {
   /**
    * Track business logic errors
    */
-  trackBusinessError: (operation: string, error: string, context?: Record<string, any>) => {
+  trackBusinessError: (operation: string, error: string, context?: Record<string, unknown>) => {
     getErrorTracker().captureMessage(
       `Business error in ${operation}: ${error}`,
       'error',

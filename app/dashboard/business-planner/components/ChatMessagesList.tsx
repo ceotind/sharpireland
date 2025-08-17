@@ -97,4 +97,6 @@ const ChatMessagesList: React.FC<ChatMessagesListProps> = React.memo(({ messages
   );
 });
 
+ChatMessagesList.displayName = 'ChatMessagesList';
+
 export default ChatMessagesList;

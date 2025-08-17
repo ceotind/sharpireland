@@ -1,8 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '../../../../utils/supabase/server';
+interface Invoice {
+  id: string;
+  user_id: string;
+  pdf_url?: string;
+  invoice_number: string;
+  status: 'pending' | 'paid' | 'overdue' | 'cancelled';
+  line_items?: Array<{
+    description?: string;
+    quantity?: number;
+    amount?: number;
+  }>;
+  amount: number;
+  tax: number;
+  total: number;
+  created_at: string;
+  due_date: string;
+  paid_at?: string;
+  payment_method?: string;
+}
+
+interface User {
+  id: string;
+  email?: string;
+  user_metadata?: {
+    full_name?: string;
+    company?: string;
+    [key: string]: unknown; // Allow other properties if they exist
+  };
+  // Add other properties of the Supabase User object if needed
+}
 
 export async function GET(
-  request: NextRequest,
+  _: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -61,7 +91,7 @@ export async function GET(
 }
 
 // Helper function to generate invoice PDF content
-function generateInvoicePDF(invoice: any, user: any): string {
+function generateInvoicePDF(invoice: Invoice, user: User): string {
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -257,7 +287,7 @@ function generateInvoicePDF(invoice: any, user: any): string {
                 </tr>
             </thead>
             <tbody>
-                ${(invoice.line_items || []).map((item: any) => `
+                ${(invoice.line_items || []).map((item: { description?: string; quantity?: number; amount?: number }) => `
                     <tr>
                         <td>${item.description || 'Service'}</td>
                         <td class="text-right">${item.quantity || 1}</td>

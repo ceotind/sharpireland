@@ -103,4 +103,6 @@ const ChatMessageDisplay: React.FC<ChatMessageDisplayProps> = React.memo(({ mess
   );
 });
 
+ChatMessageDisplay.displayName = 'ChatMessageDisplay';
+
 export default ChatMessageDisplay;

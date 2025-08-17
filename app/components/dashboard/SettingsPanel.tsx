@@ -21,14 +21,14 @@ interface SettingItem {
   label: string;
   description?: string;
   type: 'toggle' | 'select' | 'input' | 'range';
-  value: any;
-  options?: Array<{ label: string; value: any }>;
+  value: unknown;
+  options?: Array<{ label: string; value: unknown }>;
   min?: number;
   max?: number;
   step?: number;
   placeholder?: string;
-  validation?: (value: any) => string | null;
-  onChange: (value: any) => void;
+  validation?: (value: unknown) => string | null;
+  onChange: (value: unknown) => void;
 }
 
 interface SettingGroup {
@@ -162,7 +162,7 @@ export function SettingsGroup({ group }: { group: SettingGroup }) {
 export function SettingItem({ item }: { item: SettingItem }) {
   const [error, setError] = useState<string | null>(null);
 
-  const handleChange = (value: any) => {
+  const handleChange = (value: unknown) => {
     // Validate if validation function is provided
     if (item.validation) {
       const validationError = item.validation(value);
@@ -181,14 +181,14 @@ export function SettingItem({ item }: { item: SettingItem }) {
         return (
           <button
             type="button"
-            onClick={() => handleChange(!item.value)}
+            onClick={() => handleChange(!(item.value as boolean))}
             className={`${
-              item.value ? 'bg-blue-600' : 'bg-gray-200'
+              (item.value as boolean) ? 'bg-blue-600' : 'bg-gray-200'
             } relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
           >
             <span
               className={`${
-                item.value ? 'translate-x-5' : 'translate-x-0'
+                (item.value as boolean) ? 'translate-x-5' : 'translate-x-0'
               } pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
             />
           </button>
@@ -197,12 +197,12 @@ export function SettingItem({ item }: { item: SettingItem }) {
       case 'select':
         return (
           <select
-            value={item.value}
+            value={item.value as string}
             onChange={(e) => handleChange(e.target.value)}
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
           >
             {item.options?.map((option) => (
-              <option key={option.value} value={option.value}>
+              <option key={option.value as string} value={option.value as string}>
                 {option.label}
               </option>
             ))}
@@ -213,7 +213,7 @@ export function SettingItem({ item }: { item: SettingItem }) {
         return (
           <input
             type="text"
-            value={item.value}
+            value={item.value as string}
             onChange={(e) => handleChange(e.target.value)}
             placeholder={item.placeholder}
             className={`block w-full rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm ${
@@ -231,13 +231,13 @@ export function SettingItem({ item }: { item: SettingItem }) {
               min={item.min}
               max={item.max}
               step={item.step || 1}
-              value={item.value}
+              value={item.value as number}
               onChange={(e) => handleChange(Number(e.target.value))}
               className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
             />
             <span className="text-sm text-gray-500">{item.max}</span>
             <span className="text-sm font-medium text-gray-900 min-w-[3rem] text-right">
-              {item.value}
+              {item.value as number}
             </span>
           </div>
         );

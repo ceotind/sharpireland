@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { viewportFadeIn, staggerContainer, listItem } from "../../utils/motion-variants";
 
 const pricingPlans = [
@@ -262,7 +263,7 @@ export default function PricingSection() {
           <p className="text-[var(--text-200)] text-sm">
             All plans include secure data handling and GDPR compliance. 
             <br />
-            Need a custom solution? <a href="/contact" className="link-primary">Contact us</a> for enterprise pricing.
+            Need a custom solution? <Link href="/contact" className="link-primary">Contact us</Link> for enterprise pricing.
           </p>
         </motion.div>
       </div>

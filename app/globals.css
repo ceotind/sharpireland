@@ -185,3 +185,10 @@ button:disabled {
 .font-heading { font-family: 'Inter', sans-serif; }  /* Use for headings and brand */
 .font-body { font-family: 'Roboto', sans-serif; }    /* Use for body/UI when explicit class is needed */
 
+/* Ensure mobile sections don't inherit body background */
+@media (max-width: 639px) {
+  body {
+    background-color: transparent;
+  }
+}
+

@@ -9,16 +9,18 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/app/utils/supabase/server';
-import { 
+import { SupabaseClient } from '@supabase/supabase-js';
+import {
   BusinessPlannerOnboardingData,
   BusinessPlannerProfile,
   BusinessPlannerApiResponse,
   BusinessPlannerSessionContext,
-  BusinessPlannerSession
+  BusinessPlannerSession,
+  BusinessPlannerUsage
 } from '@/app/types/business-planner';
 import { validateOnboardingData } from '@/app/utils/business-planner/validators';
 import { checkRateLimit, updateRateLimit } from '@/app/utils/business-planner/rate-limiter';
-import { 
+import {
   ERROR_CODES,
   SUCCESS_MESSAGES,
   DEFAULT_SESSION_TITLE
@@ -53,7 +55,7 @@ function getClientIP(request: NextRequest): string {
  * @returns Created/updated profile
  */
 async function createOrUpdateProfile(
-  supabase: any,
+  supabase: SupabaseClient,
   userId: string,
   onboardingData: BusinessPlannerOnboardingData
 ): Promise<BusinessPlannerProfile | null> {
@@ -123,7 +125,7 @@ async function createOrUpdateProfile(
  * @returns Created session
  */
 async function createInitialSession(
-  supabase: any,
+  supabase: SupabaseClient,
   userId: string,
   onboardingData: BusinessPlannerOnboardingData
 ): Promise<BusinessPlannerSession | null> {
@@ -171,7 +173,7 @@ async function createInitialSession(
  * @param userId - User ID
  * @returns Usage record
  */
-async function getOrCreateUsage(supabase: any, userId: string) {
+async function getOrCreateUsage(supabase: SupabaseClient, userId: string): Promise<BusinessPlannerUsage | null> {
   try {
     // Try to get existing usage record
     const { data: existingUsage, error: fetchError } = await supabase
@@ -211,7 +213,7 @@ async function getOrCreateUsage(supabase: any, userId: string) {
     }
     
     return createdUsage;
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Unexpected error in getOrCreateUsage:', error);
     return null;
   }
@@ -309,7 +311,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
       );
     }
     
-    const sanitizedData = validation.sanitizedData!;
+    const sanitizedData = validation.onboardingData!;
     
     // Create or update business planner profile
     const profile = await createOrUpdateProfile(supabase, user.id, sanitizedData);
@@ -354,8 +356,6 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
       userId: user.id,
       ipAddress: clientIP
     });
-    
-    const responseTime = Date.now() - startTime;
     
     return NextResponse.json({
       data: {

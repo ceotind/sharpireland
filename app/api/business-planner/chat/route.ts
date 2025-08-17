@@ -7,9 +7,15 @@
  * @date 2025-08-13
  */
 
+interface AiServiceError extends Error {
+  code?: string;
+  message: string;
+  retryable?: boolean;
+}
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/app/utils/supabase/server';
-import { 
+import { SupabaseClient } from '@supabase/supabase-js';
+import {
   BusinessPlannerChatRequest,
   BusinessPlannerChatResponse,
   BusinessPlannerApiResponse,
@@ -21,7 +27,7 @@ import {
 import { validateUserInput } from '@/app/utils/business-planner/validators';
 import { createChatCompletionWithRetry } from '@/app/utils/business-planner/openai';
 import { checkRateLimit, updateRateLimit, detectSuspiciousActivity } from '@/app/utils/business-planner/rate-limiter';
-import { 
+import {
   FREE_CONVERSATIONS_LIMIT,
   PAID_CONVERSATIONS_COUNT,
   ERROR_CODES,
@@ -57,7 +63,7 @@ function getClientIP(request: NextRequest): string {
  * @returns Usage record
  */
 async function getOrCreateUsage(
-  supabase: any,
+  supabase: SupabaseClient,
   userId: string
 ): Promise<BusinessPlannerUsage | null> {
   try {
@@ -156,7 +162,7 @@ function checkUsageLimits(usage: BusinessPlannerUsage): {
  * @returns Updated usage record
  */
 async function updateUsageAfterConversation(
-  supabase: any,
+  supabase: SupabaseClient,
   usage: BusinessPlannerUsage,
   tokensUsed: number
 ): Promise<BusinessPlannerUsage | null> {
@@ -200,7 +206,7 @@ async function updateUsageAfterConversation(
  * @returns Session record
  */
 async function getOrCreateSession(
-  supabase: any,
+  supabase: SupabaseClient,
   userId: string,
   sessionId?: string,
   context?: BusinessPlannerSessionContext
@@ -265,7 +271,7 @@ async function getOrCreateSession(
  * @returns Saved conversation record
  */
 async function saveConversationMessage(
-  supabase: any,
+  supabase: SupabaseClient,
   sessionId: string,
   userId: string,
   role: 'user' | 'assistant',
@@ -307,7 +313,7 @@ async function saveConversationMessage(
  * @returns Conversation history
  */
 async function getConversationHistory(
-  supabase: any,
+  supabase: SupabaseClient,
   sessionId: string,
   limit: number = 10
 ): Promise<Array<{ role: 'user' | 'assistant'; content: string }>> {
@@ -404,7 +410,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
       user.id,
       clientIP,
       userAgent,
-      requestData
+      requestData as unknown as Record<string, unknown>
     );
     
     // Check rate limits
@@ -507,15 +513,16 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
         maxTokens: 2000,
         temperature: 0.7
       });
-    } catch (aiError: any) {
-      console.error('AI completion error:', aiError);
+    } catch (aiError: unknown) {
+      const typedError = aiError as AiServiceError;
+      console.error('AI completion error:', typedError);
       
       return NextResponse.json(
         {
           error: {
-            code: aiError.code || ERROR_CODES.AI_SERVICE_ERROR,
-            message: aiError.message || 'AI service temporarily unavailable',
-            details: { retryable: aiError.retryable || false },
+            code: typedError.code || ERROR_CODES.AI_SERVICE_ERROR,
+            message: typedError.message || 'AI service temporarily unavailable',
+            details: { retryable: typedError.retryable || false },
             timestamp: new Date().toISOString()
           }
         },
@@ -567,8 +574,6 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
       remaining_paid_conversations: remainingPaid,
       needs_upgrade: remainingFree <= 0 && finalUsage.subscription_status === 'free'
     };
-    
-    const responseTime = Date.now() - startTime;
     
     return NextResponse.json({
       data: responseData,

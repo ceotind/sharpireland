@@ -10,6 +10,8 @@
  */
 
 import OpenAI from 'openai';
+import { APIError } from 'openai/error';
+import { ChatCompletionCreateParamsNonStreaming, ChatCompletion } from 'openai/resources/chat/completions';
 
 import { BusinessPlannerSessionContext } from '@/app/types/business-planner';
 import { formatSystemPrompt } from './prompts';
@@ -98,7 +100,7 @@ export interface OpenAIError extends Error {
   /** Whether error is retryable */
   retryable?: boolean;
   /** Original OpenAI error */
-  originalError?: any;
+  originalError?: APIError | Error | unknown;
 }
 
 // =============================================================================
@@ -216,7 +218,7 @@ export function isWithinTokenLimits(
 function createOpenAIError(
   message: string,
   code: string,
-  originalError?: any
+  originalError?: APIError | Error | unknown
 ): OpenAIError {
   const error = new Error(message) as OpenAIError;
   error.code = code;
@@ -231,8 +233,10 @@ function createOpenAIError(
   ].includes(code);
   
   // Extract status code if available
-  if (originalError?.status) {
+  if (originalError instanceof APIError) {
     error.status = originalError.status;
+  } else if (originalError && typeof originalError === 'object' && 'status' in originalError) {
+    error.status = (originalError as { status: number }).status;
   }
   
   return error;
@@ -243,12 +247,12 @@ function createOpenAIError(
  * @param error - Original error from OpenAI
  * @returns Standardized OpenAI error
  */
-function handleOpenAIError(error: any): OpenAIError {
+function handleOpenAIError(error: unknown): OpenAIError {
   console.error('OpenAI API Error:', error);
   
   // Handle different types of OpenAI errors
-  if (error?.error?.type) {
-    switch (error.error.type) {
+  if (error instanceof APIError) {
+    switch (error.type) {
       case 'insufficient_quota':
         return createOpenAIError(
           'OpenAI API quota exceeded',
@@ -280,7 +284,7 @@ function handleOpenAIError(error: any): OpenAIError {
   }
   
   // Handle timeout errors
-  if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+  if (error instanceof Error && ((error as NodeJS.ErrnoException).code === 'ECONNABORTED' || error.message?.includes('timeout'))) {
     return createOpenAIError(
       'OpenAI API request timed out',
       ERROR_CODES.AI_TIMEOUT,
@@ -289,7 +293,7 @@ function handleOpenAIError(error: any): OpenAIError {
   }
   
   // Handle network errors
-  if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
+  if (error instanceof Error && ((error as NodeJS.ErrnoException).code === 'ENOTFOUND' || (error as NodeJS.ErrnoException).code === 'ECONNREFUSED')) {
     return createOpenAIError(
       'Network error connecting to OpenAI API',
       'network_error',
@@ -298,8 +302,17 @@ function handleOpenAIError(error: any): OpenAIError {
   }
   
   // Generic error
+  if (error instanceof Error) {
+    return createOpenAIError(
+      error.message || 'Unknown OpenAI API error',
+      ERROR_CODES.AI_SERVICE_ERROR,
+      error
+    );
+  }
+
+  // Fallback for truly unknown errors
   return createOpenAIError(
-    error.message || 'Unknown OpenAI API error',
+    'An unknown error occurred with OpenAI API',
     ERROR_CODES.AI_SERVICE_ERROR,
     error
   );
@@ -375,7 +388,7 @@ export async function createChatCompletion(
     
     // Prepare completion parameters
     // Use max_completion_tokens for newer models, max_tokens for older models
-    const completionParams: any = {
+    const completionParams: ChatCompletionCreateParamsNonStreaming = {
       model,
       messages,
       stream: false,
@@ -420,7 +433,7 @@ export async function createChatCompletion(
       completionParams.max_tokens = maxTokens;
     }
     
-    let completion: any;
+    let completion: ChatCompletion;
     
     try {
       // Try with primary model
@@ -540,7 +553,7 @@ export async function testOpenAIConnection(): Promise<boolean> {
     const client = getOpenAIClient();
     
     // Make a minimal request to test the connection
-    const testParams: any = {
+    const testParams: ChatCompletionCreateParamsNonStreaming = {
       model: OPENAI_MODEL_NAME,
       messages: [{ role: 'user', content: 'Hello' }]
     };
@@ -618,7 +631,7 @@ export const TokenUtils = {
 /**
  * All chat completion functions
  */
-export const ChatCompletion = {
+export const ChatCompletionService = {
   createChatCompletion,
   createChatCompletionWithRetry
 } as const;

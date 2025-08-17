@@ -1,6 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '../../../../utils/supabase/server';
 
+interface Subscription {
+  id: string;
+  user_id: string;
+  current_usage: Record<string, unknown>;
+  usage_limit: Record<string, number>;
+  service_type: string;
+  plan_name: string;
+  billing_cycle: string | null;
+  status: string;
+  next_renewal: string;
+  features: Record<string, unknown>;
+  price: number;
+  updated_at: string;
+}
+
+interface UsageStats {
+  subscription_id: string;
+  service_type: string;
+  plan_name: string;
+  billing_cycle: string | null;
+  current_period: {
+    start_date: string;
+    end_date: string;
+    usage: Record<string, unknown>;
+    limits: Record<string, number>;
+    utilization: Record<string, number>;
+  };
+  status: string;
+  next_renewal: string;
+  features: Record<string, unknown>;
+  price: number;
+  historical?: Array<{ period: string; usage: Record<string, unknown> }>;
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -39,7 +73,7 @@ export async function GET(
     const usageLimit = subscription.usage_limit || {};
 
     // Generate usage statistics
-    const usageStats: any = {
+    const usageStats: UsageStats = {
       subscription_id: id,
       service_type: subscription.service_type,
       plan_name: subscription.plan_name,
@@ -185,7 +219,7 @@ function getCurrentPeriodEnd(billingCycle: string | null): string {
   }
 }
 
-function calculateUtilization(usage: Record<string, any>, limits: Record<string, any>): Record<string, number> {
+function calculateUtilization(usage: Record<string, unknown>, limits: Record<string, number>): Record<string, number> {
   const utilization: Record<string, number> = {};
   
   for (const [key, limit] of Object.entries(limits)) {
@@ -200,7 +234,7 @@ function calculateUtilization(usage: Record<string, any>, limits: Record<string,
   return utilization;
 }
 
-function generateHistoricalUsage(subscription: any, period: string): any[] {
+function generateHistoricalUsage(subscription: Subscription, period: string): Array<{ period: string; usage: Record<string, unknown> }> {
   // This is a placeholder for historical usage data
   // In a real implementation, you would query historical usage from a separate table
   const historical = [];
@@ -214,7 +248,7 @@ function generateHistoricalUsage(subscription: any, period: string): any[] {
     const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
     historical.push({
       period: date.toISOString().substring(0, 7), // YYYY-MM format
-      usage: subscription.current_usage || {},
+      usage: (subscription.current_usage || {}) as Record<string, unknown>,
       // In real implementation, this would be actual historical data
     });
   }

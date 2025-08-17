@@ -1,8 +1,13 @@
 import React from 'react';
+import Link from 'next/link';
 import { createClient } from '../../utils/supabase/server';
 import { redirect } from 'next/navigation';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import SupportSection from '../../components/dashboard/SupportSection';
+
+interface Invoice {
+  total: number;
+}
 
 export default async function SupportPage() {
   const supabase = await createClient();
@@ -70,7 +75,7 @@ export default async function SupportPage() {
     .eq('user_id', user.id)
     .in('status', ['pending', 'overdue']);
 
-  const totalInvoiceAmount = invoiceAmounts?.reduce((sum: number, invoice: any) => sum + (invoice.total || 0), 0) || 0;
+  const totalInvoiceAmount = invoiceAmounts?.reduce((sum: number, invoice: Invoice) => sum + (invoice.total || 0), 0) || 0;
 
   // Get recent activity count
   const sevenDaysAgo = new Date();
@@ -156,7 +161,7 @@ export default async function SupportPage() {
         <div id="quick-help-section" className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Help</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <a
+            <Link
               href="/docs/getting-started"
               className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
             >
@@ -169,9 +174,9 @@ export default async function SupportPage() {
                 <h3 className="text-sm font-medium text-gray-900">Documentation</h3>
                 <p className="text-sm text-gray-600">Browse our comprehensive guides</p>
               </div>
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/docs/faq"
               className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
             >
@@ -184,9 +189,9 @@ export default async function SupportPage() {
                 <h3 className="text-sm font-medium text-gray-900">FAQ</h3>
                 <p className="text-sm text-gray-600">Find answers to common questions</p>
               </div>
-            </a>
+            </Link>
 
-            <a
+            <Link
               href="/contact"
               className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
             >
@@ -199,7 +204,7 @@ export default async function SupportPage() {
                 <h3 className="text-sm font-medium text-gray-900">Contact Us</h3>
                 <p className="text-sm text-gray-600">Get in touch with our team</p>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
 

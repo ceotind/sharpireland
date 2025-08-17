@@ -37,7 +37,7 @@ export interface Project {
   budget_spent: number;
   start_date: string | null;
   end_date: string | null;
-  metadata: Record<string, any> | null;
+  metadata: Record<string, unknown> | null;
   created_at: string;
   updated_at: string;
 }
@@ -51,9 +51,9 @@ export interface Subscription {
   billing_cycle: 'monthly' | 'yearly' | 'one-time' | null;
   price: number | null;
   next_renewal: string | null;
-  usage_limit: Record<string, any> | null;
-  current_usage: Record<string, any> | null;
-  features: Record<string, any> | null;
+  usage_limit: Record<string, unknown> | null;
+  current_usage: Record<string, unknown> | null;
+  features: Record<string, unknown> | null;
   created_at: string;
   updated_at: string;
 }
@@ -62,7 +62,7 @@ export interface AnalyticsSnapshot {
   id: string;
   user_id: string;
   metric_type: 'seo' | 'marketing' | 'website' | 'social' | 'conversion';
-  metric_data: Record<string, any>;
+  metric_data: Record<string, unknown>;
   period_start: string | null;
   period_end: string | null;
   created_at: string;
@@ -79,7 +79,7 @@ export interface Notification {
   action_label: string | null;
   read: boolean;
   read_at: string | null;
-  metadata: Record<string, any> | null;
+  metadata: Record<string, unknown> | null;
   created_at: string;
 }
 
@@ -90,7 +90,7 @@ export interface ActivityLog {
   entity_type: string | null;
   entity_id: string | null;
   description: string | null;
-  metadata: Record<string, any> | null;
+  metadata: Record<string, unknown> | null;
   ip_address: string | null;
   user_agent: string | null;
   created_at: string;
@@ -107,7 +107,7 @@ export interface Invoice {
   due_date: string | null;
   paid_at: string | null;
   payment_method: string | null;
-  line_items: Record<string, any> | null;
+  line_items: Record<string, unknown> | null;
   pdf_url: string | null;
   created_at: string;
 }
@@ -123,7 +123,7 @@ export interface SupportTicket {
   assigned_to: string | null;
   resolved_at: string | null;
   satisfaction_rating: number | null;
-  metadata: Record<string, any> | null;
+  metadata: Record<string, unknown> | null;
   created_at: string;
   updated_at: string;
 }
@@ -142,8 +142,8 @@ export interface SEOReport {
   user_id: string;
   url: string;
   score: number | null;
-  report_data: Record<string, any> | null;
-  improvements: Record<string, any> | null;
+  report_data: Record<string, unknown> | null;
+  improvements: Record<string, unknown> | null;
   created_at: string;
 }
 
@@ -239,14 +239,14 @@ export interface ActivityLogData {
   entity_type?: string;
   entity_id?: string;
   description?: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 // Error Types
 export interface DashboardError {
   code: string;
   message: string;
-  details?: Record<string, any>;
+  details?: Record<string, unknown>;
 }
 
 // Theme and Preferences

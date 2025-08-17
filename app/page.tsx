@@ -1,6 +1,7 @@
 "use client";
 
 import HeroSection from './components/HeroSection';
+import MobileHeroSection from './components/MobileHeroSection';
 import TechGridSection from './components/TechGridSection';
 import ProjectsSection from './components/ProjectsSection';
 import ProcessSection from './components/ProcessSection';
@@ -162,7 +163,7 @@ export default function Home() {
         }}
       />
       
-      <main id="page-div-1" className="min-h-screen bg-[var(--bg-100)] bg-no-repeat bg-fixed" role="main">
+      <main id="page-div-1" className="min-h-screen bg-no-repeat bg-fixed" role="main">
         {/* Breadcrumb Navigation */}
         <nav id="page-div-2" aria-label="Breadcrumb" className="sr-only">
           <ol id="page-div-3" itemScope itemType="https://schema.org/BreadcrumbList">
@@ -173,9 +174,14 @@ export default function Home() {
           </ol>
         </nav>
 
-        {/* Hero Section - Primary landing area */}
-        <section id="page-div-5" aria-labelledby="hero-heading">
+        {/* Hero Section - Desktop only */}
+        <section id="page-div-5" aria-labelledby="hero-heading" className="hidden sm:block">
           <HeroSection />
+        </section>
+        
+        {/* Mobile Hero Section - Mobile only */}
+        <section id="page-div-5-mobile" aria-labelledby="mobile-hero-heading" className="block sm:hidden">
+          <MobileHeroSection />
         </section>
         
         {/* Technologies Section - Our expertise */}

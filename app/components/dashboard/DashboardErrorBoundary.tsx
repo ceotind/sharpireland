@@ -1,5 +1,11 @@
 'use client';
 
+declare global {
+  interface Window {
+    gtag: (...args: unknown[]) => void;
+  }
+}
+
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { 
   ExclamationTriangleIcon, 
@@ -112,14 +118,14 @@ export default class DashboardErrorBoundary extends Component<Props, State> {
   private trackError(error: Error, errorInfo: ErrorInfo) {
     try {
       // Track error event
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'exception', {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'exception', {
           description: error.message,
           fatal: false,
           error_id: this.state.errorId
         });
       }
-    } catch (trackingError) {
+    } catch (trackingError: unknown) {
       console.error('Failed to track error:', trackingError);
     }
   }

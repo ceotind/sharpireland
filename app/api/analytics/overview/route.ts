@@ -1,5 +1,62 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '../../../utils/supabase/server';
+interface TopPage {
+  path: string;
+  views: number;
+  title: string;
+}
+
+interface TrafficSource {
+  source: string;
+  visitors: number;
+  percentage: number;
+}
+
+interface DeviceData {
+  device: string;
+  visitors: number;
+  percentage: number;
+}
+
+interface LocationData {
+  country: string;
+  visitors: number;
+  percentage: number;
+}
+
+interface WebsiteMetricData {
+  visitors?: number;
+  page_views?: number;
+  bounce_rate?: number;
+  avg_session_duration?: number;
+  top_pages?: TopPage[];
+  devices?: DeviceData[];
+  locations?: LocationData[];
+}
+
+interface SEOMetricData {
+  score?: number;
+}
+
+interface ConversionMetricData {
+  rate?: number;
+  revenue?: number;
+}
+
+interface SocialMetricData {
+  engagement?: number;
+}
+
+interface MarketingMetricData {
+  traffic_sources?: TrafficSource[];
+}
+
+interface AnalyticsSnapshot {
+  created_at: string;
+  user_id: string;
+  metric_type: 'website' | 'seo' | 'conversion' | 'social' | 'marketing';
+  metric_data: WebsiteMetricData | SEOMetricData | ConversionMetricData | SocialMetricData | MarketingMetricData;
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -57,7 +114,7 @@ function getStartDate(period: string): Date {
 }
 
 // Helper function to process overview data
-function processOverviewData(snapshots: any[], period: string) {
+function processOverviewData(snapshots: AnalyticsSnapshot[], period: string) {
   const now = new Date();
   const startDate = getStartDate(period);
   
@@ -69,7 +126,7 @@ function processOverviewData(snapshots: any[], period: string) {
     }
     groups[type].push(snapshot);
     return groups;
-  }, {} as Record<string, any[]>);
+  }, {} as Record<string, AnalyticsSnapshot[]>);
 
   // Calculate overview metrics
   const overview = {
@@ -106,31 +163,31 @@ function processOverviewData(snapshots: any[], period: string) {
   const latestConversion = metricGroups.conversion?.[0];
   const latestSocial = metricGroups.social?.[0];
 
-  if (latestWebsite?.metric_data) {
-    overview.summary.total_visitors = latestWebsite.metric_data.visitors || 0;
-    overview.summary.page_views = latestWebsite.metric_data.page_views || 0;
-    overview.summary.bounce_rate = latestWebsite.metric_data.bounce_rate || 0;
-    overview.summary.avg_session_duration = latestWebsite.metric_data.avg_session_duration || 0;
+  if (latestWebsite && latestWebsite.metric_type === 'website' && latestWebsite.metric_data) {
+    overview.summary.total_visitors = (latestWebsite.metric_data as WebsiteMetricData).visitors || 0;
+    overview.summary.page_views = (latestWebsite.metric_data as WebsiteMetricData).page_views || 0;
+    overview.summary.bounce_rate = (latestWebsite.metric_data as WebsiteMetricData).bounce_rate || 0;
+    overview.summary.avg_session_duration = (latestWebsite.metric_data as WebsiteMetricData).avg_session_duration || 0;
   }
 
-  if (latestSEO?.metric_data) {
-    overview.summary.seo_score = latestSEO.metric_data.score || 0;
+  if (latestSEO && latestSEO.metric_type === 'seo' && latestSEO.metric_data) {
+    overview.summary.seo_score = (latestSEO.metric_data as SEOMetricData).score || 0;
   }
 
-  if (latestConversion?.metric_data) {
-    overview.summary.conversion_rate = latestConversion.metric_data.rate || 0;
-    overview.summary.revenue = latestConversion.metric_data.revenue || 0;
+  if (latestConversion && latestConversion.metric_type === 'conversion' && latestConversion.metric_data) {
+    overview.summary.conversion_rate = (latestConversion.metric_data as ConversionMetricData).rate || 0;
+    overview.summary.revenue = (latestConversion.metric_data as ConversionMetricData).revenue || 0;
   }
 
-  if (latestSocial?.metric_data) {
-    overview.summary.social_engagement = latestSocial.metric_data.engagement || 0;
+  if (latestSocial && latestSocial.metric_type === 'social' && latestSocial.metric_data) {
+    overview.summary.social_engagement = (latestSocial.metric_data as SocialMetricData).engagement || 0;
   }
 
   return overview;
 }
 
 // Helper function to generate trend data
-function generateTrendData(snapshots: any[], metric: string, period: string) {
+function generateTrendData(snapshots: AnalyticsSnapshot[], metric: string, period: string) {
   const days = period === '7d' ? 7 : period === '30d' ? 30 : period === '90d' ? 90 : 365;
   const data = [];
   
@@ -146,7 +203,7 @@ function generateTrendData(snapshots: any[], metric: string, period: string) {
     
     data.push({
       date: dateStr,
-      value: snapshot?.metric_data?.[metric] || 0
+      value: (snapshot?.metric_data as Record<string, number | undefined>)?.[metric] || 0
     });
   }
   
@@ -154,11 +211,11 @@ function generateTrendData(snapshots: any[], metric: string, period: string) {
 }
 
 // Helper function to extract top pages
-function extractTopPages(snapshots: any[]) {
+function extractTopPages(snapshots: AnalyticsSnapshot[]): TopPage[] {
   if (!snapshots.length) return [];
   
   const latest = snapshots[0];
-  return latest.metric_data?.top_pages || [
+  return (latest && latest.metric_type === 'website' && (latest.metric_data as WebsiteMetricData).top_pages) || [
     { path: '/', views: 1250, title: 'Home' },
     { path: '/services', views: 890, title: 'Services' },
     { path: '/about', views: 650, title: 'About' },
@@ -168,11 +225,11 @@ function extractTopPages(snapshots: any[]) {
 }
 
 // Helper function to extract traffic sources
-function extractTrafficSources(snapshots: any[]) {
+function extractTrafficSources(snapshots: AnalyticsSnapshot[]): TrafficSource[] {
   if (!snapshots.length) return [];
   
   const latest = snapshots[0];
-  return latest.metric_data?.traffic_sources || [
+  return (latest && latest.metric_type === 'marketing' && (latest.metric_data as MarketingMetricData).traffic_sources) || [
     { source: 'Organic Search', visitors: 2100, percentage: 45 },
     { source: 'Direct', visitors: 1200, percentage: 26 },
     { source: 'Social Media', visitors: 800, percentage: 17 },
@@ -182,11 +239,11 @@ function extractTrafficSources(snapshots: any[]) {
 }
 
 // Helper function to extract device data
-function extractDeviceData(snapshots: any[]) {
+function extractDeviceData(snapshots: AnalyticsSnapshot[]): DeviceData[] {
   if (!snapshots.length) return [];
   
   const latest = snapshots[0];
-  return latest.metric_data?.devices || [
+  return (latest && latest.metric_type === 'website' && (latest.metric_data as WebsiteMetricData).devices) || [
     { device: 'Desktop', visitors: 2800, percentage: 60 },
     { device: 'Mobile', visitors: 1400, percentage: 30 },
     { device: 'Tablet', visitors: 470, percentage: 10 }
@@ -194,11 +251,11 @@ function extractDeviceData(snapshots: any[]) {
 }
 
 // Helper function to extract location data
-function extractLocationData(snapshots: any[]) {
+function extractLocationData(snapshots: AnalyticsSnapshot[]): LocationData[] {
   if (!snapshots.length) return [];
   
   const latest = snapshots[0];
-  return latest.metric_data?.locations || [
+  return (latest && latest.metric_type === 'website' && (latest.metric_data as WebsiteMetricData).locations) || [
     { country: 'Ireland', visitors: 1200, percentage: 26 },
     { country: 'United Kingdom', visitors: 950, percentage: 20 },
     { country: 'United States', visitors: 850, percentage: 18 },

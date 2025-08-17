@@ -18,4 +18,6 @@ const TypingIndicator: React.FC = React.memo(() => {
   );
 });
 
+TypingIndicator.displayName = 'TypingIndicator';
+
 export default TypingIndicator;

@@ -32,18 +32,50 @@ interface PDFOptions {
   logo?: string;
 }
 
+interface AnalyticsData {
+  date: string;
+  pageViews: number;
+  uniqueVisitors: number;
+  bounceRate: number;
+  avgSessionDuration: number;
+}
+
+interface ProjectData {
+  name: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+  owner: string;
+}
+
+interface UserData {
+  email: string;
+  name: string;
+  role: string;
+  createdAt: string;
+  lastLogin: string;
+}
+
+interface FinancialData {
+  date: string;
+  revenue: number;
+  expenses: number;
+  profit: number;
+  currency: string;
+}
+
 interface TableColumn {
   key: string;
   label: string;
   width?: number;
   align?: 'left' | 'center' | 'right';
-  format?: (value: any) => string;
+  format?: (value: unknown) => string;
 }
 
 interface ChartData {
   type: 'line' | 'bar' | 'pie' | 'area';
   title: string;
-  data: any[];
+  data: unknown[];
   xAxis?: string;
   yAxis?: string;
   colors?: string[];
@@ -56,7 +88,7 @@ export class CSVExporter {
   /**
    * Convert array of objects to CSV string
    */
-  static arrayToCSV<T extends Record<string, any>>(
+  static arrayToCSV<T extends Record<string, unknown>>(
     data: T[],
     options: ExportOptions = {}
   ): string {
@@ -106,7 +138,7 @@ export class CSVExporter {
   /**
    * Download CSV file
    */
-  static downloadCSV<T extends Record<string, any>>(
+  static downloadCSV<T extends Record<string, unknown>>(
     data: T[],
     filename: string = 'export.csv',
     options: ExportOptions = {}
@@ -171,7 +203,7 @@ export class PDFExporter {
   /**
    * Generate PDF from table data
    */
-  static async generateTablePDF<T extends Record<string, any>>(
+  static async generateTablePDF<T extends Record<string, unknown>>(
     data: T[],
     columns: TableColumn[],
     options: PDFOptions = {}
@@ -282,12 +314,12 @@ export class PDFExporter {
   /**
    * Generate PDF report with charts and tables
    */
-  static async generateReport(
+  static async generateReport<T extends Record<string, unknown>>(
     title: string,
     sections: Array<{
       title: string;
       type: 'table' | 'chart' | 'text';
-      data: any;
+      data: T[] | string | ChartData;
       columns?: TableColumn[];
       chartData?: ChartData;
     }>,
@@ -339,12 +371,14 @@ export class PDFExporter {
             });
             htmlContent += '</tr></thead><tbody>';
             
-            section.data.forEach((row: any) => {
+            (section.data as T[]).forEach((row: T) => {
               htmlContent += '<tr>';
               section.columns!.forEach(col => {
-                let value = row[col.key];
-                if (col.format) value = col.format(value);
-                htmlContent += `<td>${value || ''}</td>`;
+                let displayValue: unknown = row[col.key as keyof T];
+                if (col.format) {
+                  displayValue = col.format(displayValue);
+                }
+                htmlContent += `<td>${String(displayValue || '')}</td>`;
               });
               htmlContent += '</tr>';
             });
@@ -398,7 +432,7 @@ export class ExcelExporter {
   /**
    * Generate Excel file from data
    */
-  static generateExcel<T extends Record<string, any>>(
+  static generateExcel<T extends Record<string, unknown>>(
     data: T[],
     worksheetName: string = 'Sheet1',
     options: ExportOptions = {}
@@ -440,7 +474,7 @@ export class ExcelExporter {
   /**
    * Download Excel file
    */
-  static downloadExcel<T extends Record<string, any>>(
+  static downloadExcel<T extends Record<string, unknown>>(
     data: T[],
     filename: string = 'export.xlsx',
     worksheetName?: string,
@@ -466,7 +500,7 @@ export class JSONExporter {
    * Download JSON file
    */
   static downloadJSON(
-    data: any,
+    data: unknown,
     filename: string = 'export.json',
     pretty: boolean = true
   ): void {
@@ -489,8 +523,8 @@ export class JSONExporter {
    * Export with metadata
    */
   static downloadJSONWithMetadata(
-    data: any,
-    metadata: Record<string, any> = {},
+    data: unknown,
+    metadata: Record<string, unknown> = {},
     filename: string = 'export.json'
   ): void {
     const exportData = {
@@ -513,7 +547,7 @@ export class ExportManager {
   /**
    * Export data in specified format
    */
-  static async exportData<T extends Record<string, any>>(
+  static async exportData<T extends Record<string, unknown>>(
     data: T[],
     format: 'csv' | 'json' | 'xlsx' | 'pdf',
     filename: string,
@@ -551,7 +585,7 @@ export class ExportManager {
   /**
    * Get export preview
    */
-  static getExportPreview<T extends Record<string, any>>(
+  static getExportPreview<T extends Record<string, unknown>>(
     data: T[],
     format: 'csv' | 'json',
     options: ExportOptions = {}
@@ -571,7 +605,7 @@ export class ExportManager {
   /**
    * Validate export data
    */
-  static validateExportData<T extends Record<string, any>>(
+  static validateExportData<T extends Record<string, unknown>>(
     data: T[],
     requiredFields?: string[]
   ): { valid: boolean; errors: string[] } {
@@ -601,7 +635,7 @@ export class ExportManager {
   /**
    * Get export statistics
    */
-  static getExportStats<T extends Record<string, any>>(data: T[]): {
+  static getExportStats<T extends Record<string, unknown>>(data: T[]): {
     totalRows: number;
     totalColumns: number;
     columnNames: string[];
@@ -680,7 +714,7 @@ export const DashboardExportUtils = {
   /**
    * Export analytics data
    */
-  exportAnalytics: (data: any[], format: 'csv' | 'xlsx' | 'pdf' = 'csv') => {
+  exportAnalytics: (data: AnalyticsData[], format: 'csv' | 'xlsx' | 'pdf' = 'csv') => {
     const filename = `analytics-${new Date().toISOString().split('T')[0]}`;
     return ExportManager.exportData(data, format, filename, {
       headers: ['date', 'pageViews', 'uniqueVisitors', 'bounceRate', 'avgSessionDuration']
@@ -690,7 +724,7 @@ export const DashboardExportUtils = {
   /**
    * Export project data
    */
-  exportProjects: (data: any[], format: 'csv' | 'xlsx' | 'pdf' = 'csv') => {
+  exportProjects: (data: ProjectData[], format: 'csv' | 'xlsx' | 'pdf' = 'csv') => {
     const filename = `projects-${new Date().toISOString().split('T')[0]}`;
     return ExportManager.exportData(data, format, filename, {
       headers: ['name', 'status', 'createdAt', 'updatedAt', 'owner']
@@ -700,7 +734,7 @@ export const DashboardExportUtils = {
   /**
    * Export user data
    */
-  exportUsers: (data: any[], format: 'csv' | 'xlsx' | 'pdf' = 'csv') => {
+  exportUsers: (data: UserData[], format: 'csv' | 'xlsx' | 'pdf' = 'csv') => {
     const filename = `users-${new Date().toISOString().split('T')[0]}`;
     return ExportManager.exportData(data, format, filename, {
       headers: ['email', 'name', 'role', 'createdAt', 'lastLogin']
@@ -710,7 +744,7 @@ export const DashboardExportUtils = {
   /**
    * Export financial data
    */
-  exportFinancials: (data: any[], format: 'csv' | 'xlsx' | 'pdf' = 'csv') => {
+  exportFinancials: (data: FinancialData[], format: 'csv' | 'xlsx' | 'pdf' = 'csv') => {
     const filename = `financials-${new Date().toISOString().split('T')[0]}`;
     return ExportManager.exportData(data, format, filename, {
       headers: ['date', 'revenue', 'expenses', 'profit', 'currency']

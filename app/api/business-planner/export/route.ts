@@ -9,15 +9,14 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/app/utils/supabase/server';
-import { 
+import { SupabaseClient } from '@supabase/supabase-js';
+import {
   BusinessPlannerSession,
-  BusinessPlannerConversation,
-  BusinessPlannerApiResponse
+  BusinessPlannerConversation
 } from '@/app/types/business-planner';
 import { checkRateLimit, updateRateLimit } from '@/app/utils/business-planner/rate-limiter';
-import { 
-  ERROR_CODES,
-  SUCCESS_MESSAGES
+import {
+  ERROR_CODES
 } from '@/app/utils/business-planner/constants';
 
 // =============================================================================
@@ -29,14 +28,7 @@ import {
  */
 type ExportFormat = 'markdown' | 'json' | 'txt';
 
-/**
- * Export request parameters
- */
-interface ExportParams {
-  session_id?: string;
-  format?: ExportFormat;
-  include_metadata?: boolean;
-}
+
 
 /**
  * Exported conversation data
@@ -81,7 +73,7 @@ function getClientIP(request: NextRequest): string {
  * @returns Session data with conversations
  */
 async function getSessionData(
-  supabase: any,
+  supabase: SupabaseClient,
   userId: string,
   sessionId?: string
 ): Promise<ExportedConversation[]> {
@@ -125,7 +117,7 @@ async function getSessionData(
       // Calculate metadata
       const totalTokens = conversations?.reduce((sum: number, conv: BusinessPlannerConversation) => sum + (conv.tokens_used || 0), 0) || 0;
       const sessionStart = new Date(session.created_at);
-      const sessionEnd = conversations && conversations.length > 0 
+      const sessionEnd = conversations && conversations.length > 0
         ? new Date(conversations[conversations.length - 1].created_at)
         : sessionStart;
       
@@ -191,7 +183,7 @@ function formatAsMarkdown(data: ExportedConversation[], includeMetadata: boolean
     
     markdown += '### Conversation\n\n';
     
-    conversations.forEach((conv, convIndex) => {
+    conversations.forEach((conv) => {
       const timestamp = new Date(conv.created_at).toLocaleString();
       const role = conv.role === 'user' ? '**You**' : '**AI Assistant**';
       
@@ -253,7 +245,7 @@ function formatAsText(data: ExportedConversation[], includeMetadata: boolean = t
     text += 'CONVERSATION:\n';
     text += '-'.repeat(20) + '\n\n';
     
-    conversations.forEach((conv, convIndex) => {
+    conversations.forEach((conv) => {
       const timestamp = new Date(conv.created_at).toLocaleString();
       const role = conv.role === 'user' ? 'YOU' : 'AI ASSISTANT';
       
@@ -290,22 +282,7 @@ function getContentType(format: ExportFormat): string {
   }
 }
 
-/**
- * Get appropriate file extension for format
- * @param format - Export format
- * @returns File extension
- */
-function getFileExtension(format: ExportFormat): string {
-  switch (format) {
-    case 'markdown':
-      return 'md';
-    case 'json':
-      return 'json';
-    case 'txt':
-    default:
-      return 'txt';
-  }
-}
+
 
 // =============================================================================
 // MAIN API HANDLER
@@ -325,7 +302,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     
     if (authError || !user) {
       return NextResponse.json(
-        { 
+        {
           error: {
             code: ERROR_CODES.UNAUTHORIZED,
             message: 'Authentication required',

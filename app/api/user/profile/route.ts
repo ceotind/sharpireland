@@ -114,12 +114,11 @@ export async function PUT(request: NextRequest): Promise<NextResponse<ApiRespons
       'marketing_emails'
     ];
 
-    const filteredData: Partial<ProfileUpdateData> = {};
-    for (const [key, value] of Object.entries(updateData)) {
-      if (allowedFields.includes(key as keyof ProfileUpdateData)) {
-        (filteredData as any)[key] = value;
-      }
-    }
+    const filteredData: Partial<ProfileUpdateData> = Object.fromEntries(
+      allowedFields
+        .filter(field => updateData[field] !== undefined)
+        .map(field => [field, updateData[field]])
+    ) as Partial<ProfileUpdateData>;
 
     // Validate specific fields
     if (filteredData.username) {

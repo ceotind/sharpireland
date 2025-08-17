@@ -1,5 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { SupabaseClient } from '@supabase/supabase-js';
 import { createClient } from '../../utils/supabase/server';
+
+interface InvoiceSummary {
+  status: string;
+  total: number;
+}
+
+interface InvoiceSummaryAccumulator {
+  total_amount: number;
+  pending_amount: number;
+  paid_amount: number;
+  overdue_amount: number;
+  total_count: number;
+  pending_count: number;
+  paid_count: number;
+  overdue_count: number;
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -88,7 +105,7 @@ export async function GET(request: NextRequest) {
     };
 
     if (!summaryError && summaryData) {
-      summary = summaryData.reduce((acc: any, invoice: any) => {
+      summary = summaryData.reduce((acc: InvoiceSummaryAccumulator, invoice: InvoiceSummary) => {
         acc.total_amount += invoice.total || 0;
         acc.total_count += 1;
         
@@ -197,7 +214,7 @@ export async function POST(request: NextRequest) {
 }
 
 // Helper function to generate unique invoice number
-async function generateInvoiceNumber(supabase: any, userId: string): Promise<string> {
+async function generateInvoiceNumber(supabase: Awaited<ReturnType<typeof createClient>>, userId: string): Promise<string> {
   const year = new Date().getFullYear();
   const month = String(new Date().getMonth() + 1).padStart(2, '0');
   

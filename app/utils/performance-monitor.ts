@@ -12,6 +12,10 @@ interface MemoryInfo {
   jsHeapSizeLimit: number;
 }
 
+interface WindowPerformance extends Performance {
+  memory?: MemoryInfo;
+}
+
 interface PerformanceMetric {
   name: string;
   value: number;
@@ -102,7 +106,7 @@ export class PerformanceMonitor {
 
     // First Input Delay
     this.observePerformanceEntry('first-input', (entries) => {
-      entries.forEach((entry: any) => {
+      entries.forEach((entry: PerformanceEventTiming) => {
         const fid = entry.processingStart - entry.startTime;
         this.webVitals.FID = fid;
         this.recordMetric('FID', fid, 'timing');
@@ -112,7 +116,7 @@ export class PerformanceMonitor {
     // Cumulative Layout Shift
     this.observePerformanceEntry('layout-shift', (entries) => {
       let cls = 0;
-      entries.forEach((entry: any) => {
+      entries.forEach((entry: LayoutShift) => {
         if (!entry.hadRecentInput) {
           cls += entry.value;
         }
@@ -135,7 +139,7 @@ export class PerformanceMonitor {
    */
   private initializeResourceObserver(): void {
     this.observePerformanceEntry('resource', (entries) => {
-      entries.forEach((entry: any) => {
+      entries.forEach((entry: PerformanceResourceTiming) => {
         this.recordMetric(`resource.${entry.initiatorType}.duration`, entry.duration, 'timing', {
           name: entry.name,
           type: entry.initiatorType
@@ -159,13 +163,13 @@ export class PerformanceMonitor {
   /**
    * Generic performance observer helper
    */
-  private observePerformanceEntry(
+  private observePerformanceEntry<T extends PerformanceEntry>(
     entryType: string,
-    callback: (entries: PerformanceEntry[]) => void
+    callback: (entries: T[]) => void
   ): void {
     try {
       const observer = new PerformanceObserver((list) => {
-        callback(list.getEntries());
+        callback(list.getEntries() as T[]);
       });
       
       observer.observe({ entryTypes: [entryType] });
@@ -340,8 +344,10 @@ export class PerformanceMonitor {
    * Get memory usage information
    */
   getMemoryUsage(): MemoryInfo | null {
-    if (!this.isClient || !(window.performance as any).memory) return null;
-    return (window.performance as any).memory;
+    if (!this.isClient) return null;
+    const memory = (window.performance as WindowPerformance).memory;
+    if (memory === undefined) return null;
+    return memory;
   }
 
   /**
@@ -440,11 +446,11 @@ export class PerformanceMonitor {
  * Performance decorator for methods
  */
 export function performanceMonitor(metricName?: string) {
-  return function (target: any, propertyName: string, descriptor: PropertyDescriptor) {
+  return function (target: object, propertyName: string, descriptor: PropertyDescriptor) {
     const method = descriptor.value;
-    const name = metricName || `${target.constructor.name}.${propertyName}`;
+    const name = metricName || `${(target as Record<string, unknown>).constructor.name}.${propertyName}`;
 
-    descriptor.value = function (...args: any[]) {
+    descriptor.value = function (...args: unknown[]) {
       const monitor = getPerformanceMonitor();
       return monitor.measureFunction(name, () => method.apply(this, args));
     };
@@ -455,11 +461,11 @@ export function performanceMonitor(metricName?: string) {
  * Async performance decorator
  */
 export function asyncPerformanceMonitor(metricName?: string) {
-  return function (target: any, propertyName: string, descriptor: PropertyDescriptor) {
+  return function (target: object, propertyName: string, descriptor: PropertyDescriptor) {
     const method = descriptor.value;
-    const name = metricName || `${target.constructor.name}.${propertyName}`;
+    const name = metricName || `${(target as Record<string, unknown>).constructor.name}.${propertyName}`;
 
-    descriptor.value = async function (...args: any[]) {
+    descriptor.value = async function (...args: unknown[]) {
       const monitor = getPerformanceMonitor();
       return monitor.measureAsyncFunction(name, () => method.apply(this, args));
     };

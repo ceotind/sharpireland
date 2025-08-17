@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { createClient } from '../../utils/supabase/client';
+import { RealtimeChannel, RealtimePostgresChangesPayload } from '@supabase/supabase-js';
 import { logActivity } from '../../utils/activity-logger-client';
 
 interface MetricData {
@@ -26,7 +27,7 @@ export default function RealTimeMetrics({ userId }: RealTimeMetricsProps) {
   const supabase = createClient();
 
   useEffect(() => {
-    let channel: any;
+    let channel: RealtimeChannel | undefined;
 
     const setupRealtimeConnection = async () => {
       try {
@@ -56,7 +57,7 @@ export default function RealTimeMetrics({ userId }: RealTimeMetricsProps) {
               table: 'real_time_metrics',
               filter: `user_id=eq.${userId}`,
             },
-            (payload: any) => {
+            (payload: RealtimePostgresChangesPayload<MetricData>) => {
               console.log('Real-time update received:', payload);
               
               if (payload.eventType === 'INSERT') {

@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import Link from "next/link";
 import { viewportFadeIn, staggerContainer, listItem } from "../../utils/motion-variants";
 
 const faqs = [
@@ -92,7 +93,7 @@ export default function FAQSection() {
             className="max-w-2xl mx-auto text-lg text-[var(--text-200)] leading-relaxed"
           >
             Everything you need to know about our AI Business Planner. 
-            Can't find what you're looking for? <a href="/contact" className="link-primary">Contact us</a>.
+            Can't find what you're looking for? <Link href="/contact" className="link-primary">Contact us</Link>.
           </p>
         </motion.div>
 

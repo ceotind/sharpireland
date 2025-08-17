@@ -5,15 +5,15 @@ import { Subscription } from '../../types/dashboard';
 
 interface SubscriptionCardProps {
   subscription: Subscription;
-  onEdit?: (subscription: Subscription) => void;
-  onCancel?: (subscriptionId: string) => void;
-  onViewUsage?: (subscriptionId: string) => void;
+  onEdit: ((subscription: Subscription) => void) | undefined;
+  onCancel: ((subscriptionId: string) => void) | undefined;
+  onViewUsage: ((subscriptionId: string) => void) | undefined;
 }
 
 interface UsageData {
   utilization: Record<string, number>;
-  current_usage: Record<string, any>;
-  usage_limit: Record<string, any>;
+  current_usage: Record<string, number>;
+  usage_limit: Record<string, number>;
 }
 
 export default function SubscriptionCard({ 

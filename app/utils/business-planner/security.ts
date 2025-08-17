@@ -128,7 +128,7 @@ export function sanitizeForDatabase(input: string): string {
  * @param input - Raw JSON string
  * @returns Sanitized and parsed JSON object
  */
-export function sanitizeJsonInput(input: string): any {
+export function sanitizeJsonInput(input: string): unknown {
   try {
     // First sanitize the string
     const sanitized = sanitizeHtmlStrict(input);
@@ -148,7 +148,7 @@ export function sanitizeJsonInput(input: string): any {
  * @param obj - Object to sanitize
  * @returns Sanitized object
  */
-function sanitizeObjectValues(obj: any): any {
+function sanitizeObjectValues(obj: unknown): unknown {
   if (typeof obj === 'string') {
     return sanitizeHtmlStrict(obj);
   }
@@ -158,7 +158,7 @@ function sanitizeObjectValues(obj: any): any {
   }
   
   if (obj && typeof obj === 'object') {
-    const sanitized: any = {};
+    const sanitized: Record<string, unknown> = {};
     for (const [key, value] of Object.entries(obj)) {
       const sanitizedKey = sanitizeHtmlStrict(key);
       sanitized[sanitizedKey] = sanitizeObjectValues(value);

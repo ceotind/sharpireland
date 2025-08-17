@@ -1,6 +1,90 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '../../../utils/supabase/server';
 
+interface SeoMetricData {
+  score?: number;
+  total_keywords?: number;
+  ranking_keywords?: number;
+  avg_position?: number;
+  organic_traffic?: number;
+  ctr?: number;
+  impressions?: number;
+  backlinks?: number;
+  keywords?: KeywordPerformance[];
+  technical?: TechnicalSEO;
+  content?: ContentAnalysis;
+  competitors?: CompetitorAnalysis[];
+  recommendations?: Recommendation[];
+}
+
+interface SeoReportData {
+  keywords?: KeywordPerformance[];
+  technical?: TechnicalSEO;
+  content?: ContentAnalysis;
+  improvements?: Recommendation[];
+}
+
+interface SeoSnapshot {
+  created_at: string;
+  metric_data: SeoMetricData;
+  user_id: string;
+  metric_type: 'seo';
+}
+
+interface SeoReport {
+  created_at: string;
+  report_data: SeoReportData;
+  user_id: string;
+}
+
+interface KeywordPerformance {
+  keyword: string;
+  position: number;
+  volume: number;
+  difficulty: number;
+  traffic: number;
+}
+
+interface TechnicalSEO {
+  page_speed: { mobile: number; desktop: number; };
+  core_web_vitals: { lcp: number; fid: number; cls: number; };
+  crawl_errors: number;
+  broken_links: number;
+  duplicate_content: number;
+  missing_meta: number;
+  ssl_certificate: boolean;
+  mobile_friendly: boolean;
+  structured_data: boolean;
+}
+
+interface ContentAnalysis {
+  total_pages: number;
+  indexed_pages: number;
+  thin_content: number;
+  duplicate_titles: number;
+  missing_descriptions: number;
+  avg_word_count: number;
+  readability_score: number;
+  keyword_density: number;
+}
+
+
+
+interface CompetitorAnalysis {
+  domain: string;
+  authority: number;
+  keywords: number;
+  traffic: number;
+}
+
+interface Recommendation {
+  type: string;
+  priority: string;
+  title: string;
+  description: string;
+  impact: string;
+}
+
 export async function GET(request: NextRequest) {
   try {
     const supabase = await createClient();
@@ -71,12 +155,12 @@ function getStartDate(period: string): Date {
 }
 
 // Helper function to process SEO data
-function processSEOData(snapshots: any[], reports: any[], period: string) {
+function processSEOData(snapshots: SeoSnapshot[], reports: SeoReport[], period: string) {
   const now = new Date();
   const startDate = getStartDate(period);
   
-  const latest = snapshots[0];
-  const latestReport = reports[0];
+  const latest = snapshots[0] || null;
+  const latestReport = reports[0] || null;
 
   return {
     period,
@@ -110,7 +194,7 @@ function processSEOData(snapshots: any[], reports: any[], period: string) {
 }
 
 // Helper functions for trend generation
-function generateScoreTrend(snapshots: any[], period: string) {
+function generateScoreTrend(snapshots: SeoSnapshot[], period: string) {
   const days = period === '7d' ? 7 : period === '30d' ? 30 : period === '90d' ? 90 : 365;
   const data = [];
   
@@ -129,7 +213,7 @@ function generateScoreTrend(snapshots: any[], period: string) {
   return data;
 }
 
-function generateKeywordTrend(snapshots: any[], period: string) {
+function generateKeywordTrend(snapshots: SeoSnapshot[], period: string) {
   const days = period === '7d' ? 7 : period === '30d' ? 30 : period === '90d' ? 90 : 365;
   const data = [];
   
@@ -149,7 +233,7 @@ function generateKeywordTrend(snapshots: any[], period: string) {
   return data;
 }
 
-function generateTrafficTrend(snapshots: any[], period: string) {
+function generateTrafficTrend(snapshots: SeoSnapshot[], period: string) {
   const days = period === '7d' ? 7 : period === '30d' ? 30 : period === '90d' ? 90 : 365;
   const data = [];
   
@@ -168,7 +252,7 @@ function generateTrafficTrend(snapshots: any[], period: string) {
   return data;
 }
 
-function generateImpressionsTrend(snapshots: any[], period: string) {
+function generateImpressionsTrend(snapshots: SeoSnapshot[], period: string) {
   const days = period === '7d' ? 7 : period === '30d' ? 30 : period === '90d' ? 90 : 365;
   const data = [];
   
@@ -188,7 +272,7 @@ function generateImpressionsTrend(snapshots: any[], period: string) {
 }
 
 // Helper functions for data extraction
-function extractKeywordPerformance(latest: any, latestReport: any) {
+function extractKeywordPerformance(latest: SeoSnapshot | null, latestReport: SeoReport | null) {
   return latest?.metric_data?.keywords || latestReport?.report_data?.keywords || [
     { keyword: 'web development ireland', position: 3, volume: 1200, difficulty: 65, traffic: 450 },
     { keyword: 'digital marketing dublin', position: 7, volume: 800, difficulty: 58, traffic: 180 },
@@ -198,7 +282,7 @@ function extractKeywordPerformance(latest: any, latestReport: any) {
   ];
 }
 
-function extractTechnicalSEO(latest: any, latestReport: any) {
+function extractTechnicalSEO(latest: SeoSnapshot | null, latestReport: SeoReport | null) {
   return latest?.metric_data?.technical || latestReport?.report_data?.technical || {
     page_speed: { mobile: 78, desktop: 85 },
     core_web_vitals: { lcp: 2.1, fid: 45, cls: 0.08 },
@@ -212,7 +296,7 @@ function extractTechnicalSEO(latest: any, latestReport: any) {
   };
 }
 
-function extractContentAnalysis(latest: any, latestReport: any) {
+function extractContentAnalysis(latest: SeoSnapshot | null, latestReport: SeoReport | null) {
   return latest?.metric_data?.content || latestReport?.report_data?.content || {
     total_pages: 45,
     indexed_pages: 42,
@@ -225,7 +309,7 @@ function extractContentAnalysis(latest: any, latestReport: any) {
   };
 }
 
-function extractBacklinkAnalysis(latest: any) {
+function extractBacklinkAnalysis(latest: SeoSnapshot | null) {
   return latest?.metric_data?.backlinks || {
     total_backlinks: 234,
     referring_domains: 89,
@@ -238,7 +322,7 @@ function extractBacklinkAnalysis(latest: any) {
   };
 }
 
-function extractCompetitorAnalysis(latest: any) {
+function extractCompetitorAnalysis(latest: SeoSnapshot | null) {
   return latest?.metric_data?.competitors || [
     { domain: 'competitor1.ie', authority: 52, keywords: 890, traffic: 12500 },
     { domain: 'competitor2.com', authority: 48, keywords: 750, traffic: 9800 },
@@ -246,8 +330,8 @@ function extractCompetitorAnalysis(latest: any) {
   ];
 }
 
-function generateRecommendations(latest: any, latestReport: any) {
-  return latest?.metric_data?.recommendations || latestReport?.improvements || [
+function generateRecommendations(latest: SeoSnapshot | null, latestReport: SeoReport | null) {
+  return latest?.metric_data?.recommendations || latestReport?.report_data?.improvements || [
     {
       type: 'technical',
       priority: 'high',

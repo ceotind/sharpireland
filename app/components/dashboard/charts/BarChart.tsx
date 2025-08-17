@@ -6,7 +6,7 @@ interface DataPoint {
   label: string;
   value: number;
   color?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface BarChartProps {
@@ -323,8 +323,8 @@ export default function BarChart({
         >
           <div className="font-medium">{hoveredBar.label}</div>
           <div className="text-gray-300">{formatValue(hoveredBar.value)}</div>
-          {hoveredBar.percentage && (
-            <div className="text-gray-300">{hoveredBar.percentage}%</div>
+          {hoveredBar.percentage !== undefined && typeof hoveredBar.percentage === 'number' && (
+            <div className="text-gray-300">{(hoveredBar.percentage as number).toFixed(1)}%</div>
           )}
         </div>
       )}

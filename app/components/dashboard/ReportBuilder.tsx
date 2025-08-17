@@ -12,7 +12,7 @@ interface ReportConfig {
     end: string;
   };
   metrics: string[];
-  filters?: Record<string, any>;
+  filters?: Record<string, unknown>;
   format: 'json' | 'csv' | 'pdf';
   groupBy?: string;
   sortBy?: string;
@@ -21,7 +21,14 @@ interface ReportConfig {
 
 interface ReportBuilderProps {
   userId: string;
-  onReportGenerated?: (report: any) => void;
+  onReportGenerated?: (report: ReportData | { format: 'csv', title: string }) => void;
+}
+
+interface ReportData {
+  summary: {
+    key_metrics: Record<string, number | string>;
+  };
+  data: Record<string, number | string>[];
 }
 
 export default function ReportBuilder({ userId, onReportGenerated }: ReportBuilderProps) {
@@ -44,7 +51,7 @@ export default function ReportBuilder({ userId, onReportGenerated }: ReportBuild
   const [availableMetrics, setAvailableMetrics] = useState<Record<string, string[]>>({});
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [previewData, setPreviewData] = useState<any>(null);
+  const [previewData, setPreviewData] = useState<ReportData | null>(null);
   const [showPreview, setShowPreview] = useState(false);
 
   // Define available metrics for each report type
@@ -103,7 +110,7 @@ export default function ReportBuilder({ userId, onReportGenerated }: ReportBuild
     setAvailableMetrics(metricsOptions);
   }, []);
 
-  const handleConfigChange = (field: keyof ReportConfig, value: any) => {
+  const handleConfigChange = <T extends keyof ReportConfig>(field: T, value: ReportConfig[T]) => {
     setConfig(prev => ({
       ...prev,
       [field]: value
@@ -290,9 +297,9 @@ export default function ReportBuilder({ userId, onReportGenerated }: ReportBuild
     }
   };
 
-  const getQuickDateRange = (days: number) => {
-    const end = new Date().toISOString().split('T')[0];
-    const start = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+  const getQuickDateRange = (days: number): { start: string; end: string } => {
+    const end = new Date().toISOString().split('T')[0] || '';
+    const start = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString().split('T')[0] || '';
     return { start, end };
   };
 
@@ -351,7 +358,7 @@ export default function ReportBuilder({ userId, onReportGenerated }: ReportBuild
                 </label>
                 <select
                   value={config.type}
-                  onChange={(e) => handleConfigChange('type', e.target.value)}
+                  onChange={(e) => handleConfigChange('type', e.target.value as ReportConfig['type'])}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   id="report-type-select"
                 >
@@ -435,7 +442,7 @@ export default function ReportBuilder({ userId, onReportGenerated }: ReportBuild
                     name="format"
                     value={format}
                     checked={config.format === format}
-                    onChange={(e) => handleConfigChange('format', e.target.value)}
+                    onChange={(e) => handleConfigChange('format', e.target.value as ReportConfig['format'])}
                     className="mr-2"
                     id={`format-${format}`}
                   />
@@ -532,7 +539,7 @@ export default function ReportBuilder({ userId, onReportGenerated }: ReportBuild
                   <table className="min-w-full border border-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
-                        {previewData.data.length > 0 && Object.keys(previewData.data[0]).map((key) => (
+                        {previewData.data.length > 0 && Object.keys(previewData.data[0]!).map((key) => (
                           <th key={key} className="px-4 py-2 text-left text-sm font-medium text-gray-700 border-b">
                             {key.replace(/_/g, ' ')}
                           </th>
@@ -540,9 +547,9 @@ export default function ReportBuilder({ userId, onReportGenerated }: ReportBuild
                       </tr>
                     </thead>
                     <tbody>
-                      {previewData.data.slice(0, 5).map((row: any, index: number) => (
+                      {previewData.data.slice(0, 5).map((row: Record<string, number | string>, index: number) => (
                         <tr key={index} className="border-b">
-                          {Object.values(row).map((value: any, cellIndex: number) => (
+                          {Object.values(row).map((value: string | number, cellIndex: number) => (
                             <td key={cellIndex} className="px-4 py-2 text-sm text-gray-900">
                               {typeof value === 'number' ? value.toLocaleString() : String(value)}
                             </td>

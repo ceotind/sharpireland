@@ -135,17 +135,17 @@ export default function SettingsPage() {
   /**
    * Update preference value
    */
-  const updatePreference = (path: string, value: any) => {
+  const updatePreference = (path: string, value: string | number | boolean | Record<string, unknown>) => {
     setPreferences(prev => {
       const keys = path.split('.');
       const updated = { ...prev };
-      let current: any = updated;
+      let current: Record<string, unknown> = updated;
       
       for (let i = 0; i < keys.length - 1; i++) {
         const key = keys[i];
         if (key) {
           current[key] = { ...current[key] };
-          current = current[key];
+          current = current[key] as Record<string, unknown>;
         }
       }
       

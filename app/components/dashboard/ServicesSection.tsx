@@ -253,7 +253,7 @@ export default function ServicesSection({
             <select
               id="sort-select"
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
+              onChange={(e) => setSortBy(e.target.value as 'plan_name' | 'created_at' | 'next_renewal' | 'price')}
               className="text-sm border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="created_at">Date Added</option>
@@ -298,9 +298,9 @@ export default function ServicesSection({
               <SubscriptionCard
                 key={subscription.id}
                 subscription={subscription}
-                onEdit={onEditSubscription || undefined}
+                onEdit={onEditSubscription}
                 onCancel={handleCancelSubscription}
-                onViewUsage={onViewUsage || undefined}
+                onViewUsage={onViewUsage}
               />
             ))}
           </div>

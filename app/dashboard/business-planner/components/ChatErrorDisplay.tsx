@@ -16,7 +16,7 @@ interface ChatErrorDisplayProps {
   aiResponseLoading: boolean; // Added aiResponseLoading prop
 }
 
-const ChatErrorDisplay: React.FC<ChatErrorDisplayProps> = React.memo(({
+const ChatErrorDisplay: React.FC<ChatErrorDisplayProps> = React.memo(function ChatErrorDisplay({
   sessionCreationStatus,
   sessionCreationRetryInfo,
   error,
@@ -29,7 +29,7 @@ const ChatErrorDisplay: React.FC<ChatErrorDisplayProps> = React.memo(({
   cancelAiResponse,
   isLoading,
   aiResponseLoading,
-}) => {
+}) {
   return (
     <>
       {(sessionCreationStatus as string) === 'FAILED' && sessionCreationRetryInfo.lastError && (

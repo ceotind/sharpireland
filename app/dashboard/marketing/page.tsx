@@ -262,7 +262,7 @@ export default function MarketingDashboard() {
               <span className="text-sm text-gray-600">Time Range:</span>
               <select
                 value={selectedTimeRange}
-                onChange={(e) => handleTimeRangeChange(e.target.value as any)}
+                onChange={(e) => handleTimeRangeChange(e.target.value as typeof selectedTimeRange)}
                 className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="7d">Last 7 days</option>
@@ -351,7 +351,7 @@ export default function MarketingDashboard() {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => handleTabChange(tab.id as any)}
+                onClick={() => handleTabChange(tab.id as 'overview' | 'campaigns' | 'social' | 'email')}
                 className={`py-2 px-1 border-b-2 font-medium text-sm transition-colors ${
                   activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'

@@ -1,4 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
+
+interface SupportTicketUpdateData {
+  subject?: string;
+  description?: string;
+  priority?: 'low' | 'normal' | 'high' | 'urgent';
+  category?: string | null;
+  status?: 'open' | 'in-progress' | 'resolved' | 'closed';
+  satisfaction_rating?: number;
+  resolved_at?: string;
+  updated_at?: string;
+}
 import { createClient } from '../../../../utils/supabase/server';
 import { logActivity, getRequestInfo } from '../../../../utils/activity-logger';
 
@@ -83,7 +94,7 @@ export async function PUT(
     }
 
     // Build update object
-    const updateData: any = {};
+    const updateData: SupportTicketUpdateData = {};
     
     // Validate and add subject if provided
     if (subject !== undefined) {

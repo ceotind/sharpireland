@@ -3,7 +3,7 @@ interface PerformanceMetric {
   value: number;
   unit?: string;
   tags?: Record<string, string>;
-  details?: Record<string, any>;
+  details?: Record<string, unknown>;
 }
 
 export const performanceLogger = async (metric: PerformanceMetric) => {
@@ -25,7 +25,7 @@ export const performanceLogger = async (metric: PerformanceMetric) => {
 };
 
 // Function to log errors to the same endpoint, or a dedicated error endpoint
-export const errorLogger = async (error: Error, context: string, details?: Record<string, any>) => {
+export const errorLogger = async (error: Error, context: string, details?: Record<string, unknown>) => {
   try {
     const errorData = {
       name: error.name,

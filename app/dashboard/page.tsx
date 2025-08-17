@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '../utils/supabase/server'
-import { UserProfile, DashboardStats } from '../types/dashboard'
+import { UserProfile, DashboardStats, Project, Notification, Subscription, Invoice } from '../types/dashboard'
 import DashboardLayout from '../components/dashboard/DashboardLayout'
 import LogoutButton from './LogoutButton'
+import Link from 'next/link'
 
 async function getUserProfile(userId: string): Promise<UserProfile | null> {
   const supabase = await createClient()
@@ -100,25 +101,25 @@ async function getDashboardStats(userId: string): Promise<DashboardStats> {
   // Calculate stats
   const projectStats = {
     total: projects?.length || 0,
-    active: projects?.filter((p: any) => p.status === 'active').length || 0,
-    completed: projects?.filter((p: any) => p.status === 'completed').length || 0,
+    active: projects?.filter((p: { status: string }) => p.status === 'active').length || 0,
+    completed: projects?.filter((p: { status: string }) => p.status === 'completed').length || 0,
     overdue: 0 // Would need to calculate based on end_date
   }
 
   const notificationStats = {
-    unread: notifications?.filter((n: any) => !n.read).length || 0,
+    unread: notifications?.filter((n: { read: boolean }) => !n.read).length || 0,
     total: notifications?.length || 0
   }
 
   const subscriptionStats = {
-    active: subscriptions?.filter((s: any) => s.status === 'active').length || 0,
+    active: subscriptions?.filter((s: { status: string; next_renewal: string | null }) => s.status === 'active').length || 0,
     expiring_soon: 0 // Would need to calculate based on next_renewal
   }
 
   const invoiceStats = {
-    pending: invoices?.filter((i: any) => i.status === 'pending').length || 0,
-    overdue: invoices?.filter((i: any) => i.status === 'overdue').length || 0,
-    total_amount: invoices?.reduce((sum: number, i: any) => sum + (i.total || 0), 0) || 0
+    pending: invoices?.filter((i: { status: string; total: number }) => i.status === 'pending').length || 0,
+    overdue: invoices?.filter((i: { status: string; total: number }) => i.status === 'overdue').length || 0,
+    total_amount: invoices?.reduce((sum: number, i: { total: number }) => sum + (i.total || 0), 0) || 0
   }
 
   const activityStats = {
@@ -345,7 +346,7 @@ export default async function DashboardPage() {
             Quick Actions
           </h2>
           <div id="dashboard-actions-grid" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            <a
+            <Link
               id="dashboard-action-profile"
               href="/dashboard/profile"
               className="flex items-center p-5 border border-border rounded-lg hover:bg-primary-100 hover:bg-opacity-10 hover:border-primary-100 transition-all duration-200 group h-full"
@@ -359,9 +360,9 @@ export default async function DashboardPage() {
                 <h3 className="text-sm font-medium text-text-100 group-hover:text-primary-100 transition-colors">Edit Profile</h3>
                 <p className="text-xs text-text-200 mt-1">Update your information</p>
               </div>
-            </a>
+            </Link>
 
-            <a
+            <Link
               id="dashboard-action-projects"
               href="/dashboard/projects"
               className="flex items-center p-5 border border-border rounded-lg hover:bg-accent-green hover:bg-opacity-10 hover:border-accent-green transition-all duration-200 group h-full"
@@ -375,9 +376,9 @@ export default async function DashboardPage() {
                 <h3 className="text-sm font-medium text-text-100 group-hover:text-accent-green transition-colors">New Project</h3>
                 <p className="text-xs text-text-200 mt-1">Start a new project</p>
               </div>
-            </a>
+            </Link>
 
-            <a
+            <Link
               id="dashboard-action-support"
               href="/dashboard/support"
               className="flex items-center p-5 border border-border rounded-lg hover:bg-primary-300 hover:bg-opacity-10 hover:border-primary-300 transition-all duration-200 group h-full"
@@ -391,7 +392,7 @@ export default async function DashboardPage() {
                 <h3 className="text-sm font-medium text-text-100 group-hover:text-primary-300 transition-colors">Get Support</h3>
                 <p className="text-xs text-text-200 mt-1">Contact our team</p>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

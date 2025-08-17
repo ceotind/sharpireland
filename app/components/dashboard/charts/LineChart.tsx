@@ -5,7 +5,7 @@ import React from 'react';
 interface DataPoint {
   date: string;
   value: number;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface LineChartProps {

@@ -65,7 +65,7 @@ export default function SupportTicketCard({
 
     setIsUpdating(true);
     try {
-      await onUpdate(ticket.id, { status: newStatus as any });
+      await onUpdate(ticket.id, { status: newStatus as SupportTicket['status'] });
     } catch (error) {
       console.error('Error updating ticket status:', error);
     } finally {

@@ -344,7 +344,9 @@ export interface BusinessPlannerValidationResult {
   /** Array of validation errors */
   errors: string[];
   /** Sanitized data (if validation passed) */
-  sanitizedData?: any;
+  sanitizedData?: string | BusinessPlannerUserInput;
+  /** Sanitized onboarding data (if validation passed) */
+  onboardingData?: BusinessPlannerOnboardingData;
 }
 
 /**
@@ -355,6 +357,8 @@ export interface BusinessPlannerUserInput {
   message: string;
   /** Session ID (optional) */
   session_id?: string;
+  /** Session context (optional for new sessions) */
+  context?: BusinessPlannerSessionContext;
 }
 
 /**
@@ -395,6 +399,11 @@ export type Industry =
   | 'Government'
   | 'Non-profit'
   | 'Other';
+
+/**
+ * Business stage options
+ */
+export type BusinessStage = 'idea' | 'startup' | 'growth' | 'established';
 
 // =============================================================================
 // COMPONENT PROPS TYPES
@@ -469,7 +478,7 @@ export interface BusinessPlannerError {
   /** Error message */
   message: string;
   /** Additional error details */
-  details?: Record<string, any>;
+  details?: Record<string, unknown>;
   /** Timestamp when error occurred */
   timestamp: string;
 }
@@ -518,7 +527,7 @@ export interface SessionError extends BusinessPlannerError {
   /** Whether the error is transient and a retry might succeed */
   isTransient: boolean;
   /** Original error object if available */
-  originalError?: any;
+  originalError?: Error | unknown;
 }
 
 /**

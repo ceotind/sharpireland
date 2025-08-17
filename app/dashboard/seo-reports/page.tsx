@@ -1,8 +1,13 @@
 import React from 'react';
+import Link from 'next/link';
 import { createClient } from '../../utils/supabase/server';
 import { redirect } from 'next/navigation';
 import DashboardLayout from '../../components/dashboard/DashboardLayout';
 import SEOHistorySection from '../../components/dashboard/SEOHistorySection';
+
+interface Invoice {
+  total: number;
+}
 
 export default async function SEOReportsPage() {
   const supabase = await createClient();
@@ -68,7 +73,7 @@ export default async function SEOReportsPage() {
     .eq('user_id', user.id)
     .in('status', ['pending', 'overdue']);
 
-  const totalInvoiceAmount = invoiceAmounts?.reduce((sum: number, invoice: any) => sum + (invoice.total || 0), 0) || 0;
+  const totalInvoiceAmount = invoiceAmounts?.reduce((sum: number, invoice: Invoice) => sum + (invoice.total || 0), 0) || 0;
 
   // Get recent activity count
   const sevenDaysAgo = new Date();
@@ -142,7 +147,7 @@ export default async function SEOReportsPage() {
                 <div className="text-2xl font-bold text-blue-600">{seoReports || 0}</div>
                 <div className="text-sm text-gray-600">Total Reports</div>
               </div>
-              <a
+              <Link
                 href="/seo-analyzer"
                 className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
@@ -150,7 +155,7 @@ export default async function SEOReportsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
                 New SEO Analysis
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,8 +1,9 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/app/utils/supabase/server';
 import DashboardLayout from '@/app/components/dashboard/DashboardLayout';
 import ChatInterface from '../components/ChatInterface';
-import { BusinessPlannerSession, BusinessPlannerUsage, BusinessPlannerConversation } from '@/app/types/business-planner';
+import { BusinessPlannerSession, BusinessPlannerUsage, BusinessPlannerConversation, MessageStatus } from '@/app/types/business-planner';
 import { UserProfile, DashboardStats } from '@/app/types/dashboard';
 import { ChatProvider } from '@/app/context/ChatContext'; // Import ChatProvider
 
@@ -216,7 +217,7 @@ export default async function BusinessPlannerChat({ searchParams }: ChatPageProp
             </div>
             
             <div id="chat-actions" className="flex items-center space-x-3">
-              <a
+              <Link
                 href="/dashboard/business-planner"
                 className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
@@ -224,7 +225,7 @@ export default async function BusinessPlannerChat({ searchParams }: ChatPageProp
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
                 Back to Dashboard
-              </a>
+              </Link>
               
               {/* Export button removed - handled by ChatInterface component */}
             </div>
@@ -270,6 +271,7 @@ export default async function BusinessPlannerChat({ searchParams }: ChatPageProp
               tokens_used: msg.tokens_used,
               created_at: msg.created_at,
               isOptimistic: false,
+              status: MessageStatus.COMPLETED, // Add the missing status property
             }))}
             initialSession={{
               id: currentSession.id,

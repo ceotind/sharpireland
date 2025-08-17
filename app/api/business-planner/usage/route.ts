@@ -9,17 +9,19 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/app/utils/supabase/server';
-import { 
+import {
   BusinessPlannerUsage,
   BusinessPlannerApiResponse,
   UsageStatusResponse
 } from '@/app/types/business-planner';
-import { 
+import {
   FREE_CONVERSATIONS_LIMIT,
   PAID_CONVERSATIONS_COUNT,
   ERROR_CODES,
   SUCCESS_MESSAGES
 } from '@/app/utils/business-planner/constants';
+
+type SupabaseClient = ReturnType<typeof createClient>;
 
 // =============================================================================
 // HELPER FUNCTIONS
@@ -32,7 +34,7 @@ import {
  * @returns Usage record
  */
 async function getOrCreateUsage(
-  supabase: any,
+  supabase: Awaited<SupabaseClient>,
   userId: string
 ): Promise<BusinessPlannerUsage | null> {
   try {
@@ -132,7 +134,7 @@ function calculateUsageStats(usage: BusinessPlannerUsage): {
  * @returns Usage trends data
  */
 async function getUsageTrends(
-  supabase: any,
+  supabase: Awaited<SupabaseClient>,
   userId: string
 ): Promise<{
   conversationsThisMonth: number;
@@ -158,7 +160,7 @@ async function getUsageTrends(
     }
     
     const conversationsThisMonth = conversations?.length || 0;
-    const tokensThisMonth = conversations?.reduce((sum: number, conv: any) => sum + (conv.tokens_used || 0), 0) || 0;
+    const tokensThisMonth = conversations?.reduce((sum: number, conv: { tokens_used: number | null; created_at: string }) => sum + (conv.tokens_used || 0), 0) || 0;
     const averageTokensPerConversation = conversationsThisMonth > 0 ? Math.round(tokensThisMonth / conversationsThisMonth) : 0;
     
     // Find most active day (simplified - just return today's date if there are conversations)
@@ -196,7 +198,7 @@ function needsUsageReset(usage: BusinessPlannerUsage): boolean {
  * @returns Updated usage record
  */
 async function resetMonthlyUsage(
-  supabase: any,
+  supabase: Awaited<SupabaseClient>,
   usage: BusinessPlannerUsage
 ): Promise<BusinessPlannerUsage | null> {
   try {
@@ -299,7 +301,26 @@ export async function GET(request: NextRequest): Promise<NextResponse<BusinessPl
     };
     
     // Add additional data if requested
-    const additionalData: any = {
+    interface AdditionalUsageData {
+      statistics: {
+        total_used: number;
+        total_available: number;
+        usage_percentage: number;
+        next_reset_date: string;
+      };
+      trends?: {
+        conversationsThisMonth: number;
+        tokensThisMonth: number;
+        averageTokensPerConversation: number;
+        mostActiveDay: string | null;
+      } | null;
+      history?: {
+        last_reset: string;
+        subscription_since: string;
+      };
+    }
+
+    const additionalData: AdditionalUsageData = {
       statistics: {
         total_used: stats.totalUsed,
         total_available: stats.totalAvailable,

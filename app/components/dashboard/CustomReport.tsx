@@ -7,7 +7,7 @@ interface ReportData {
   id: string;
   title: string;
   type: string;
-  data: any[];
+  data: Record<string, unknown>[];
   metadata: {
     generated_at: string;
     date_range: {
@@ -15,7 +15,7 @@ interface ReportData {
       end: string;
     };
     total_records: number;
-    filters_applied: Record<string, any>;
+    filters_applied: Record<string, unknown>;
   };
   summary: {
     key_metrics: Record<string, number>;
@@ -126,12 +126,13 @@ export default function CustomReport({
     const aValue = a[sortConfig.key];
     const bValue = b[sortConfig.key];
 
-    if (aValue < bValue) {
-      return sortConfig.direction === 'asc' ? -1 : 1;
+    if (typeof aValue === 'string' && typeof bValue === 'string') {
+      return sortConfig.direction === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
     }
-    if (aValue > bValue) {
-      return sortConfig.direction === 'asc' ? 1 : -1;
+    if (typeof aValue === 'number' && typeof bValue === 'number') {
+      return sortConfig.direction === 'asc' ? aValue - bValue : bValue - aValue;
     }
+    // Fallback for incomparable types or mixed types
     return 0;
   });
 
@@ -140,7 +141,7 @@ export default function CustomReport({
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedData = sortedData.slice(startIndex, startIndex + itemsPerPage);
 
-  const formatValue = (value: any, key: string) => {
+  const formatValue = (value: unknown, key: string) => {
     if (typeof value === 'number') {
       if (key.includes('rate') || key.includes('percentage')) {
         return `${(value * 100).toFixed(2)}%`;
@@ -234,7 +235,7 @@ export default function CustomReport({
           {['overview', 'data', 'insights'].map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab as any)}
+              onClick={() => setActiveTab(tab as 'overview' | 'data' | 'insights')}
               className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                 activeTab === tab
                   ? 'border-blue-500 text-blue-600'
@@ -319,7 +320,7 @@ export default function CustomReport({
                 <table className="min-w-full border border-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      {Object.keys(paginatedData[0]).map((key) => (
+                      {Object.keys(paginatedData[0] || {}).map((key) => (
                         <th
                           key={key}
                           onClick={() => handleSort(key)}

@@ -14,7 +14,7 @@ interface ChatInputAreaProps {
   inputRef: RefObject<HTMLTextAreaElement | null>;
 }
 
-const ChatInputArea: React.FC<ChatInputAreaProps> = React.memo(({
+const ChatInputArea: React.FC<ChatInputAreaProps> = React.memo(function ChatInputArea({
   inputMessage,
   setInputMessage,
   handleKeyPress,
@@ -25,7 +25,7 @@ const ChatInputArea: React.FC<ChatInputAreaProps> = React.memo(({
   messagesLength,
   handleExportConversation,
   inputRef,
-}) => {
+}) {
   return (
     <div id="input-area" className="border-t border-gray-200 bg-white p-6">
       <div id="input-container" className="flex items-end space-x-4">

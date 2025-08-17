@@ -20,7 +20,7 @@ interface SearchResult {
   description: string;
   type: 'project' | 'user' | 'document' | 'analytics' | 'setting' | 'page';
   url: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   score?: number;
   highlighted?: {
     title?: string;

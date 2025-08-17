@@ -25,9 +25,18 @@ interface UserPreferences {
   };
 }
 
+interface ProfileUpdatePayload {
+  preferences: UserPreferences;
+  updated_at: string;
+  timezone?: string;
+  language?: string;
+  email_notifications?: boolean;
+  marketing_emails?: boolean;
+}
+
 /**
  * GET /api/user/preferences
- * 
+ *
  * Get user preferences
  */
 export async function GET(request: NextRequest) {
@@ -248,7 +257,7 @@ export async function PATCH(request: NextRequest) {
     const updatedPreferences = deepMerge(currentPreferences, partialPreferences);
 
     // Update profile
-    const updateData: any = {
+    const updateData: ProfileUpdatePayload = {
       preferences: updatedPreferences,
       updated_at: new Date().toISOString()
     };
@@ -382,7 +391,7 @@ export async function DELETE(request: NextRequest) {
       preferences: defaultPreferences
     });
 
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Preferences reset API error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
@@ -394,7 +403,7 @@ export async function DELETE(request: NextRequest) {
 /**
  * Validate preferences structure
  */
-function validatePreferences(preferences: any): string | null {
+function validatePreferences(preferences: Partial<UserPreferences>): string | null {
   if (!preferences || typeof preferences !== 'object') {
     return 'Invalid preferences format';
   }
@@ -462,16 +471,31 @@ function validatePreferences(preferences: any): string | null {
 /**
  * Deep merge two objects
  */
-function deepMerge(target: any, source: any): any {
-  const result = { ...target };
-  
+function deepMerge<T extends object>(target: T, source: Partial<T>): T {
+  const result = { ...target } as T;
+
   for (const key in source) {
-    if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
-      result[key] = deepMerge(target[key] || {}, source[key]);
-    } else {
-      result[key] = source[key];
+    if (Object.prototype.hasOwnProperty.call(source, key)) {
+      const targetValue = result[key];
+      const sourceValue = source[key];
+
+      if (
+        sourceValue &&
+        typeof sourceValue === 'object' &&
+        !Array.isArray(sourceValue) &&
+        targetValue &&
+        typeof targetValue === 'object' &&
+        !Array.isArray(targetValue)
+      ) {
+        // Cast to Record<string, any> for the recursive call
+        result[key] = deepMerge(
+          targetValue as Record<string, unknown>,
+          sourceValue as Record<string, unknown>
+        ) as T[Extract<keyof T, string>];
+      } else if (sourceValue !== undefined) {
+        result[key] = sourceValue as T[Extract<keyof T, string>];
+      }
     }
   }
-  
   return result;
 }

@@ -2,6 +2,21 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '../../../utils/supabase/server';
 import { BillingActivityLogger } from '../../../utils/activity-logger';
 
+interface Subscription {
+  id: string;
+  user_id: string;
+  service_type: string;
+  plan_name: string;
+  status: 'active' | 'inactive' | 'cancelled' | 'expired';
+  billing_cycle: string;
+  price: number;
+  next_renewal: string | null;
+  usage_limit: number;
+  current_usage: number;
+  features: unknown;
+  updated_at: string;
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -84,7 +99,7 @@ export async function PUT(
     }
 
     // Prepare update data
-    const updateData: any = {
+    const updateData: Partial<Subscription> = {
       updated_at: new Date().toISOString()
     };
 
@@ -161,7 +176,7 @@ export async function PUT(
       await BillingActivityLogger.logSubscriptionChange(
         user.id,
         id,
-        actionMap[updateData.status] || 'updated',
+        actionMap[updateData.status as string] || 'updated',
         updatedSubscription.plan_name
       );
     }

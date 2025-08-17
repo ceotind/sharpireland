@@ -9,15 +9,14 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/app/utils/supabase/server';
+import { SupabaseClient } from '@supabase/supabase-js';
 import { 
   BusinessPlannerPayment,
   BusinessPlannerUsage,
   BusinessPlannerApiResponse
 } from '@/app/types/business-planner';
 import { 
-  PAID_CONVERSATIONS_COUNT,
-  ERROR_CODES,
-  SUCCESS_MESSAGES
+  ERROR_CODES
 } from '@/app/utils/business-planner/constants';
 import { 
   validatePaymentReference,
@@ -34,7 +33,7 @@ import {
  * @param userId - User ID to check
  * @returns Whether user is admin
  */
-async function isAdmin(supabase: any, userId: string): Promise<boolean> {
+async function isAdmin(supabase: SupabaseClient): Promise<boolean> {
   try {
     // Check if user has admin role in profiles table or similar
     // For now, we'll check if user email is in admin list
@@ -65,7 +64,7 @@ async function isAdmin(supabase: any, userId: string): Promise<boolean> {
  * @returns Payment record or null
  */
 async function getPaymentByReference(
-  supabase: any,
+  supabase: SupabaseClient,
   paymentReference: string
 ): Promise<BusinessPlannerPayment | null> {
   try {
@@ -94,7 +93,7 @@ async function getPaymentByReference(
  * @returns Updated payment record
  */
 async function completePayment(
-  supabase: any,
+  supabase: SupabaseClient,
   paymentId: string
 ): Promise<BusinessPlannerPayment | null> {
   try {
@@ -129,17 +128,18 @@ async function completePayment(
  * @returns Updated usage record
  */
 async function creditUserAccount(
-  supabase: any,
-  userId: string,
-  conversations: number
+  supabase: SupabaseClient,
+  userId: string
 ): Promise<BusinessPlannerUsage | null> {
   try {
     // Get or create usage record
-    let { data: usage, error: fetchError } = await supabase
+    let usage: BusinessPlannerUsage | null;
+    const { data, error: fetchError } = await supabase
       .from('business_planner_usage')
       .select('*')
       .eq('user_id', userId)
       .single();
+    usage = data;
     
     if (fetchError && fetchError.code !== 'PGRST116') {
       console.error('Error fetching usage record:', fetchError);
@@ -189,7 +189,7 @@ async function creditUserAccount(
     }
     
     return updatedUsage;
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Unexpected error in creditUserAccount:', error);
     return null;
   }
@@ -200,13 +200,12 @@ async function creditUserAccount(
  * @param supabase - Supabase client
  * @param adminUserId - Admin user ID who verified
  * @param paymentId - Payment ID that was verified
- * @param action - Action taken
+ * @param action - Action taken ('verified' or 'rejected')
  */
 async function logVerificationActivity(
-  supabase: any,
   adminUserId: string,
   paymentId: string,
-  action: string
+  action: 'verified' | 'rejected'
 ): Promise<void> {
   try {
     // In a production system, you might want to log this to an audit table
@@ -490,7 +489,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
       }
     });
     
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Unexpected error in POST /api/business-planner/payment/verify:', error);
     
     return NextResponse.json(

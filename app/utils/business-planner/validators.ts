@@ -14,7 +14,8 @@ import {
   BusinessPlannerUserInput,
   BusinessPlannerOnboardingData,
   BusinessType,
-  Industry
+  Industry,
+  BusinessStage
 } from '@/app/types/business-planner';
 import {
   MIN_MESSAGE_LENGTH,
@@ -441,10 +442,10 @@ export class BusinessPlannerValidator {
     // Validate business stage
     if (!data.business_stage || typeof data.business_stage !== 'string') {
       errors.push('Business stage is required');
-    } else if (!BUSINESS_STAGES.includes(data.business_stage as any)) {
+    } else if (!BUSINESS_STAGES.includes(data.business_stage as BusinessStage)) {
       errors.push('Invalid business stage selected');
     } else {
-      sanitizedData.business_stage = data.business_stage as any;
+      sanitizedData.business_stage = data.business_stage as BusinessStage;
     }
 
     // Validate industry
@@ -501,7 +502,7 @@ export class BusinessPlannerValidator {
     return {
       isValid: errors.length === 0,
       errors,
-      sanitizedData: errors.length === 0 ? sanitizedData as BusinessPlannerOnboardingData : undefined
+      onboardingData: errors.length === 0 ? sanitizedData as BusinessPlannerOnboardingData : undefined
     };
   }
 

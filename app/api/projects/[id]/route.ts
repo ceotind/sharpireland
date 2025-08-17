@@ -2,6 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '../../../utils/supabase/server';
 import { ProjectActivityLogger } from '../../../utils/activity-logger';
 
+interface ProjectUpdateData {
+  updated_at?: string;
+  name?: string;
+  description?: string;
+  status?: string;
+  priority?: string;
+  budget?: number;
+  deadline?: string | null;
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -74,7 +84,7 @@ export async function PUT(
     }
 
     // Prepare update data
-    const updateData: any = {
+    const updateData: ProjectUpdateData = {
       updated_at: new Date().toISOString()
     };
 

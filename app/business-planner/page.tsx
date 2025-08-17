@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import HeroSection from "./components/HeroSection";
 import FeaturesSection from "./components/FeaturesSection";
 import PricingSection from "./components/PricingSection";
@@ -168,9 +169,9 @@ export default function BusinessPlannerPage() {
         <nav id="business-planner-breadcrumb-nav" aria-label="Breadcrumb" className="sr-only">
           <ol id="business-planner-breadcrumb-list" itemScope itemType="https://schema.org/BreadcrumbList">
             <li id="business-planner-breadcrumb-home" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <a itemProp="item" href="/">
+              <Link itemProp="item" href="/">
                 <span itemProp="name">Home</span>
-              </a>
+              </Link>
               <meta itemProp="position" content="1" />
             </li>
             <li id="business-planner-breadcrumb-current" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">

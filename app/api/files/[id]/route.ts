@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '../../../utils/supabase/server';
 import { logActivity, getRequestInfo } from '../../../utils/activity-logger';
+interface FileUpdateData {
+  updated_at: string;
+  name?: string;
+  description?: string;
+  folder?: string;
+  tags?: string[];
+}
 
 // GET /api/files/[id] - Download or get file info
 export async function GET(
@@ -160,7 +167,7 @@ export async function PUT(
     }
 
     // Prepare update data
-    const updateData: any = {
+    const updateData: FileUpdateData = {
       updated_at: new Date().toISOString()
     };
 

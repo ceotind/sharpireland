@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/app/utils/supabase/server';
 import DashboardLayout from '@/app/components/dashboard/DashboardLayout';
@@ -149,7 +150,7 @@ export default async function BusinessPlannerBilling() {
                 </p>
               </div>
               <div id="billing-actions" className="mt-4 sm:mt-0 flex flex-col sm:flex-row gap-3">
-                <a
+                <Link
                   href="/dashboard/business-planner"
                   className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
@@ -157,7 +158,7 @@ export default async function BusinessPlannerBilling() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                   </svg>
                   Back to Dashboard
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -368,7 +369,7 @@ export default async function BusinessPlannerBilling() {
             </div>
             
             <div id="billing-support-content" className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <a
+              <Link
                 href="/dashboard/support"
                 className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
@@ -381,7 +382,7 @@ export default async function BusinessPlannerBilling() {
                   <p className="text-sm font-medium text-gray-900">Create Support Ticket</p>
                   <p className="text-xs text-gray-500">Get help with billing issues</p>
                 </div>
-              </a>
+              </Link>
 
               <a
                 href="mailto:billing@sharpireland.com"
@@ -398,7 +399,7 @@ export default async function BusinessPlannerBilling() {
                 </div>
               </a>
 
-              <a
+              <Link
                 href="/contact"
                 className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
               >
@@ -411,7 +412,7 @@ export default async function BusinessPlannerBilling() {
                   <p className="text-sm font-medium text-gray-900">Contact Us</p>
                   <p className="text-xs text-gray-500">General inquiries</p>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,4 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+
+interface SEOReportUpdate {
+  url?: string;
+  score?: number;
+  report_data?: Record<string, unknown>;
+  improvements?: Record<string, unknown>;
+}
 import { createClient } from '../../../utils/supabase/server';
 import { logActivity, getRequestInfo } from '../../../utils/activity-logger';
 
@@ -166,7 +173,7 @@ export async function PUT(
     }
 
     // Build update object
-    const updateData: any = {};
+    const updateData: SEOReportUpdate = {};
     if (url !== undefined) updateData.url = url.trim();
     if (score !== undefined) updateData.score = score;
     if (report_data !== undefined) updateData.report_data = report_data;

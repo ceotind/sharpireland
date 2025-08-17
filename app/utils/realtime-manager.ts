@@ -10,7 +10,18 @@ interface RealtimeChannel {
   unsubscribe: () => void;
 }
 
-interface RealtimePostgresChangesPayload<T = any> {
+interface Identifiable {
+  id: string;
+}
+
+interface RealtimeChannelConfig {
+  event?: 'INSERT' | 'UPDATE' | 'DELETE' | '*';
+  schema?: string;
+  table: string;
+  filter?: string | undefined;
+}
+
+interface RealtimePostgresChangesPayload<T extends Identifiable = Identifiable> {
   eventType: 'INSERT' | 'UPDATE' | 'DELETE';
   new?: T;
   old?: T;
@@ -18,13 +29,33 @@ interface RealtimePostgresChangesPayload<T = any> {
   schema: string;
 }
 
-interface SupabaseClient {
-  channel: (name: string) => {
-    on: (event: string, config: any, callback: (payload: RealtimePostgresChangesPayload) => void) => {
-      subscribe: (callback: (status: string) => void) => RealtimeChannel;
-    };
-  };
+import { createClient, SupabaseClient as SupabaseClientOriginal } from '@supabase/supabase-js';
+
+interface RealtimeChannel {
+  unsubscribe: () => void;
 }
+
+interface Identifiable {
+  id: string;
+}
+
+interface RealtimeChannelConfig {
+  event?: 'INSERT' | 'UPDATE' | 'DELETE' | '*';
+  schema?: string;
+  table: string;
+  filter?: string | undefined;
+}
+
+interface RealtimePostgresChangesPayload<T extends Identifiable = Identifiable> {
+  eventType: 'INSERT' | 'UPDATE' | 'DELETE';
+  new?: T;
+  old?: T;
+  table: string;
+  schema: string;
+}
+
+// Use the original SupabaseClient type from the library
+type SupabaseClient = SupabaseClientOriginal;
 
 interface SubscriptionConfig {
   table: string;
@@ -33,14 +64,14 @@ interface SubscriptionConfig {
   schema?: string;
 }
 
-interface SubscriptionHandler<T = any> {
+interface SubscriptionHandler<T extends Identifiable = Identifiable> {
   onInsert?: (payload: RealtimePostgresChangesPayload<T>) => void;
   onUpdate?: (payload: RealtimePostgresChangesPayload<T>) => void;
   onDelete?: (payload: RealtimePostgresChangesPayload<T>) => void;
   onError?: (error: Error) => void;
 }
 
-interface OptimisticUpdate<T = any> {
+interface OptimisticUpdate<T extends Identifiable = Identifiable> {
   id: string;
   type: 'INSERT' | 'UPDATE' | 'DELETE';
   data: T;
@@ -62,7 +93,7 @@ interface RealtimeStats {
 export class RealtimeManager {
   private supabase: SupabaseClient;
   private subscriptions = new Map<string, RealtimeChannel>();
-  private handlers = new Map<string, SubscriptionHandler>();
+  private handlers = new Map<string, SubscriptionHandler<Identifiable>>();
   private optimisticUpdates = new Map<string, OptimisticUpdate[]>();
   private reconnectAttempts = new Map<string, number>();
   private stats: RealtimeStats = {
@@ -79,24 +110,14 @@ export class RealtimeManager {
   private heartbeatTimer?: NodeJS.Timeout;
 
   constructor(supabaseUrl: string, supabaseKey: string) {
-    // Initialize with a mock client - in real implementation, use actual Supabase client
-    this.supabase = {
-      channel: (name: string) => ({
-        on: (event: string, config: any, callback: (payload: RealtimePostgresChangesPayload) => void) => ({
-          subscribe: (statusCallback: (status: string) => void) => ({
-            unsubscribe: () => {}
-          })
-        })
-      })
-    };
-
+    this.supabase = createClient(supabaseUrl, supabaseKey);
     this.startHeartbeat();
   }
 
   /**
    * Subscribe to real-time changes on a table
    */
-  subscribe<T = any>(
+  subscribe<T extends Identifiable = Identifiable>(
     subscriptionId: string,
     config: SubscriptionConfig,
     handler: SubscriptionHandler<T>
@@ -107,23 +128,24 @@ export class RealtimeManager {
         this.unsubscribe(subscriptionId);
 
         const channel = this.supabase
-          .channel(`realtime:${subscriptionId}`)
-          .on(
-            'postgres_changes',
-            {
+          .channel(`realtime:${subscriptionId}`, {
+            config: {
               event: config.event || '*',
               schema: config.schema || 'public',
               table: config.table,
               filter: config.filter
-            },
-            (payload: RealtimePostgresChangesPayload<T>) => {
-              this.handleRealtimeEvent(subscriptionId, payload, handler);
+            }
+          })
+          .on(
+            'postgres_changes',
+            (payload: RealtimePostgresChangesPayload<Identifiable>) => {
+              this.handleRealtimeEvent(subscriptionId, payload as RealtimePostgresChangesPayload<T>, handler);
             }
           )
           .subscribe((status: string) => {
             if (status === 'SUBSCRIBED') {
               this.subscriptions.set(subscriptionId, channel);
-              this.handlers.set(subscriptionId, handler);
+              this.handlers.set(subscriptionId, handler as SubscriptionHandler<Identifiable>);
               this.stats.activeSubscriptions++;
               this.resetReconnectAttempts(subscriptionId);
               resolve(true);
@@ -165,7 +187,7 @@ export class RealtimeManager {
   /**
    * Add optimistic update
    */
-  addOptimisticUpdate<T>(
+  addOptimisticUpdate<T extends Identifiable>(
     subscriptionId: string,
     type: 'INSERT' | 'UPDATE' | 'DELETE',
     data: T,
@@ -242,7 +264,7 @@ export class RealtimeManager {
   /**
    * Handle real-time event
    */
-  private handleRealtimeEvent<T>(
+  private handleRealtimeEvent<T extends Identifiable>(
     subscriptionId: string,
     payload: RealtimePostgresChangesPayload<T>,
     handler: SubscriptionHandler<T>
@@ -274,7 +296,7 @@ export class RealtimeManager {
   /**
    * Check if real-time event confirms an optimistic update
    */
-  private checkOptimisticUpdateConfirmation<T>(
+  private checkOptimisticUpdateConfirmation<T extends Identifiable>(
     subscriptionId: string,
     payload: RealtimePostgresChangesPayload<T>
   ): void {
@@ -291,15 +313,15 @@ export class RealtimeManager {
 
       // For INSERT/UPDATE, check if the data matches
       if (payload.new && update.data) {
-        const payloadId = (payload.new as any).id;
-        const updateId = (update.data as any).id;
+        const payloadId = payload.new.id;
+        const updateId = update.data.id;
         return payloadId === updateId;
       }
 
       // For DELETE, check old data
       if (payload.old && update.data) {
-        const payloadId = (payload.old as any).id;
-        const updateId = (update.data as any).id;
+        const payloadId = payload.old.id;
+        const updateId = update.data.id;
         return payloadId === updateId;
       }
 
@@ -451,7 +473,7 @@ export const RealtimeUtils = {
   /**
    * Create a subscription for user-specific data
    */
-  createUserSubscription<T>(
+  createUserSubscription<T extends Identifiable>(
     manager: RealtimeManager,
     userId: string,
     table: string,
@@ -470,7 +492,7 @@ export const RealtimeUtils = {
   /**
    * Create a subscription for project-specific data
    */
-  createProjectSubscription<T>(
+  createProjectSubscription<T extends Identifiable>(
     manager: RealtimeManager,
     projectId: string,
     table: string,
@@ -489,7 +511,7 @@ export const RealtimeUtils = {
   /**
    * Create optimistic update with automatic rollback
    */
-  createOptimisticUpdateWithRollback<T>(
+  createOptimisticUpdateWithRollback<T extends Identifiable>(
     manager: RealtimeManager,
     subscriptionId: string,
     type: 'INSERT' | 'UPDATE' | 'DELETE',

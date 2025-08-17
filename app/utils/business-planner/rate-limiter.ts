@@ -441,7 +441,7 @@ export async function detectSuspiciousActivity(
   userId: string,
   ipAddress?: string,
   userAgent?: string,
-  requestData?: any
+  requestData?: Record<string, unknown>
 ): Promise<SuspiciousActivityResult> {
   const reasons: string[] = [];
   let isSuspicious = false;

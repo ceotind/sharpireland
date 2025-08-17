@@ -28,7 +28,7 @@ interface Team {
   name: string;
   description: string | null;
   owner_id: string;
-  settings: Record<string, any> | null;
+  settings: Record<string, unknown> | null;
   created_at: string;
   updated_at: string;
 }

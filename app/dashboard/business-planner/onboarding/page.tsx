@@ -4,6 +4,7 @@ import DashboardLayout from '@/app/components/dashboard/DashboardLayout';
 import OnboardingFlow from '../components/OnboardingFlow';
 import { BusinessPlannerOnboardingData } from '@/app/types/business-planner';
 import { UserProfile, DashboardStats } from '@/app/types/dashboard';
+import Link from 'next/link';
 
 /**
  * Business Planner Onboarding Page
@@ -239,12 +240,12 @@ export default async function BusinessPlannerOnboarding() {
           {/* Skip Option (for existing users) */}
           {existingProfile?.onboarding_completed && (
             <div id="skip-option" className="mt-6 text-center">
-              <a
+              <Link
                 href="/dashboard/business-planner"
                 className="text-sm text-gray-500 hover:text-gray-700 underline"
               >
                 Skip for now and go to dashboard
-              </a>
+              </Link>
             </div>
           )}
         </div>

@@ -33,7 +33,7 @@ interface CacheOptions {
  * In-memory cache implementation with TTL and LRU eviction
  */
 export class Cache {
-  private cache = new Map<string, CacheItem<any>>();
+  private cache = new Map<string, CacheItem<unknown>>();
   private stats: CacheStats = {
     hits: 0,
     misses: 0,
@@ -114,7 +114,7 @@ export class Cache {
     item.lastAccessed = now;
 
     if (this.enableStats) this.stats.hits++;
-    return item.value;
+    return item.value as T;
   }
 
   /**
@@ -266,11 +266,11 @@ const globalCache = new Cache({
  * Cache decorator for functions
  */
 export function cached(ttl?: number) {
-  return function (target: any, propertyName: string, descriptor: PropertyDescriptor) {
+  return function (target: object, propertyName: string, descriptor: PropertyDescriptor) {
     const method = descriptor.value;
 
-    descriptor.value = function (...args: any[]) {
-      const cacheKey = `${target.constructor.name}.${propertyName}:${JSON.stringify(args)}`;
+    descriptor.value = function (...args: unknown[]) {
+      const cacheKey = `${(target as Record<string, unknown>).constructor.name}.${propertyName}:${JSON.stringify(args)}`;
       
       // Try to get from cache first
       const cachedResult = globalCache.get(cacheKey);
@@ -283,7 +283,7 @@ export function cached(ttl?: number) {
       
       // Handle promises
       if (result instanceof Promise) {
-        return result.then((resolvedResult: any) => {
+        return result.then((resolvedResult: unknown) => {
           globalCache.set(cacheKey, resolvedResult, ttl);
           return resolvedResult;
         });
@@ -386,7 +386,7 @@ export const CacheUtils = {
   /**
    * Warm up cache with data
    */
-  async warmUp(entries: Array<{ key: string; fn: () => Promise<any> | any; ttl?: number }>): Promise<void> {
+  async warmUp(entries: Array<{ key: string; fn: () => Promise<unknown> | unknown; ttl?: number }>): Promise<void> {
     const promises = entries.map(async ({ key, fn, ttl }) => {
       try {
         const result = await fn();

@@ -1,18 +1,43 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/app/utils/supabase/server';
 
+interface Metadata {
+  created_at?: string;
+  role?: string;
+  [key: string]: unknown;
+}
+
 interface SearchResult {
   id: string;
   title: string;
   description: string;
   type: 'project' | 'user' | 'document' | 'analytics' | 'setting' | 'page';
   url: string;
-  metadata?: Record<string, any>;
+  metadata?: Metadata;
   score?: number;
   highlighted?: {
     title?: string;
     description?: string;
   };
+}
+
+interface Project {
+  id: string;
+  name: string;
+  description: string | null;
+  created_at: string;
+}
+
+interface Profile {
+  id: string;
+  full_name: string | null;
+  email: string | null;
+}
+
+interface TeamMember {
+  id: string;
+  role: string;
+  profiles: Profile[] | null;
 }
 
 interface SearchableItem {
@@ -21,7 +46,7 @@ interface SearchableItem {
   description: string;
   type: SearchResult['type'];
   url: string;
-  metadata?: Record<string, any>;
+  metadata?: Metadata;
   searchableText: string;
 }
 
@@ -158,7 +183,7 @@ async function getSearchableItems(userId?: string): Promise<SearchableItem[]> {
         .limit(50);
 
       if (projects) {
-        projects.forEach((project: any) => {
+        projects.forEach((project: Project) => {
           items.push({
             id: `project-${project.id}`,
             title: project.name,
@@ -182,21 +207,20 @@ async function getSearchableItems(userId?: string): Promise<SearchableItem[]> {
             full_name,
             email
           )
-        `)
-        .limit(20);
+        `) as unknown as { data: TeamMember[] | null };
 
       if (teamMembers) {
-        teamMembers.forEach((member: any) => {
-          const profile = member.profiles as any;
+        teamMembers.forEach((member: TeamMember) => {
+          const profile = member.profiles ? member.profiles[0] : null; // Access the first element
           if (profile) {
             items.push({
               id: `user-${profile.id}`,
-              title: profile.full_name || profile.email,
+              title: profile.full_name || profile.email || 'Unknown User',
               description: `Team member - ${member.role}`,
               type: 'user',
               url: `/dashboard/team/${profile.id}`,
               metadata: { role: member.role },
-              searchableText: `${profile.full_name || ''} ${profile.email} ${member.role}`
+              searchableText: `${profile.full_name || ''} ${profile.email || ''} ${member.role}`
             });
           }
         });
@@ -294,6 +318,18 @@ async function getSearchableItems(userId?: string): Promise<SearchableItem[]> {
   }
 
   return items;
+}
+
+interface Profile {
+  id: string;
+  full_name: string | null;
+  email: string | null;
+}
+
+interface TeamMember {
+  id: string;
+  role: string;
+  profiles: Profile[] | null; // Changed to array of Profile or null
 }
 
 /**
@@ -438,7 +474,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Perform search
-    let results = FuzzySearch.search(filteredItems, query, 0.2);
+    const results = FuzzySearch.search(filteredItems, query, 0.2);
 
     // Apply sorting
     if (sort === 'date') {

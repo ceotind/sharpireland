@@ -32,8 +32,8 @@ const PaymentHistory: React.FC<PaymentHistoryProps> = ({
 
   // Sort payments
   const sortedPayments = [...payments].sort((a, b) => {
-    let aValue: any = a[sortField];
-    let bValue: any = b[sortField];
+    let aValue: string | number = a[sortField];
+    let bValue: string | number = b[sortField];
 
     if (sortField === 'created_at') {
       aValue = new Date(aValue).getTime();

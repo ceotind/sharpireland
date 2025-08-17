@@ -1,9 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '../../../utils/supabase/server';
 import { BillingActivityLogger } from '../../../utils/activity-logger';
+interface InvoiceUpdateData {
+  status?: string;
+  payment_method?: string;
+  paid_at?: string | null;
+  due_date?: string | null;
+  line_items?: Array<{ [key: string]: unknown }>;
+  amount?: number;
+  tax?: number;
+  total?: number;
+}
 
 export async function GET(
-  request: NextRequest,
+  _: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -82,7 +92,7 @@ export async function PUT(
     }
 
     // Prepare update data
-    const updateData: any = {};
+    const updateData: InvoiceUpdateData = {};
     const updatedFields: string[] = [];
 
     if (status !== undefined && status !== currentInvoice.status) {

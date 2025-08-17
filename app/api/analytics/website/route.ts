@@ -58,11 +58,35 @@ function getStartDate(period: string): Date {
 }
 
 // Helper function to process website data
-function processWebsiteData(snapshots: any[], period: string) {
+interface WebsiteMetricData {
+  visitors?: number;
+  unique_visitors?: number;
+  page_views?: number;
+  sessions?: number;
+  bounce_rate?: number;
+  avg_session_duration?: number;
+  pages_per_session?: number;
+  new_vs_returning?: { new: number; returning: number };
+  traffic_sources?: Array<{ source: string; visitors: number; percentage: number; change: number }>;
+  top_pages?: Array<{ path: string; title: string; views: number; unique_views: number; avg_time: number; bounce_rate: number }>;
+  devices?: Array<{ device: string; visitors: number; percentage: number; sessions: number; bounce_rate: number }>;
+  browsers?: Array<{ browser: string; visitors: number; percentage: number }>;
+  operating_systems?: Array<{ os: string; visitors: number; percentage: number }>;
+  locations?: Array<{ country: string; city: string; visitors: number; percentage: number }>;
+  conversion_funnel?: Array<{ step: string; visitors: number; percentage: number }>;
+  user_flow?: Array<{ from: string; to: string; users: number; percentage: number }>;
+}
+
+interface AnalyticsSnapshot {
+  created_at: string;
+  metric_data: WebsiteMetricData;
+}
+
+function processWebsiteData(snapshots: AnalyticsSnapshot[], period: string) {
   const now = new Date();
   const startDate = getStartDate(period);
   
-  const latest = snapshots[0];
+  const latest: AnalyticsSnapshot = snapshots[0] || { created_at: new Date().toISOString(), metric_data: {} };
 
   return {
     period,
@@ -99,7 +123,7 @@ function processWebsiteData(snapshots: any[], period: string) {
 }
 
 // Helper functions for trend generation
-function generateVisitorsTrend(snapshots: any[], period: string) {
+function generateVisitorsTrend(snapshots: AnalyticsSnapshot[], period: string) {
   const days = period === '7d' ? 7 : period === '30d' ? 30 : period === '90d' ? 90 : 365;
   const data = [];
   
@@ -119,7 +143,7 @@ function generateVisitorsTrend(snapshots: any[], period: string) {
   return data;
 }
 
-function generatePageViewsTrend(snapshots: any[], period: string) {
+function generatePageViewsTrend(snapshots: AnalyticsSnapshot[], period: string) {
   const days = period === '7d' ? 7 : period === '30d' ? 30 : period === '90d' ? 90 : 365;
   const data = [];
   
@@ -138,7 +162,7 @@ function generatePageViewsTrend(snapshots: any[], period: string) {
   return data;
 }
 
-function generateSessionsTrend(snapshots: any[], period: string) {
+function generateSessionsTrend(snapshots: AnalyticsSnapshot[], period: string) {
   const days = period === '7d' ? 7 : period === '30d' ? 30 : period === '90d' ? 90 : 365;
   const data = [];
   
@@ -157,7 +181,7 @@ function generateSessionsTrend(snapshots: any[], period: string) {
   return data;
 }
 
-function generateBounceRateTrend(snapshots: any[], period: string) {
+function generateBounceRateTrend(snapshots: AnalyticsSnapshot[], period: string) {
   const days = period === '7d' ? 7 : period === '30d' ? 30 : period === '90d' ? 90 : 365;
   const data = [];
   
@@ -177,7 +201,7 @@ function generateBounceRateTrend(snapshots: any[], period: string) {
 }
 
 // Helper functions for data extraction
-function extractTrafficSources(latest: any) {
+function extractTrafficSources(latest: AnalyticsSnapshot) {
   return latest?.metric_data?.traffic_sources || [
     { source: 'Organic Search', visitors: 2100, percentage: 45, change: 12 },
     { source: 'Direct', visitors: 1200, percentage: 26, change: -3 },
@@ -187,7 +211,7 @@ function extractTrafficSources(latest: any) {
   ];
 }
 
-function extractTopPages(latest: any) {
+function extractTopPages(latest: AnalyticsSnapshot) {
   return latest?.metric_data?.top_pages || [
     { path: '/', title: 'Home', views: 3250, unique_views: 2890, avg_time: 145, bounce_rate: 38 },
     { path: '/services', title: 'Services', views: 1890, unique_views: 1650, avg_time: 220, bounce_rate: 35 },
@@ -197,7 +221,7 @@ function extractTopPages(latest: any) {
   ];
 }
 
-function extractDeviceData(latest: any) {
+function extractDeviceData(latest: AnalyticsSnapshot) {
   return latest?.metric_data?.devices || [
     { device: 'Desktop', visitors: 2800, percentage: 60, sessions: 3100, bounce_rate: 38 },
     { device: 'Mobile', visitors: 1400, percentage: 30, sessions: 1600, bounce_rate: 48 },
@@ -205,7 +229,7 @@ function extractDeviceData(latest: any) {
   ];
 }
 
-function extractBrowserData(latest: any) {
+function extractBrowserData(latest: AnalyticsSnapshot) {
   return latest?.metric_data?.browsers || [
     { browser: 'Chrome', visitors: 2890, percentage: 62 },
     { browser: 'Safari', visitors: 980, percentage: 21 },
@@ -215,7 +239,7 @@ function extractBrowserData(latest: any) {
   ];
 }
 
-function extractOSData(latest: any) {
+function extractOSData(latest: AnalyticsSnapshot) {
   return latest?.metric_data?.operating_systems || [
     { os: 'Windows', visitors: 2100, percentage: 45 },
     { os: 'macOS', visitors: 1200, percentage: 26 },
@@ -225,7 +249,7 @@ function extractOSData(latest: any) {
   ];
 }
 
-function extractLocationData(latest: any) {
+function extractLocationData(latest: AnalyticsSnapshot) {
   return latest?.metric_data?.locations || [
     { country: 'Ireland', city: 'Dublin', visitors: 1200, percentage: 26 },
     { country: 'United Kingdom', city: 'London', visitors: 950, percentage: 20 },
@@ -255,7 +279,7 @@ function generateRealTimeData() {
   };
 }
 
-function extractConversionFunnel(latest: any) {
+function extractConversionFunnel(latest: AnalyticsSnapshot) {
   return latest?.metric_data?.conversion_funnel || [
     { step: 'Landing Page', visitors: 4670, percentage: 100 },
     { step: 'Product/Service View', visitors: 2800, percentage: 60 },
@@ -265,7 +289,7 @@ function extractConversionFunnel(latest: any) {
   ];
 }
 
-function extractUserFlow(latest: any) {
+function extractUserFlow(latest: AnalyticsSnapshot) {
   return latest?.metric_data?.user_flow || [
     { from: '/', to: '/services', users: 1250, percentage: 38 },
     { from: '/', to: '/about', users: 890, percentage: 27 },

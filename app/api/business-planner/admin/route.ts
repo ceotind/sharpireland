@@ -9,19 +9,16 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/app/utils/supabase/server';
-import { 
+import { SupabaseClient } from '@supabase/supabase-js';
+import {
   BusinessPlannerUsage,
   BusinessPlannerProfile,
-  BusinessPlannerSession,
   BusinessPlannerApiResponse,
   BusinessPlannerPaginatedResponse
 } from '@/app/types/business-planner';
 import { checkRateLimit, updateRateLimit, resetRateLimit } from '@/app/utils/business-planner/rate-limiter';
-import { 
+import {
   ERROR_CODES,
-  SUCCESS_MESSAGES,
-  FREE_CONVERSATIONS_LIMIT,
-  PAID_CONVERSATIONS_COUNT,
   DEFAULT_PAGINATION_LIMIT,
   MAX_PAGINATION_LIMIT
 } from '@/app/utils/business-planner/constants';
@@ -78,6 +75,16 @@ interface AdminStatistics {
   average_conversations_per_user: number;
 }
 
+/**
+ * Subset of BusinessPlannerUsage for specific queries
+ */
+interface BusinessPlannerUsageSubset {
+  subscription_status: 'free' | 'paid' | 'expired';
+  total_tokens_used: number;
+  free_conversations_used: number;
+  paid_conversations_used: number;
+}
+
 // =============================================================================
 // HELPER FUNCTIONS
 // =============================================================================
@@ -88,7 +95,7 @@ interface AdminStatistics {
  * @param userId - User ID to check
  * @returns Whether user is admin
  */
-async function isAdmin(supabase: any, userId: string): Promise<boolean> {
+async function isAdmin(supabase: SupabaseClient): Promise<boolean> {
   try {
     // Check if user has admin role in profiles table or custom admin table
     // This is a simplified check - in production you'd have a proper admin role system
@@ -134,7 +141,7 @@ function getClientIP(request: NextRequest): string {
  * @param supabase - Supabase client
  * @returns Admin statistics
  */
-async function getAdminStatistics(supabase: any): Promise<AdminStatistics | null> {
+async function getAdminStatistics(supabase: SupabaseClient): Promise<AdminStatistics | null> {
   try {
     // Get total users count
     const { count: totalUsers } = await supabase
@@ -162,7 +169,7 @@ async function getAdminStatistics(supabase: any): Promise<AdminStatistics | null
       .select('*', { count: 'exact', head: true });
     
     // Get usage statistics
-    const { data: usageStats } = await supabase
+    const { data: usageStats }: { data: BusinessPlannerUsageSubset[] | null } = await supabase
       .from('business_planner_usage')
       .select('subscription_status, total_tokens_used, free_conversations_used, paid_conversations_used');
     
@@ -172,7 +179,7 @@ async function getAdminStatistics(supabase: any): Promise<AdminStatistics | null
     let totalUserConversations = 0;
     
     if (usageStats) {
-      usageStats.forEach((usage: any) => {
+      usageStats.forEach((usage: BusinessPlannerUsageSubset) => {
         totalTokens += usage.total_tokens_used || 0;
         totalUserConversations += (usage.free_conversations_used || 0) + (usage.paid_conversations_used || 0);
         
@@ -202,7 +209,7 @@ async function getAdminStatistics(supabase: any): Promise<AdminStatistics | null
       blocked_users: blockedUsers || 0,
       average_conversations_per_user: totalUsers ? Math.round(totalUserConversations / totalUsers) : 0
     };
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error getting admin statistics:', error);
     return null;
   }
@@ -216,7 +223,7 @@ async function getAdminStatistics(supabase: any): Promise<AdminStatistics | null
  * @returns Paginated users overview
  */
 async function getUsersOverview(
-  supabase: any,
+  supabase: SupabaseClient,
   page: number = 1,
   limit: number = DEFAULT_PAGINATION_LIMIT
 ): Promise<BusinessPlannerPaginatedResponse<AdminUserOverview> | null> {
@@ -330,7 +337,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<BusinessPl
     }
     
     // Check admin permissions
-    const userIsAdmin = await isAdmin(supabase, user.id);
+    const userIsAdmin = await isAdmin(supabase);
     if (!userIsAdmin) {
       return NextResponse.json(
         {
@@ -466,7 +473,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
     }
     
     // Check admin permissions
-    const userIsAdmin = await isAdmin(supabase, user.id);
+    const userIsAdmin = await isAdmin(supabase);
     if (!userIsAdmin) {
       return NextResponse.json(
         {
@@ -622,7 +629,7 @@ export async function PUT(request: NextRequest): Promise<NextResponse<BusinessPl
     }
     
     // Check admin permissions
-    const userIsAdmin = await isAdmin(supabase, user.id);
+    const userIsAdmin = await isAdmin(supabase);
     if (!userIsAdmin) {
       return NextResponse.json(
         {

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { SupabaseClient } from '@supabase/supabase-js';
 import { createClient } from '../../../utils/supabase/server';
 import { logActivity, getRequestInfo } from '../../../utils/activity-logger';
 
@@ -11,18 +12,53 @@ interface ReportConfig {
     end: string;
   };
   metrics: string[];
-  filters?: Record<string, any>;
+  filters?: Record<string, unknown>;
   format: 'json' | 'csv' | 'pdf';
   groupBy?: string;
   sortBy?: string;
   sortOrder?: 'asc' | 'desc';
+}
+interface AnalyticsReportItem {
+  date: string;
+  page_views: number;
+  unique_visitors: number;
+  bounce_rate: number;
+  avg_session_duration: number;
+}
+
+interface Project {
+  status: string;
+  budget_allocated?: number;
+}
+
+interface TeamReportItem {
+  member_name: string;
+  role: string;
+  tasks_completed: number;
+  hours_logged: number;
+  productivity_score: number;
+}
+
+interface FinancialReportItem {
+  date: string;
+  revenue: number;
+  expenses: number;
+  profit: number;
+  margin: number;
+}
+
+interface CustomReportItem {
+  metric: string;
+  value: number;
+  change: number;
+  date: string;
 }
 
 interface ReportData {
   id: string;
   title: string;
   type: string;
-  data: any[];
+  data: unknown[];
   metadata: {
     generated_at: string;
     date_range: {
@@ -30,7 +66,7 @@ interface ReportData {
       end: string;
     };
     total_records: number;
-    filters_applied: Record<string, any>;
+    filters_applied: Record<string, unknown>;
   };
   summary: {
     key_metrics: Record<string, number>;
@@ -85,7 +121,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Generate report based on type
-    let reportData: any[] = [];
+    let reportData: unknown[] = [];
     let keyMetrics: Record<string, number> = {};
     let trends: Record<string, number> = {};
     let insights: string[] = [];
@@ -224,7 +260,7 @@ export async function POST(request: NextRequest) {
 }
 
 // Helper functions for generating different types of reports
-async function generateAnalyticsReport(supabase: any, userId: string, config: ReportConfig) {
+async function generateAnalyticsReport(supabase: SupabaseClient, userId: string, config: ReportConfig): Promise<unknown[]> {
   // Mock analytics data - in a real app, this would query actual analytics tables
   const mockData = [
     { date: '2024-01-01', page_views: 1250, unique_visitors: 890, bounce_rate: 0.35, avg_session_duration: 180 },
@@ -242,7 +278,7 @@ async function generateAnalyticsReport(supabase: any, userId: string, config: Re
   });
 }
 
-async function generateProjectsReport(supabase: any, userId: string, config: ReportConfig) {
+async function generateProjectsReport(supabase: SupabaseClient, userId: string, config: ReportConfig): Promise<unknown[]> {
   const { data: projects, error } = await supabase
     .from('projects')
     .select('*')
@@ -258,7 +294,7 @@ async function generateProjectsReport(supabase: any, userId: string, config: Rep
   return projects || [];
 }
 
-async function generateTeamReport(supabase: any, userId: string, config: ReportConfig) {
+async function generateTeamReport(supabase: SupabaseClient, userId: string, config: ReportConfig): Promise<unknown[]> {
   // Mock team data
   const mockData = [
     { member_name: 'John Doe', role: 'Developer', tasks_completed: 15, hours_logged: 120, productivity_score: 0.85 },
@@ -269,7 +305,7 @@ async function generateTeamReport(supabase: any, userId: string, config: ReportC
   return mockData;
 }
 
-async function generateFinancialReport(supabase: any, userId: string, config: ReportConfig) {
+async function generateFinancialReport(supabase: SupabaseClient, userId: string, config: ReportConfig): Promise<unknown[]> {
   // Mock financial data
   const mockData = [
     { date: '2024-01-01', revenue: 5000, expenses: 2000, profit: 3000, margin: 0.6 },
@@ -280,7 +316,7 @@ async function generateFinancialReport(supabase: any, userId: string, config: Re
   return mockData;
 }
 
-async function generateCustomReport(supabase: any, userId: string, config: ReportConfig) {
+async function generateCustomReport(supabase: SupabaseClient, userId: string, config: ReportConfig): Promise<unknown[]> {
   // For custom reports, return mock data based on requested metrics
   const mockData = config.metrics.map((metric, index) => ({
     metric: metric,
@@ -293,11 +329,12 @@ async function generateCustomReport(supabase: any, userId: string, config: Repor
 }
 
 // Helper functions for calculating metrics and insights
-function calculateAnalyticsMetrics(data: any[]) {
-  const totalPageViews = data.reduce((sum, item) => sum + item.page_views, 0);
-  const totalVisitors = data.reduce((sum, item) => sum + item.unique_visitors, 0);
-  const avgBounceRate = data.reduce((sum, item) => sum + item.bounce_rate, 0) / data.length;
-  const avgSessionDuration = data.reduce((sum, item) => sum + item.avg_session_duration, 0) / data.length;
+function calculateAnalyticsMetrics(data: unknown[]) {
+  const analyticsData = data as AnalyticsReportItem[];
+  const totalPageViews = analyticsData.reduce((sum, item) => sum + item.page_views, 0);
+  const totalVisitors = analyticsData.reduce((sum, item) => sum + item.unique_visitors, 0);
+  const avgBounceRate = analyticsData.reduce((sum, item) => sum + item.bounce_rate, 0) / analyticsData.length;
+  const avgSessionDuration = analyticsData.reduce((sum, item) => sum + item.avg_session_duration, 0) / analyticsData.length;
 
   return {
     total_page_views: totalPageViews,
@@ -307,33 +344,35 @@ function calculateAnalyticsMetrics(data: any[]) {
   };
 }
 
-function calculateAnalyticsTrends(data: any[]) {
-  if (data.length < 2) return {};
+function calculateAnalyticsTrends(data: unknown[]) {
+  const analyticsData = data as AnalyticsReportItem[];
+  if (analyticsData.length < 2) return {};
 
-  const firstDay = data[0];
-  const lastDay = data[data.length - 1];
+  const firstDay = analyticsData[0];
+  const lastDay = analyticsData[analyticsData.length - 1];
 
   return {
-    page_views_trend: ((lastDay.page_views - firstDay.page_views) / firstDay.page_views) * 100,
-    visitors_trend: ((lastDay.unique_visitors - firstDay.unique_visitors) / firstDay.unique_visitors) * 100,
-    bounce_rate_trend: ((lastDay.bounce_rate - firstDay.bounce_rate) / firstDay.bounce_rate) * 100
+    page_views_trend: ((lastDay!.page_views - firstDay!.page_views) / firstDay!.page_views) * 100,
+    visitors_trend: ((lastDay!.unique_visitors - firstDay!.unique_visitors) / firstDay!.unique_visitors) * 100,
+    bounce_rate_trend: ((lastDay!.bounce_rate - firstDay!.bounce_rate) / firstDay!.bounce_rate) * 100
   };
 }
 
-function generateAnalyticsInsights(data: any[], metrics: any, trends: any) {
+function generateAnalyticsInsights(data: unknown[], metrics: Record<string, number>, trends: Record<string, number>) {
+  const analyticsData = data as AnalyticsReportItem[]; // Assertion added
   const insights = [];
 
-  if (trends.page_views_trend > 10) {
+  if (trends.page_views_trend !== undefined && trends.page_views_trend > 10) {
     insights.push('Page views are trending upward significantly (+' + trends.page_views_trend.toFixed(1) + '%)');
-  } else if (trends.page_views_trend < -10) {
+  } else if (trends.page_views_trend !== undefined && trends.page_views_trend < -10) {
     insights.push('Page views are declining (-' + Math.abs(trends.page_views_trend).toFixed(1) + '%)');
   }
 
-  if (metrics.average_bounce_rate > 0.5) {
+  if (metrics.average_bounce_rate !== undefined && metrics.average_bounce_rate > 0.5) {
     insights.push('Bounce rate is high (' + (metrics.average_bounce_rate * 100).toFixed(1) + '%), consider improving page content');
   }
 
-  if (metrics.average_session_duration > 300) {
+  if (metrics.average_session_duration !== undefined && metrics.average_session_duration > 300) {
     insights.push('Users are highly engaged with average session duration of ' + Math.floor(metrics.average_session_duration / 60) + ' minutes');
   }
 
@@ -341,84 +380,96 @@ function generateAnalyticsInsights(data: any[], metrics: any, trends: any) {
 }
 
 // Similar helper functions for other report types (simplified for brevity)
-function calculateProjectsMetrics(data: any[]) {
+function calculateProjectsMetrics(data: unknown[]) {
+  const projectsData = data as Project[];
   return {
-    total_projects: data.length,
-    active_projects: data.filter(p => p.status === 'active').length,
-    completed_projects: data.filter(p => p.status === 'completed').length,
-    average_budget: data.reduce((sum, p) => sum + (p.budget_allocated || 0), 0) / data.length
+    total_projects: projectsData.length,
+    active_projects: projectsData.filter(p => p.status === 'active').length,
+    completed_projects: projectsData.filter(p => p.status === 'completed').length,
+    average_budget: projectsData.reduce((sum, p) => sum + (p.budget_allocated || 0), 0) / projectsData.length
   };
 }
 
-function calculateProjectsTrends(data: any[]) {
-  return { completion_rate: data.filter(p => p.status === 'completed').length / data.length * 100 };
+function calculateProjectsTrends(data: unknown[]) {
+  const projectsData = data as Project[];
+  return { completion_rate: projectsData.filter(p => p.status === 'completed').length / projectsData.length * 100 };
 }
 
-function generateProjectsInsights(data: any[], metrics: any, trends: any) {
+function generateProjectsInsights(data: unknown[], metrics: Record<string, number>, trends: Record<string, number>) {
+  const projectsData = data as Project[]; // Assertion added
   const insights = [];
-  if (trends.completion_rate > 80) {
+  if (trends.completion_rate !== undefined && trends.completion_rate > 80) {
     insights.push('High project completion rate (' + trends.completion_rate.toFixed(1) + '%)');
   }
   return insights;
 }
 
-function calculateTeamMetrics(data: any[]) {
+function calculateTeamMetrics(data: unknown[]) {
+  const teamData = data as TeamReportItem[];
   return {
-    total_members: data.length,
-    total_tasks_completed: data.reduce((sum, m) => sum + m.tasks_completed, 0),
-    average_productivity: data.reduce((sum, m) => sum + m.productivity_score, 0) / data.length
+    total_members: teamData.length,
+    total_tasks_completed: teamData.reduce((sum, m) => sum + m.tasks_completed, 0),
+    average_productivity: teamData.reduce((sum, m) => sum + m.productivity_score, 0) / teamData.length
   };
 }
 
-function calculateTeamTrends(data: any[]) {
+function calculateTeamTrends(data: unknown[]) {
+  const teamData = data as TeamReportItem[]; // Assertion added, though not directly used in this mock
   return { productivity_trend: 5.2 }; // Mock trend
 }
 
-function generateTeamInsights(data: any[], metrics: any, trends: any) {
+function generateTeamInsights(data: unknown[], metrics: Record<string, number>, trends: Record<string, number>) {
+  const teamData = data as TeamReportItem[]; // Assertion added, though not directly used in this mock
   return ['Team productivity is above average'];
 }
 
-function calculateFinancialMetrics(data: any[]) {
+function calculateFinancialMetrics(data: unknown[]) {
+  const financialData = data as FinancialReportItem[];
   return {
-    total_revenue: data.reduce((sum, item) => sum + item.revenue, 0),
-    total_expenses: data.reduce((sum, item) => sum + item.expenses, 0),
-    total_profit: data.reduce((sum, item) => sum + item.profit, 0)
+    total_revenue: financialData.reduce((sum, item) => sum + item.revenue, 0),
+    total_expenses: financialData.reduce((sum, item) => sum + item.expenses, 0),
+    total_profit: financialData.reduce((sum, item) => sum + item.profit, 0)
   };
 }
 
-function calculateFinancialTrends(data: any[]) {
+function calculateFinancialTrends(data: unknown[]) {
+  const financialData = data as FinancialReportItem[]; // Assertion added, though not directly used in this mock
   return { profit_margin_trend: 2.1 }; // Mock trend
 }
 
-function generateFinancialInsights(data: any[], metrics: any, trends: any) {
+function generateFinancialInsights(data: unknown[], metrics: Record<string, number>, trends: Record<string, number>) {
+  const financialData = data as FinancialReportItem[]; // Assertion added, though not directly used in this mock
   return ['Revenue is growing steadily'];
 }
 
-function calculateCustomMetrics(data: any[], metrics: string[]) {
+function calculateCustomMetrics(data: unknown[], metrics: string[]) {
+  const customData = data as CustomReportItem[];
   const result: Record<string, number> = {};
   metrics.forEach(metric => {
-    result[metric] = data.reduce((sum, item) => sum + (item.value || 0), 0);
+    result[metric] = customData.reduce((sum, item) => sum + (item.value || 0), 0);
   });
   return result;
 }
 
-function calculateCustomTrends(data: any[]) {
+function calculateCustomTrends(data: unknown[]) {
+  const customData = data as CustomReportItem[]; // Assertion added, though not directly used in this mock
   return { overall_trend: 3.5 }; // Mock trend
 }
 
-function generateCustomInsights(data: any[], metrics: any, trends: any) {
+function generateCustomInsights(data: unknown[], metrics: Record<string, number>, trends: Record<string, number>) {
+  const customData = data as CustomReportItem[]; // Assertion added, though not directly used in this mock
   return ['Custom metrics show positive trends'];
 }
 
-function convertToCSV(data: any[]): string {
+function convertToCSV(data: unknown[]): string {
   if (data.length === 0) return '';
 
-  const headers = Object.keys(data[0]);
+  const headers = Object.keys(data[0] as Record<string, unknown>);
   const csvContent = [
     headers.join(','),
-    ...data.map(row => 
+    ...data.map(row =>
       headers.map(header => {
-        const value = row[header];
+        const value = (row as Record<string, unknown>)[header];
         return typeof value === 'string' ? `"${value.replace(/"/g, '""')}"` : value;
       }).join(',')
     )

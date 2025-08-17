@@ -199,7 +199,7 @@ export default function ProjectsSection({
             <select
               id="sort-select"
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
+              onChange={(e) => setSortBy(e.target.value as 'name' | 'created_at' | 'updated_at' | 'priority')}
               className="text-sm border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="updated_at">Last Updated</option>
@@ -244,9 +244,9 @@ export default function ProjectsSection({
               // Properly type the props
               type CardProps = React.ComponentProps<typeof ProjectCard>;
               
+
               // Create props object with required props
-              const cardProps: Partial<CardProps> & { key: string; project: ProjectWithActivity } = {
-                key: project.id,
+              const cardProps: Partial<CardProps> & { project: ProjectWithActivity } = {
                 project: project,
                 onDelete: handleDeleteProject
               };
@@ -260,7 +260,7 @@ export default function ProjectsSection({
                 cardProps.onViewDetails = onViewProject;
               }
               
-              return <ProjectCard {...cardProps} />;
+              return <ProjectCard key={project.id} {...cardProps} />;
             })}
           </div>
         )}

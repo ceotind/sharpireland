@@ -324,7 +324,7 @@ export default function EmailCampaignStats({ userId }: EmailCampaignStatsProps) 
             <label className="block text-sm font-medium text-gray-700 mb-1">Time Range</label>
             <select
               value={timeRange}
-              onChange={(e) => handleTimeRangeChange(e.target.value as any)}
+              onChange={(e) => handleTimeRangeChange(e.target.value as '7d' | '30d' | '90d')}
               className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               id="email-timerange-selector"
             >

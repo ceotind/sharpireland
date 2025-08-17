@@ -9,6 +9,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/app/utils/supabase/server';
+import { SupabaseClient } from '@supabase/supabase-js';
 import { 
   BusinessPlannerSession,
   BusinessPlannerApiResponse,
@@ -43,7 +44,7 @@ import {
  * @returns Paginated sessions result
  */
 async function getPaginatedSessions(
-  supabase: any,
+  supabase: SupabaseClient,
   userId: string,
   page: number = 1,
   limit: number = DEFAULT_PAGINATION_LIMIT,
@@ -101,7 +102,7 @@ async function getPaginatedSessions(
  * @returns Session counts
  */
 async function getSessionCounts(
-  supabase: any,
+  supabase: SupabaseClient,
   userId: string
 ): Promise<{
   total: number;
@@ -127,14 +128,14 @@ async function getSessionCounts(
       archived: 0
     };
     
-    sessions?.forEach((session: any) => {
+    sessions?.forEach((session: { status: string }) => {
       if (session.status === 'active') counts.active++;
       else if (session.status === 'completed') counts.completed++;
       else if (session.status === 'archived') counts.archived++;
     });
     
     return counts;
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Unexpected error in getSessionCounts:', error);
     return null;
   }
@@ -331,7 +332,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
     }
     
     // Validate title if provided
-    let sessionTitle = DEFAULT_SESSION_TITLE;
+    let sessionTitle: string = DEFAULT_SESSION_TITLE;
     if (requestData.title) {
       const titleValidation = businessPlannerValidator.validateSessionTitleInput(requestData.title);
       if (!titleValidation.isValid) {
@@ -347,7 +348,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
           { status: 400 }
         );
       }
-      sessionTitle = titleValidation.sanitizedData || DEFAULT_SESSION_TITLE;
+      sessionTitle = typeof titleValidation.sanitizedData === 'string' ? titleValidation.sanitizedData : DEFAULT_SESSION_TITLE;
     }
     
     // Check session limits
@@ -390,7 +391,10 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
     const newSession = {
       user_id: user.id,
       title: sessionTitle,
-      context: contextValidation.sanitizedData as BusinessPlannerSessionContext,
+      context: {
+        ...contextValidation.onboardingData,
+        created_at: new Date().toISOString(),
+      } as BusinessPlannerSessionContext,
       status: 'active' as const
     };
     
@@ -536,7 +540,7 @@ export async function PUT(request: NextRequest): Promise<NextResponse<BusinessPl
           { status: 400 }
         );
       }
-      updatedTitle = titleValidation.sanitizedData;
+      updatedTitle = typeof titleValidation.sanitizedData === 'string' ? titleValidation.sanitizedData : undefined;
     }
     
     // Prepare updates
@@ -670,7 +674,7 @@ export async function DELETE(request: NextRequest): Promise<NextResponse<Busines
     }
     
     // Archive session (soft delete)
-    const { data: archivedSession, error: archiveError } = await supabase
+    const { error: archiveError } = await supabase
       .from('business_planner_sessions')
       .update({ status: 'archived' })
       .eq('id', sessionId)
