@@ -47,8 +47,6 @@ export default function SettingsPanel({
   title = 'Settings',
   children 
 }: SettingsPanelProps) {
-  const [isSaving, setIsSaving] = useState(false);
-  const [saveMessage, setSaveMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   // Close panel on escape key
   useEffect(() => {
@@ -108,26 +106,7 @@ export default function SettingsPanel({
           </div>
 
           {/* Save Message */}
-          {saveMessage && (
-            <div className={`mx-6 mb-4 rounded-md p-3 ${
-              saveMessage.type === 'success' 
-                ? 'bg-green-50 border border-green-200' 
-                : 'bg-red-50 border border-red-200'
-            }`}>
-              <div className="flex items-center">
-                {saveMessage.type === 'success' ? (
-                  <CheckIcon className="h-5 w-5 text-green-600 mr-2" />
-                ) : (
-                  <ExclamationTriangleIcon className="h-5 w-5 text-red-600 mr-2" />
-                )}
-                <span className={`text-sm ${
-                  saveMessage.type === 'success' ? 'text-green-800' : 'text-red-800'
-                }`}>
-                  {saveMessage.text}
-                </span>
-              </div>
-            </div>
-          )}
+          
         </div>
       </div>
     </div>

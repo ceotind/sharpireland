@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { heroFadeIn, heroElement, heroButton } from "../utils/motion-variants";
+import { heroElement, heroButton } from "../utils/motion-variants";
 
 interface MobileHeroSectionProps {
   className?: string;

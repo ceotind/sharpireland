@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { SupabaseClient } from '@supabase/supabase-js';
+
 import { createClient } from '../../utils/supabase/server';
 
 interface InvoiceSummary {

@@ -14,7 +14,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, user, stats
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [notificationCenterOpen, setNotificationCenterOpen] = useState(false);
   const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [_loading, setLoading] = useState(true);
 
   // Navigation items
   const navigationItems = [
@@ -163,7 +163,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, user, stats
     }
   };
 
-  const unreadNotificationCount = notifications.filter(n => !n.read).length;
+  
 
   return (
     <div id="dashboard-layout-container" className="min-h-screen bg-gray-50 flex pt-16">

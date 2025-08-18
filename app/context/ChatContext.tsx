@@ -13,19 +13,11 @@ import {
   ChatSession,
   ChatContextType,
   ChatContextState,
-  ChatContextActions,
-  LoadingState,
-  ErrorState,
   BusinessPlannerSessionContext,
-  BusinessPlannerConversation,
-  BusinessPlannerSession,
   MessageStatus, // Import MessageStatus
   SessionError, // Import SessionError
   SessionErrorType, // Import SessionErrorType
   SessionCreationStatus, // Import SessionCreationStatus
-  SessionCreationRetryInfo, // Import SessionCreationRetryInfo
-  BusinessPlannerChatResponse, // Import for validation
-  CreateSessionResponse, // Import for validation
 } from "../types/business-planner";
 import { performanceLogger, errorLogger } from '../utils/performanceLogger'; // Import performanceLogger and errorLogger
 
@@ -42,26 +34,7 @@ const logError = (context: string, error: unknown, details?: unknown) => {
 };
 
 // Helper for validating API responses
-function validateApiResponse<T>(data: unknown, type: 'chat' | 'session'): T {
-  if (!data) {
-    throw new Error(`API response is empty for type ${type}.`);
-  }
 
-  if (type === 'chat') {
-    const chatResponse = data as BusinessPlannerChatResponse;
-    if (typeof chatResponse.message !== 'string' || typeof chatResponse.session_id !== 'string' || typeof chatResponse.tokens_used !== 'number') {
-      throw new Error('Invalid chat response structure.');
-    }
-    return chatResponse as T;
-  } else if (type === 'session') {
-    const sessionResponse = data as CreateSessionResponse;
-    if (!sessionResponse.session || typeof sessionResponse.session.id !== 'string' || typeof sessionResponse.message !== 'string') {
-      throw new Error('Invalid session creation response structure.');
-    }
-    return sessionResponse as T;
-  }
-  throw new Error('Unknown API response type for validation.');
-}
 
 // Initial state for the chat context
 const initialChatContextState: ChatContextState = {
@@ -594,7 +567,7 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
             error: { hasError: true, error: sessionError, message: sessionError.message },
             loading: { isLoading: false },
             sessionCreationStatus: SessionCreationStatus.FAILED,
-            sessionCreationRetryInfo: { ...prevState.sessionCreationRetryInfo, lastError: sessionError, lastAttemptTimestamp: new Date().toISOString() },
+            sessionCreationRetryInfo: { ...prevState.sessionCreationRetryInfo, lastError: sessionError, lastAttemptTimestamp: new Date().toISOString(), context: context },
           }) as ChatContextState);
 
           if (sessionError.isTransient && currentRetry < MAX_RETRIES) {
@@ -685,15 +658,15 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
     const lastError = state.sessionCreationRetryInfo.lastError;
     const currentRetryCount = state.sessionCreationRetryInfo.retryCount;
 
-    if (lastError && lastError.isTransient && currentRetryCount < MAX_RETRIES) {
+    if (lastError && lastError.isTransient && currentRetryCount < MAX_RETRIES && state.sessionCreationRetryInfo.context) {
       // Re-attempt session creation with incremented retry count
-      await createSession(lastError.originalError?.context, "", currentRetryCount + 1);
+      await createSession(state.sessionCreationRetryInfo.context, "", currentRetryCount + 1);
     } else {
-      // If not transient or max retries reached, just set status to failed
+      // If not transient or max retries reached, or context is missing, just set status to failed
       setState((prevState: ChatContextState) => ({
         ...prevState,
         sessionCreationStatus: SessionCreationStatus.FAILED,
-        error: { hasError: true, error: lastError, message: lastError?.message || "Max retries reached for session creation." },
+        error: { hasError: true, error: lastError, message: lastError?.message || "Max retries reached or missing context for session creation." },
       }) as ChatContextState);
     }
   }, [state.sessionCreationRetryInfo, createSession]);

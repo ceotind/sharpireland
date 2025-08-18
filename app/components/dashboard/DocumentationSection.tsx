@@ -156,7 +156,7 @@ export default function DocumentationSection({ userId, searchQuery }: Documentat
         category: doc.category,
         difficulty: doc.difficulty
       }
-    });
+    }, { userId });
   };
 
   const handleHelpfulVote = async (docId: string) => {

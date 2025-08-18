@@ -9,7 +9,7 @@ interface InvoiceTableProps {
   onViewInvoice?: (invoiceId: string) => void;
   onDownloadInvoice?: (invoiceId: string) => void;
   onMarkAsPaid?: (invoiceId: string) => void;
-  onEditInvoice?: (invoice: Invoice) => void;
+  onEditInvoice?: ((invoice: Invoice) => void) | undefined;
 }
 
 export default function InvoiceTable({

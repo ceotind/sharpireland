@@ -115,7 +115,7 @@ export default class DashboardErrorBoundary extends Component<Props, State> {
   /**
    * Track error in analytics
    */
-  private trackError(error: Error, errorInfo: ErrorInfo) {
+  private trackError(error: Error, _errorInfo: ErrorInfo) {
     try {
       // Track error event
       if (typeof window !== 'undefined' && window.gtag) {

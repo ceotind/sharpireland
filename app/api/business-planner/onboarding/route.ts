@@ -357,6 +357,8 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
       ipAddress: clientIP
     });
     
+    const duration = Date.now() - startTime;
+    console.log(`[API] /api/business-planner/onboarding completed in ${duration}ms`);
     return NextResponse.json({
       data: {
         profile,

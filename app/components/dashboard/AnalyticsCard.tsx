@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { AnalyticsSnapshot } from '../../types/dashboard';
+
 
 interface AnalyticsCardProps {
   title: string;

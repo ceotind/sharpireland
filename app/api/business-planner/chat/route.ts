@@ -22,7 +22,8 @@ import {
   BusinessPlannerSession,
   BusinessPlannerConversation,
   BusinessPlannerUsage,
-  BusinessPlannerSessionContext
+  BusinessPlannerSessionContext,
+  BusinessPlannerUserInput
 } from '@/app/types/business-planner';
 import { validateUserInput } from '@/app/utils/business-planner/validators';
 import { createChatCompletionWithRetry } from '@/app/utils/business-planner/openai';
@@ -401,7 +402,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
       );
     }
     
-    const { message, session_id, context } = validation.sanitizedData!;
+    const { message, session_id, context } = validation.sanitizedData as BusinessPlannerUserInput;
     const clientIP = getClientIP(request);
     const userAgent = request.headers.get('user-agent') || '';
     
@@ -575,6 +576,8 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
       needs_upgrade: remainingFree <= 0 && finalUsage.subscription_status === 'free'
     };
     
+    const duration = Date.now() - startTime;
+    console.log(`[API] /api/business-planner/chat completed in ${duration}ms`);
     return NextResponse.json({
       data: responseData,
       message: SUCCESS_MESSAGES.MESSAGE_SENT,

@@ -14,9 +14,6 @@ const UsageWarning: React.FC<UsageWarningProps> = React.memo(({ usage }) => {
   };
 
   const freeRemaining = Math.max(0, 10 - usage.free_conversations_used);
-  const paidRemaining = usage.subscription_status === 'paid'
-    ? Math.max(0, 50 - usage.paid_conversations_used)
-    : 0;
   
   if (!hasUsageRemaining()) {
     return (

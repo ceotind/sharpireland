@@ -1,22 +1,18 @@
 'use client';
 
-import React, { useState, useRef, useEffect, Suspense, lazy } from 'react';
-import { BusinessPlannerSession, BusinessPlannerUsage, ChatMessage, MessageStatus, BusinessPlannerSessionContext } from '@/app/types/business-planner';
-import { MAX_MESSAGE_LENGTH } from '@/app/utils/business-planner/constants';
+import React, { useState, useRef, useEffect } from 'react';
+import { BusinessPlannerUsage, ChatMessage, BusinessPlannerSessionContext } from '@/app/types/business-planner';
 import { useChat } from '@/app/context/ChatContext';
-import TypingIndicator from './TypingIndicator'; // Import the new component
-import ChatMessageDisplay from './ChatMessageDisplay'; // Import the new component
 import { DashboardSectionErrorBoundary } from '@/app/components/dashboard/DashboardErrorBoundary';
 import ChatMessagesList from './ChatMessagesList'; // Import the new component
 import ChatInputArea from './ChatInputArea'; // Import the new component
 import ChatErrorDisplay from './ChatErrorDisplay'; // Import the new component
 
-const WelcomeMessage = lazy(() => import('./WelcomeMessage'));
-const UsageWarning = lazy(() => import('./UsageWarning'));
+
+
 
 interface ChatInterfaceProps {
   usage: BusinessPlannerUsage;
-  session?: BusinessPlannerSession; // Re-introduce session prop for context
 }
 
 /**
@@ -27,7 +23,7 @@ interface ChatInterfaceProps {
  * - Auto-scroll to latest message
  * - Loading states and error handling
  */
-const ChatInterface: React.FC<ChatInterfaceProps> = ({ usage, session: propSession }) => {
+const ChatInterface: React.FC<ChatInterfaceProps> = ({ usage }) => {
   const {
     messages,
     currentSession, // This session is from context
@@ -39,12 +35,8 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ usage, session: propSessi
     estimatedWaitTime, // New: Estimated wait time for AI response
     sendMessage,
     createSession,
-    selectSession,
-    deleteSession,
-    clearChat,
     retrySendMessage,
     retryCreateSession, // New: Function to retry session creation
-    updateSessionTitle,
     cancelAiResponse, // New: Function to cancel AI response
     sessionCreationStatus, // New: Session creation status
     sessionCreationRetryInfo, // New: Session creation retry info
@@ -52,8 +44,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ usage, session: propSessi
 
   const [showTimeoutWarning, setShowTimeoutWarning] = useState(false);
   const [timeoutTimer, setTimeoutTimer] = useState<NodeJS.Timeout | null>(null);
-  const [initialMessageForSession, setInitialMessageForSession] = useState<string | null>(null);
-  const [initialContextForSession, setInitialContextForSession] = useState<BusinessPlannerSessionContext | null>(null);
 
   // Effect to manage timeout warning
   useEffect(() => {
@@ -131,8 +121,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ usage, session: propSessi
           challenge: "General Planning",
           created_at: new Date().toISOString(),
         };
-        setInitialMessageForSession(messageContent);
-        setInitialContextForSession(dummyContext);
         await createSession(dummyContext, messageContent);
       } else {
         // If a session exists, send the message to it

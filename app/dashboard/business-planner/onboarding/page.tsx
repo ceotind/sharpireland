@@ -106,7 +106,6 @@ export default async function BusinessPlannerOnboarding() {
       if (profileError) {
         console.error('Error saving business profile:', profileError);
         redirect('/dashboard/business-planner/onboarding?error=save_failed');
-        return;
       }
 
       // Create initial session with onboarding context
@@ -134,7 +133,6 @@ export default async function BusinessPlannerOnboarding() {
       if (sessionError) {
         console.error('Error creating initial session:', sessionError);
         redirect('/dashboard/business-planner/onboarding?error=save_failed');
-        return;
       }
 
       // Initialize usage tracking if not exists

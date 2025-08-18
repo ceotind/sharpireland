@@ -3,7 +3,7 @@ import { createClient } from '../../../utils/supabase/server';
 import { ApiResponse } from '../../../types/dashboard';
 
 // PUT /api/notifications/read-all - Mark all notifications as read
-export async function PUT(request: NextRequest): Promise<NextResponse<ApiResponse<{ updated_count: number }>>> {
+export async function PUT(_request: NextRequest): Promise<NextResponse<ApiResponse<{ updated_count: number }>>> {
   try {
     const supabase = await createClient();
     

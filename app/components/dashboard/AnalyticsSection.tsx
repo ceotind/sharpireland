@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import AnalyticsCard from './AnalyticsCard';
-import { AnalyticsSnapshot } from '../../types/dashboard';
+
 import BarChart from './charts/BarChart';
 import LineChart from './charts/LineChart';
 
@@ -68,12 +68,12 @@ export default function AnalyticsSection({ className = '' }: AnalyticsSectionPro
       const dateStr = date.toISOString().split('T')[0];
       
       visitors.push({
-        date: dateStr,
+        date: dateStr ?? '',
         value: Math.floor(Math.random() * 500) + 100
       });
       
       pageViews.push({
-        date: dateStr,
+        date: dateStr ?? '',
         value: Math.floor(Math.random() * 1200) + 300
       });
     }

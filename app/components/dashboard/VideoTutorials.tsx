@@ -193,7 +193,7 @@ export default function VideoTutorials({ userId, searchQuery }: VideoTutorialsPr
         difficulty: video.difficulty,
         duration: video.duration
       }
-    });
+    }, { userId });
 
     // Update view count
     setVideos(prev => prev.map(v => 
@@ -208,7 +208,7 @@ export default function VideoTutorials({ userId, searchQuery }: VideoTutorialsPr
       action: 'video_tutorial_liked',
       description: 'Liked video tutorial',
       metadata: { video_id: videoId }
-    });
+    }, { userId });
 
     // Update like count
     setVideos(prev => prev.map(video => 

@@ -193,7 +193,7 @@ export default function ReportBuilder({ userId, onReportGenerated }: ReportBuild
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(previewConfig),
+        body: JSON.stringify({ ...previewConfig, userId }),
       });
 
       const result = await response.json();
@@ -238,7 +238,7 @@ export default function ReportBuilder({ userId, onReportGenerated }: ReportBuild
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(config),
+        body: JSON.stringify({ ...config, userId }),
       });
 
       if (config.format === 'csv') {

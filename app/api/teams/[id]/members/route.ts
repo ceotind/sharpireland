@@ -179,7 +179,7 @@ export async function POST(
     }
 
     // Check if user is already a member
-    const { data: existingMember, error: existingError } = await supabase
+    const { data: existingMember, error: _existingError } = await supabase
       .from('team_members')
       .select('id')
       .eq('team_id', teamId)
@@ -401,10 +401,16 @@ export async function DELETE(
         entity_id: teamId,
         description: isSelfRemoval 
           ? 'Left the team'
-          : `Removed ${targetMember.user_profiles.full_name || targetMember.user_profiles.username} from team`,
+          : `Removed ${(() => {
+              const profile = targetMember.user_profiles && targetMember.user_profiles.length > 0 ? targetMember.user_profiles[0] : undefined;
+              return profile ? (profile.full_name ?? profile.username ?? 'unknown user') : 'unknown user';
+            })()} from team`,
         metadata: { 
           removed_user_id: memberUserId,
-          removed_user_name: targetMember.user_profiles.full_name || targetMember.user_profiles.username,
+          removed_user_name: (() => {
+              const profile = targetMember.user_profiles && targetMember.user_profiles.length > 0 ? targetMember.user_profiles[0] : undefined;
+              return profile ? (profile.full_name ?? profile.username ?? 'unknown user') : 'unknown user';
+            })(),
           is_self_removal: isSelfRemoval
         }
       },

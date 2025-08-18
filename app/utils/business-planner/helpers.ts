@@ -7,7 +7,7 @@
  * @date 2025-08-13
  */
 
-import { createClient } from '@/app/utils/supabase/server';
+
 import {
   BusinessPlannerSession,
   BusinessPlannerConversation,

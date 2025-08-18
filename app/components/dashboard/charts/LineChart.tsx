@@ -72,7 +72,6 @@ export default function LineChart({
   const createAreaPath = () => {
     const linePath = createPath();
     const firstPoint = data[0];
-    const lastPoint = data[data.length - 1];
     
     const firstX = padding;
     const lastX = padding + chartWidth;
@@ -87,7 +86,6 @@ export default function LineChart({
 
     const rect = event.currentTarget.getBoundingClientRect();
     const x = event.clientX - rect.left - padding;
-    const y = event.clientY - rect.top;
 
     // Find closest data point
     const pointIndex = Math.round((x / chartWidth) * (data.length - 1));

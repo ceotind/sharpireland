@@ -38,6 +38,7 @@ interface AnalyticsData {
   uniqueVisitors: number;
   bounceRate: number;
   avgSessionDuration: number;
+  [key: string]: unknown; // Add this line
 }
 
 interface ProjectData {
@@ -46,6 +47,7 @@ interface ProjectData {
   createdAt: string;
   updatedAt: string;
   owner: string;
+  [key: string]: unknown; // Add this line
 }
 
 interface UserData {
@@ -54,6 +56,7 @@ interface UserData {
   role: string;
   createdAt: string;
   lastLogin: string;
+  [key: string]: unknown; // Add this line
 }
 
 interface FinancialData {
@@ -62,6 +65,7 @@ interface FinancialData {
   expenses: number;
   profit: number;
   currency: string;
+  [key: string]: unknown; // Add this line
 }
 
 interface TableColumn {

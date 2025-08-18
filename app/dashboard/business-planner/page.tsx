@@ -3,7 +3,7 @@ import { createClient } from '@/app/utils/supabase/server';
 import DashboardLayout from '@/app/components/dashboard/DashboardLayout';
 import SessionListWrapper from './components/SessionListWrapper';
 import UsageTrackerWrapper from './components/UsageTrackerWrapper';
-import { BusinessPlannerSession, BusinessPlannerUsage, BusinessPlannerProfile } from '@/app/types/business-planner';
+import { BusinessPlannerSession, BusinessPlannerUsage } from '@/app/types/business-planner';
 import { UserProfile, DashboardStats } from '@/app/types/dashboard';
 import Link from 'next/link';
 

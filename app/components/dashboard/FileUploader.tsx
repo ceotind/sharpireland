@@ -90,6 +90,7 @@ export default function FileUploader({
       formData.append('file', file);
       formData.append('folder', folder);
       formData.append('description', description);
+      formData.append('userId', userId);
 
       // Simulate progress updates
       const progressInterval = setInterval(() => {

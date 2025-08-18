@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { SEOReport } from '../../types/dashboard';
-import { logActivity, getClientInfo } from '../../utils/activity-logger-client';
+
 
 interface SEOHistorySectionProps {
   className?: string;
@@ -111,12 +111,7 @@ export default function SEOHistorySection({ className = '' }: SEOHistorySectionP
     });
   };
 
-  const getScoreColor = (score: number | null) => {
-    if (!score) return 'text-gray-500';
-    if (score >= 80) return 'text-green-600';
-    if (score >= 60) return 'text-yellow-600';
-    return 'text-red-600';
-  };
+  
 
   const getScoreBadgeColor = (score: number | null) => {
     if (!score) return 'bg-gray-100 text-gray-600';

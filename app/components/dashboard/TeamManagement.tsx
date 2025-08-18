@@ -123,7 +123,7 @@ export default function TeamManagement({ userId }: TeamManagementProps) {
         action: 'team_created',
         description: `Created team: ${newTeamName}`,
         metadata: { team_name: newTeamName }
-      });
+      }, { userId });
 
       setNewTeamName('');
       setNewTeamDescription('');
@@ -163,7 +163,7 @@ export default function TeamManagement({ userId }: TeamManagementProps) {
         action: 'team_member_added',
         description: `Added member to team: ${selectedTeam.name}`,
         metadata: { team_name: selectedTeam.name, member_email: newMemberEmail }
-      });
+      }, { userId });
 
       setNewMemberEmail('');
       setNewMemberRole('member');
@@ -198,7 +198,7 @@ export default function TeamManagement({ userId }: TeamManagementProps) {
         action: 'team_member_removed',
         description: `Removed ${memberName} from team: ${selectedTeam.name}`,
         metadata: { team_name: selectedTeam.name, member_name: memberName }
-      });
+      }, { userId });
 
       await fetchTeamMembers(selectedTeam.id);
     } catch (err) {

@@ -12,7 +12,7 @@ interface ChatMessagesListProps {
   messagesEndRef: RefObject<HTMLDivElement | null>;
 }
 
-import { useEffect } from 'react'; // Import useEffect
+
 
 const ChatMessagesList: React.FC<ChatMessagesListProps> = React.memo(({ messages, isTyping, messagesEndRef }) => {
   const onRender = (
@@ -32,35 +32,7 @@ const ChatMessagesList: React.FC<ChatMessagesListProps> = React.memo(({ messages
     });
   };
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.PerformanceObserver) {
-      const observer = new PerformanceObserver((list) => {
-        list.getEntries().forEach((entry) => {
-          if (entry.entryType === 'resource') {
-            performanceLogger({
-              name: `resource:${entry.name}`,
-              value: entry.duration,
-              unit: 'ms',
-              tags: {
-                initiatorType: (entry as PerformanceResourceTiming).initiatorType,
-                decodedBodySize: (entry as PerformanceResourceTiming).decodedBodySize.toString(),
-              },
-              details: {
-                startTime: entry.startTime,
-                responseEnd: (entry as PerformanceResourceTiming).responseEnd,
-              },
-            });
-          }
-        });
-      });
-
-      observer.observe({ entryTypes: ['resource'] });
-
-      return () => {
-        observer.disconnect();
-      };
-    }
-  }, []);
+  
 
   const renderMessage = (message: ChatMessage) => {
     return (

@@ -13,7 +13,7 @@ interface ProjectUpdateData {
 }
 
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -51,7 +51,7 @@ export async function GET(
 }
 
 export async function PUT(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -64,7 +64,7 @@ export async function PUT(
     }
 
     const { id } = params;
-    const body = await request.json();
+    const body = await _request.json();
     const { name, description, status, priority, budget, deadline } = body;
 
     // Get current project to check ownership and for logging
@@ -153,7 +153,7 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {

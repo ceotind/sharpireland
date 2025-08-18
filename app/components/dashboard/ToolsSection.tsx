@@ -211,7 +211,7 @@ export default function ToolsSection({ userId, searchQuery }: ToolsSectionProps)
         difficulty: tool.difficulty,
         is_external: tool.is_external
       }
-    });
+    }, { userId });
 
     // Update usage count
     setTools(prev => prev.map(t => 

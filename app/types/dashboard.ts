@@ -112,6 +112,10 @@ export interface Invoice {
   created_at: string;
 }
 
+export interface SupportTicketMetadata extends Record<string, unknown> {
+  messages?: SupportTicketMessage[];
+}
+
 export interface SupportTicket {
   id: string;
   user_id: string;
@@ -123,7 +127,7 @@ export interface SupportTicket {
   assigned_to: string | null;
   resolved_at: string | null;
   satisfaction_rating: number | null;
-  metadata: Record<string, unknown> | null;
+  metadata: SupportTicketMetadata | null;
   created_at: string;
   updated_at: string;
 }

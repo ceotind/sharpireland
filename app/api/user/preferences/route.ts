@@ -39,7 +39,7 @@ interface ProfileUpdatePayload {
  *
  * Get user preferences
  */
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     const supabase = await createClient();
     
@@ -134,7 +134,7 @@ export async function GET(request: NextRequest) {
  * 
  * Update user preferences
  */
-export async function PUT(request: NextRequest) {
+export async function PUT(_request: NextRequest) {
   try {
     const supabase = await createClient();
     
@@ -149,7 +149,7 @@ export async function PUT(request: NextRequest) {
     }
 
     // Parse request body
-    const preferences: UserPreferences = await request.json();
+    const preferences: UserPreferences = await _request.json();
 
     // Validate preferences structure
     const validationError = validatePreferences(preferences);
@@ -220,7 +220,7 @@ export async function PUT(request: NextRequest) {
  * 
  * Partially update user preferences
  */
-export async function PATCH(request: NextRequest) {
+export async function PATCH(_request: NextRequest) {
   try {
     const supabase = await createClient();
     
@@ -235,7 +235,7 @@ export async function PATCH(request: NextRequest) {
     }
 
     // Parse request body
-    const partialPreferences = await request.json();
+    const partialPreferences = await _request.json();
 
     // Get current preferences
     const { data: profile, error: profileError } = await supabase
@@ -308,7 +308,7 @@ export async function PATCH(request: NextRequest) {
  * 
  * Reset user preferences to defaults
  */
-export async function DELETE(request: NextRequest) {
+export async function DELETE(_request: NextRequest) {
   try {
     const supabase = await createClient();
     

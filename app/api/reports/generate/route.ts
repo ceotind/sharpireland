@@ -260,7 +260,7 @@ export async function POST(request: NextRequest) {
 }
 
 // Helper functions for generating different types of reports
-async function generateAnalyticsReport(supabase: SupabaseClient, userId: string, config: ReportConfig): Promise<unknown[]> {
+async function generateAnalyticsReport(_supabase: SupabaseClient, _userId: string, config: ReportConfig): Promise<unknown[]> {
   // Mock analytics data - in a real app, this would query actual analytics tables
   const mockData = [
     { date: '2024-01-01', page_views: 1250, unique_visitors: 890, bounce_rate: 0.35, avg_session_duration: 180 },
@@ -294,7 +294,7 @@ async function generateProjectsReport(supabase: SupabaseClient, userId: string, 
   return projects || [];
 }
 
-async function generateTeamReport(supabase: SupabaseClient, userId: string, config: ReportConfig): Promise<unknown[]> {
+async function generateTeamReport(_supabase: SupabaseClient, _userId: string, _config: ReportConfig): Promise<unknown[]> {
   // Mock team data
   const mockData = [
     { member_name: 'John Doe', role: 'Developer', tasks_completed: 15, hours_logged: 120, productivity_score: 0.85 },
@@ -305,7 +305,7 @@ async function generateTeamReport(supabase: SupabaseClient, userId: string, conf
   return mockData;
 }
 
-async function generateFinancialReport(supabase: SupabaseClient, userId: string, config: ReportConfig): Promise<unknown[]> {
+async function generateFinancialReport(_supabase: SupabaseClient, _userId: string, _config: ReportConfig): Promise<unknown[]> {
   // Mock financial data
   const mockData = [
     { date: '2024-01-01', revenue: 5000, expenses: 2000, profit: 3000, margin: 0.6 },
@@ -316,7 +316,7 @@ async function generateFinancialReport(supabase: SupabaseClient, userId: string,
   return mockData;
 }
 
-async function generateCustomReport(supabase: SupabaseClient, userId: string, config: ReportConfig): Promise<unknown[]> {
+async function generateCustomReport(_supabase: SupabaseClient, _userId: string, config: ReportConfig): Promise<unknown[]> {
   // For custom reports, return mock data based on requested metrics
   const mockData = config.metrics.map((metric, index) => ({
     metric: metric,
@@ -358,8 +358,8 @@ function calculateAnalyticsTrends(data: unknown[]) {
   };
 }
 
-function generateAnalyticsInsights(data: unknown[], metrics: Record<string, number>, trends: Record<string, number>) {
-  const analyticsData = data as AnalyticsReportItem[]; // Assertion added
+function generateAnalyticsInsights(_data: unknown[], metrics: Record<string, number>, trends: Record<string, number>) {
+  
   const insights = [];
 
   if (trends.page_views_trend !== undefined && trends.page_views_trend > 10) {
@@ -395,8 +395,8 @@ function calculateProjectsTrends(data: unknown[]) {
   return { completion_rate: projectsData.filter(p => p.status === 'completed').length / projectsData.length * 100 };
 }
 
-function generateProjectsInsights(data: unknown[], metrics: Record<string, number>, trends: Record<string, number>) {
-  const projectsData = data as Project[]; // Assertion added
+function generateProjectsInsights(_data: unknown[], _metrics: Record<string, number>, trends: Record<string, number>) {
+  
   const insights = [];
   if (trends.completion_rate !== undefined && trends.completion_rate > 80) {
     insights.push('High project completion rate (' + trends.completion_rate.toFixed(1) + '%)');
@@ -413,13 +413,13 @@ function calculateTeamMetrics(data: unknown[]) {
   };
 }
 
-function calculateTeamTrends(data: unknown[]) {
-  const teamData = data as TeamReportItem[]; // Assertion added, though not directly used in this mock
+function calculateTeamTrends(_data: unknown[]) {
+
   return { productivity_trend: 5.2 }; // Mock trend
 }
 
-function generateTeamInsights(data: unknown[], metrics: Record<string, number>, trends: Record<string, number>) {
-  const teamData = data as TeamReportItem[]; // Assertion added, though not directly used in this mock
+function generateTeamInsights(_data: unknown[], _metrics: Record<string, number>, _trends: Record<string, number>) {
+
   return ['Team productivity is above average'];
 }
 
@@ -432,13 +432,13 @@ function calculateFinancialMetrics(data: unknown[]) {
   };
 }
 
-function calculateFinancialTrends(data: unknown[]) {
-  const financialData = data as FinancialReportItem[]; // Assertion added, though not directly used in this mock
+function calculateFinancialTrends(_data: unknown[]) {
+  
   return { profit_margin_trend: 2.1 }; // Mock trend
 }
 
-function generateFinancialInsights(data: unknown[], metrics: Record<string, number>, trends: Record<string, number>) {
-  const financialData = data as FinancialReportItem[]; // Assertion added, though not directly used in this mock
+function generateFinancialInsights(_data: unknown[], _metrics: Record<string, number>, _trends: Record<string, number>) {
+  
   return ['Revenue is growing steadily'];
 }
 
@@ -451,13 +451,13 @@ function calculateCustomMetrics(data: unknown[], metrics: string[]) {
   return result;
 }
 
-function calculateCustomTrends(data: unknown[]) {
-  const customData = data as CustomReportItem[]; // Assertion added, though not directly used in this mock
+function calculateCustomTrends(_data: unknown[]) {
+  
   return { overall_trend: 3.5 }; // Mock trend
 }
 
-function generateCustomInsights(data: unknown[], metrics: Record<string, number>, trends: Record<string, number>) {
-  const customData = data as CustomReportItem[]; // Assertion added, though not directly used in this mock
+function generateCustomInsights(_data: unknown[], _metrics: Record<string, number>, _trends: Record<string, number>) {
+  
   return ['Custom metrics show positive trends'];
 }
 

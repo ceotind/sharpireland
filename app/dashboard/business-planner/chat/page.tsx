@@ -285,7 +285,6 @@ export default async function BusinessPlannerChat({ searchParams }: ChatPageProp
             }}
           >
             <ChatInterface
-              session={currentSession} // Pass currentSession for context in API calls
               usage={usageData}
             />
           </ChatProvider>

@@ -129,7 +129,8 @@ async function completePayment(
  */
 async function creditUserAccount(
   supabase: SupabaseClient,
-  userId: string
+  userId: string,
+  conversationsToAdd: number
 ): Promise<BusinessPlannerUsage | null> {
   try {
     // Get or create usage record
@@ -151,7 +152,7 @@ async function creditUserAccount(
       const newUsage = {
         user_id: userId,
         free_conversations_used: 0,
-        paid_conversations_used: 0,
+        paid_conversations_used: conversationsToAdd, // Initialize with conversationsToAdd
         total_tokens_used: 0,
         last_reset_date: new Date().toISOString().split('T')[0],
         subscription_status: 'paid'
@@ -169,26 +170,28 @@ async function creditUserAccount(
       }
       
       usage = createdUsage;
+    } else {
+      // Update existing usage record with paid subscription and add conversations
+      const { data: updatedUsage, error: updateError } = await supabase
+        .from('business_planner_usage')
+        .update({
+          subscription_status: 'paid',
+          paid_conversations_used: usage.paid_conversations_used + conversationsToAdd, // Add conversations
+          updated_at: new Date().toISOString()
+        })
+        .eq('user_id', userId)
+        .select()
+        .single();
+      
+      if (updateError) {
+        console.error('Error updating usage record:', updateError);
+        return null;
+      }
+      
+      usage = updatedUsage; // Update usage with the newly updated record
     }
     
-    // Update usage record with paid subscription and reset paid conversations
-    const { data: updatedUsage, error: updateError } = await supabase
-      .from('business_planner_usage')
-      .update({
-        subscription_status: 'paid',
-        paid_conversations_used: 0, // Reset paid conversations when new payment is verified
-        updated_at: new Date().toISOString()
-      })
-      .eq('user_id', userId)
-      .select()
-      .single();
-    
-    if (updateError) {
-      console.error('Error updating usage record:', updateError);
-      return null;
-    }
-    
-    return updatedUsage;
+    return usage; // Return the updated usage
   } catch (error: unknown) {
     console.error('Unexpected error in creditUserAccount:', error);
     return null;
@@ -251,7 +254,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
     }
     
     // Check admin privileges
-    const userIsAdmin = await isAdmin(supabase, user.id);
+    const userIsAdmin = await isAdmin(supabase);
     
     if (!userIsAdmin) {
       return NextResponse.json(
@@ -441,7 +444,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
       message = 'Payment verified and user account credited successfully';
       
       // Log verification activity
-      await logVerificationActivity(supabase, user.id, payment.id, 'verified');
+      await logVerificationActivity(user.id, payment.id, 'verified');
       
     } else { // action === 'reject'
       // Mark payment as failed
@@ -473,7 +476,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<BusinessP
       message = 'Payment rejected successfully';
       
       // Log rejection activity
-      await logVerificationActivity(supabase, user.id, payment.id, 'rejected');
+      await logVerificationActivity(user.id, payment.id, 'rejected');
     }
     
     return NextResponse.json({

@@ -4,7 +4,7 @@ import { ApiResponse } from '../../../types/dashboard';
 
 // PUT /api/notifications/[id] - Mark notification as read
 export async function PUT(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: { id: string } }
 ): Promise<NextResponse<ApiResponse<null>>> {
   try {
@@ -65,7 +65,7 @@ export async function PUT(
 
 // DELETE /api/notifications/[id] - Delete notification
 export async function DELETE(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: { id: string } }
 ): Promise<NextResponse<ApiResponse<null>>> {
   try {

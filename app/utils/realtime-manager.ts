@@ -127,7 +127,7 @@ export class RealtimeManager {
         // Clean up existing subscription if it exists
         this.unsubscribe(subscriptionId);
 
-        const channel = this.supabase
+        const channel = (this.supabase
           .channel(`realtime:${subscriptionId}`, {
             config: {
               event: config.event || '*',
@@ -135,9 +135,9 @@ export class RealtimeManager {
               table: config.table,
               filter: config.filter
             }
-          })
+          } as any) as any)
           .on(
-            'postgres_changes',
+            'postgres_changes', undefined,
             (payload: RealtimePostgresChangesPayload<Identifiable>) => {
               this.handleRealtimeEvent(subscriptionId, payload as RealtimePostgresChangesPayload<T>, handler);
             }

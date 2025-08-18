@@ -360,7 +360,7 @@ export class BusinessPlannerValidator {
     return {
       isValid: errors.length === 0,
       errors,
-      sanitizedData: errors.length === 0 ? businessType : undefined
+      sanitizedData: errors.length === 0 ? businessType as any : undefined
     };
   }
 

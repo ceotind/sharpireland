@@ -6,8 +6,7 @@ import PaymentHistory from '../components/PaymentHistory';
 import UsageTracker from '../components/UsageTracker';
 import { 
   BusinessPlannerPayment, 
-  BusinessPlannerUsage, 
-  BusinessPlannerProfile 
+  BusinessPlannerUsage 
 } from '@/app/types/business-planner';
 import { UserProfile, DashboardStats } from '@/app/types/dashboard';
 import { 

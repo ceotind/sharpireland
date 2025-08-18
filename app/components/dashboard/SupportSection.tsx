@@ -28,7 +28,6 @@ export default function SupportSection({ className = '' }: SupportSectionProps) 
   const [statusFilter, setStatusFilter] = useState<string>('');
   const [priorityFilter, setPriorityFilter] = useState<string>('');
   const [isNewTicketModalOpen, setIsNewTicketModalOpen] = useState(false);
-  const [selectedTicketId, setSelectedTicketId] = useState<string | null>(null);
 
   const fetchTickets = async (page: number = 1, status: string = '', priority: string = '') => {
     try {
@@ -112,7 +111,6 @@ export default function SupportSection({ className = '' }: SupportSectionProps) 
   };
 
   const handleViewTicketDetails = (ticketId: string) => {
-    setSelectedTicketId(ticketId);
     // In a real implementation, this would open a detailed view modal
     // For now, we'll just log it
     console.log('View ticket details:', ticketId);

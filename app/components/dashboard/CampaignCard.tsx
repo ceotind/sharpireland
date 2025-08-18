@@ -108,7 +108,7 @@ export default function CampaignCard({
         campaign_name: campaign.name,
         campaign_type: campaign.type
       }
-    });
+    }, { userId: userId });
 
     switch (action) {
       case 'edit':

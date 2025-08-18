@@ -7,9 +7,6 @@ import {
   ShieldCheckIcon, 
   CogIcon,
   KeyIcon,
-  GlobeAltIcon,
-  PaintBrushIcon,
-  TrashIcon,
   ExclamationTriangleIcon
 } from '@heroicons/react/24/outline';
 import DashboardLayout from '@/app/components/dashboard/DashboardLayout';
@@ -144,7 +141,7 @@ export default function SettingsPage() {
       for (let i = 0; i < keys.length - 1; i++) {
         const key = keys[i];
         if (key) {
-          current[key] = { ...current[key] };
+          current[key] = { ...(current[key] as Record<string, unknown>) };
           current = current[key] as Record<string, unknown>;
         }
       }

@@ -60,6 +60,7 @@ export default function FileManager({ userId }: FileManagerProps) {
 
       if (searchQuery) params.append('search', searchQuery);
       if (selectedType !== 'all') params.append('type', selectedType);
+      if (selectedFolder !== 'all') params.append('folder', selectedFolder);
 
       const response = await fetch(`/api/files?${params}`);
       const result = await response.json();
@@ -320,6 +321,20 @@ export default function FileManager({ userId }: FileManagerProps) {
             {uniqueTypes.map((type) => (
               <option key={type} value={type}>
                 {type.split('/')[1]?.toUpperCase() || type}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={selectedFolder}
+            onChange={(e) => setSelectedFolder(e.target.value)}
+            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            id="file-folder-filter"
+          >
+            <option value="all">All Folders</option>
+            {uniqueFolders.map((folder) => (
+              <option key={folder} value={folder}>
+                {folder}
               </option>
             ))}
           </select>

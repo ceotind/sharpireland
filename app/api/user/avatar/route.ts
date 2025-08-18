@@ -55,7 +55,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ApiRespon
     const fileBuffer = await file.arrayBuffer();
 
     // Upload to Supabase Storage
-    const { data: uploadData, error: uploadError } = await supabase.storage
+    const { data: _uploadData, error: uploadError } = await supabase.storage
       .from('user-uploads')
       .upload(filePath, fileBuffer, {
         contentType: file.type,

@@ -20,7 +20,7 @@ export async function GET(
     const offset = parseInt(searchParams.get('offset') || '0');
 
     // First verify the project belongs to the user
-    const { data: project, error: projectError } = await supabase
+    const { data: _project, error: projectError } = await supabase
       .from('projects')
       .select('id')
       .eq('id', id)
@@ -102,7 +102,7 @@ export async function POST(
     }
 
     // First verify the project belongs to the user
-    const { data: project, error: projectError } = await supabase
+    const { data: _project, error: projectError } = await supabase
       .from('projects')
       .select('id, name')
       .eq('id', id)

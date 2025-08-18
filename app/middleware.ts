@@ -28,21 +28,9 @@ const RATE_LIMITS = {
   default: { requests: 100, window: 60 } // Default: 100 requests per minute
 };
 
-/**
- * Paths that require authentication
- */
-const PROTECTED_PATHS = [
-  '/api/business-planner/',
-  '/dashboard/business-planner/',
-  '/business-planner/chat'
-];
 
-/**
- * Paths that require admin access
- */
-const ADMIN_PATHS = [
-  '/api/business-planner/admin'
-];
+
+
 
 /**
  * Blocked user agents patterns

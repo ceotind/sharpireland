@@ -60,7 +60,7 @@ export default function MarketingDashboard() {
         setUser(user);
         
         if (user) {
-          await loadMarketingData(user.id);
+          await loadMarketingData();
           await logActivity({
             action: 'marketing_dashboard_visited',
             description: 'Visited marketing dashboard',
@@ -78,7 +78,7 @@ export default function MarketingDashboard() {
     getUser();
   }, [supabase]);
 
-  const loadMarketingData = async (userId: string) => {
+  const loadMarketingData = async () => {
     try {
       // Mock data - in a real app, this would come from APIs
       const mockCampaigns: Campaign[] = [

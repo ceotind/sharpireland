@@ -527,7 +527,7 @@ export interface SessionError extends BusinessPlannerError {
   /** Whether the error is transient and a retry might succeed */
   isTransient: boolean;
   /** Original error object if available */
-  originalError?: Error | unknown;
+  originalError?: Error | { context: BusinessPlannerSessionContext } | unknown;
 }
 
 /**
@@ -553,6 +553,8 @@ export interface SessionCreationRetryInfo {
   lastError?: SessionError;
   /** Timestamp of the last retry attempt */
   lastAttemptTimestamp?: string;
+  /** The context of the session creation attempt that failed */
+  context?: BusinessPlannerSessionContext;
 }
 
 /**

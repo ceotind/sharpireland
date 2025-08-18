@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '../utils/supabase/server'
-import { UserProfile, DashboardStats, Project, Notification, Subscription, Invoice } from '../types/dashboard'
+import { UserProfile, DashboardStats } from '../types/dashboard'
 import DashboardLayout from '../components/dashboard/DashboardLayout'
 import LogoutButton from './LogoutButton'
 import Link from 'next/link'
