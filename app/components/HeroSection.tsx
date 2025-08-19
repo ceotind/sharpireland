@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { heroFadeIn, heroElement, heroButton } from "../utils/motion-variants";
 
@@ -11,9 +11,28 @@ export default function HeroSection() {
   const [bentoImages, setBentoImages] = useState<string[]>([]);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
+  const [currentBgImage, setCurrentBgImage] = useState(0);
+  
+  // Create refs for in-view detection
+  const heroSectionRef = useRef(null);
+  const announcementRef = useRef(null);
+  const copyRef = useRef(null);
+  const buttonsRef = useRef(null);
+  const bentoRef = useRef(null);
 
   // Fallbacks used if API fails or before load. Keep within public/ for Next/Image optimization.
   const DEFAULT_FALLBACKS = [
+    "/images/bento_grid/brutalist_poster.webp",
+    "/images/bento_grid/girl_sitting_on_car.webp",
+    "/images/bento_grid/gradient_art.webp",
+    "/images/bento_grid/landscape_view.webp",
+    "/images/bento_grid/laptop_on_desk.webp",
+    "/images/bento_grid/pixar_turtle.webp",
+    "/images/bento_grid/working_on_laptop.webp",
+  ] as const;
+
+  // Background images for mobile view
+  const BACKGROUND_IMAGES = [
     "/images/bento_grid/brutalist_poster.webp",
     "/images/bento_grid/girl_sitting_on_car.webp",
     "/images/bento_grid/gradient_art.webp",
@@ -99,6 +118,24 @@ export default function HeroSection() {
     };
   }, []);
 
+  // Cycle through background images for mobile view
+  useEffect(() => {
+    // Check if we're on mobile view
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    
+    if (!isMobile) {
+      // Reset to first image when switching to desktop
+      setCurrentBgImage(0);
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setCurrentBgImage(prev => (prev + 1) % BACKGROUND_IMAGES.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [typeof window !== 'undefined' ? window.innerWidth : null]);
+
 
   // Show loading state during initialization
   if (isInitializing) {
@@ -145,8 +182,10 @@ export default function HeroSection() {
       className="relative min-h-screen pt-36 overflow-hidden"
       aria-label="Venture studio hero"
       initial="hidden"
-      animate={!isInitializing && imagesLoaded ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
       variants={heroFadeIn}
+      ref={heroSectionRef}
     >
       {/* Base deep-teal gradient */}
       <div
@@ -169,6 +208,32 @@ export default function HeroSection() {
         }}
       />
 
+      {/* Mobile background image slideshow */}
+      <div
+        id="hero-mobile-bg"
+        className="absolute inset-0 sm:hidden -z-10"
+      >
+        <div
+          id="hero-mobile-bg-image"
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${BACKGROUND_IMAGES[currentBgImage]})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.3,
+            transition: "opacity 1s ease-in-out",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, var(--bg-100) 0%, var(--bg-200) 40%, var(--bg-200) 100%)",
+            opacity: 0.7,
+          }}
+        />
+      </div>
+
       {/* Content container */}
       <div
         id="hero-container"
@@ -179,7 +244,7 @@ export default function HeroSection() {
           {/* Left Column - Existing content */}
           <div id="hero-left-col" className="lg:col-span-7 flex flex-col">
             {/* Announcement pill */}
-            <motion.div id="hero-announcement-wrap" variants={heroElement}>
+            <motion.div id="hero-announcement-wrap" variants={heroElement} ref={announcementRef} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-15% 0px -30% 0px" }}>
               <div
                 id="hero-announcement"
                 className="inline-flex items-center gap-3 rounded-2xl border px-4 py-2"
@@ -218,7 +283,7 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Heading + subtext */}
-            <motion.div id="hero-copy-wrap" className="mt-8" variants={heroElement}>
+            <motion.div id="hero-copy-wrap" className="mt-8" variants={heroElement} ref={copyRef} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-15% 0px -30% 0px" }}>
               <h1
                 id="hero-heading"
                 className="text-[var(--text-100)] font-light leading-[1.08]"
@@ -241,10 +306,14 @@ export default function HeroSection() {
 
               {/* Action buttons */}
               <motion.div
-                id="hero-buttons"
-                className="mt-8 flex flex-col sm:flex-row gap-4"
-                variants={heroElement}
-              >
+              id="hero-buttons"
+              className="mt-8 flex flex-col sm:flex-row gap-4"
+              variants={heroElement}
+              ref={buttonsRef}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
+            >
                 <motion.button
                   id="hero-btn-explore"
                   className="btn-primary px-8 py-4 rounded-xl text-base"
@@ -254,7 +323,7 @@ export default function HeroSection() {
                   whileTap="tap"
                   onClick={() => router.push("/services")}
                 >
-                  Explore Our Products
+                  Explore Our Services
                 </motion.button>
 
                 <motion.button
@@ -281,16 +350,16 @@ export default function HeroSection() {
 
           {/* Right Column - Bento Grid */}
           <div id="hero-right-col" className="lg:col-span-5">
-            <motion.div id="hero-bento-wrap" className="hidden lg:block" variants={heroElement}>
+            <motion.div id="hero-bento-wrap" className="hidden sm:block" variants={heroElement} ref={bentoRef} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-15% 0px -30% 0px" }}>
               <div
                 id="hero-bento"
-                className="grid grid-cols-6 auto-rows-[96px] gap-4"
+                className="grid grid-cols-3 sm:grid-cols-6 auto-rows-[64px] sm:auto-rows-[96px] gap-3 sm:gap-4"
                 aria-label="Showcase grid"
               >
                 {/* Large tile */}
                 <div
                   id="bento-tile-1"
-                  className="relative col-span-4 row-span-4 rounded-2xl overflow-hidden border"
+                  className="relative col-span-3 sm:col-span-4 row-span-4 rounded-2xl overflow-hidden border"
                   style={{
                     background: "var(--bg-100)",
                     borderColor: "var(--bg-300)",
@@ -321,7 +390,7 @@ export default function HeroSection() {
                 {/* Small square */}
                 <div
                   id="bento-tile-2"
-                  className="relative col-span-2 row-span-2 rounded-2xl overflow-hidden border"
+                  className="relative col-span-1 sm:col-span-2 row-span-2 rounded-2xl overflow-hidden border"
                   style={{
                     background: "var(--bg-100)",
                     borderColor: "var(--bg-300)",
@@ -351,7 +420,7 @@ export default function HeroSection() {
                 {/* Small square */}
                 <div
                   id="bento-tile-3"
-                  className="relative col-span-2 row-span-2 rounded-2xl overflow-hidden border"
+                  className="relative col-span-1 sm:col-span-2 row-span-2 rounded-2xl overflow-hidden border"
                   style={{
                     background: "var(--bg-100)",
                     borderColor: "var(--bg-300)",
@@ -381,7 +450,7 @@ export default function HeroSection() {
                 {/* Wide tile */}
                 <div
                   id="bento-tile-4"
-                  className="relative col-span-3 row-span-2 rounded-2xl overflow-hidden border"
+                  className="relative col-span-3 sm:col-span-3 row-span-2 rounded-2xl overflow-hidden border"
                   style={{
                     background: "var(--bg-100)",
                     borderColor: "var(--bg-300)",
@@ -411,7 +480,7 @@ export default function HeroSection() {
                 {/* Wide tile */}
                 <div
                   id="bento-tile-5"
-                  className="relative col-span-3 row-span-2 rounded-2xl overflow-hidden border"
+                  className="relative col-span-3 sm:col-span-3 row-span-2 rounded-2xl overflow-hidden border"
                   style={{
                     background: "var(--bg-100)",
                     borderColor: "var(--bg-300)",

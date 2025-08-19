@@ -30,7 +30,7 @@ export async function GET(): Promise<NextResponse<ApiResponse<UserProfile>>> {
         const newProfile = {
           id: user.id,
           full_name: user.user_metadata?.full_name || null,
-          avatar_url: user.user_metadata?.avatar_url || null,
+          avatar_url: user.user_metadata?.avatar_url || user.user_metadata?.picture || null,
           timezone: 'UTC',
           language: 'en',
           email_notifications: true,
@@ -86,6 +86,24 @@ export async function PUT(request: NextRequest): Promise<NextResponse<ApiRespons
         { status: 401 }
       );
     }
+    
+    // Ensure the profile has the avatar from Google OAuth if available
+    if (user.user_metadata?.picture && !user.user_metadata?.avatar_url) {
+      const { error: updateError } = await supabase.auth.updateUser({
+        data: { avatar_url: user.user_metadata.picture }
+      });
+      
+      if (updateError) {
+        console.error('Error updating user metadata with avatar:', updateError);
+      }
+    }
+    
+    if (authError || !user) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
 
     // Parse the request body
     let updateData: ProfileUpdateData;
@@ -114,12 +132,11 @@ export async function PUT(request: NextRequest): Promise<NextResponse<ApiRespons
       'marketing_emails'
     ];
 
-    const filteredData: Partial<ProfileUpdateData> = {};
-    for (const [key, value] of Object.entries(updateData)) {
-      if (allowedFields.includes(key as keyof ProfileUpdateData)) {
-        (filteredData as any)[key] = value;
-      }
-    }
+    const filteredData: Partial<ProfileUpdateData> = Object.fromEntries(
+      allowedFields
+        .filter(field => updateData[field] !== undefined)
+        .map(field => [field, updateData[field]])
+    ) as Partial<ProfileUpdateData>;
 
     // Validate specific fields
     if (filteredData.username) {
