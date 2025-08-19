@@ -27,7 +27,7 @@ const projects = [
 
 export default function ProjectsSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-20%" });
+  // Remove the useInView hook since we'll use whileInView directly on the motion component
 
   return (
     <section id="projects" ref={sectionRef} className="bg-[var(--bg-100)] py-12 md:py-32 px-2 sm:px-4" aria-labelledby="projects-heading">
@@ -45,7 +45,8 @@ export default function ProjectsSection() {
           className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8"
           role="list"
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
           variants={projectsContainer}
         >
           {projects.map((project) => (

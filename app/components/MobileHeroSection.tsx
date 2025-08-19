@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { heroElement, heroButton } from "../utils/motion-variants";
 
 interface MobileHeroSectionProps {
@@ -16,6 +16,13 @@ export default function MobileHeroSection({ className = "" }: MobileHeroSectionP
   const [nextImageIndex, setNextImageIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  
+  // Create refs for in-view detection
+  const heroSectionRef = useRef(null);
+  const contentRef = useRef(null);
+  const titleRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const buttonsRef = useRef(null);
 
   // Fallback images in case API fails
   const FALLBACK_IMAGES = [
@@ -125,7 +132,17 @@ export default function MobileHeroSection({ className = "" }: MobileHeroSectionP
       id="mobile-hero-section"
       className={`relative min-h-screen flex items-center justify-center overflow-hidden ${className}`}
       aria-label="Mobile hero section"
+      ref={heroSectionRef}
     >
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1 }
+        }}
+      >
       {/* Dynamic background image with smooth crossfade transitions */}
       <div id="mobile-hero-bg-container" className="absolute inset-0 -z-10">
         {/* Current background image */}
@@ -185,8 +202,10 @@ export default function MobileHeroSection({ className = "" }: MobileHeroSectionP
         <motion.div
           id="mobile-hero-content-wrap"
           variants={heroElement}
+          ref={contentRef}
           initial="hidden"
-          animate={imagesLoaded ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
         >
           {/* Title */}
           <motion.h1
@@ -197,6 +216,10 @@ export default function MobileHeroSection({ className = "" }: MobileHeroSectionP
               color: "#ffffff",
             }}
             variants={heroElement}
+            ref={titleRef}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
           >
             AI-Driven Web Solutions for
             <br />
@@ -211,6 +234,10 @@ export default function MobileHeroSection({ className = "" }: MobileHeroSectionP
               color: "#ffffff",
             }}
             variants={heroElement}
+            ref={descriptionRef}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
           >
             High-performance websites powered by AI-driven innovation to grow your business with Sharp Digital.
           </motion.p>
@@ -220,6 +247,10 @@ export default function MobileHeroSection({ className = "" }: MobileHeroSectionP
             id="mobile-hero-buttons-container"
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
             variants={heroElement}
+            ref={buttonsRef}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
           >
             <motion.button
               id="mobile-hero-btn-explore"
@@ -271,6 +302,7 @@ export default function MobileHeroSection({ className = "" }: MobileHeroSectionP
             "inset 0 -60px 80px rgba(0,0,0,0.1), inset 0 60px 120px rgba(0,0,0,0.08)",
         }}
       />
+      </motion.div>
     </section>
   );
 }

@@ -44,8 +44,7 @@ export default function ProcessSection() {
   const [activeStep, setActiveStep] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  const isInView = useInView(sectionRef, { once: true, margin: "-20%" });
-  const isVisualizationInView = useInView(visualizationRef, { once: true, margin: "-20%" });
+  // Remove the useInView hooks since we'll use whileInView directly on the motion components
 
   // Auto-advance slides
   useEffect(() => {
@@ -88,7 +87,8 @@ export default function ProcessSection() {
         <motion.div
           className="text-center"
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
           variants={processHeader}
         >
           <span className="text-xs sm:text-sm uppercase tracking-wide text-[var(--accent-green)] font-medium mb-2 sm:mb-4 block">
@@ -103,7 +103,8 @@ export default function ProcessSection() {
         <motion.div
           className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-stretch"
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
           variants={processContent}
         >
           {/* Process Content */}
@@ -141,7 +142,8 @@ export default function ProcessSection() {
             ref={visualizationRef}
             className="order-1 lg:order-2"
             initial="hidden"
-            animate={isVisualizationInView ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
             variants={processBoxContainer}
           >
             <div className="max-w-full sm:max-w-md mx-auto min-h-[180px]">

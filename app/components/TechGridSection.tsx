@@ -55,7 +55,7 @@ const CornerDot = ({ position }: { position: string }) => {
 
 export default function TechGridSection() {
   const gridRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(gridRef, { once: true, margin: "-15%" });
+  // Remove the useInView hook since we'll use whileInView directly on the motion component
 
   return (
     <section
@@ -82,8 +82,17 @@ export default function TechGridSection() {
         role="region"
         aria-label="Technology stack showcase"
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        variants={techGridContainer}
+        whileInView="visible"
+        viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.03,
+              delayChildren: 0.05
+            }
+          }
+        }}
       >
         {/* Mobile: horizontal scroll, sm+: grid */}
         <div
@@ -99,7 +108,17 @@ export default function TechGridSection() {
               }
               role="listitem"
               aria-label={`${tech.name} - Web development technology used by Sharp Digital Ireland`}
-              variants={techGridItem}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.4,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                  }
+                }
+              }}
             >
               <div className="absolute inset-0 z-0"></div>
               {tech.corners?.map(cornerPos => {
@@ -135,7 +154,17 @@ export default function TechGridSection() {
               className={`aspect-square border border-[var(--text-300)] flex items-center justify-center relative ${tech.gridClasses || ''} ${tech.borderClasses || ''} p-3 md:p-0`}
               role="listitem"
               aria-label={`${tech.name} - Web development technology used by Sharp Digital Ireland`}
-              variants={techGridItem}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.4,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                  }
+                }
+              }}
             >
               <div className="absolute inset-0 z-0"></div>
               {tech.corners?.map(cornerPos => {

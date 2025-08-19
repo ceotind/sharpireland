@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { heroFadeIn, heroElement, heroButton } from "../utils/motion-variants";
 
@@ -12,6 +12,13 @@ export default function HeroSection() {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
   const [currentBgImage, setCurrentBgImage] = useState(0);
+  
+  // Create refs for in-view detection
+  const heroSectionRef = useRef(null);
+  const announcementRef = useRef(null);
+  const copyRef = useRef(null);
+  const buttonsRef = useRef(null);
+  const bentoRef = useRef(null);
 
   // Fallbacks used if API fails or before load. Keep within public/ for Next/Image optimization.
   const DEFAULT_FALLBACKS = [
@@ -175,8 +182,10 @@ export default function HeroSection() {
       className="relative min-h-screen pt-36 overflow-hidden"
       aria-label="Venture studio hero"
       initial="hidden"
-      animate={!isInitializing && imagesLoaded ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
       variants={heroFadeIn}
+      ref={heroSectionRef}
     >
       {/* Base deep-teal gradient */}
       <div
@@ -235,7 +244,7 @@ export default function HeroSection() {
           {/* Left Column - Existing content */}
           <div id="hero-left-col" className="lg:col-span-7 flex flex-col">
             {/* Announcement pill */}
-            <motion.div id="hero-announcement-wrap" variants={heroElement}>
+            <motion.div id="hero-announcement-wrap" variants={heroElement} ref={announcementRef} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-15% 0px -30% 0px" }}>
               <div
                 id="hero-announcement"
                 className="inline-flex items-center gap-3 rounded-2xl border px-4 py-2"
@@ -274,7 +283,7 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Heading + subtext */}
-            <motion.div id="hero-copy-wrap" className="mt-8" variants={heroElement}>
+            <motion.div id="hero-copy-wrap" className="mt-8" variants={heroElement} ref={copyRef} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-15% 0px -30% 0px" }}>
               <h1
                 id="hero-heading"
                 className="text-[var(--text-100)] font-light leading-[1.08]"
@@ -297,10 +306,14 @@ export default function HeroSection() {
 
               {/* Action buttons */}
               <motion.div
-                id="hero-buttons"
-                className="mt-8 flex flex-col sm:flex-row gap-4"
-                variants={heroElement}
-              >
+              id="hero-buttons"
+              className="mt-8 flex flex-col sm:flex-row gap-4"
+              variants={heroElement}
+              ref={buttonsRef}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-15% 0px -30% 0px" }}
+            >
                 <motion.button
                   id="hero-btn-explore"
                   className="btn-primary px-8 py-4 rounded-xl text-base"
@@ -337,7 +350,7 @@ export default function HeroSection() {
 
           {/* Right Column - Bento Grid */}
           <div id="hero-right-col" className="lg:col-span-5">
-            <motion.div id="hero-bento-wrap" className="hidden sm:block" variants={heroElement}>
+            <motion.div id="hero-bento-wrap" className="hidden sm:block" variants={heroElement} ref={bentoRef} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-15% 0px -30% 0px" }}>
               <div
                 id="hero-bento"
                 className="grid grid-cols-3 sm:grid-cols-6 auto-rows-[64px] sm:auto-rows-[96px] gap-3 sm:gap-4"

@@ -153,7 +153,7 @@ export default async function DashboardPage() {
       id: data.user.id,
       username: null,
       full_name: data.user.user_metadata?.full_name || null,
-      avatar_url: data.user.user_metadata?.avatar_url || null,
+      avatar_url: data.user.user_metadata?.avatar_url || data.user.user_metadata?.picture || null,
       phone: null,
       company: null,
       role: null,
