@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect, Suspense, lazy } from 'react';
 import { BusinessPlannerSession, BusinessPlannerUsage, ChatMessage, MessageStatus, BusinessPlannerSessionContext } from '@/app/types/business-planner';
-import { MAX_MESSAGE_LENGTH } from '@/app/utils/business-planner/constants';
+import { MAX_MESSAGE_LENGTH, FREE_CONVERSATIONS_LIMIT, PAID_CONVERSATIONS_COUNT } from '@/app/utils/business-planner/constants';
 import { useChat } from '@/app/context/ChatContext';
 import TypingIndicator from './TypingIndicator'; // Import the new component
 import ChatMessageDisplay from './ChatMessageDisplay'; // Import the new component
@@ -106,8 +106,8 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ usage, session: propSessi
 
   // Check if user can send a message (input validation + usage limits + loading state)
   const canSendMessage = (): boolean => {
-    const freeRemaining = Math.max(0, 10 - usage.free_conversations_used);
-    const hasUsage = freeRemaining > 0 || (usage.subscription_status === 'paid' && usage.paid_conversations_used < 50);
+    const freeRemaining = Math.max(0, FREE_CONVERSATIONS_LIMIT - usage.free_conversations_used);
+    const hasUsage = freeRemaining > 0 || (usage.subscription_status === 'paid' && usage.paid_conversations_used < PAID_CONVERSATIONS_COUNT);
 
     if (!inputMessage.trim()) return false;
     if (loading.isLoading || aiResponseLoading.isLoading || (sessionCreationStatus as string) === 'IN_PROGRESS') return false; // Use context's loading state and AI loading state

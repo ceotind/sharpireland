@@ -13,22 +13,12 @@ import {
   ChatSession,
   ChatContextType,
   ChatContextState,
-  ChatContextActions,
-  LoadingState,
-  ErrorState,
   BusinessPlannerSessionContext,
-  BusinessPlannerConversation,
-  BusinessPlannerSession,
   MessageStatus, // Import MessageStatus
   SessionError, // Import SessionError
   SessionErrorType, // Import SessionErrorType
-  SessionCreationStatus, // Import SessionCreationStatus
-  SessionCreationRetryInfo, // Import SessionCreationRetryInfo
-  BusinessPlannerChatResponse, // Import for validation
-  CreateSessionResponse, // Import for validation
+  SessionCreationStatus, // Import for validation
 } from "../types/business-planner";
-import { performanceLogger, errorLogger } from '../utils/performanceLogger'; // Import performanceLogger and errorLogger
-
 // Extend ChatContextState locally to ensure properties are recognized
 
 // Constants for AI response handling
@@ -38,30 +28,32 @@ const MAX_RETRIES = 3; // Maximum number of retries for timed-out requests
 // Helper for logging errors
 const logError = (context: string, error: any, details?: any) => {
   console.error(`[ChatContext Error] ${context}:`, error, details);
-  errorLogger(error, context, details); // Use the centralized errorLogger
+  
+  // Send error to logging endpoint
+  if (typeof window !== 'undefined' && typeof fetch !== 'undefined') {
+    const errorData = {
+      message: error?.message || String(error),
+      stack: error?.stack,
+      context: context,
+      details: details,
+      timestamp: new Date().toISOString(),
+      url: window.location.href,
+      userAgent: navigator.userAgent
+    };
+
+    fetch('/api/log-error', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(errorData),
+    }).catch(err => {
+      console.error('Failed to log error to service:', err);
+    });
+  }
 };
 
 // Helper for validating API responses
-function validateApiResponse<T>(data: any, type: 'chat' | 'session'): T {
-  if (!data) {
-    throw new Error(`API response is empty for type ${type}.`);
-  }
-
-  if (type === 'chat') {
-    const chatResponse = data as BusinessPlannerChatResponse;
-    if (typeof chatResponse.message !== 'string' || typeof chatResponse.session_id !== 'string' || typeof chatResponse.tokens_used !== 'number') {
-      throw new Error('Invalid chat response structure.');
-    }
-    return chatResponse as T;
-  } else if (type === 'session') {
-    const sessionResponse = data as CreateSessionResponse;
-    if (!sessionResponse.session || typeof sessionResponse.session.id !== 'string' || typeof sessionResponse.message !== 'string') {
-      throw new Error('Invalid session creation response structure.');
-    }
-    return sessionResponse as T;
-  }
-  throw new Error('Unknown API response type for validation.');
-}
 
 // Initial state for the chat context
 const initialChatContextState: ChatContextState = {
@@ -288,12 +280,6 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
           });
           performance.mark('sendMessage:api:end'); // Mark end of API call
           performance.measure('sendMessage:api', 'sendMessage:api:start', 'sendMessage:api:end'); // Measure API duration
-          performanceLogger({
-            name: 'sendMessage:api',
-            value: performance.getEntriesByName('sendMessage:api')[0]?.duration || 0,
-            unit: 'ms',
-            tags: { status: response.status.toString(), sessionId: sessionId || 'none' },
-          });
 
 
           clearTimeout(timeoutId);
@@ -416,12 +402,6 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
       }
       performance.mark('sendMessage:end'); // Mark end of sendMessage
       performance.measure('sendMessage', 'sendMessage:start', 'sendMessage:end'); // Measure total sendMessage duration
-      performanceLogger({
-        name: 'sendMessage:total',
-        value: performance.getEntriesByName('sendMessage')[0]?.duration || 0,
-        unit: 'ms',
-        tags: { status: success ? 'success' : 'failed', retries: currentRetry.toString() },
-      });
     },
     [state.currentSession?.id]
   );
@@ -493,12 +473,6 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
           });
           performance.mark('createSession:api:end'); // Mark end of API call
           performance.measure('createSession:api', 'createSession:api:start', 'createSession:api:end'); // Measure API duration
-          performanceLogger({
-            name: 'createSession:api',
-            value: performance.getEntriesByName('createSession:api')[0]?.duration || 0,
-            unit: 'ms',
-            tags: { status: response.status.toString() },
-          });
 
           clearTimeout(timeoutId);
 
@@ -621,12 +595,6 @@ export const ChatProvider: React.FC<ChatProviderProps> = ({
       }
       performance.mark('createSession:end'); // Mark end of createSession
       performance.measure('createSession', 'createSession:start', 'createSession:end'); // Measure total createSession duration
-      performanceLogger({
-        name: 'createSession:total',
-        value: performance.getEntriesByName('createSession')[0]?.duration || 0,
-        unit: 'ms',
-        tags: { status: success ? 'success' : 'failed', retries: currentRetry.toString() },
-      });
     },
     [sendMessage, validateSessionContext]
   );

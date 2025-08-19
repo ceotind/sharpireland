@@ -73,7 +73,6 @@ export default async function RootLayout({
         ))}
       </head>
       <body>
-        <WebVitalsReporter />
         <Analytics
           gaId={process.env.NEXT_PUBLIC_GA_ID || undefined}
           gtmId={process.env.NEXT_PUBLIC_GTM_ID || undefined}

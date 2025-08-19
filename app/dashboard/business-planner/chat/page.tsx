@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { createClient } from '@/app/utils/supabase/server';
 import DashboardLayout from '@/app/components/dashboard/DashboardLayout';
 import ChatInterface from '../components/ChatInterface';
-import { BusinessPlannerSession, BusinessPlannerUsage, BusinessPlannerConversation } from '@/app/types/business-planner';
+import { BusinessPlannerSession, BusinessPlannerUsage, BusinessPlannerConversation, MessageStatus } from '@/app/types/business-planner';
 import { UserProfile, DashboardStats } from '@/app/types/dashboard';
 import { ChatProvider } from '@/app/context/ChatContext'; // Import ChatProvider
 
@@ -270,6 +270,7 @@ export default async function BusinessPlannerChat({ searchParams }: ChatPageProp
               tokens_used: msg.tokens_used,
               created_at: msg.created_at,
               isOptimistic: false,
+              status: MessageStatus.COMPLETED,
             }))}
             initialSession={{
               id: currentSession.id,

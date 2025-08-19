@@ -2,7 +2,6 @@ import React, { Suspense, lazy, RefObject, Profiler } from 'react';
 import { ChatMessage } from '@/app/types/business-planner';
 import TypingIndicator from './TypingIndicator';
 import ChatMessageDisplay from './ChatMessageDisplay';
-import { performanceLogger } from '@/app/utils/performanceLogger';
 
 const WelcomeMessage = lazy(() => import('./WelcomeMessage'));
 
@@ -23,13 +22,6 @@ const ChatMessagesList: React.FC<ChatMessagesListProps> = React.memo(({ messages
     startTime: number, // when React began rendering the current update
     commitTime: number // when React committed this commit
   ) => {
-    performanceLogger({
-      name: `component:${id}:render`,
-      value: actualDuration,
-      unit: 'ms',
-      tags: { phase, baseDuration: baseDuration.toString(), startTime: startTime.toString(), commitTime: commitTime.toString() },
-      details: {}, // No interactions to log in this version
-    });
   };
 
   useEffect(() => {
@@ -37,19 +29,6 @@ const ChatMessagesList: React.FC<ChatMessagesListProps> = React.memo(({ messages
       const observer = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
           if (entry.entryType === 'resource') {
-            performanceLogger({
-              name: `resource:${entry.name}`,
-              value: entry.duration,
-              unit: 'ms',
-              tags: {
-                initiatorType: (entry as PerformanceResourceTiming).initiatorType,
-                decodedBodySize: (entry as PerformanceResourceTiming).decodedBodySize.toString(),
-              },
-              details: {
-                startTime: entry.startTime,
-                responseEnd: (entry as PerformanceResourceTiming).responseEnd,
-              },
-            });
           }
         });
       });
@@ -60,6 +39,8 @@ const ChatMessagesList: React.FC<ChatMessagesListProps> = React.memo(({ messages
         observer.disconnect();
       };
     }
+    // Return undefined explicitly when condition is not met
+    return undefined;
   }, []);
 
   const renderMessage = (message: ChatMessage) => {

@@ -82,11 +82,11 @@ class RateLimiter {
   }
 }
 
-// Create singleton instance with more lenient limits during development
+// Create singleton instance with more appropriate limits for performance metrics
 const rateLimiter = new RateLimiter(
   process.env.NODE_ENV === 'production'
-    ? parseInt(process.env.RATE_LIMIT_MAX || '5')
-    : 20, // More lenient in development
+    ? parseInt(process.env.RATE_LIMIT_MAX || '20') // Increased from 5 to 20 for performance metrics
+    : 50, // More lenient in development
   parseInt(process.env.RATE_LIMIT_WINDOW || '900000') // 15 minutes
 );
 
